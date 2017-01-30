@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.seguimiento.dao.AlertaDao">
+
+    <resultMap id="alertaMap" type="alerta">
+        <id property="id" column="N_ID_ALERTA" />
+        <result property="seguimientoAcuerdo.id" column="N_ID_SEGUIEMIENTO" />
+        <result property="descripcion" column="C_DESCRIPALERTA"/>
+        <result property="fecha" column="D_FECHAENVIOALERTA"/>
+        <result property="estado" column="C_ESTADOALERTA"/>
+        <!--AGREGADOS-->
+        <result property="caso.nombre" column="C_NOMCASO"/>
+        <result property="caso.codigo" column="C_CODIGOCASO"/>
+        <result property="actividad.nombre" column="C_NOMACTIVIDAD"/>
+        <result property="actividad.codigoActividad" column="C_CODIGOACTIVIDAD"/>
+        <result property="seguimientoAcuerdo.finSeguimiento" column="D_FECFINSEGUIMIENTO"/>
+        <result property="actaAcuerdoDetalle.descripcion" column="C_DESCRIPACUERDO"/>
+        <result property="actaAcuerdoDetalle.id" column="N_ID_ACUERDO"/>
+        <result property="actaAcuerdoDetalle.usuarioRegistro" column="C_USUREGISTRO"/>
+        
+    </resultMap>
+    
+    <insert id="alertaInsertar" parameterType="alerta">
+        INSERT INTO SIMCO_SEG_ALERTA
+        (
+        N_ID_ALERTA,
+        N_ID_SEGUIEMIENTO,
+        C_DESCRIPALERTA,
+        D_FECHAENVIOALERTA,
+        C_ESTADOALERTA
+        )
+        VALUES
+        (
+        SEQ_SIMCO_SEG_ALERTA.NextVal,
+        #{seguimientoAcuerdo.id},
+        #{descripcion},
+        #{fecha},
+        'INA'
+        ) 
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_SEG_ALERTA.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+ 
+    <select id="alertaBuscar" resultMap="alertaMap" parameterType="long">
+        SELECT 
+            A.N_ID_ALERTA,
+            A.D_FECHAENVIOALERTA,
+            A.C_DESCRIPALERTA,
+            A.C_ESTADOALERTA,
+            H.C_NOMCASO, 
+            H.C_CODIGOCASO,
+            F.C_NOMACTIVIDAD,
+            F.C_CODIGOACTIVIDAD,
+            C.C_DESCRIPACUERDO,
+            C.N_ID_ACUERDO,
+            C.C_USUREGISTRO
+        FROM SIMCO_SEG_ALERTA A
+        INNER JOIN SIMCO_SEG_ACUERDOS B ON A.N_ID_SEGUIEMIENTO = B.N_ID_SEGUIEMIENTO
+        INNER JOIN SIMCO_REG_DET_ACTA_ACUERDO C ON C.N_ID_ACUERDO = B.N_ID_ACUERDO
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO D ON D.N_ID_ACTA = C.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS E ON E.N_ID_ACTA = D.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD F ON E.N_ID_ACTIVIDAD = F.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD G ON G.N_ID_ACTIVIDAD = F.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO H ON H.N_ID_CASO = G.N_ID_CASO
+        WHERE C.N_ID_ACUERDO = #{id}
+        order by A.N_ID_ALERTA ASC
+    </select>
+    
+    <select id="alertaBuscarUsuario" resultMap="alertaMap" parameterType="long">
+        SELECT 
+            A.N_ID_ALERTA,
+            A.C_DESCRIPALERTA,
+            A.D_FECHAENVIOALERTA,
+            A.C_ESTADOALERTA,
+            H.C_NOMCASO, 
+            H.C_CODIGOCASO,
+            F.C_NOMACTIVIDAD,
+            F.C_CODIGOACTIVIDAD,
+            C.C_DESCRIPACUERDO,
+            C.N_ID_ACUERDO,
+            C.C_USUREGISTRO
+        FROM SIMCO_SEG_ALERTA A
+        INNER JOIN SIMCO_SEG_ACUERDOS B ON A.N_ID_SEGUIEMIENTO = B.N_ID_SEGUIEMIENTO
+        INNER JOIN SIMCO_REG_DET_ACTA_ACUERDO C ON C.N_ID_ACUERDO = B.N_ID_ACUERDO
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO D ON D.N_ID_ACTA = C.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS E ON E.N_ID_ACTA = D.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD F ON E.N_ID_ACTIVIDAD = F.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD G ON G.N_ID_ACTIVIDAD = F.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO H ON H.N_ID_CASO = G.N_ID_CASO
+        WHERE C.N_ID_ACUERDO = #{id}
+        AND A.C_ESTADOALERTA = 'PEN'
+        order by A.N_ID_ALERTA ASC
+    </select>
+    
+    <select id="alertaBuscarDetalle" resultMap="alertaMap" parameterType="long">
+      
+        SELECT 
+            A.N_ID_ALERTA,
+            A.D_FECHAENVIOALERTA, 
+            H.C_NOMCASO, 
+            H.C_CODIGOCASO,
+            F.C_CODIGOACTIVIDAD,
+            F.C_NOMACTIVIDAD,
+            C.C_DESCRIPACUERDO,
+            C.N_ID_ACUERDO
+        FROM SIMCO_SEG_ALERTA A
+        INNER JOIN SIMCO_SEG_ACUERDOS B ON A.N_ID_SEGUIEMIENTO = B.N_ID_SEGUIEMIENTO
+        INNER JOIN SIMCO_REG_DET_ACTA_ACUERDO C ON C.N_ID_ACUERDO = B.N_ID_ACUERDO
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO D ON D.N_ID_ACTA = C.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS E ON E.N_ID_ACTA = D.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD F ON E.N_ID_ACTIVIDAD = F.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD G ON G.N_ID_ACTIVIDAD = F.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO H ON H.N_ID_CASO = G.N_ID_CASO
+        WHERE A.N_ID_ALERTA = #{id}
+    </select>
+    
+    <update id="alertaUpdate" parameterType="long">
+        UPDATE SIMCO_SEG_ALERTA
+        SET C_ESTADOALERTA = 'ACT'
+        WHERE N_ID_ALERTA = #{id}
+    </update>
+</mapper>

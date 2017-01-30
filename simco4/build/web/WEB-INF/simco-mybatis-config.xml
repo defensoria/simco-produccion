@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+	<!--
+		<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config
+		2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+	-->
+
+<configuration>
+    <settings>
+        <!-- changes from the defaults for testing -->
+        <setting name="cacheEnabled" value="false" />
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="defaultExecutorType" value="REUSE" />
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.Usuario" alias="usuario"/>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.UsuarioRol" alias="usuarioRol"/>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.UsuarioLogin" alias="usuarioLogin"/>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.Rol" alias="rol"/>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.Recurso" alias="recurso"/>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.RolRecurso" alias="rolRecurso"/>
+        <typeAlias type="gob.dp.simco.administracion.seguridad.bean.FiltroUsuario" alias="filtroUsuario"/>
+        
+        <typeAlias type="gob.dp.simco.administracion.parametro.entity.Catalogo" alias="catalogo"/>
+        <typeAlias type="gob.dp.simco.administracion.parametro.bean.FiltroCatalogo" alias="filtroCatalogo"/>
+                         
+        <typeAlias type="gob.dp.simco.registro.entity.Actividad" alias="actividad"/>
+        <typeAlias type="gob.dp.simco.registro.entity.Actor" alias="actor"/>
+        <typeAlias type="gob.dp.simco.registro.bean.FiltroActor" alias="filtroActor"/>
+        <typeAlias type="gob.dp.simco.registro.entity.Caso" alias="caso"/>
+        <typeAlias type="gob.dp.simco.registro.bean.FiltroCaso" alias="filtroCaso"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActaAcuerdo" alias="actaAcuerdo"/>
+        <typeAlias type="gob.dp.simco.registro.entity.MedioVerificacion" alias="medioVerificacion"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadActor" alias="actividadActor"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadActaAcuerdo" alias="actividadActaAcuerdo"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadMedioVerificacion" alias="actividadMedioVerificacion"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadCaso" alias="actividadCaso"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadActividad" alias="actividadActividad"/>  
+        <typeAlias type="gob.dp.simco.registro.entity.ActaAcuerdoDetalle" alias="actaAcuerdoDetalle"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActorAcuerdo" alias="actorAcuerdo"/>
+        <typeAlias type="gob.dp.simco.registro.entity.NoticiaRegistro" alias="noticiaRegistro"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadHistorial" alias="actividadHistorial"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActorMiembro" alias="actorMiembro"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActividadVictima" alias="actividadVictima"/>
+        <typeAlias type="gob.dp.simco.registro.bean.FiltroMedioVerificacion" alias="filtroMedioVerificacion"/>
+        <typeAlias type="gob.dp.simco.registro.entity.Parametro" alias="parametro"/>
+        <typeAlias type="gob.dp.simco.registro.bean.FiltroParametro" alias="filtroParametro"/>
+        <typeAlias type="gob.dp.simco.registro.bean.FiltroCasoActor" alias="filtroCasoActor"/>
+        <typeAlias type="gob.dp.simco.registro.entity.CasoActor" alias="casoActor"/>
+        <typeAlias type="gob.dp.simco.registro.entity.ActaAcuerdoDetalleMiembro" alias="actaAcuerdoDetalleMiembro"/>
+        <typeAlias type="gob.dp.simco.registro.entity.PrimerNivel" alias="primerNivel"/>
+        <typeAlias type="gob.dp.simco.registro.entity.SegundoNivel" alias="segundoNivel"/>
+        <typeAlias type="gob.dp.simco.registro.entity.TercerNivel" alias="tercerNivel"/>
+        <typeAlias type="gob.dp.simco.registro.entity.CasoRegion" alias="casoRegion"/>
+        
+        <typeAlias type="gob.dp.simco.seguimiento.entity.SeguimientoAcuerdo" alias="seguimientoAcuerdo"/>
+        <typeAlias type="gob.dp.simco.seguimiento.entity.Alerta" alias="alerta"/>
+                
+        <typeAlias type="gob.dp.simco.analisis.entity.Tema" alias="tema"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.AnalisisActor" alias="analisisActor"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.AnalisisActorTema" alias="analisisActorTema"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.AnalisisActorIntensidad" alias="analisisActorIntensidad"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.AnalisisRelacion" alias="analisisRelacion"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.Problema" alias="problema"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.ProblemaDetalle" alias="problemaDetalle"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.Contexto" alias="contexto"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.ContextoPregunta" alias="contextoPregunta"/>
+        <typeAlias type="gob.dp.simco.analisis.entity.ContextoTipo" alias="contextoTipo"/>
+        
+        <typeAlias type="gob.dp.simco.intervencion.entity.Intervencion" alias="intervencion"/>
+        <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionAccion" alias="intervencionAccion"/>
+        <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionEtapa" alias="intervencionEtapa"/>
+        <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionEtapaActuacion" alias="intervencionEtapaActuacion"/>
+        <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionMiembro" alias="intervencionMiembro"/>
+        <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionHistorialAct" alias="intervencionHistorialAct"/>
+        
+        <typeAlias type="gob.dp.simco.noticia.entity.Noticia" alias="Noticia"/>
+        
+        <typeAlias type="gob.dp.simco.investigacion.entity.Investigacion" alias="investigacion"/>
+        <typeAlias type="gob.dp.simco.investigacion.entity.Participacion" alias="participacion"/>
+        <typeAlias type="gob.dp.simco.investigacion.entity.Campo" alias="campo"/>
+        <typeAlias type="gob.dp.simco.investigacion.entity.CampoDetalle" alias="campoDetalle"/>
+        <typeAlias type="gob.dp.simco.investigacion.entity.HistorialActividad" alias="historialActividad"/>
+        
+        <typeAlias type="gob.dp.simco.comun.Auditoria" alias="auditoria"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Departamento" alias="departamento"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Provincia" alias="provincia"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Distrito" alias="distrito"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Menu" alias="menu"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Busqueda" alias="busqueda"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Resumen" alias="resumen"/>
+        <typeAlias type="gob.dp.simco.comun.entity.RegistroCarga" alias="registroCarga"/>
+        <typeAlias type="gob.dp.simco.comun.entity.Maestro" alias="maestro"/>
+        
+        <typeAlias type="gob.dp.simco.reporte.entity.FiltroReporte" alias="filtroReporte"/>
+        <typeAlias type="gob.dp.simco.reporte.entity.ElementoResumenEjecutivo" alias="elementoResumenEjecutivo"/>
+        <typeAlias type="gob.dp.simco.reporte.entity.ReporteSimcoCaso" alias="reporteSimcoCaso"/>
+        <typeAlias type="gob.dp.simco.reporte.entity.ReporteSimcoActor" alias="reporteSimcoActor"/>
+        <typeAlias type="gob.dp.simco.reporte.entity.ReporteSimcoActividad" alias="reporteSimcoActividad"/>
+        <typeAlias type="gob.dp.simco.reporte.entity.ReporteSimcoVictima" alias="reporteSimcoVictima"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Usuario.xml" />
+        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Rol.xml" />
+        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Recurso.xml" />
+        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Auditoria.xml" />
+        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/UsuarioLogin.xml" />
+        
+        <mapper resource="gob/dp/simco/administracion/parametro/dao/xml/Catalogo.xml" />
+        
+        <mapper resource="gob/dp/simco/registro/dao/xml/Actividad.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/Actor.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/Caso.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActaAcuerdo.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/MedioVerificacion.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadActor.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadActaAcuerdo.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadMedioVerificacion.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadCaso.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadActividad.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActaAcuerdoDetalle.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActorAcuerdo.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadHistorial.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/Parametro.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/NoticiaRegistro.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/CasoActor.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActaAcuerdoDetalleMiembro.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActorMiembro.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/ActividadVictima.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/PrimerNivel.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/SegundoNivel.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/TercerNivel.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/CasoRegion.xml" />
+        
+        
+        <mapper resource="gob/dp/simco/seguimiento/dao/xml/SeguimientoAcuerdo.xml" />
+        <mapper resource="gob/dp/simco/seguimiento/dao/xml/Alerta.xml" />
+        
+        <mapper resource="gob/dp/simco/analisis/dao/xml/Tema.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/AnalisisActor.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/AnalisisActorTema.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/AnalisisActorIntensidad.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/AnalisisRelacion.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/Problema.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/ProblemaDetalle.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/Contexto.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/ContextoPregunta.xml" />
+        <mapper resource="gob/dp/simco/analisis/dao/xml/ContextoTipo.xml" />
+        
+        <mapper resource="gob/dp/simco/intervencion/dao/xml/Intervencion.xml" />
+        <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionAccion.xml" />
+        <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionEtapa.xml" />
+        <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionEtapaActuacion.xml" />
+        <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionMiembro.xml" />
+        <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionHistorialAct.xml" />
+        
+        <mapper resource="gob/dp/simco/noticia/dao/xml/Noticia.xml" />
+        
+        <mapper resource="gob/dp/simco/investigacion/dao/xml/Investigacion.xml" />
+        <mapper resource="gob/dp/simco/investigacion/dao/xml/Participacion.xml" />
+        <mapper resource="gob/dp/simco/investigacion/dao/xml/Campo.xml" />
+        <mapper resource="gob/dp/simco/investigacion/dao/xml/CampoDetalle.xml" />
+        <mapper resource="gob/dp/simco/investigacion/dao/xml/HistorialActividad.xml" />
+        
+        <mapper resource="gob/dp/simco/comun/dao/xml/Departamento.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/Provincia.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/Distrito.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/Menu.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/Busqueda.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/Reporte.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/RegistroCarga.xml" />
+        <mapper resource="gob/dp/simco/comun/dao/xml/Maestro.xml" />
+        
+        <mapper resource="gob/dp/simco/reporte/dao/xml/ReporteEjecutivo.xml" />
+        <mapper resource="gob/dp/simco/reporte/dao/xml/ReporteSimcoCaso.xml" />
+        <mapper resource="gob/dp/simco/reporte/dao/xml/ReporteSimcoActor.xml" />
+        <mapper resource="gob/dp/simco/reporte/dao/xml/ReporteSimcoActividad.xml" />
+        <mapper resource="gob/dp/simco/reporte/dao/xml/ReporteSimcoVictima.xml" />
+        
+    </mappers>
+    
+</configuration>
+
+
+

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.intervencion.dao.IntervencionEtapaActuacionDao">
+
+    <resultMap id="intervencionEtapaActuacionMap" type="intervencionEtapaActuacion">
+        <id property="id" column="N_ID_ETAPAACT" />
+        <result property="descripcion" column="C_DESCRIPCION"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="intervencionEtapa.id" column="N_ID_ETAPA" />
+        <result property="indCheck" column="N_INDICE_CHECK" />
+        <result property="indGSA" column="N_INDICE_GSA" />
+        <result property="actividadId" column="N_ID_ACTIVIDAD"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="fechaCulminacion" column="D_FECCULMINACION"/>
+        <result property="nombreActividad" column="C_NOMACTIVIDAD"/>
+        <result property="codigoActividad" column="C_CODIGOACTIVIDAD"/>
+    </resultMap>
+    
+    <insert id="intervencionEtapaActuacionInsertar" parameterType="intervencionEtapaActuacion">
+        INSERT INTO SIMCO_INTER_ETAPA_ACT
+        (
+        N_ID_ETAPAACT,
+        N_ID_ETAPA,
+        <if test="actividad!=null">
+            N_ID_ACTIVIDAD,
+        </if>
+        <if test="descripcion!=null">
+            C_DESCRIPCION,
+        </if>
+        <if test="indCheck!=null">
+            N_INDICE_CHECK,
+        </if>
+        <if test="indGSA!=null">
+            N_INDICE_GSA,
+        </if>
+        <if test="fechaRegistro !=null">
+            D_FECREGISTRO,
+        </if>
+        C_ESTADO
+        )
+        VALUES
+        (
+        SEQ_SIMCO_INTER_ETAPA_ACT.NextVal,
+        #{intervencionEtapa.id},
+        <if test="actividadId !=null">
+            #{actividadId},
+        </if>
+        <if test="descripcion!=null">
+            #{descripcion},
+        </if>
+        <if test="indCheck!=null">
+            #{indCheck},
+        </if>
+        <if test="indGSA!=null">
+            #{indGSA},
+        </if>
+        <if test="fechaRegistro !=null">
+            #{fechaRegistro},
+        </if>
+        #{estado}
+        ) 
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_INTER_ETAPA_ACT.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    
+    <update id="intervencionEtapaActuacionUpdate" parameterType="intervencionEtapaActuacion">
+        UPDATE SIMCO_INTER_ETAPA_ACT
+        SET
+        <if test="actividadId !=null">
+            N_ID_ACTIVIDAD = #{actividadId},
+        </if>
+        <if test="actividadId == null">
+            N_ID_ACTIVIDAD = null,
+        </if>
+        <if test="descripcion!=null">
+            C_DESCRIPCION = #{descripcion},
+        </if>
+        <if test="indCheck!=null">
+            N_INDICE_CHECK = #{indCheck},
+        </if>
+        <if test="indGSA!=null">
+            N_INDICE_GSA = #{indGSA},
+        </if>
+        <if test="fechaCulminacion !=null">
+            D_FECCULMINACION = #{fechaCulminacion},
+        </if>
+        C_ESTADO = #{estado}
+        
+        
+        WHERE
+        N_ID_ETAPAACT = #{id} AND
+        N_ID_ETAPA = #{intervencionEtapa.id}
+    </update>
+    
+
+    <select id="intervencionEtapaActuacionBuscar" resultMap="intervencionEtapaActuacionMap" parameterType="long">
+        SELECT * FROM SIMCO_INTER_ETAPA_ACT
+        WHERE N_ID_ETAPA = #{id}
+        ORDER BY N_ID_ETAPAACT
+    </select>
+    
+    <select id="intervencionEtapaActuacionBuscarActividad" resultMap="intervencionEtapaActuacionMap" parameterType="long">
+        SELECT 
+            A.N_ID_ETAPAACT,
+            A.N_ID_ETAPA,
+            A.N_ID_ACTIVIDAD,
+            A.C_DESCRIPCION,
+            A.N_INDICE_CHECK,
+            A.N_INDICE_GSA,
+            A.C_ESTADO,
+            A.D_FECREGISTRO,
+            A.D_FECCULMINACION,
+            B.C_NOMACTIVIDAD,
+            B.C_CODIGOACTIVIDAD
+        FROM SIMCO_INTER_ETAPA_ACT A
+        LEFT JOIN SIMCO_REG_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE N_ID_ETAPA = #{id}
+        ORDER BY N_ID_ETAPAACT
+    </select>
+    
+    <select id="intervencionEtapaActuacionBuscarActividadGSA" resultMap="intervencionEtapaActuacionMap" parameterType="long">
+        SELECT 
+            A.N_ID_ETAPAACT,
+            A.N_ID_ETAPA,
+            A.N_ID_ACTIVIDAD,
+            A.C_DESCRIPCION,
+            A.N_INDICE_CHECK,
+            A.N_INDICE_GSA,
+            A.C_ESTADO,
+            A.D_FECREGISTRO,
+            A.D_FECCULMINACION,
+            B.C_NOMACTIVIDAD,
+            B.C_CODIGOACTIVIDAD
+        FROM SIMCO_INTER_ETAPA_ACT A
+        LEFT JOIN SIMCO_REG_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE N_ID_ETAPA = #{id}
+        AND A.N_INDICE_GSA = 1
+        ORDER BY N_ID_ETAPAACT
+    </select>
+    
+    
+    <delete id="intervencionEtapaActuacionEliminar" parameterType="long">
+        DELETE from SIMCO_INTER_ETAPA_ACT
+        WHERE N_ID_ETAPAACT = #{id}
+    </delete>
+    
+</mapper>

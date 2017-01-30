@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.reporte.dao.ReporteSimcoVictimaDao">
+    
+    <resultMap id="reporteSimcoVictimaMap" type="reporteSimcoVictima">
+        <result property="nombreCompletoVictima" column="NOMBRE_COMPLETO"/>
+        <result property="edadVictima" column="N_EDAD"/>
+        <result property="sexoVictima" column="C_SEXO"/>
+        <result property="tipoVictima" column="TIPO_VICTIMA"/>
+        <result property="tipoEstadoVictima" column="TIPOESTADO"/>
+        <result property="nombreActividad" column="C_NOMACTIVIDAD"/>
+        <result property="tipoAcontecimiento" column="C_TIPOACONTECIMIENTO"/>
+        <result property="departamento" column="C_DESCDPTO"/>
+        <result property="provincia" column="C_DESCPROV"/>
+        <result property="distrito" column="C_DESCDSTRO"/>
+        <result property="indicadorNN" column="N_NOIDENTIFICADO"/>
+        <result property="codigoCaso" column="C_CODIGOCASO"/>
+        <result property="nombreCaso" column="C_NOMCASO"/>
+        <result property="tipologiaCaso" column="TIPOCASO"/>
+        <result property="tipoActividadCaso" column="TIPOACTIVIDAD"/>
+        <result property="codigoActividad" column="C_CODIGOACTIVIDAD"/>
+        <result property="dni" column="C_DNI"/>
+        <result property="idActividad" column="N_ID_ACTIVIDAD"/>
+    </resultMap>      
+
+    <select id="reporteVictima" parameterType="reporteSimcoVictima"  resultMap="reporteSimcoVictimaMap">
+SELECT DISTINCT A.C_APEPATERNO||' '||A.C_APEMATERNO||' '||A.C_NOMBRE NOMBRE_COMPLETO, A.N_EDAD, A.C_SEXO, B.NOMBRE_PARAMETRO TIPO_VICTIMA,
+C.NOMBRE_PARAMETRO TIPOESTADO, D.C_NOMACTIVIDAD, D.C_TIPOACONTECIMIENTO, E.C_DESCDPTO, A.N_NOIDENTIFICADO, G.C_CODIGOCASO, G.C_NOMCASO,
+H.NOMBRE_PARAMETRO TIPOCASO, I.NOMBRE_PARAMETRO TIPOACTIVIDAD, D.C_NOMACTIVIDAD, D.C_CODIGOACTIVIDAD, J.C_DESCPROV, K.C_DESCDSTRO, A.C_DNI,  D.N_ID_ACTIVIDAD
+FROM SIMCO_REG_ACTIVIDAD_VICTIMA A
+LEFT JOIN SIMCO_PARAMETRO B ON B.VALOR_PARAMETRO = A.C_TIPO AND B.PADRE_PARAMETRO = 200 
+LEFT JOIN SIMCO_PARAMETRO C ON C.VALOR_PARAMETRO = A.C_TIPOESTADO AND C.PADRE_PARAMETRO = 190 
+INNER JOIN SIMCO_REG_ACTIVIDAD D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD AND D.C_TIPO = 'AC'
+LEFT JOIN SIMCO_UBIGEO_DPTO E ON D.CIDDEPART = E.C_ID_DPTO
+LEFT JOIN SIMCO_UBIGEO_PROV J ON D.CIDPROV = J.C_ID_PROV AND E.C_ID_DPTO = J.C_ID_DPTO
+LEFT JOIN SIMCO_UBIGEO_DSTRO K ON D.CIDDISTR = K.C_ID_DSTRO AND E.C_ID_DPTO = K.C_ID_DPTO AND J.C_ID_PROV = K.C_ID_PROV
+LEFT JOIN SIMCO_REG_CASO_ACTIVIDAD F ON F.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD AND F.C_ESTADOACTCASO = 'ACT'
+LEFT JOIN SIMCO_REG_CASO G ON G.N_ID_CASO = F.N_ID_CASO AND G.C_INDVIGENTE= 'A' AND G.N_ID_CASO IS NOT NULL
+LEFT JOIN SIMCO_PARAMETRO H ON H.VALOR_PARAMETRO = G.C_TIPOCASO AND H.PADRE_PARAMETRO = 90        
+LEFT JOIN SIMCO_PARAMETRO I ON I.VALOR_PARAMETRO = G.C_SUBTIPOCASO AND I.PADRE_PARAMETRO = 130
+        WHERE 1 = 1
+        <if test="anho != 0">
+            AND TO_CHAR(G.D_FECHACREACION, 'yyyy') = #{anho} 
+        </if>
+        <if test="codigoCaso != ''">
+            AND G.C_CODIGOCASO = #{codigoCaso}
+        </if>
+        <if test="tipologiaCaso != ''">
+            AND G.C_TIPOCASO = #{tipologiaCaso} 
+        </if>
+        <if test="idRegion != ''">
+            AND G.C_IDDEPART = #{idRegion} 
+        </if>
+        <if test="estado != ''">
+            AND G.C_TIPOESTADO = #{estado} 
+        </if>
+        <if test="tipoAcontecimiento != ''">
+            AND D.C_TIPOACONTECIMIENTO = #{tipoAcontecimiento} 
+        </if>
+        <if test="inversionInvolucrada != null">
+            AND G.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
+        </if>
+    </select>
+    
+    
+</mapper>

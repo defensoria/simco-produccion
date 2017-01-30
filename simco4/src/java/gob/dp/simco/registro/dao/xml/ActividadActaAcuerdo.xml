@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadActaAcuerdoDao">
+    
+    <resultMap id="actividadActaAcuerdoMap" type="actividadActaAcuerdo">
+        <result property="actividad.id" column="N_ID_ACTIVIDAD" />
+        <result property="actaAcuerdo.id" column="N_ID_ACONT"/>
+        <result property="estado" column="C_ESTADO_ACTI_ACONT"/>
+    </resultMap>  
+
+    <insert id="actividadActaAcuerdoInsertar" parameterType="actividadActaAcuerdo">
+        INSERT INTO SIMCO_REG_ACTIVIDAD_ACTAS
+        (
+        N_ID_ACTA,
+        N_ID_ACTIVIDAD,
+        C_ESTADOACTIACTA
+        )
+        VALUES 
+        (
+        #{actaAcuerdo.id},
+        #{actividad.id},
+        #{estado}
+        )
+    </insert>
+
+    <update id="actividadActaAcuerdoUpdate" parameterType="actividadActaAcuerdo">
+        UPDATE SIMCO_REG_ACTIVIDAD_ACTAS
+        <set>
+            C_ESTADOACTIACTA = #{estado}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD =#{actividad.id}
+            AND
+            N_ID_ACTA = #{actaAcuerdo.id}
+        </where>
+    </update>
+    
+    <delete id="actividadActaAcuerdoDelete" parameterType="actividadActaAcuerdo">
+        DELETE FROM SIMCO_REG_ACTIVIDAD_ACTAS
+        where N_ID_ACTIVIDAD = #{actividad.id}
+        and N_ID_ACTA = #{actaAcuerdo.id}
+    </delete>
+    
+    
+    <select id="actividadActaAcuerdoValida" parameterType="actividadActaAcuerdo" resultType="java.lang.Integer" >
+        select count(*) from SIMCO_REG_ACTIVIDAD_ACTAS
+        where N_ID_ACTA = #{actaAcuerdo.id}
+        and N_ID_ACTIVIDAD = #{actividad.id}
+    </select>
+    
+
+</mapper>

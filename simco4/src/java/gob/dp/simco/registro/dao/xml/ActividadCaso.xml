@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadCasoDao">
+    
+    <resultMap id="actividadCasoMap" type="actividadCaso">
+        <result property="actividad.id" column="N_ID_ACTIVIDAD" />
+        <result property="caso.id" column="N_ID_CASO"/>
+        <result property="estado" column="C_ESTADOACTCASO"/>
+    </resultMap>  
+
+    <insert id="actividadCasoInsertar" parameterType="actividadCaso">
+        INSERT INTO SIMCO_REG_CASO_ACTIVIDAD
+        (
+        N_ID_CASO,
+        N_ID_ACTIVIDAD,
+        C_ESTADOACTCASO
+        )
+        VALUES 
+        (
+        #{caso.id},
+        #{actividad.id},
+        #{estado}
+        )
+    </insert>
+
+    <update id="actividadCasoUpdate" parameterType="actividadCaso">
+        UPDATE SIMCO_REG_CASO_ACTIVIDAD
+        <set>
+            C_ESTADOACTCASO = #{estado}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{actividad.id}
+            AND
+            N_ID_CASO=#{caso.id}
+        </where>
+    </update>
+    
+    <update id="actividadesCasoUpdate" parameterType="actividadCaso">
+        UPDATE SIMCO_REG_CASO_ACTIVIDAD
+        <set>
+            C_ESTADOACTCASO = #{estado}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{actividad.id}
+        </where>
+    </update>
+    
+    <delete id="actividadCasoDelete" parameterType="actividadCaso">
+        DELETE FROM SIMCO_REG_CASO_ACTIVIDAD
+        where N_ID_ACTIVIDAD = #{actividad.id}
+        and N_ID_CASO = #{caso.id}
+    </delete>
+    
+    <select id="actividadCasoValida" parameterType="long" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_CASO_ACTIVIDAD
+        WHERE N_ID_ACTIVIDAD = #{id}
+    </select>
+
+</mapper>

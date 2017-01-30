@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActaAcuerdoDetalleMiembroDAO">
+    
+    <resultMap id="actaAcuerdoDetalleMiembroMap" type="actaAcuerdoDetalleMiembro">
+        <id property="id" column="N_IDDETMIEMBRO" />
+        <result property="idActaAcuerdoDetalle" column="N_ID_ACUERDO"/>
+        <result property="codigo" column="C_CODIGO"/>
+        <result property="nombre" column="C_NOMBRE"/>
+        <result property="estado" column="C_ESTADO"/>
+        
+    </resultMap>
+
+    <insert id="actaAcuerdoDetalleMiembroInsertar" parameterType="actaAcuerdoDetalleMiembro">
+        INSERT INTO SIMCO_REG_DET_MIEMBRO
+        (
+        N_IDDETMIEMBRO,
+        N_ID_ACUERDO,
+        C_CODIGO,
+        C_NOMBRE,   
+        C_ESTADO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_DET_MIEMBRO.NextVal,
+        #{idActaAcuerdoDetalle},
+        #{codigo},
+        #{nombre},
+        #{estado}
+        )
+    
+        <selectKey keyProperty="id" resultType="long">
+            SELECT SEQ_SIMCO_REG_DET_MIEMBRO.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="actaAcuerdoDetalleMiembroUpdate" parameterType="actaAcuerdoDetalleMiembro">
+        UPDATE SIMCO_REG_DET_MIEMBRO
+        <set>
+            C_ESTADO = #{estado}
+        </set>
+        <where>
+            N_IDDETMIEMBRO=#{id}
+        </where>
+    </update>
+    
+    
+    
+    <select id="actaAcuerdoDetalleMiembroBuscar" resultMap="actaAcuerdoDetalleMiembroMap" parameterType="long">
+        SELECT *
+        FROM SIMCO_REG_DET_MIEMBRO 
+        WHERE N_ID_ACUERDO =#{idActaAcuerdoDetalle}
+        AND C_ESTADO = 'ACT'
+    </select>
+    
+    
+</mapper>

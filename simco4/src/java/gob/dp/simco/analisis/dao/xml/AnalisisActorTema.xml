@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.AnalisisActorTemaDao">
+    
+    <resultMap id="analisisActorTemaMap" type="analisisActorTema">
+        <result property="actor.id" column="N_ID_ACTOR"/>
+        <result property="caso.id" column="N_ID_CASO"/>
+        <result property="tema.id" column="N_ID_TEMA"/>
+        <result property="nivel" column="N_NIVELACTORTEMA"/>
+        <result property="fechaRegistro" column="D_FECHAREGISTROACTORTEMA"/>
+        <result property="actor.nombre" column="C_NOMACTOR"/>
+        <result property="actor.apellidoPat" column="C_APELLIDOPATACTOR"/>
+        <result property="actor.apellidoMat" column="C_APELLIDOMATACTOR"/>
+    </resultMap>  
+    
+    <insert id="analisisActorTemaInsertar" parameterType="analisisActorTema">
+        INSERT INTO SIMCO_ANALISIS_TEMA_ACTOR
+        (
+        N_ID_ACTOR,
+        N_ID_CASO,
+        N_ID_TEMA
+        )
+        VALUES 
+        (
+        #{actor.id},
+        #{caso.id},
+        #{tema.id}
+        )
+    </insert>
+    
+    <update id="analisisActorTemaUpdate" parameterType="analisisActorTema">
+        UPDATE SIMCO_ANALISIS_TEMA_ACTOR
+        SET N_NIVELACTORTEMA = #{nivel},
+            D_FECHAREGISTROACTORTEMA = #{fechaRegistro}
+        WHERE
+        N_ID_ACTOR =#{actor.id} AND
+        N_ID_CASO =#{caso.id} AND
+        N_ID_TEMA =#{tema.id}
+    </update>
+    
+    
+    <select id="analisisActorTemaXactorBuscar" resultMap="analisisActorTemaMap" parameterType="long">
+        SELECT
+            A.N_ID_ACTOR,
+            B.C_NOMACTOR, 
+            B.C_APELLIDOPATACTOR,
+            B.C_APELLIDOMATACTOR,
+            A.N_ID_CASO,
+            A.N_ID_TEMA,
+            A.N_NIVELACTORTEMA
+        FROM SIMCO_ANALISIS_TEMA_ACTOR A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE A.N_ID_TEMA =#{id}
+    </select>
+
+    <select id="analisisActorTemaXactorValida" parameterType="analisisActorTema" resultType="java.lang.Integer" >
+        select count(*) from SIMCO_ANALISIS_TEMA_ACTOR
+        where N_ID_CASO =#{caso.id}
+        and N_ID_ACTOR = #{actor.id}
+    </select>
+    
+    <select id="analisisActorCasoTemaValida" parameterType="analisisActorTema" resultType="java.lang.Integer" >
+        select count(*) from SIMCO_ANALISIS_TEMA_ACTOR
+        where N_ID_CASO =#{caso.id}
+        and N_ID_ACTOR = #{actor.id}
+        and N_ID_TEMA = #{tema.id}
+    </select>
+    
+    <delete id="analisisActorTemaDelete" parameterType="analisisActorTema">
+        delete from SIMCO_ANALISIS_TEMA_ACTOR
+        where N_ID_CASO =#{caso.id}
+        and N_ID_ACTOR = #{actor.id}
+        and N_ID_TEMA = #{tema.id}
+    </delete>
+    
+    <delete id="analisisActorTemaDeletexActor" parameterType="analisisActorTema">
+        delete from SIMCO_ANALISIS_TEMA_ACTOR
+        where N_ID_CASO =#{caso.id}
+        and N_ID_ACTOR = #{actor.id}
+    </delete>
+</mapper>

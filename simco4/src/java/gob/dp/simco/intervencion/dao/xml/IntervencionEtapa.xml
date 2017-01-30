@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.intervencion.dao.IntervencionEtapaDao">
+
+    <resultMap id="intervencionEtapaMap" type="intervencionEtapa">
+        <id property="id" column="N_ID_ETAPA" />
+        <result property="detalle" column="C_DETALLEETAPA" />
+        <result property="estado" column="C_ESTADOACTIVO"/>
+        <result property="tipo" column="C_TIPOETAPA"/>
+        <result property="descripcion" column="C_DESCRIPETAPA"/>
+        <result property="fechaLimite" column="D_FECHALIMITE"/>
+        <result property="avance" column="N_INPUTAVANCE"/>
+        <result property="idIntervencion" column="N_IDINTERVENCION"/>
+        <result property="intervencionAccionId" column="N_ID_ACCION"/>  
+        <result property="color" column="C_COLOR"/> 
+        
+
+    </resultMap>
+    
+    <insert id="intervencionEtapaInsertar" parameterType="intervencionEtapa">
+        INSERT INTO SIMCO_INTER_ETAPA
+        (
+        N_ID_ETAPA,
+        C_DETALLEETAPA,
+        C_ESTADOACTIVO,
+        <if test="intervencionAccion!=null">
+            N_ID_ACCION,
+        </if>
+        N_IDINTERVENCION,
+        <if test="color!=null">
+            C_COLOR,
+        </if>
+        C_TIPOETAPA
+        )
+        VALUES
+        (
+        SEQ_SIMCO_INTER_ETAPA.NextVal,
+        #{detalle},
+        #{estado},
+        <if test="intervencionAccion!=null">
+            #{intervencionAccion.id},
+        </if>
+        #{idIntervencion},
+        <if test="color!=null">
+            #{color},
+        </if>
+        #{tipo}
+        ) 
+    </insert>
+    
+    <update id="intervencionEtapaUpdate" parameterType="intervencionEtapa">
+        UPDATE SIMCO_INTER_ETAPA SET
+        <if test="detalle != null">
+            C_DETALLEETAPA = #{detalle},
+        </if>
+        <if test="fechaLimite != null">
+            D_FECHALIMITE = #{fechaLimite},
+        </if>
+        <if test="descripcion != null">
+            C_DESCRIPETAPA = #{descripcion},
+        </if>
+        <if test="intervencionAccionId !=null">
+            N_ID_ACCION = #{intervencionAccionId},
+        </if>
+        <if test="color !=null">
+            C_COLOR = #{color},
+        </if>
+        <if test="tipo !=null">
+            C_TIPOETAPA = #{tipo},
+        </if>
+        C_ESTADOACTIVO = 'ACT'
+        WHERE N_ID_ETAPA = #{id}
+        
+    </update>
+    
+    <update id="intervencionEtapaUpdateDetalle" parameterType="intervencionEtapa">
+        UPDATE SIMCO_INTER_ETAPA SET
+            C_DETALLEETAPA = #{detalle}
+        WHERE N_ID_ETAPA = #{id}
+        
+    </update>
+    
+    <update id="intervencionEtapaDetalleDelete" parameterType="long">
+        UPDATE SIMCO_INTER_ETAPA SET
+            C_ESTADOACTIVO = 'INA'
+        WHERE N_ID_ETAPA = #{id}
+        
+    </update>
+
+    <select id="intervencionEtapaBuscar" resultMap="intervencionEtapaMap" parameterType="long">
+        SELECT 
+            N_ID_ETAPA,
+            C_DETALLEETAPA,
+            C_ESTADOACTIVO,
+            C_TIPOETAPA,
+            N_ID_ACCION
+        FROM SIMCO_INTER_ETAPA 
+        WHERE N_ID_ETAPA = #{id}
+        AND C_ESTADOACTIVO = 'ACT'
+    </select>
+    
+    <select id="intervencionEtapaBuscarTipo" resultMap="intervencionEtapaMap" parameterType="intervencionEtapa">
+        SELECT 
+            N_ID_ETAPA,
+            C_DETALLEETAPA,
+            C_ESTADOACTIVO,
+            C_TIPOETAPA,
+            C_DESCRIPETAPA,
+            N_ID_ACCION,
+            C_COLOR,
+            D_FECHALIMITE
+        FROM SIMCO_INTER_ETAPA 
+        WHERE N_IDINTERVENCION = #{idIntervencion} 
+        AND C_ESTADOACTIVO = 'ACT'
+        ORDER BY N_ID_ETAPA
+    </select>
+    
+    <select id="intervencionEtapaxAccion" resultMap="intervencionEtapaMap" parameterType="long">
+        SELECT A.* from SIMCO_INTER_ETAPA A
+            INNER JOIN SIMCO_INTER_ACCION B ON A.N_ID_ACCION = B.N_ID_ACCION AND C_ESTADOACTIVO = 'ACT'
+            WHERE B.N_ID_ACCION = #{id}
+            ORDER BY A.N_ID_ETAPA
+    </select>
+    
+    <select id="intervencionEtapaxIntervencion" resultMap="intervencionEtapaMap" parameterType="long">
+        SELECT * FROM SIMCO_INTER_ETAPA WHERE N_IDINTERVENCION = #{id}
+        ORDER BY N_ID_ETAPA
+    </select>
+    
+    
+</mapper>

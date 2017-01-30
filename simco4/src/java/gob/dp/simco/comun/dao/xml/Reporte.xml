@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.comun.dao.ReporteDao">
+    
+    <resultMap id="resumenMap" type="resumen">
+        <result property="columna" column="COLUMNA"/>
+        <result property="total" column="TOTAL"/>
+        <result property="mes" column="MES"/>
+        <result property="idDepartamento" column="N_IDDEPARTAMENTO"/>
+        <result property="anho" column="ANHOS"/>
+    </resultMap> 
+    
+     
+    <select id="cargaCasoMes" statementType="CALLABLE" parameterType="long"> 
+        {call SIMCO_CARGA_MENSUAL(#{id})} 
+    </select>  
+
+    <select id="graficoEstadoAnho" resultMap="resumenMap">
+        SELECT COUNT(A.N_ID_CASO) TOTAL, TO_CHAR(B.D_FECHACARGA, 'YYYY') 
+        from SIMCO_PUBLIC_CASO A
+        INNER JOIN SIMCO_PUBLIC_REGISTRO B ON 
+        A.N_ID_CARGA = B.N_ID_CARGA
+        WHERE TO_CHAR(B.D_FECHACARGA, 'YYYY') IN 
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND B.C_INDULTANHO = 'SI'
+        GROUP BY TO_CHAR(B.D_FECHACARGA, 'YYYY') 
+        ORDER BY TO_CHAR(B.D_FECHACARGA, 'YYYY')
+    </select> 
+    
+    <select id="grafico001Meses" resultMap="resumenMap" parameterType="String" >
+        SELECT 
+        COUNT(N_ID_CASO) TOTAL, 
+        TO_CHAR(D_FECHACREACION, 'MM') MES,
+        CASE TO_CHAR(D_FECHACREACION, 'MM') 
+        WHEN '01'  THEN 'Enero' 
+        WHEN '02'  THEN 'Febrero' 
+        WHEN '03'  THEN 'Marzo' 
+        WHEN '04'  THEN 'Abril' 
+        WHEN '05'  THEN 'Mayo' 
+        WHEN '06'  THEN 'Junio' 
+        WHEN '07'  THEN 'Julio' 
+        WHEN '08'  THEN 'Agosto' 
+        WHEN '09'  THEN 'Septiembre' 
+        WHEN '10'  THEN 'Octubre' 
+        WHEN '11'  THEN 'Noviembre' 
+        WHEN '12'  THEN 'Diciembre' 
+        else '' end COLUMNA,  TO_CHAR(D_FECHACREACION, 'yyyy') ANHOS
+        from SIMCO_REG_CASO  
+        WHERE  TO_CHAR(D_FECHACREACION, 'yyyy') = #{value}
+        GROUP BY TO_CHAR(D_FECHACREACION, 'MM'), TO_CHAR(D_FECHACREACION, 'yyyy')
+        ORDER BY TO_CHAR(D_FECHACREACION, 'MM')
+    </select> 
+    
+    <select id="grafico001Departamento" resultMap="resumenMap" parameterType="String" >
+        SELECT 
+        COUNT(A.N_ID_CASO) TOTAL, 
+        C.C_DESCDPTO COLUMNA,
+        B.N_IDDEPARTAMENTO
+        from SIMCO_REG_CASO A
+        INNER JOIN (SELECT DISTINCT D.N_ID_CASO, D.N_IDDEPARTAMENTO FROM SIMCO_REG_CASOREGION D) B
+        ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_UBIGEO_DPTO C
+        ON B.N_IDDEPARTAMENTO = C.N_ID_DPTO
+        WHERE TO_CHAR(A.D_FECHACREACION, 'YYYY')  = #{value}
+        GROUP BY C.C_DESCDPTO , B.N_IDDEPARTAMENTO 
+        ORDER BY C.C_DESCDPTO
+    </select>
+      
+    <select id="grafico001Activo" parameterType="resumen" resultType="java.lang.Integer" >
+        SELECT COUNT(n_id_caso) FROM SIMCO_REG_CASO 
+        WHERE TO_CHAR(D_FECHACREACION, 'YYYY')  = #{columna}
+        AND C_TIPOESTADO = #{tipo}
+    </select>  
+    
+    <select id="grafico001MesesCount" parameterType="resumen" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(N_ID_CASO)
+        from SIMCO_REG_CASO  
+        WHERE  TO_CHAR(D_FECHACREACION, 'MMyyyy') = #{mes}
+        AND C_TIPOESTADO = #{tipo}
+    </select>       
+    
+    <select id="grafico001DepartamentoCount" parameterType="resumen" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(A.N_ID_CASO)  
+        from SIMCO_REG_CASO A
+        INNER JOIN (SELECT DISTINCT D.N_ID_CASO, D.N_IDDEPARTAMENTO FROM SIMCO_REG_CASOREGION D) B
+        ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_UBIGEO_DPTO C
+        ON B.N_IDDEPARTAMENTO = C.N_ID_DPTO
+        WHERE TO_CHAR(A.D_FECHACREACION, 'YYYY') = #{anho}
+        AND C.N_ID_DPTO = #{idDepartamento}
+        AND A.C_TIPOESTADO = #{tipo}
+    </select>  
+    
+    
+    <select id="grafico004TipoCaso" parameterType="resumen" resultType="java.lang.Integer" >
+        SELECT COUNT(n_id_caso) FROM SIMCO_REG_CASO 
+        WHERE TO_CHAR(D_FECHACREACION, 'YYYY')  = #{columna}
+        AND C_TIPOCASO = #{tipoCaso}
+    </select> 
+    
+    <select id="grafico005DepartamentoCount" parameterType="resumen" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(A.N_ID_CASO)  
+        from SIMCO_REG_CASO A
+        INNER JOIN (SELECT DISTINCT D.N_ID_CASO, D.N_IDDEPARTAMENTO FROM SIMCO_REG_CASOREGION D) B
+        ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_UBIGEO_DPTO C
+        ON B.N_IDDEPARTAMENTO = C.N_ID_DPTO
+        WHERE TO_CHAR(A.D_FECHACREACION, 'YYYY') = #{mes}
+        AND C.N_ID_DPTO = #{idDepartamento}
+        AND A.C_TIPOCASO = #{tipoCaso}
+    </select>                  
+
+    <select id="grafico006MesesCount" parameterType="resumen" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(N_ID_CASO)
+        from SIMCO_REG_CASO  
+        WHERE  TO_CHAR(D_FECHACREACION, 'MMyyyy') = #{mes}
+        AND C_TIPOCASO = #{tipoCaso}
+    </select>
+    
+    <select id="listadoAnhoCaso" resultMap="resumenMap" >
+        SELECT DISTINCT TO_CHAR(D_FECHAPUBLICACION, 'YYYY') ANHOS FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL ORDER BY TO_CHAR(D_FECHAPUBLICACION, 'YYYY')
+    </select>
+    
+    
+    <select id="totalCasosRegistradosMes" resultMap="resumenMap" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+    </select>
+
+</mapper>

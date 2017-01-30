@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadHistorialDao">
+    
+<resultMap id="actividadHistorialMap" type="actividadHistorial">
+    <id property="id" column="N_ID_HIST_ACTI" />
+    <result property="idActividad" column="N_ID_ACTI"/>
+    <result property="accion" column="C_NOMBREMAESTRO"/>
+    <result property="fechaRegistro" column="D_FECREGISTROACTI"/>
+    <result property="usuarioRegistro" column="C_USERACTI"/>
+</resultMap> 
+
+
+<insert id="actividadHistorialInsertar" parameterType="actividadHistorial">
+     INSERT INTO SIMCO_HIST_ACTIVIDAD 
+      (
+       N_ID_HIST_ACTI,
+       N_ID_ACTI,
+       C_VALORMAESTROACTI,
+       D_FECREGISTROACTI,
+       C_USERACTI
+       )
+    VALUES 
+      (
+       SEQ_SIMCO_HIST_ACTIVIDAD.NextVal,
+       #{idActividad}, 
+       #{accion}, 
+       #{fechaRegistro}, 
+       #{usuarioRegistro}
+       )
+    
+    <selectKey keyProperty="id" resultType="Long">
+        SELECT SEQ_SIMCO_HIST_ACTIVIDAD.CURRVAL FROM DUAL
+    </selectKey>
+</insert>
+
+</mapper>

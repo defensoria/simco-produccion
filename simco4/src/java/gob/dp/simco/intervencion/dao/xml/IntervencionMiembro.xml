@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.intervencion.dao.IntervencionMiembroDao">
+
+    <resultMap id="intervencionMiembroMap" type="intervencionMiembro">
+        <id property="id" column="N_IDMIEMBRO" />
+        <result property="nombre" column="C_NOMBRE"/>
+        <result property="estado" column="C_ESTADO" />
+        <result property="codigoUsuario" column="C_CODUSUARIO" />
+        <result property="intervencionEtapa.id" column="N_ID_ETAPA"/>
+    </resultMap>
+    
+    <insert id="intervencionMiembroInsertar" parameterType="intervencionMiembro">
+        INSERT INTO SIMCO_INTER_MIEMBRO
+        (
+        N_IDMIEMBRO,
+        C_NOMBRE,
+        C_ESTADO,
+        C_CODUSUARIO,
+        N_ID_ETAPA
+        )
+        VALUES
+        (
+        SEQ_SIMCO_INTER_MIEMBRO.NextVal,
+        #{nombre},
+        'ACT',
+        #{codigoUsuario},
+        #{intervencionEtapa.id}
+        ) 
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_INTER_MIEMBRO.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="intervencionMiembroUpdate"  parameterType="intervencionMiembro">
+        UPDATE SIMCO_INTER_MIEMBRO SET
+        <if test="id != null">
+            C_ESTADO = #{estado}
+        </if>
+        WHERE N_IDMIEMBRO = #{id}
+        
+    </update>
+
+    <select id="intervencionMiembroBuscar" resultMap="intervencionMiembroMap" parameterType="long">
+        SELECT 
+            N_IDMIEMBRO,
+            C_NOMBRE,
+            C_ESTADO,
+            C_CODUSUARIO,
+            N_ID_ETAPA
+        FROM SIMCO_INTER_MIEMBRO
+        where N_ID_ETAPA = #{id}
+        and C_ESTADO = 'ACT'
+        ORDER BY N_IDMIEMBRO
+    </select>
+    
+    <select id="intervencionMiembroCodigoMiembro" resultType="java.lang.Integer" parameterType="intervencionMiembro">
+        SELECT N_IDMIEMBRO FROM SIMCO_INTER_MIEMBRO WHERE C_CODUSUARIO = #{codigoUsuario} AND N_ID_ETAPA = #{intervencionEtapa.id}
+    </select>
+    
+    <select id="intervencionMiembroCountEtapa" resultType="java.lang.Integer" parameterType="analisisActorIntensidad">
+        SELECT COUNT(*)
+        FROM SIMCO_INTER_MIEMBRO
+        where N_ID_ETAPA = #{id}
+    </select>
+    
+    
+    <select id="intervencionMiembroValidaInsert" parameterType="intervencionMiembro" resultType="java.lang.Integer" >
+        select count(*) from SIMCO_INTER_MIEMBRO
+        where N_ID_ETAPA =#{intervencionEtapa.id}
+        and C_CODUSUARIO= #{codigoUsuario}
+    </select>
+    
+    
+</mapper>

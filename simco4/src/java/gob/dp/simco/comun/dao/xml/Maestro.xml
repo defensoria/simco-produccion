@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.comun.dao.MaestroDao">
+
+<resultMap id="maestroMap" type="maestro">
+    <result property="valor" column="C_VALORPARAMETRO"/>
+    <result property="nombre" column="C_NOMBREPARAMETRO"/>
+</resultMap>     
+ 
+ <select id="listaSimple" resultMap="maestroMap" parameterType="maestro">
+      SELECT * FROM SIMCO_MAESTROS WHERE N_GRUPO = #{grupo}
+    </select>
+    
+  <select id="listaCompuesta" resultMap="maestroMap" parameterType="maestro">
+      SELECT * FROM SIMCO_MAESTROS WHERE N_GRUPO = #{grupo} AND N_PADREPARAMETRO = #{padre}
+    </select>   
+    
+<select id="padreParametro" resultType="java.lang.Integer" parameterType="maestro">
+      SELECT N_ID_PARAMETRO FROM SIMCO_MAESTROS WHERE N_GRUPO = #{grupo} AND C_VALORPARAMETRO = #{valor}
+    </select> 
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.seguimiento.dao.SeguimientoAcuerdoDao">
+
+    <resultMap id="seguimientoAcuerdoMap" type="seguimientoAcuerdo">
+        <id property="id" column="N_ID_SEGUIEMIENTO" />
+        <result property="inicioDefinitivo" column="D_FECINISEGUIMIENTOFINAL"/>
+        <result property="finDefinitivo" column="D_FECFINSEGUIMIENTOFINAL"/>
+        <result property="ultimaEjecucion" column="D_ULTIMAEJECUCION"/>
+        <result property="estado" column="C_ESTADOSEGUIMIENTO"/>
+        <result property="actaAcuerdoDetalle.id" column="N_ID_ACUERDO"/>
+        <result property="opcionales" column="C_DESTINAOPCIONALES"/>
+    </resultMap>
+    
+    <insert id="seguimientoAcuerdoInsertar" parameterType="seguimientoAcuerdo">
+        INSERT INTO SIMCO_SEG_ACUERDOS
+        (
+        N_ID_SEGUIEMIENTO,
+        N_ID_ACUERDO,
+        <if test="inicioDefinitivo != null">
+            D_FECINISEGUIMIENTOFINAL,
+        </if>    
+        <if test="finDefinitivo != null">
+            D_FECFINSEGUIMIENTOFINAL,
+        </if>
+        <if test="ultimaEjecucion != null">
+            D_ULTIMAEJECUCION,
+        </if>
+        <if test="opcionales != null">
+            C_DESTINAOPCIONALES,
+        </if>
+        C_ESTADOSEGUIMIENTO
+        )
+        VALUES
+        (
+        SEQ_SIMCO_SEG_ACUERDOS.NextVal,
+        #{actaAcuerdoDetalle.id},
+        <if test="inicioDefinitivo != null">
+            #{inicioDefinitivo},
+        </if>  
+        <if test="finDefinitivo != null">
+            #{finDefinitivo},
+        </if>
+        <if test="ultimaEjecucion != null">
+            #{ultimaEjecucion},
+        </if>
+        <if test="opcionales != null">
+            #{opcionales},
+        </if>
+        #{estado}
+        ) 
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_SEG_ACUERDOS.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="seguimientoAcuerdoUpdate" parameterType="seguimientoAcuerdo">
+        UPDATE SIMCO_SEG_ACUERDOS
+        <set>
+            <if test="inicioDefinitivo != null">
+                D_FECINISEGUIMIENTOFINAL = #{inicioDefinitivo},
+            </if>    
+            <if test="finDefinitivo != null">
+                D_FECFINSEGUIMIENTOFINAL = #{finDefinitivo},
+            </if>
+            <if test="ultimaEjecucion != null">
+                D_ULTIMAEJECUCION = #{ultimaEjecucion},
+            </if>
+            <if test="opcionales != null">
+                C_DESTINAOPCIONALES = #{opcionales},
+            </if>
+              C_ESTADOSEGUIMIENTO = #{estado}
+        </set>
+        <where>
+            N_ID_SEGUIEMIENTO = #{id}
+        </where>
+    </update>
+ 
+    <select id="seguimientoAcuerdoBuscar" resultMap="seguimientoAcuerdoMap" parameterType="long">
+        SELECT N_ID_SEGUIEMIENTO,
+        N_ID_ACUERDO,
+        D_FECINISEGUIMIENTOFINAL,
+        D_FECFINSEGUIMIENTOFINAL,
+        D_ULTIMAEJECUCION,
+        C_ESTADOSEGUIMIENTO,
+        C_DESTINAOPCIONALES
+        FROM SIMCO_SEG_ACUERDOS 
+        where C_ESTADOSEGUIMIENTO != 'INA'
+        AND N_ID_ACUERDO = #{id}
+    </select>
+    
+    <select id="seguimientoAcuerdoBuscarAcuerdo" resultMap="seguimientoAcuerdoMap" parameterType="long">
+        SELECT A.* FROM SIMCO_SEG_ACUERDOS A
+        INNER JOIN SIMCO_REG_DET_ACTA_ACUERDO B ON A.N_ID_ACUERDO = B.N_ID_ACUERDO
+        WHERE B.C_INDALERTAR = 0
+        AND B.N_ID_ACUERDO = #{id}
+    </select>
+    
+    <delete id="seguimientoAcuerdoDelete" parameterType="long">
+        DELETE FROM SIMCO_SEG_ACUERDOS
+        WHERE N_ID_SEGUIEMIENTO = #{id}
+    </delete>
+</mapper>

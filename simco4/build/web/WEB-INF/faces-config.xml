@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xi="http://www.w3.org/2001/XInclude"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+
+  <application>
+      <el-resolver>
+        org.springframework.web.jsf.el.SpringBeanFacesELResolver
+      </el-resolver>
+      <locale-config>
+     	  <default-locale>es</default-locale>
+      </locale-config>
+  </application>
+  
+  <render-kit>
+    <renderer>
+        <component-family>javax.faces.Messages</component-family>
+        <renderer-type>javax.faces.Messages</renderer-type>
+        <renderer-class>gob.dp.simco.comun.BootstrapMessages</renderer-class>
+    </renderer>
+</render-kit>
+
+
+
+<!--
+<lifecycle>
+    <phase-listener>gob.dp.simco.comun.MessageHandler</phase-listener>
+</lifecycle>
+
+<lifecycle>
+    <phase-listener>gob.dp.simco.comun.LifeCycleListener</phase-listener>
+</lifecycle>
+
+    <render-kit>
+            <renderer>
+                <component-family>javax.faces.Messages</component-family>
+                <renderer-type>javax.faces.Messages</renderer-type>
+                <renderer-class>gob.dp.simco.comun.EscapableMessagesRenderer</renderer-class>
+            </renderer>
+        </render-kit>
+    -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/signin.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ingresarSistema</from-outcome>
+            <to-view-id>/pages/inicio/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarioLista</from-outcome>
+            <to-view-id>/pages/seguridad/usuarioList.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarioDetalle</from-outcome>
+            <to-view-id>/pages/seguridad/usuarioDetalle.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarioNuevo</from-outcome>
+            <to-view-id>/pages/seguridad/usuarioNuevo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarioClave</from-outcome>
+            <to-view-id>/pages/seguridad/usuarioClave.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoPadreList</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogopadre.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoHijoList</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogohijo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoHijoListVer</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogohijoVer.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoPadreUpdate</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogopadreupdate.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoPadreNuevo</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogopadrenuevo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoHijoUpdate</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogohijoupdate.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>catalogoHijoNuevo</from-outcome>
+            <to-view-id>/pages/mantenimiento/catalogohijonuevo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>rolLista</from-outcome>
+            <to-view-id>/pages/seguridad/roles.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>verAsignarRecursoRol</from-outcome>
+            <to-view-id>/pages/seguridad/asignarRecursoRol.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actividadNuevo</from-outcome>
+            <to-view-id>/pages/registro/actividadDetalle.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actividadBusqueda</from-outcome>
+            <to-view-id>/pages/registro/actividadBusqueda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actividadFicha</from-outcome>
+            <to-view-id>/pages/registro/actividadFicha.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>   
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actorNuevoPersona</from-outcome>
+            <to-view-id>/pages/actor/actorNuevoPersona.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actorNuevoEntidad</from-outcome>
+            <to-view-id>/pages/actor/actorNuevoEntidad.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actorNuevoEmpresa</from-outcome>
+            <to-view-id>/pages/actor/actorNuevoEmpresa.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actorEdit</from-outcome>
+            <to-view-id>/pages/actor/actorEdit.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actorBuscar</from-outcome>
+            <to-view-id>/pages/actor/actorBuscar.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actorCaso</from-outcome>
+            <to-view-id>/pages/actor/actorCaso.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>acontecimientoNuevo</from-outcome>
+            <to-view-id>/pages/registro/acontecimientoDetalle.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>acontecimientoFicha</from-outcome>
+            <to-view-id>/pages/registro/acontecimientoFicha.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>acontecimientoBusqueda</from-outcome>
+            <to-view-id>/pages/registro/acontecimientoBusqueda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>casoNuevo</from-outcome>
+            <to-view-id>/pages/caso/fichaCaso.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>casoSigues</from-outcome>
+            <to-view-id>/pages/caso/casoSigues.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>casoBusqueda</from-outcome>
+            <to-view-id>/pages/registro/casoBusqueda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>casoFicha</from-outcome>
+            <to-view-id>/pages/caso/casoFicha.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actaAcuerdoNuevo</from-outcome>
+            <to-view-id>/pages/registro/actaAcuerdoDetalle.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actaAcuerdoBusqueda</from-outcome>
+            <to-view-id>/pages/registro/actaAcuerdoBusqueda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actaAcuerdoFicha</from-outcome>
+            <to-view-id>/pages/registro/actaAcuerdoFicha.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>medioVerificacionNuevo</from-outcome>
+            <to-view-id>/pages/registroGeneral/registroMedioVerificacion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>medioVerificacionBusqueda</from-outcome>
+            <to-view-id>/pages/registro/medioVerificacionBusqueda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>medioVerificacionFicha</from-outcome>
+            <to-view-id>/pages/registro/medioVerificacionFicha.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>actividadActor</from-outcome>
+            <to-view-id>/pages/registro/actividadActor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--SEGUNDA PARTE -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>registroNuevo</from-outcome>
+            <to-view-id>/pages/registroGeneral/registro.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>registroEdit</from-outcome>
+            <to-view-id>/pages/registroGeneral/registroEdit.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>victimaViolencia</from-outcome>
+            <to-view-id>/pages/registroGeneral/registroAgregarVictimaViolencia.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>noticiaVinculo</from-outcome>
+            <to-view-id>/pages/registroGeneral/noticia.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>registroAgregarActor</from-outcome>
+            <to-view-id>/pages/registroGeneral/registroAgregarActor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>registroAgregarAcuerdo</from-outcome>
+            <to-view-id>/pages/registroGeneral/registroAgregarAcuerdo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>seguimientoAcuerdo</from-outcome>
+            <to-view-id>/pages/seguimientoAcuerdo/seguimientoAcuerdo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>seguimientoAcuerdoDetalle</from-outcome>
+            <to-view-id>/pages/seguimientoAcuerdo/detalle.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>analisis</from-outcome>
+            <to-view-id>/pages/analisis/analisis.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>relationActor</from-outcome>
+            <to-view-id>/pages/analisis/relationActor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>relationActorEstatic</from-outcome>
+            <to-view-id>/pages/analisis/relationActorEstatic.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>relationTema</from-outcome>
+            <to-view-id>/pages/analisis/relationTema.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>relationTemaEstatic</from-outcome>
+            <to-view-id>/pages/analisis/relationTemaEstatic.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>problemas</from-outcome>
+            <to-view-id>/pages/analisis/problemas.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>contexto</from-outcome>
+            <to-view-id>/pages/analisis/contexto.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>intervencion</from-outcome>
+            <to-view-id>/pages/intervencion/intervencion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>intervencionDetalle</from-outcome>
+            <to-view-id>/pages/intervencion/intervencionDetalle.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>investigacionCrear</from-outcome>
+            <to-view-id>/pages/investigacion/crearInvestigacion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>investigacionSigues</from-outcome>
+            <to-view-id>/pages/investigacion/sigues.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>busquedaGeneral</from-outcome>
+            <to-view-id>/pages/inicio/busqueda.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>perfil</from-outcome>
+            <to-view-id>/pages/inicio/perfil.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>reporteSimcoCaso</from-outcome>
+            <to-view-id>/pages/reportes/reporteSimcoCaso.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>reporteSimcoActor</from-outcome>
+            <to-view-id>/pages/reportes/reporteSimcoActor.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>reporteSimcoActividad</from-outcome>
+            <to-view-id>/pages/reportes/reporteSimcoActividad.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>reporteSimcoVictima</from-outcome>
+            <to-view-id>/pages/reportes/reporteSimcoVictima.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>reportePublic</from-outcome>
+            <to-view-id>/pages/reportes/reportePublic.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+  
+</faces-config>

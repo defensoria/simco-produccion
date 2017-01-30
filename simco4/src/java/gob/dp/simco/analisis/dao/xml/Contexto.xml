@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.ContextoDao">
+    
+    <resultMap id="contextoMap" type="contexto">
+        <result property="id" column="N_ID_CONTEXTO" />
+        <result property="idCaso" column="N_ID_CASO"/>
+        <result property="idPregunta" column="N_ID_PREGUNTA"/>
+        <result property="respuesta" column="C_RESPUESTA"/>
+    </resultMap>
+
+    <insert id="contextoInsertar" parameterType="contexto">
+        INSERT INTO SIMCO_REG_CONTEXTO
+        (
+        N_ID_CONTEXTO,
+        N_ID_CASO,
+        N_ID_PREGUNTA,
+        C_RESPUESTA
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_CONTEXTO.NextVal,
+        #{idCaso},
+        #{idPregunta},
+        #{respuesta}
+        )
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_CONTEXTO.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="contextoUpdate" parameterType="contexto">
+        UPDATE SIMCO_REG_CONTEXTO
+        <set>
+            C_RESPUESTA = #{respuesta}
+        </set>
+        <where>
+            N_ID_CONTEXTO=#{id}
+        </where>
+    </update>
+    
+    <select id="contextoBuscar" parameterType="contexto" resultMap="contextoMap">
+        SELECT * from SIMCO_REG_CONTEXTO WHERE N_ID_CASO = #{idCaso} and N_ID_PREGUNTA = #{idPregunta}
+    </select>
+    
+</mapper>

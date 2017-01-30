@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.comun.dao.RegistroCargaDao">
+    
+    <resultMap id="registroCargaMap" type="registroCarga">
+        <id property="id" column="N_ID_CARGA" />
+        <result property="fecha" column="D_FECHACARGA"/>
+        <result property="ultimoMes" column="C_INDULTMES"/>
+        <result property="ultimoAnho" column="C_INDULTANHO"/>
+    </resultMap>  
+    
+<insert id="registroCargaInsert" parameterType="registroCarga">
+        INSERT INTO SIMCO_PUBLIC_REGISTRO 
+        (
+        N_ID_CARGA,
+        D_FECHACARGA,
+        C_INDULTANHO,
+        C_INDULTMES
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_PUB_CARGA.NextVal,
+        #{fecha},
+        #{ultimoAnho},
+        #{ultimoMes}
+        )
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_PUB_CARGA.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    
+    <select id="registroCargaBuscarUltimo" resultMap="registroCargaMap" >
+        SELECT * FROM SIMCO_PUBLIC_REGISTRO 
+        WHERE N_ID_CARGA = 
+        (SELECT MAX(N_ID_CARGA) FROM SIMCO_PUBLIC_REGISTRO)
+    </select> 
+    
+    
+    <update id="registroCargaBuscarUpdate" parameterType="registroCarga">
+        UPDATE SIMCO_PUBLIC_REGISTRO
+        <set>
+            C_INDULTMES = #{ultimoMes},
+            C_INDULTANHO = #{ultimoAnho}
+        </set>
+        <where>
+            N_ID_CARGA=#{id}
+        </where>
+    </update>
+</mapper>

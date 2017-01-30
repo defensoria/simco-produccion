@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.intervencion.dao.IntervencionDao">
+
+    <resultMap id="intervencionMap" type="intervencion">
+        <id property="id" column="N_IDINTERVENCION" />
+        <result property="nombre" column="C_NOMBREINTERVEN" />
+        <result property="estado" column="C_ESTADO"/>
+        <result property="codigoCaso" column="C_CODIGOCASO"/>
+        <result property="descripcion" column="C_DESCRIPCION"/>
+        
+        
+    </resultMap>
+    
+    <insert id="intervencionInsertar" parameterType="intervencion">
+        INSERT INTO SIMCO_INTER_INTERVENCION
+        (
+        N_IDINTERVENCION,
+        C_NOMBREINTERVEN,
+        C_ESTADO,
+        C_CODIGOCASO
+        )
+        VALUES
+        (
+        SEQ_SIMCO_INTER_INTERVENCION.NextVal,
+        #{nombre},
+        #{estado},
+        #{codigoCaso}
+        
+        ) 
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_INTER_INTERVENCION.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="intervencionUpdate" parameterType="intervencion">
+        UPDATE SIMCO_INTER_INTERVENCION SET
+            <if test="descripcion!=null">
+                C_DESCRIPCION = #{descripcion},
+            </if>
+            C_ESTADO = #{estado}
+            
+        WHERE N_IDINTERVENCION = #{id}
+    </update>
+ 
+    <select id="intervencionBuscar" parameterType="String" resultMap="intervencionMap">
+        SELECT 
+            A.N_IDINTERVENCION,
+            A.C_NOMBREINTERVEN,
+            A.C_DESCRIPCION,
+            A.C_ESTADO,
+            A.C_CODIGOCASO
+        FROM SIMCO_INTER_INTERVENCION A
+        INNER JOIN SIMCO_REG_CASO B ON A.C_CODIGOCASO = B.C_CODIGOCASO
+        AND B.C_INDVIGENTE = 'A'
+        AND B.C_USUREGISTRO =  #{value}
+    </select>
+    
+    <select id="intervencionBuscarActivas" resultMap="intervencionMap">
+        SELECT 
+            N_IDINTERVENCION,
+            C_NOMBREINTERVEN,
+            C_DESCRIPCION,
+            C_ESTADO,
+            C_CODIGOCASO
+        FROM SIMCO_INTER_INTERVENCION 
+        WHERE C_ESTADO = 'ACT'
+    </select>
+    
+    <select id="intervencionBuscarPriorizados" resultMap="intervencionMap">
+        SELECT 
+            N_IDINTERVENCION,
+            C_NOMBREINTERVEN,
+            C_ESTADO,
+            C_DESCRIPCION,
+            C_CODIGOCASO
+        FROM SIMCO_INTER_INTERVENCION 
+        WHERE C_ESTADO = 'PRI'
+    </select>
+    
+    <select id="intervencionBuscarArchivados" resultMap="intervencionMap">
+        SELECT 
+            N_IDINTERVENCION,
+            C_NOMBREINTERVEN,
+            C_ESTADO,
+            C_DESCRIPCION,
+            C_CODIGOCASO
+        FROM SIMCO_INTER_INTERVENCION 
+        WHERE C_ESTADO = 'ARC'
+    </select>
+    
+    <select id="intervencionBuscarCaso" resultMap="intervencionMap" parameterType="String">
+        SELECT 
+            N_IDINTERVENCION,
+            C_NOMBREINTERVEN,
+            C_ESTADO,
+            C_DESCRIPCION,
+            C_CODIGOCASO
+        FROM SIMCO_INTER_INTERVENCION 
+        WHERE C_CODIGOCASO = #{value}
+    </select>
+    
+    
+    <select id="intervencionBuscarCasoCount"  resultType="java.lang.Integer"  parameterType="String">
+        SELECT 
+            COUNT(N_IDINTERVENCION) 
+        FROM SIMCO_INTER_INTERVENCION 
+        WHERE C_CODIGOCASO = #{value}
+    </select>
+</mapper>
