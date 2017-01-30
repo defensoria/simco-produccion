@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<ui:composition template="../template/template.xhtml">
+<ui:define name="content">
+<h:form id="idForm" class="form-horizontal">
+<script>sessionStorage.setItem("menuHijoSession","Sigues");</script>
+<div class="panel panel-featured-top-primary">
+<div class="panel-body">
+<span class="text-resalt-primary" style="padding:15px">Actores en casos que sigues:</span>
+<br/>
+<h:dataTable value="#{actorController.listaActorCasosSigues}" var="item" class="table table-striped" style="font-size:small" binding="#{actorRow}">
+<h:column>
+<f:facet name="header">N.°</f:facet>
+<h:outputText value="#{actorRow.rowIndex+1}" />
+</h:column>
+<h:column>
+<f:facet name="header">Nombres</f:facet>
+<h:outputText value="#{item.nombre} #{item.apellidoPat} #{item.apellidoMat}" />
+</h:column>
+<h:column>
+<f:facet name="header">Documento</f:facet>
+<h:outputText rendered="#{item.tipoGeneral == 'PE'}" value="#{item.dni}" />
+<h:outputText rendered="#{item.tipoGeneral != 'PE'}" value="#{item.ruc}" />
+</h:column>
+<h:column>
+<f:facet name="header">Actividad</f:facet>
+<h:outputText value="#{item.nombreActividad}" />
+</h:column>
+<h:column>
+<f:facet name="header">Caso</f:facet>
+<h:outputText value="#{item.nombreCaso}" />
+</h:column>
+</h:dataTable>
+</div>
+</div>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

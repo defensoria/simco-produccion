@@ -1,0 +1,703 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <style>
+                .classSise{
+                    font-size: 0.8em;
+                }
+            </style>
+            <h:form class="classSise">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <span style="font-size: 2em">Reportes internos #{reporteGeneralController.filtroReporte.titulo}</span>
+                    </div>
+                    <div class="panel-body">
+                        <h:panelGroup rendered="#{reporteGeneralController.filtroReporte.tipoReporte == 0}">
+                            <span class="text-titulo-primary-simco">CATEGORIA A REPORTAR</span>
+                            <span class="glyphicon glyphicon-question-sign" style="font-size: large"/>
+                            <br/>
+                            <span class="text-titulo-primary-simco" style="color: red; font-style: italic">UNIDAD DE MEDIDA</span>
+                            <br/><br/>
+                            <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.tipoReporte}" class="selectRadio">
+                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
+                                <f:selectItem itemLabel="CASOS" itemValue="1" />
+                                <f:selectItem itemLabel="PROTESTAS" itemValue="2" />
+                                <f:selectItem itemLabel="MUERTOS Y HERIDOS" itemValue="3" />
+                                <f:selectItem itemLabel="ACTORES" itemValue="4" />
+                                <f:selectItem itemLabel="DEMANDAS" itemValue="5" />
+                                <f:selectItem itemLabel="CAUSAS" itemValue="6" />
+                            </h:selectOneMenu>
+                            <a class="btn btn-primary" jsf:action="#{reporteGeneralController.mostrarReporte()}">
+                                <span class="glyphicon glyphicon-share-alt" />
+                            </a>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{reporteGeneralController.filtroReporte.tipoReporte != 0}">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <span class="text-titulo-primary-simco">Cobertura Geografica</span>
+                                        <span class="glyphicon glyphicon-question-sign" style="font-size: large"/>
+                                        <br/><br/>
+                                        <input type="hidden" jsf:value="#{reporteGeneralController.filtroReporte.departamento}" id="idDepartaHidden"/>
+
+                                        <script type="text/javascript">
+
+                                            $(document).ready(function () {
+
+                                                if ($("#idDepartaHidden").val().trim() !== "") {
+                                                    var data = $("#idDepartaHidden").val();
+                                                    var dataarray = data.split(",");
+                                                    $("#idSelectDeparta").val(dataarray);
+                                                    $("#idSelectDeparta").multiselect("refresh");
+                                                }
+                                                $("#idSelectDeparta").change(function () {
+                                                    $("#idDepartaHidden").val($("#idSelectDeparta").val());
+                                                });
+
+                                                $('#idSelectDeparta').multiselect({
+                                                    includeSelectAllOption: true,
+                                                    allSelectedText: 'Todos los Departamentos'
+                                                });
+
+                                            });
+                                        </script>
+                                        <select id="idSelectDeparta" multiple="multiple">
+                                            <c:forEach var="x" items="#{reporteSimcoController.listaDepartamento}">
+                                                <option value="${x.value}">${x.label}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%">
+                                        <span class="text-titulo-primary-simco">Clasificación</span>
+                                        <span class="glyphicon glyphicon-question-sign" style="font-size: large"/>
+                                        <br/><br/>
+                                        <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.clasificacion}" class="selectRadio">
+                                            <f:selectItem itemLabel="TOTAL DE CASOS" itemValue="0" />
+                                            <f:selectItem itemLabel="CASOS ACTIVOS" itemValue="04" />
+                                            <f:selectItem itemLabel="CASOS LATENTES" itemValue="05" />
+                                            <f:selectItem itemLabel="CASOS RESUELTOS" itemValue="06" />
+                                        </h:selectOneMenu>    
+                                    </td>
+                                    <td style="width: 25%">
+                                        <span class="text-titulo-primary-simco">Columna</span>
+                                        <span class="glyphicon glyphicon-question-sign" style="font-size: large"/>
+                                        <br/><br/>
+                                        <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.columna}" class="selectRadio">
+                                            <f:selectItem itemLabel="POR AÑOS" itemValue="01" />
+                                            <f:selectItem itemLabel="POR REGION" itemValue="02" />
+                                            <f:selectItem itemLabel="POR TIPO" itemValue="03" />
+                                            <f:selectItem itemLabel="POR AUTORIDAD COMPETENTE" itemValue="04" />
+                                            <f:selectItem itemLabel="POR ESTADO" itemValue="05" />
+                                            <f:selectItem itemLabel="POR FASE" itemValue="06" />
+                                            <f:selectItem itemLabel="POR MECANISMO DE DIALOGO" itemValue="07" />
+                                            <f:selectItem itemLabel="POR PARTICIPACION DE LA DEFENSORIA" itemValue="08" />
+                                        </h:selectOneMenu>
+                                        
+                                    </td>
+                                    <td style="width: 25%">
+                                          <span class="text-titulo-primary-simco">Encabezamiento</span>
+                                        <span class="glyphicon glyphicon-question-sign" style="font-size: large"/>
+                                        <br/><br/>
+                                        <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.fila}" class="selectRadio">
+                                            <f:selectItem itemLabel="POR REGION" itemValue="02" />
+                                            <f:selectItem itemLabel="POR TIPO" itemValue="03" />
+                                            <f:selectItem itemLabel="POR AUTORIDAD COMPETENTE" itemValue="04" />
+                                            <f:selectItem itemLabel="POR ESTADO" itemValue="05" />
+                                            <f:selectItem itemLabel="POR FASE" itemValue="06" />
+                                            <f:selectItem itemLabel="POR MECANISMO DE DIALOGO" itemValue="07" />
+                                            <f:selectItem itemLabel="POR PARTICIPACION DE LA DEFENSORIA" itemValue="08" />
+
+                                        </h:selectOneMenu>  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br/><br/><br/></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="text-titulo-primary-simco">Referencia Temporal</span>
+                                        <span class="glyphicon glyphicon-question-sign" style="font-size: large"/>
+                                        <br/><br/>
+
+                                        <input type="hidden" jsf:value="#{reporteGeneralController.filtroReporte.anhos}"  id="idAnhoHidden"/>
+                                        <script type="text/javascript">
+
+                                            $(document).ready(function () {
+                                                if ($("#idAnhoHidden").val().trim() !== "") {
+                                                    var data = $("#idAnhoHidden").val();
+                                                    var dataarray = data.split(",");
+                                                    $("#idSelectAnho").val(dataarray);
+                                                    $("#idSelectAnho").multiselect("refresh");
+                                                }
+                                                $("#idSelectAnho").change(function () {
+                                                    $("#idAnhoHidden").val($("#idSelectAnho").val());
+                                                });
+
+
+                                                $('#idSelectAnho').multiselect({
+                                                    includeSelectAllOption: true,
+                                                    allSelectedText: 'Todos los Años'
+                                                });
+                                            });
+                                        </script>
+                                        <select id="idSelectAnho" multiple="multiple">
+                                            <c:forEach var="x" items="#{listasComunesController.buscarAnhos(false,false,false)}">
+                                                <option value="${x.valorParametro}">${x.nombreParametro}</option>
+                                            </c:forEach>
+                                        </select>
+
+                                        <input type="hidden" jsf:value="#{reporteGeneralController.filtroReporte.mes}"  id="idAnhoHiddenMes2"/>
+                                        <script type="text/javascript">
+
+                                            $(document).ready(function () {
+
+                                                if ($("#idAnhoHiddenMes2").val().trim() !== "") {
+                                                    var data = $("#idAnhoHiddenMes2").val();
+                                                    var dataarray = data.split(",");
+                                                    $("#idSelectMes2").val(dataarray);
+                                                    $("#idSelectMes2").multiselect("refresh");
+                                                }
+                                                $("#idSelectMes2").change(function () {
+                                                    $("#idAnhoHiddenMes2").val($("#idSelectMes2").val());
+                                                });
+
+
+                                                $('#idSelectMes2').multiselect({
+                                                    includeSelectAllOption: true,
+                                                    allSelectedText: 'Todos los Meses'
+                                                });
+                                            });
+                                        </script>
+
+                                        <select id="idSelectMes2" multiple="multiple">
+                                            <c:forEach var="x" items="#{reporteGeneralController.listasMeses}">
+                                                <option value="${x.key}">${x.value}</option>
+                                            </c:forEach>
+                                        </select> 
+
+                                    </td>
+
+                                    <td>
+
+                                    </td>
+
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br/><br/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <a class="btn btn-primary" jsf:action="#{reporteGeneralController.generaReporte()}" jsf:onclick="loadingModal()">
+                                            <span class="glyphicon glyphicon-print"/> Generar reporte
+                                            <f:ajax render="idResultados" execute="@form"  onevent="closeModal"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <h:panelGroup id="idResultados">
+                                <style>
+                                    .colmun{
+                                        background: #5B9BD5;
+                                        color: #ffffff;
+                                    }
+                                    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+                                        font-weight: bold;
+                                        font-size: 1.2em;
+                                    }
+                                    .table-hover tbody tr:hover .titulos {
+                                        color: black;
+                                        font-weight: bold
+                                    }    
+                                </style>
+
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        RESULTADO REPORTE
+                                    </div>
+                                    <div class="panel-body">
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '02'}" var="rep"  class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                             <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Regiones</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(7)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(7)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+                                            <h:column>
+                                                <f:facet name="header">Columna</f:facet>
+                                                <h:outputText class="titulos" style="font-weight: bold" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Amazonas</f:facet>
+                                                <h:outputText value="#{rep.amazonas == 0? '-' : rep.amazonas}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Ancash</f:facet>
+                                                <h:outputText value="#{rep.ancash == 0? '-' : rep.ancash}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Apurimac</f:facet>
+                                                <h:outputText value="#{rep.apurimac == 0? '-' : rep.apurimac}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Arequipa</f:facet>
+                                                <h:outputText value="#{rep.arequipa == 0? '-' : rep.arequipa}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Cajamarca</f:facet>
+                                                <h:outputText value="#{rep.cajamarca == 0? '-' : rep.cajamarca}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Cusco</f:facet>
+                                                <h:outputText value="#{rep.cusco == 0? '-' : rep.cusco}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Huancavelica</f:facet>
+                                                <h:outputText value="#{rep.huancavelica == 0? '-' : rep.huancavelica}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Huanuco</f:facet>
+                                                <h:outputText value="#{rep.huanuco == 0? '-' : rep.huanuco}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Ica</f:facet>
+                                                <h:outputText value="#{rep.ica == 0? '-' : rep.ica}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Junin</f:facet>
+                                                <h:outputText value="#{rep.junin == 0? '-' : rep.junin}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">La Libertad</f:facet>
+                                                <h:outputText value="#{rep.laLibertad == 0? '-' : rep.laLibertad}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Lambayeque</f:facet>
+                                                <h:outputText value="#{rep.lambayeque == 0? '-' : rep.lambayeque}" />
+                                            </h:column><h:column>
+                                                <f:facet name="header">Lima</f:facet>
+                                                <h:outputText value="#{rep.lima == 0? '-' : rep.lima}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Loreto</f:facet>
+                                                <h:outputText value="#{rep.loreto == 0? '-' : rep.loreto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Madre de Dios</f:facet>
+                                                <h:outputText value="#{rep.madreDeDios == 0? '-' : rep.madreDeDios}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Moquegua</f:facet>
+                                                <h:outputText value="#{rep.moquegua == 0? '-' : rep.moquegua}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Pasco</f:facet>
+                                                <h:outputText value="#{rep.pasco == 0? '-' : rep.pasco}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Piura</f:facet>
+                                                <h:outputText value="#{rep.piura == 0? '-' : rep.piura}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Puno</f:facet>
+                                                <h:outputText value="#{rep.puno == 0? '-' : rep.puno}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">San Martin</f:facet>
+                                                <h:outputText value="#{rep.sanMartin == 0? '-' : rep.sanMartin}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Tacna</f:facet>
+                                                <h:outputText value="#{rep.tacna == 0? '-' : rep.tacna}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Tumbes</f:facet>
+                                                <h:outputText value="#{rep.tumbes == 0? '-' : rep.tumbes}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Callao</f:facet>
+                                                <h:outputText value="#{rep.callao == 0? '-' : rep.callao}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Ucayali</f:facet>
+                                                <h:outputText value="#{rep.ucayali == 0? '-' : rep.ucayali}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                        
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '08'}" var="rep"  class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                            <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Participación de la Defensoria</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(6)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(6)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+                                            
+                                            <h:column>
+                                                <f:facet name="header">Columna</f:facet>
+                                                <h:outputText class="titulos" style="font-weight: bold" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Intermediador</f:facet>
+                                                <h:outputText value="#{rep.intermediador == 0? '-' : rep.intermediador}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Promotor</f:facet>
+                                                <h:outputText value="#{rep.promotor == 0? '-' : rep.promotor}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Observador / Colaborador</f:facet>
+                                                <h:outputText value="#{rep.observador == 0? '-' : rep.observador}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Mediador / Facilitador</f:facet>
+                                                <h:outputText value="#{rep.mediador == 0? '-' : rep.mediador}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Participación en evaluación</f:facet>
+                                                <h:outputText value="#{rep.participacion == 0? '-' : rep.participacion}" />
+                                            </h:column>
+                                        </h:dataTable>
+
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '05'}" var="rep"  class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                            <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Estado</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(3)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(3)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+                                            <h:column>
+                                                <f:facet name="header">Columna</f:facet>
+                                                <h:outputText class="titulos" style="font-weight: bold" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Borrador</f:facet>
+                                                <h:outputText value="#{rep.borrador == 0? '-' : rep.borrador}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Propuesta</f:facet>
+                                                <h:outputText value="#{rep.propuesta == 0? '-' : rep.propuesta}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Observacion</f:facet>
+                                                <h:outputText value="#{rep.observacion == 0? '-' : rep.observacion}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Activo</f:facet>
+                                                <h:outputText value="#{rep.activo == 0? '-' : rep.activo}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Latente</f:facet>
+                                                <h:outputText value="#{rep.latente == 0? '-' : rep.latente}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Resuelto</f:facet>
+                                                <h:outputText value="#{rep.resuelto == 0? '-' : rep.resuelto}" />
+                                            </h:column>
+                                        </h:dataTable>
+
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '07'}" var="rep"  class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                            <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Mecanismo de diálogo</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(5)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(5)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            </f:facet>
+                                            <h:column>
+                                                <f:facet name="header">Columna</f:facet>
+                                                <h:outputText class="titulos" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Mesa de diálogo: negociación directa</f:facet>
+                                                <h:outputText value="#{rep.negociacionDirecta == 0? '-' : rep.negociacionDirecta}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Mesa de diálogo: negociación mediada o asistida</f:facet>
+                                                <h:outputText value="#{rep.negociacionMediada == 0? '-' : rep.negociacionMediada}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Comisión de Alto Nivel</f:facet>
+                                                <h:outputText value="#{rep.comisionAlto == 0? '-' : rep.comisionAlto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Reuniones preparatorias para el diálogo</f:facet>
+                                                <h:outputText value="#{rep.reunionesPreparatorias == 0? '-' : rep.reunionesPreparatorias}" />
+                                            </h:column>
+                                        </h:dataTable>
+
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '04'}" var="rep"  class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                            <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Autoridad Competente</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(2)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(2)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+                                            <h:column>
+                                                <f:facet name="header">Columna</f:facet>
+                                                <h:outputText class="titulos" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Gobierno Nacional</f:facet>
+                                                <h:outputText value="#{rep.gobNacional == 0? '-' : rep.gobNacional}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Gobierno Regional</f:facet>
+                                                <h:outputText value="#{rep.gobRegional == 0? '-' : rep.gobRegional}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Gobierno Local</f:facet>
+                                                <h:outputText value="#{rep.gobLocal == 0? '-' : rep.gobLocal}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Poder Legislativo</f:facet>
+                                                <h:outputText value="#{rep.poderLegislativo == 0? '-' : rep.poderLegislativo}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Poder Judicial</f:facet>
+                                                <h:outputText value="#{rep.poderJudicial == 0? '-': rep.poderJudicial}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Organismos Constitucionalmente autónomos</f:facet>
+                                                <h:outputText value="#{rep.organismoAutonomos == 0? '-': rep.organismoAutonomos}" />
+                                            </h:column>
+                                        </h:dataTable>
+
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '03'}" var="rep"  class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                            <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Tipo de Conflicto</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(1)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(1)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+                                            <h:column>
+                                                <f:facet name="header">Tipo</f:facet>
+                                                <h:outputText class="titulos" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Asuntos gobierno local</f:facet>
+                                                <h:outputText value="#{rep.gobiernoLocal == 0? '-' : rep.gobiernoLocal}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Asuntos gobierno nacioal</f:facet>
+                                                <h:outputText value="#{rep.gobiernoNacional == 0? '-' : rep.gobiernoNacional}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Asuntos gobierno regional</f:facet>
+                                                <h:outputText value="#{rep.gobiernoRegional == 0? '-' : rep.gobiernoRegional}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Comunal</f:facet>
+                                                <h:outputText value="#{rep.comunal == 0? '-' : rep.comunal}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Cultivo de coca</f:facet>
+                                                <h:outputText value="#{rep.cultivoCoca == 0? '-': rep.cultivoCoca}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Demarcación territorial</f:facet>
+                                                <h:outputText value="#{rep.demarcacionTerritorial == 0? '-': rep.demarcacionTerritorial}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Electoral</f:facet>
+                                                <h:outputText value="#{rep.electoral == 0? '-': rep.electoral}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Laboral</f:facet>
+                                                <h:outputText value="#{rep.laboral == 0? '-': rep.laboral}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Socioambiental</f:facet>
+                                                <h:outputText value="#{rep.socioambienta == 0? '-': rep.socioambienta}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Otros</f:facet>
+                                                <h:outputText value="#{rep.otros == 0? '-': rep.otros}" />
+                                            </h:column>
+                                        </h:dataTable>
+
+                                        <h:dataTable value="#{reporteGeneralController.elementoReportes}" rendered="#{reporteGeneralController.filtroReporte.fila == '06'}" var="rep" class="table table-hover"
+                                                     columnClasses="colmun" headerClass="colmun">
+                                            <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Fase</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteGeneralController.pdf(4)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteGeneralController.xls(4)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+                                            <h:column>
+                                                <f:facet name="header">Columna</f:facet>
+                                                <h:outputText class="titulos" value="#{rep.tipoConflicto}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <h:outputText value="#{rep.total == 0? '-' : rep.total}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">%</f:facet>
+                                                <h:outputText value="#{rep.porcentaje}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Temprana</f:facet>
+                                                <h:outputText value="#{rep.temprana == 0? '-' : rep.temprana}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Escalamiento</f:facet>
+                                                <h:outputText value="#{rep.escalamiento == 0? '-' : rep.escalamiento}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Crisis</f:facet>
+                                                <h:outputText value="#{rep.crisis == 0? '-' : rep.crisis}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Desescalamiento</f:facet>
+                                                <h:outputText value="#{rep.desescalamiento == 0? '-' : rep.desescalamiento}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Diálogo</f:facet>
+                                                <h:outputText value="#{rep.dialogo == 0? '-': rep.dialogo}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                        <!-- FILTROS DEL REPORTE -->
+
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

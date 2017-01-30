@@ -1,0 +1,270 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <span class="text-resalt-primary" style="font-size:2em">Añadir medio de verificación</span>
+            <h:form id="idForm" enctype="multipart/form-data">
+                <h:messages />
+                <gc:confirmSubmit bean="#{medioVerificacionController.saveMedioVerificacion()}"/>
+                <div class="table100">
+                    <div class="cell50left panel panel-featured-top-primary"> 
+                        <div class="panel-body">
+                            <script>
+                                $(document).ready(function () {
+                                    var cadena = $("#idPalabrasClave").val();
+                                    var item = cadena.split(";");
+                                    var i = 0;
+                                    $('.palabrasClave').each(function () {
+                                        if ($(this).val() === "") {
+                                            $(this).val(item[i]);
+                                            i++;
+                                        }
+                                    });
+                                    function setearPalabras() {
+                                        var i = 0;
+                                        var cadena = "";
+                                        $('.palabrasClave').each(function () {
+                                            if ($(this).val() !== "") {
+                                                if (i === 0) {
+                                                    cadena = cadena + $(this).val();
+                                                } else {
+                                                    cadena = cadena + ";" + $(this).val();
+                                                }
+                                                i++;
+                                            }
+                                        });
+                                        $('#idPalabrasClave').val(cadena);
+                                    }
+
+                                    $('#idBotenAnadir').on('click', function () {
+                                        if ($('#idTitulo').val() === "") {
+                                            $('#idTitulo').addClass('error');
+                                            alertar("Debe de ingresar el titulo del medio");
+                                            return false;
+                                        }
+                                        else {
+                                            $('#idTitulo').removeClass('error');
+                                        }
+                                        if ($('#idDescripcion').val() === "") {
+                                            $('#idDescripcion').addClass('error');
+                                            alertar("Debe de ingresar una descripcion del medio");
+                                            return false;
+                                        }
+                                        else {
+                                            $('#idDescripcion').removeClass('error');
+                                        }
+                                        /*if ($('.cMedio').val() === "") {
+                                         $('.cMedio').addClass('error');
+                                         alertar("Debe de agregar un archivo");
+                                         return false;
+                                         }
+                                         else {
+                                         $('.cMedio').removeClass('error');
+                                         }*/
+                                        setearPalabras();
+                                        confirmar();
+                                        return false;
+                                    });
+                                });
+                            </script>
+                            <table style="width:100%">
+                                <tr>
+                                    <td style="width:50%">
+                                        <span class="text-resalt-primary">Registrar medios de verificación</span>
+                                    </td>
+                                    <td style="padding:10px;float:right">
+                                        <table>
+                                            <tr>
+                                                <td style="padding-right:5px">
+                                                    <h:panelGroup rendered="#{registroController.esUsuarioRegistro}">
+                                                    <a style="float:right" class="btn btn-primary" id="idBotenAnadir">
+                                                        <h:panelGroup rendered="#{medioVerificacionController.medioVerificacion.id == null}">
+                                                            <span class="glyphicon glyphicon-plus" />Añadir
+                                                        </h:panelGroup>
+                                                        <h:panelGroup rendered="#{medioVerificacionController.medioVerificacion.id != null}">
+                                                            <span class="glyphicon glyphicon-edit" />Editar
+                                                        </h:panelGroup>
+                                                    </a>
+                                                        </h:panelGroup>
+                                                </td>
+                                                <td style="padding-left:5px">
+                                                    <a style="float:right" class="btn btn-danger" jsf:action="registroNuevo">
+                                                        <span class="glyphicon glyphicon-share"/>Regresar
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 25%; padding-bottom: 10px">
+                                        <b>Título:</b>
+                                    </td>
+                                    <td style="padding-bottom: 10px">
+                                        <input jsf:value="#{medioVerificacionController.medioVerificacion.titulo}" type="text" placeholder="Título" id="idTitulo" maxlength="95"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;padding-bottom: 10px">
+                                        <b>Descripción:</b>
+                                    </td>
+                                    <td style="padding-bottom: 10px">
+                                        <textarea jsf:value="#{medioVerificacionController.medioVerificacion.descripcion}" rows="5" type="text" placeholder="Descripción" id="idDescripcion" maxlength="3500"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top; padding-bottom: 20px">
+                                        <b>Observación:</b>
+                                    </td>
+                                    <td style="vertical-align: top; padding-bottom: 20px">
+                                        <textarea jsf:value="#{medioVerificacionController.medioVerificacion.observacion}" rows="5" type="text" placeholder="Observaciones" maxlength="3500"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="vertical-align: top; padding-bottom: 10px">
+                                        <label>Palabras clave:</label>
+                                        <input type="hidden" id="idPalabrasClave" jsf:value="#{medioVerificacionController.medioVerificacion.palabraClave}"/>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 50%; padding-bottom: 5px; padding-right: 2px">
+                                                    <input type="text" class="palabrasClave" style="width:100%;height:2em"/>
+                                                </td>
+                                                <td style="vertical-align: top; padding-bottom: 5px; padding-left: 2px">
+                                                    <input type="text" class="palabrasClave" style="width:100%;height:2em"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: top; padding-bottom: 5px; padding-right: 2px">
+                                                    <input type="text" class="palabrasClave" style="width:100%;height:2em"/>
+                                                </td>
+                                                <td style="vertical-align: top; padding-bottom: 5px; padding-left: 2px">
+                                                    <input type="text" class="palabrasClave" style="width:100%;height:2em"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 2px">
+                                                    <input type="text" class="palabrasClave" style="width:100%;height:2em"/>
+                                                </td>
+                                                <td style="padding-left: 2px">
+                                                    <input type="text" class="palabrasClave" style="width:100%;height:2em"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <b>Archivo:</b>
+                            <h:selectOneRadio value="#{medioVerificacionController.medioVerificacion.tipoArchivo}">
+                                <f:selectItems value="#{listasComunesController.buscarTipoArchivo(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                            </h:selectOneRadio>
+                            <br/>
+                            <b>Soporte:</b>
+                            <h:selectOneRadio value="#{medioVerificacionController.medioVerificacion.tipoSoporte}">
+                                <f:selectItems value="#{listasComunesController.buscarTipoSoporte(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                            </h:selectOneRadio>
+                            <br/>
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 25%; padding-bottom: 10px">
+                                        <b>Adjuntar:</b>
+                                        <h:inputFile class="cMedio" value="#{medioVerificacionController.file1}"/>
+                                    </td>
+                                    <td style="padding-bottom: 10px; padding-left: 25px">
+                                        <div jsf:rendered="#{medioVerificacionController.medioVerificacion.ruta != null}">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <td>Imagen</td>
+                                                    <td>ver</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>#{medioVerificacionController.medioVerificacion.ruta}</td>
+                                                    <td>
+                                                        <a target="_blank" href="/filesystem/#{medioVerificacionController.medioVerificacion.ruta}">
+                                                            <span class="glyphicon glyphicon-picture" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <br/>
+
+                                <tr>
+                                    <td style="width: 25%; padding-bottom: 10px">
+                                        <b>Ubicación física:</b>
+                                    </td>
+                                    <td style="padding-bottom: 10px">
+                                        <input type="text" jsf:value="#{medioVerificacionController.medioVerificacion.ubicacion}" placeholder="Ubicación física"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                        </div>
+                    </div>
+                    &#160;&#160;
+                    <div class="cell50Rigth panel panel-featured-top-primary">
+                        <div class="panel-body">
+                            <table style="width:100%">
+                                <tr>
+                                    <td style="width:50%">
+                                        <span class="text-resalt-primary">Medios de verificación agregados</span></td>
+                                    <td style="padding:10px">
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <h:dataTable class="table table-hover" value="#{medioVerificacionController.medioVerificacions}" var="medio" binding="#{row}">
+                                <h:column>
+                                    <f:facet name="header">N.°</f:facet>
+                                    <h:outputText value="#{row.rowIndex+1}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Código</f:facet>
+                                    <h:outputText value="#{medio.codigo}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Título</f:facet>
+                                    <h:outputText value="#{medio.titulo}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Registro</f:facet>
+                                    <h:outputText value="#{medio.fechaRegistro}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Archivo</f:facet>
+                                    <a target="_blank" href="/filesystem/#{medio.ruta}">
+                                        #{medio.ruta}
+                                    </a>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
+                                    <a style="font-size:large;margin:auto; cursor: pointer" jsf:action="#{medioVerificacionController.setearMedioVerificacion(medio)}">
+                                        <span class="glyphicon glyphicon-pencil"/>
+                                    </a>
+                                    &#160;&#160;&#160;
+                                    <a style="font-size:large;margin:auto; cursor: pointer" onclick="confirmar1#{row.rowIndex+1}()">
+                                        <span style="color:red" class="glyphicon glyphicon-remove"/>
+                                    </a>
+                                    <gc:confirmRemoveSubmit classGC="confirmacion1#{row.rowIndex+1}" bean="#{medioVerificacionController.removeMedioVerificacion(medio)}" mensaje="¿Está seguro que desea eliminar el registro del medio?"/>
+                                    <script>
+                                        function confirmar1#{row.rowIndex+1}() {
+                                            $(".confirmacion1#{row.rowIndex+1}").modal('show');
+                                        }
+                                    </script>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

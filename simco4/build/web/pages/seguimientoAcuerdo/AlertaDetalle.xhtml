@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:form>
+        <table>
+            <tr>
+                <td colspan="2">
+                    Enviada Hoy
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    #{seguimientoAcuerdoController.alerta.caso.nombre} (#{seguimientoAcuerdoController.alerta.caso.codigo})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    #{seguimientoAcuerdoController.alerta.actividad.nombre} (#{seguimientoAcuerdoController.alerta.actividad.codigoActividad})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Acuerdo
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    #{seguimientoAcuerdoController.alerta.actaAcuerdoDetalle.descripcion}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Actores
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:dataTable value="#{seguimientoAcuerdoController.alerta.actaAcuerdoDetalle.listaActor}" var="act" style="font-size:small">
+                        <ul>
+                            <h:column>
+                                <li>
+                                    <h:outputText value="#{act.nombre} #{act.apellidoPat} " />
+                                </li>
+                            </h:column>
+                        </ul>
+                    </h:dataTable>
+                </td>
+            </tr>
+        </table>
+    </h:form>
+</html>

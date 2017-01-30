@@ -1,0 +1,345 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form class="form-horizontal" id="idFormActorNuevo">
+                <gc:confirmSubmit classGC="confirmacion3" bean="#{actorController.registrarActorEntidad()}"/>
+                <script>
+                    sessionStorage.setItem('menuHijoSession', 'Nuevo');
+                </script>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation">
+                            <a jsf:action="#{actorController.cargarPagina()}" aria-controls="home" role="tab" data-toggle="tab">
+                                <span class="glyphicon glyphicon-user" style="font-size:medium"/>
+                                <span class="text-resalt-comun"/>Población
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a  jsf:action="#{actorController.cargarPaginaEmpresa()}" aria-controls="profile" role="tab" data-toggle="tab">
+                                <span class="glyphicon glyphicon-user" style="font-size:medium"/>
+                                <span class="text-resalt-comun"/>Organización / empresa
+                            </a>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a jsf:action="#{actorController.cargarPaginaEntidad()}" aria-controls="messages" role="tab" data-toggle="tab">
+                                <span class="glyphicon glyphicon-user" style="font-size:medium"/>
+                                <span class="text-resalt-comun"/>Entidad estatal
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="home">
+                            
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            
+                        </div>
+                        <div role="tabpanel" class="tab-pane active" id="messages">
+                            <script>
+                                $(document).ready(function () {
+                                    $('#idBotonGuardar3').on('click', function () {
+                                        if ($('#idNombreEntidad').val() === "") {
+                                            $('#idNombreEntidad').addClass('df_input_error');
+                                            $('#idNombreEntidad').focus();
+                                            alertar("Debe de ingresar el nombre de la Entidad");
+                                            return false;
+                                        }
+                                        else {
+                                            $('#idNombreEntidad').removeClass('df_input_error');
+                                        }
+                                        if ($('#idRucEntidad').val() !== "") {
+                                            if ($('#idRucEntidad').val().length !== 11) {
+                                                $('#idRucEntidad').addClass('df_input_error');
+                                                $('#idRucEntidad').focus();
+                                                alertar("El numero de RUC debe contar con 11 digitos");
+                                                return false;
+                                            } else {
+                                                $('#idRucEntidad').removeClass('df_input_error');
+                                            }
+                                        }
+                                        confirmar3();
+                                        return false;
+                                    });
+                                });
+                                function confirmar3() {
+                                    $(".confirmacion3").modal('show');
+                                }
+                            </script>
+                            <div class="panel panel-default" style="width:100%">
+                                <div class="panel-heading">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="text-align:right">
+                                                <h:panelGroup rendered="#{seguridadUtilController.tieneRecurso('REC_002')}">
+                                                <a class="btn btn-primary" id="idBotonGuardar3">
+                                                    <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                                </a>
+                                                    </h:panelGroup>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="idPanelBodyActuacion3" class="panel-body">
+                                    <table style="width:100%">
+                                        <tr style="width:80%">
+                                            <td>
+                                                <h:panelGroup id="addAcciones3">
+                                                    <div class="form-group">
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td style="width:50%;padding-right:5px;vertical-align:top">
+                                                                    <div class="panel panel-featured-top-primary" style="height:500px">
+                                                                        <div class="panel-body">
+                                                                            <span class="text-resalt-primary">Datos generales</span>
+                                                                            <br/><br/>
+                                                                            <h:panelGroup id="idPanelEstado">
+                                                                                <table style="width: 100%">
+                                                                                    <tr>
+                                                                                        <td style="width: 34%">
+                                                                                            <label>Tipo:</label>
+                                                                                            <h:selectOneMenu value="#{actorController.entidad.tipoEstado}" onchange="loadingModal()">
+                                                                                                <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                                                <f:selectItems value="#{actorController.listaTipoEstado}" />
+                                                                                                <f:ajax listener="#{actorController.cargarAjaxListaSubTipo1Estado()}" render="idPanelEstado" onevent="closeModal"/>
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                        <td style="width: 34%">
+                                                                                            <label>Sub-tipo1:</label>
+                                                                                            <h:selectOneMenu value="#{actorController.entidad.subTipo1Estado}" onchange="loadingModal()">
+                                                                                                <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                                                <f:selectItems value="#{actorController.listaSubTipo1Estado}" />
+                                                                                                <f:ajax listener="#{actorController.cargarAjaxListaSubTipo2Estado()}" render="idPanelEstado" onevent="closeModal"/>
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <label>Sub-tipo2:</label>
+                                                                                            <h:selectOneMenu value="#{actorController.entidad.subTipo2Estado}">
+                                                                                                <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                                                <f:selectItems value="#{actorController.listaSubTipo2Estado}" />
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </h:panelGroup>
+                                                                            <br/>
+                                                                            <table style="width:100%">
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px"><b>Nombre:</b></td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.entidad.nombre}" id="idNombreEntidad" placeholder="Nombre" maxlength="250"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px"><b>RUC:</b></td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.entidad.ruc}" id="idRucEntidad" placeholder="RUC" style="width:50%" onkeypress="return soloNumbero(event)" maxlength="11"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px"><b>Observaciones:</b></td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <textarea jsf:value="#{actorController.entidad.observaciones}" rows="3" style="width:100%;height:170px" placeholder="Observaciones" maxlength="800"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="vertical-align:top;padding-left:5px">
+                                                                    <div class="panel panel-featured-top-primary" style="height:500px">
+                                                                        <div class="panel-body">
+                                                                            <span class="text-resalt-primary">Datos de ubicación</span>
+                                                                            <br/><br/><br/>
+                                                                            <h:panelGroup id="idPanelUbigeoEntidad">
+                                                                                <script>
+                                                                                    $(document).ready(function () {
+                                                                                        $('.selectRadio').multiselect();
+                                                                                    });
+                                                                                </script>
+                                                                                <table style="width: 100%">
+                                                                                    <tr>
+                                                                                        <td style="width: 34%">
+                                                                                            <b>Departamento:</b><br/>
+                                                                                            <h:selectOneMenu value="#{actorController.entidad.idDepartamento}" onchange="loadingModal()">
+                                                                                                <f:selectItem itemLabel="Departamento" itemValue="0"/>
+                                                                                                <f:selectItems value="#{actorController.listaDepartamento}" var="y" itemLabel="#{y.value}" itemValue="#{y.label}" />
+                                                                                                <f:ajax listener="#{actorController.comboProvinciaEntidad()}" render="idPanelUbigeoEntidad" onevent="closeModal"/>
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                        <td style="width: 34%">
+                                                                                            <b>Provincia:</b><br/>
+                                                                                            <h:selectOneMenu value="#{actorController.entidad.idProvincia}" onchange="loadingModal()">
+                                                                                                <f:selectItem itemLabel="Provincia" itemValue="0"/>
+                                                                                                <f:selectItems value="#{actorController.listaProvincia}" var="y" itemLabel="#{y.value} #{y.label}" itemValue="#{y.id}" />
+                                                                                                <f:ajax listener="#{actorController.comboDistritoEntidad()}" render="idPanelUbigeoEntidad" onevent="closeModal"/>
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <b>Distrito:</b><br/>
+                                                                                            <h:selectOneMenu value="#{actorController.entidad.idDistrito}">
+                                                                                                <f:selectItem itemLabel="Distrito" itemValue="0"/>
+                                                                                                <f:selectItems value="#{actorController.listaDistrito}" var="y" itemLabel="#{y.value} #{y.label}" itemValue="#{y.id}" />
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </h:panelGroup>
+                                                                            <br/>
+                                                                            <label>Dirección:</label>
+                                                                            <textarea rows="3" jsf:value="#{actorController.entidad.direccion}" style="width:100%;height:170px" placeholder="Dirección" maxlength="400"/>
+                                                                            <br/>
+                                                                            <table>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px"><b>Teléfono: </b></td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.entidad.telefono}" placeholder="Numero" style="width:100%" maxlength="20"/>
+                                                                                    </td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.entidad.anexo}" placeholder="Anexo" style="width:100%" maxlength="20"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Correo eléctronico:</b> </td>
+                                                                                    <td colspan="2">
+                                                                                        <input type="text" jsf:value="#{actorController.entidad.email}" placeholder="Correo eléctronico" style="width:100%" maxlength="180"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                            <br/><br/><br/><br/><br/><br/>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <h:panelGroup rendered="#{actorController.entidad.id != null}">
+                                                                        <script>
+                                                                            /*<![CDATA[*/
+                                                                            $(function () {#{actorController.cadenaAutocomplete}
+                                                                                $("#actor-entidad").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
+                                                                                        $("#actor-entidad").val(ui.item.label);
+                                                                                        return false;
+                                                                                    }, select: function (event, ui) {
+                                                                                        $("#actor-entidad").val(ui.item.label);
+                                                                                        $("#actor-id-entidad").val(ui.item.value);
+                                                                                        return false;
+                                                                                    }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                                                                                    return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                                                                                };
+                                                                            });
+                                                                            /*]]>*/
+                                                                        </script>
+                                                                        <table style="width:100%">
+                                                                            <tr>
+                                                                                <td style="width:50%;vertical-align:top;padding-right:5px">
+                                                                                    <div class="panel panel-featured-top-primary">
+                                                                                        <div class="panel-body">
+                                                                                            <span class="text-resalt-primary">Búsqueda de funcionarios</span>
+                                                                                            <br/>
+                                                                                            <script>function limpiarCampoActorEntidad(data) {
+                                                                                                    if (data.status === 'success') {
+                                                                                                        $('#actor-entidad').val("");
+                                                                                                        $('#actor-id-entidad').val("");
+                                                                                                        $("#loadModal").modal('hide');
+                                                                                                        $('body').removeClass('modal-open');
+                                                                                                        $(".modal-backdrop").removeClass("modal-backdrop");
+                                                                                                    }
+                                                                                                }</script>
+                                                                                            <div id="idDivActorMiembroEntidad" class="form-group has-feedback" style="width:50%">
+                                                                                                <input type="text" id="actor-entidad" jsf:value="#{actorController.actorMiembroEntidad.nombre}" class="form-control input-sm"/>
+                                                                                                <input type="hidden" jsf:value="#{actorController.actorMiembroEntidad.idMiembro}" id="actor-id-entidad" />
+                                                                                                <a style="font-size:large;margin:auto" jsf:action="#{actorController.addMiembroEntidad()}" jsf:onclick="loadingModal()">
+                                                                                                    <span class="glyphicon glyphicon-plus form-control-feedback"/>
+                                                                                                    <f:ajax render="@form" execute="@form" onevent="limpiarCampoActorEntidad"/>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <br/><br/>
+                                                                                            <h:dataTable value="#{actorController.listaMiembrosEntidad}" var="mien" id="idDatatableMiembrosEntidad" class="table table-striped" style="width:100%" binding="#{row4}" rendered="#{actorController.listaMiembrosEntidad.size() > 0}">
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">N.°</f:facet>
+                                                                                                    <h:outputText value="#{row4.rowIndex+1}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Nombre</f:facet>
+                                                                                                    <h:outputText value="#{mien.nombre}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Cargo</f:facet>
+                                                                                                    <h:inputText value="#{mien.cargo}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <a jsf:action="#{actorController.addMiembroGuardarEntidad(mien)}" jsf:onclick="loadingModal()">
+                                                                                                        <span class="glyphicon glyphicon-floppy-disk" style="font-size:large"/>
+                                                                                                    </a>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <a jsf:action="#{actorController.removeTempMiembroEntidad(mien)}" jsf:onclick="loadingModal()">
+                                                                                                        <span style="color:red;font-size:large" class="glyphicon glyphicon-remove"/>
+                                                                                                    </a>
+                                                                                                </h:column>
+                                                                                            </h:dataTable>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td style="vertical-align:top;padding-right:5px">
+                                                                                    <div class="panel panel-featured-top-primary">
+                                                                                        <div class="panel-body">
+                                                                                            <span class="text-resalt-primary">Funcionarios añadidos en la entidad</span>
+                                                                                            <br/>
+                                                                                            <h:dataTable value="#{actorController.listaMiembrosRegistradosEntidad}" var="mienbrs" id="idDatatableMiembrosRegistradosEntidad" class="table table-striped" style="width:100%" binding="#{row5}" rendered="#{actorController.listaMiembrosRegistradosEntidad.size() > 0}">
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">N.°</f:facet>
+                                                                                                    <h:outputText value="#{row5.rowIndex+1}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Nombre</f:facet>
+                                                                                                    <h:outputText value="#{mienbrs.nombre}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Cargo</f:facet>
+                                                                                                    <h:outputText value="#{mienbrs.cargo}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <a jsf:action="#{actorController.removeMiembroRegistradoEntidad(mienbrs)}" jsf:onclick="loadingModal()">
+                                                                                                        <span style="color:red;font-size:large" class="glyphicon glyphicon-remove"/>
+                                                                                                    </a>
+                                                                                                </h:column>
+                                                                                            </h:dataTable>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </h:panelGroup>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </h:panelGroup>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function openRegistroPersona(data) {
+                        if (data.status === 'success') {
+                            $("#loadModal").modal('hide');
+                            $('body').removeClass('modal-open');
+                            $(".modal-backdrop").removeClass("modal-backdrop");
+                        }
+                    }
+                </script>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
