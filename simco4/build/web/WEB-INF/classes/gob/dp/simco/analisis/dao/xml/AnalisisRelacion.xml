@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.AnalisisRelacionDao">
+    
+    <resultMap id="analisisRelacionMap" type="analisisRelacion">
+        <result property="caso.id" column="N_ID_CASO"/>
+        <result property="actor1.id" column="N_ID_ACTOR1"/>
+        <result property="actor2.id" column="N_ID_ACTOR2"/>
+        <result property="tipo" column="C_TIPORELACION"/>
+        <result property="fechaRegistro" column="D_FECHAREGISTROVINCULO"/>
+        <result property="actor1.nombre" column="NOMBRE1"/>
+        <result property="actor2.nombre" column="NOMBRE2"/>
+        <result property="actor1.apellidoPat" column="APELLIDOPAT1"/>
+        <result property="actor2.apellidoPat" column="APELLIDOPAT2"/>
+        <result property="actor1.apellidoMat" column="APELLIDOMAT1"/>
+        <result property="actor2.apellidoMat" column="APELLIDOMAT2"/>
+    </resultMap>  
+    
+    <insert id="analisisRelacionInsertar" parameterType="analisisRelacion">
+        INSERT INTO SIMCO_ANALISIS_RELACION
+        (
+        N_ID_CASO,
+        N_ID_ACTOR1,
+        N_ID_ACTOR2,
+        C_TIPORELACION,
+        D_FECHAREGISTROVINCULO
+        )
+        VALUES 
+        (
+        #{caso.id},
+        #{actor1.id},
+        #{actor2.id},
+        #{tipo},
+        #{fechaRegistro}
+        )
+    </insert>
+    
+    <select id="analisisRelacionBuscar" resultMap="analisisRelacionMap" parameterType="long">
+        SELECT 
+            A.N_ID_CASO,
+            A.N_ID_ACTOR1,
+            A.N_ID_ACTOR2,
+            A.C_TIPORELACION,
+            A.D_FECHAREGISTROVINCULO,
+            B.C_NOMACTOR NOMBRE1,
+            C.C_NOMACTOR NOMBRE2,
+            B.C_APELLIDOPATACTOR APELLIDOPAT1,
+            C.C_APELLIDOPATACTOR APELLIDOPAT2,
+            B.C_APELLIDOMATACTOR APELLIDOMAT1,
+            C.C_APELLIDOMATACTOR APELLIDOMAT2
+        FROM SIMCO_ANALISIS_RELACION A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR1 = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTOR C ON A.N_ID_ACTOR2 = C.N_ID_ACTOR
+        WHERE A.N_ID_CASO = #{id}
+    </select>
+    
+    <select id="analisisRelacionBuscarOne" resultMap="analisisRelacionMap" parameterType="analisisRelacion">
+        SELECT A.*
+        FROM SIMCO_ANALISIS_RELACION A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR1 = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTOR C ON A.N_ID_ACTOR2 = C.N_ID_ACTOR
+        WHERE A.N_ID_CASO = #{caso.id}
+        AND A.N_ID_ACTOR1 = #{actor1.id}
+        AND A.N_ID_ACTOR2 = #{actor2.id}
+        
+    </select>
+    
+    <update id="analisisRelacioUpdate" parameterType="analisisRelacion">
+        UPDATE SIMCO_ANALISIS_RELACION
+        <set>
+        <if test="actor1.id != null">
+            N_ID_ACTOR1 = #{actor1.id},
+        </if>
+        <if test="actor2.id != null">
+            N_ID_ACTOR2 = #{actor2.id},
+        </if>
+        <if test="tipo != null">
+            C_TIPORELACION = #{tipo}
+        </if>   
+        
+        </set>
+        <where>
+            N_ID_CASO = #{caso.id} AND
+            N_ID_ACTOR1 = #{actor1.id} AND
+            N_ID_ACTOR2 = #{actor2.id}
+        </where>
+    </update>
+    
+    <delete id="analisisRelacioEliminar" parameterType="analisisRelacion">
+        delete from SIMCO_ANALISIS_RELACION
+        <where>
+            N_ID_CASO = #{caso.id} AND
+            N_ID_ACTOR1 = #{actor1.id} AND
+            N_ID_ACTOR2 = #{actor2.id}
+        </where>
+    </delete>
+    
+</mapper>

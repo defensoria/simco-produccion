@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="../template/template1.xhtml">
+        <ui:define name="content">
+            <h1>BIENVENIDO AL SIMCO</h1>
+            <script>
+                sessionStorage.clear();
+                var usuario = sessionStorage.getItem("userSesion");
+                if (usuario === null) {
+                    var userJSON;
+                    userJSON = {codigo: "#{sessionStorageController.usuarioSession.codigo}",
+                        nombre: "#{sessionStorageController.usuarioSession.nombre}",
+                        apellidoPat: "#{sessionStorageController.usuarioSession.apellidoPaterno}",
+                        apellidoMat: "#{sessionStorageController.usuarioSession.apellidoMaterno}",
+                        cargo: "#{sessionStorageController.usuarioSession.cargo}"};
+                    sessionStorage.setItem("userSesion", JSON.stringify(userJSON));
+                };
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

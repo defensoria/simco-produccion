@@ -1,0 +1,644 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <style>.vacio{display:none}</style>
+            <h:form id="idFormAgregarAcuerdo" class="form-horizontal" enctype="multipart/form-data">
+                <h:messages />
+                <input type="hidden" id="idUsuarioSession" jsf:value="#{actaAcuerdoController.actaAcuerdoDetalle.usuarioRegistro}" />
+                <script>
+                    /*<![CDATA[*/
+                    var usu = JSON.parse(sessionStorage.getItem('userSesion'));
+                    $("#idUsuarioSession").val(usu.codigo);
+                    $(document).ready(function () {
+                        $('.datepicker').datetimepicker({pickTime: false});
+                        $(".datepicker").on("changeDate", function (ev) {
+                            $(this).datetimepicker("hide");
+                        });
+                        $('.timepicker').datetimepicker({pickDate: false});
+                    });
+
+                    function validarActaAcuerdo() {
+                        if ($('#txtFechaRegistro').val() === "") {
+                            $('#idDivTxtFechaRegistro').addClass('has-error');
+                            $('#txtFechaRegistro').css("background", "#F2DEDE");
+                            alertar("Debe de ingresar la fecha en la que se tomaron los acuerdos/compromisos");
+                            return false;
+                        }
+                        else {
+                            $('#idDivTxtFechaRegistro').removeClass('has-error');
+                            $('#txtFechaRegistro').css("background", "");
+                        }
+
+                        if ($('#idFormAgregarAcuerdo\\:cmbTipoRegistro').val() === "-3000") {
+                            $('#idDivCmbTipoRegistro').addClass('has-error');
+                            $('#idFormAgregarAcuerdo\\:cmbTipoRegistro').css("background", "#F2DEDE");
+                            alertar("Debe de seleccionar el tipo de registro");
+                            return false;
+                        }
+                        else {
+                            $('#idDivCmbTipoRegistro').removeClass('has-error');
+                            $('#idFormAgregarAcuerdo\\:cmbTipoRegistro').css("background", "");
+                        }
+
+                        if ($('#txtDescripcionItem').val() === "") {
+                            $('#idDivTxtDescripcionItem').addClass('has-error');
+                            $('#txtDescripcionItem').css("background", "#F2DEDE");
+                            alertar("Debe de ingresar el detalle");
+                            return false;
+                        }
+                        else {
+                            $('#idDivTxtDescripcionItem').removeClass('has-error');
+                            $('#txtDescripcionItem').css("background", "");
+                        }
+                        if ($('#txtComentario').val() === "") {
+                            $('#idDivTxtComentario').addClass('has-error');
+                            $('#txtComentario').css("background", "#F2DEDE");
+                            alertar("Debe de ingresar un comentario");
+                            return false;
+                        }
+                        else {
+                            $('#idDivTxtComentario').removeClass('has-error');
+                            $('#txtComentario').css("background", "");
+                        }
+                        confirmar();
+                        return false;
+                    }
+                    $(function () {#{actaAcuerdoController.cadenaAutocomplete}
+                        $("#actor").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
+                                $("#actor").val(ui.item.label);
+                                return false;
+                            }, select: function (event, ui) {
+                                $("#actor").val(ui.item.label);
+                                $("#actor-id").val(ui.item.value);
+                                return false;
+                            }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                            return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                        };
+                        $("#actor2").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
+                                $("#actor2").val(ui.item.label);
+                                return false;
+                            }, select: function (event, ui) {
+                                $("#actor2").val(ui.item.label);
+                                $("#actor-id2").val(ui.item.value);
+                                return false;
+                            }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                            return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                        };
+                    }); /*]]>*/
+                </script>
+                <gc:confirmSubmit bean="#{actaAcuerdoController.registrarActaAcuerdoxActividad2(registroController.actividad.id)}" />
+                <div class="panel panel-default" style="width:100%;margin:auto;background:#F5F5F5">
+                    <div class="panel-heading">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="vertical-align:top">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="float:left">
+                                        <span id="idImagen" class="glyphicon glyphicon-minus" style="font-size:large"></span>
+                                    </a><span class="text-resalt-primary">Detalle General</span>
+                                </td>
+                                <td style="text-align:right">
+                                    <a class="btn btn-danger" jsf:rendered="#{!actaAcuerdoController.verBotonEditar and actaAcuerdoController.tip == 1}" jsf:action="registroNuevo" jsf:immediate="true">
+                                        <span class="glyphicon glyphicon-share"/>Regresar
+                                    </a>
+                                    <a class="btn btn-danger" jsf:rendered="#{!actaAcuerdoController.verBotonEditar and actaAcuerdoController.tip == 2}" jsf:action="registroEdit" jsf:immediate="true">
+                                        <span class="glyphicon glyphicon-share"/>Regresar
+                                    </a>
+                                    &#160;&#160;
+                                    <h:panelGroup rendered="#{registroController.esUsuarioRegistro}">
+                                    <a class="btn btn-primary" onclick="return validarActaAcuerdo()" style="float:right">
+                                        <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                    </a>
+                                        </h:panelGroup>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h:inputHidden value="#{actaAcuerdoController.actaAcuerdo.id}" />
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table style="width:100%">
+                                <tr>
+                                    <td style="width:50%;padding-right:5px">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 50%; padding-right: 5px">
+                                                    <span class="text-primary" style="font-size:1.2em;font-weight:bold">Fecha en que se tomaron los acuerdos</span>
+                                                    <br/>
+                                                    <div class="input-group datepicker" id="idDivTxtFechaRegistro">
+                                                        <div class="input-group-addon add-on">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </div>
+                                                        <input type="text" id="txtFechaRegistro" data-format="dd/MM/yyyy" jsf:value="#{actaAcuerdoController.actaAcuerdo.fechaRegistro}" >
+                                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                        </input>
+                                                    </div>
+                                                </td>
+                                                <td style="padding-left: 5px">
+                                                    <span class="text-primary" style="font-size:1.2em;font-weight:bold">Tipo de registro</span>
+                                                    <br/>
+                                                    <div id="idDivCmbTipoRegistro">
+                                                        <h:selectOneMenu id="cmbTipoRegistro" value="#{actaAcuerdoController.actaAcuerdo.tipo}">
+                                                            <f:selectItems value="#{listasComunesController.buscarTipoActaAcuerdo(false,false,true)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                        </h:selectOneMenu>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </td>
+                                    <td style="padding-left:5px">
+
+                                        <label><span style="font-size: large" class="glyphicon glyphicon-paperclip" />Adjuntar archivo:</label>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <h:inputFile class="cMedio" value="#{actaAcuerdoController.file1}"/>
+                                                </td>
+                                                <td style="float: right">
+                                                    <h:panelGroup rendered="#{actaAcuerdoController.actaAcuerdo.ruta != null}">
+                                                        <a target="_blank" href="/filesystem/#{actaAcuerdoController.actaAcuerdo.ruta}">
+                                                            <span style="font-size: large" class="glyphicon glyphicon-link" />
+                                                        </a>
+                                                    </h:panelGroup>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 15px">
+                                        <span class="text-primary" style="font-size:1.2em;font-weight:bold">Descripción general</span>
+                                    </td>
+                                    <td style="padding-top: 15px">
+                                        <span class="text-primary" style="font-size:1.2em;font-weight:bold">Comentarios</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 2px">
+                                        <div id="idDivTxtDescripcionItem">
+                                            <textarea id="txtDescripcionItem" rows="3" jsf:value="#{actaAcuerdoController.actaAcuerdo.descripcionItem}" style="width:100%;height:170px" maxlength="450"/>
+                                        </div>
+                                    </td>
+                                    <td style="padding-left: 2px">
+                                        <div id="idDivTxtComentario">
+                                            <textarea id="txtComentario" rows="3" jsf:value="#{actaAcuerdoController.actaAcuerdo.comentario}" style="width:100%;height:170px"  maxlength="450"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <h:panelGroup id="idPanelDetalleAcuerdo" rendered="#{actaAcuerdoController.actaAcuerdo.id != null}">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:33%;padding-right:2px" rowspan="2">
+                                <h:panelGroup id="idpanel1">
+                                    <div class="panel panel-featured-top-primary" style="overflow-y:auto;height:330px">
+                                        <div class="panel-body">
+                                            <span class="text-primary" style="font-size:1.2em;font-weight:bold">El/los siguientes actores</span>
+                                            <div class="form-group has-feedback" style="width:100%;margin:auto">
+                                                <input type="text" jsf:value="#{actorController.actor.nombre}" id="actor" />
+                                                <input type="hidden" jsf:value="#{actorController.actor.id}" id="actor-id" />
+                                                <a style="font-size:large;margin:auto" jsf:action="#{actorController.agregarActorSeleccionadoAcuerdoIni()}" jsf:onclick="loadingModal()">
+                                                    <span class="glyphicon glyphicon-plus form-control-feedback">
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <h:dataTable value="#{actorController.listaActorSeleccionadoAcuerdoIni}" rendered="#{not empty actorController.listaActorSeleccionadoAcuerdoIni}" var="actor" class="table table-striped" style="font-size:x-small">
+                                                <h:column>
+                                                    <f:facet name="header">Nombre</f:facet>
+                                                    <h:outputText value="#{actor.nombre} #{actor.apellidoPat} #{actor.apellidoMat}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header"></f:facet>
+                                                    <a jsf:action="#{actorController.removeActorSeleccionadoAcuerdoIni(actor)}" jsf:onclick="loadingModal()">
+                                                        <span class="glyphicon glyphicon-remove" style="font-size:large;color:red">
+                                                        </span>
+                                                    </a>
+                                                </h:column>
+                                            </h:dataTable>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                            </td>
+                            <td style="width:33%;padding-right:2px;padding-left:2px" rowspan="2">
+                                <div class="panel panel-featured-top-primary" style="height:330px">
+                                    <div class="panel-body">
+                                        <div id="idDivTxtDescripcion">
+                                            <span class="text-primary" style="font-size:1.2em;font-weight:bold">Acuerda(n)/ se compromete(n) a...</span>
+                                            <textarea id="txtDescripcion" jsf:value="#{actaAcuerdoController.actaAcuerdoDetalle.descripcion}" rows="3" style="width:100%;height:190px"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width:33%;padding-left:2px;vertical-align:top">
+                                <div class="panel panel-featured-top-primary" style="height:100px">
+                                    <div class="panel-body">
+                                        <div>
+                                            <span class="text-primary" style="font-size:1.2em;font-weight:bold">A más tardar el</span><br/>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td style="padding-right:2px;width:60%">
+                                                        <div class="input-group datepicker" id="idDivTxtFechaCumplimiento">
+                                                            <div class="input-group-addon add-on">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </div>
+                                                            <input type="text" id="txtFechaCumplimiento" data-format="dd/MM/yyyy" jsf:value="#{actaAcuerdoController.actaAcuerdoDetalle.fechaCumplimiento}" style="width:100%">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                            </input>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectBooleanCheckbox id="checkIndCumplimientoBoolean" value="#{actaAcuerdoController.actaAcuerdoDetalle.indCumplimiento}" />
+                                                        <span style="font-size:x-small">De cumplimiento inmediato</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:bottom;padding-left:2px">
+                                <h:panelGroup id="idPanel2">
+                                    <div class="panel panel-featured-top-primary" style="overflow-y:auto;height:210px">
+                                        <div class="panel-body">
+                                            <span class="text-primary" style="font-size:1.2em;font-weight:bold">En favor de</span>
+                                            <div class="form-group has-feedback" style="width:100%;margin:auto">
+                                                <input type="text" id="actor2" jsf:value="#{actorController.actor2.nombre}" />
+                                                <input type="hidden" id="actor-id2" jsf:value="#{actorController.actor2.id}"/>
+                                                <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.agregarActorSeleccionadoAcuerdoFin()}" jsf:onclick="loadingModal()">
+                                                    <span class="glyphicon glyphicon-plus form-control-feedback">
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <h:dataTable value="#{actorController.listaActorSeleccionadoAcuerdoFin}" var="actor1" class="table table-striped" rendered="#{not empty actorController.listaActorSeleccionadoAcuerdoFin}" id="idFormAgregarAcuerdo2" style="font-size:x-small">
+                                                <h:column>
+                                                    <f:facet name="header">Nombre</f:facet>
+                                                    <h:outputText value="#{actor1.nombre} #{actor1.apellidoPat} #{actor1.apellidoMat}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header"></f:facet>
+                                                    <a jsf:action="#{actorController.removeActorSeleccionadoAcuerdoFin(actor1)}" style="float:right" jsf:onclick="loadingModal()">
+                                                        <span class="glyphicon glyphicon-remove" style="font-size:large;color:red">
+                                                        </span>
+                                                    </a>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:40%;padding-right:2px">
+                                <div class="panel panel-featured-top-primary" style="overflow-y:auto;height:360px">
+                                    <div class="panel-body">
+                                        <span class="text-primary" style="font-size:1.2em;font-weight:bold">Responsable del seguimiento por parte de la DP</span>
+                                        <br/>
+                                        <div class="panel panel-info" style="width:100%">
+                                            <div class="panel-heading">
+                                                <span class="glyphicon glyphicon-user"></span>
+                                                Miembros
+                                                <a style="text-decoration:none; cursor: pointer" id="addUser">
+                                                    <span id="spanAddUser" class="glyphicon glyphicon-plus"></span>
+                                                </a>
+                                            </div>
+                                            <div id="idPanelBody" class="panel-body">
+                                                <h:dataTable value="#{busquedaUsuarioController.listaUsuario}" var="item" id="idDatatableActor" class="table table-striped" style="font-size:.8em;text-align:left">
+                                                    <h:column id="colNombre">
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Nombre"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.nombre} #{item.apellidoPaterno}"/>
+                                                    </h:column>
+                                                    <h:column id="colDni">
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Documento"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.dni}"/>
+                                                    </h:column>
+                                                    <h:column id="colCambioClave">
+                                                        <a jsf:action="#{actaAcuerdoController.addMiembroSeguimiento(item)}" jsf:onclick="loadingModal()">
+                                                            <span class="glyphicon glyphicon-share-alt" style="font-size:large"/>
+                                                        </a>
+                                                    </h:column>
+                                                </h:dataTable>
+                                                <ul class="pager">
+                                                    <li>
+                                                        <a jsf:action="#{busquedaUsuarioController.listarPaginado(busquedaUsuarioController.nroPagina -1)}" jsf:onclick="loadingModal()">Anterior
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a jsf:action="#{busquedaUsuarioController.listarPaginado(busquedaUsuarioController.nroPagina +1)}" jsf:onclick="loadingModal()">Siguiente
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="panel-footer">
+                                                <center>
+                                                    <h:dataTable value="#{actaAcuerdoController.listaActaAcuerdoDetalleMiembro}" var="miembro" style="text-align:left;width:100%;font-size:.8em" class="table table-striped">
+                                                        <h:column>
+                                                            <li>
+                                                                <h:outputText value="#{miembro.nombre}" />
+                                                            </li>
+                                                        </h:column>
+                                                        <h:column>
+                                                            <a jsf:action="#{actaAcuerdoController.removeMiembroSeguimiento(miembro)}" jsf:onclick="loadingModal()">
+                                                                <span style="color:red" class="glyphicon glyphicon-remove"></span>
+                                                            </a>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>$("#idPanelBody").hide();
+                                    $("#spanAddUser").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                                    var i = 1;
+                                    $("#addUser").click(function () {
+                                        if (i === 1)
+                                        {
+                                            $("#idPanelBody").slideDown(400).delay(800);
+                                            $("#spanAddUser").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+                                            i = 2;
+                                        }
+                                        else
+                                        {
+                                            $("#idPanelBody").slideUp(300).delay(800);
+                                            $("#spanAddUser").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                                            i = 1;
+                                        }
+                                    });</script>
+                            </td>
+                            <td style="width:60%;padding-left:2px">
+                                <div class="panel panel-featured-top-primary" style="overflow-y:auto;height:360px">
+                                    <div class="panel-body">
+                                        <span class="text-primary" style="font-size:1.2em;font-weight:bold">Alertas</span>
+                                        <br/>
+                                        <h:selectBooleanCheckbox id="checkIndAlertar" value="#{actaAcuerdoController.actaAcuerdoDetalle.indAlertar}" />No alertar
+                                        <div id="idDivAlert">
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td style="width:10%">
+                                                        <h:outputText value="Inicio" />
+                                                    </td>
+                                                    <td>
+
+                                                        <table>
+                                                            <tr>
+                                                                <td style="width:5%">
+                                                                </td>
+                                                                <td style="width:25%">
+                                                                    <gc:calendar id="txtInicioDefinitivo" value="#{actaAcuerdoController.seguimientoAcuerdo.inicioDefinitivo}"/>
+                                                                </td>
+                                                                <td style="width:70%"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <br/>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td style="width:10%">
+                                                        <h:outputText value="Finaliza" />
+                                                    </td>
+                                                    <td>
+                                                        <table>
+                                                            <tr>
+                                                                <td style="width:5%">
+                                                                </td>
+                                                                <td style="width:25%">
+                                                                    <gc:calendar id="txtFinDefinitivo" value="#{actaAcuerdoController.seguimientoAcuerdo.finDefinitivo}"/>
+                                                                </td>
+                                                                <td style="width:70%"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <gc:confirmSubmit bean="#{actaAcuerdoController.agregarActaAcuerdoxActividad(registroController.actividad.id)}" classGC="confirmacion1" mensaje="¿Está seguro que desea agregar el registro?" />
+                    <script>
+                        function confirmar1() {
+                            $(".confirmacion1").modal('show');
+                        }
+                        function confirmar2() {
+                            $(".confirmacion2").modal('show');
+                        }
+                    </script>
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <h:panelGroup rendered="#{!actaAcuerdoController.verBotonEditar and registroController.esUsuarioRegistro}">
+                                    <a class="btn btn-primary" onclick="agregarAcuerdo(1)" style="float:right">
+                                        <span class="glyphicon glyphicon-plus"/>Agregar
+                                    </a>
+                                </h:panelGroup>
+                                <a class="btn btn-primary" jsf:rendered="#{actaAcuerdoController.verBotonEditar and registroController.esUsuarioRegistro}" jsf:onclick="return agregarAcuerdo(2)" jsf:action="#{actaAcuerdoController.modifyActaAcuerdoxActividad()}" style="float:right">
+                                    <span class="glyphicon glyphicon-edit"/>Editar
+                                </a>
+                                <a class="btn btn-danger" jsf:rendered="#{actaAcuerdoController.verBotonEditar and registroController.esUsuarioRegistro}" jsf:action="#{actaAcuerdoController.cancelarActaAcuerdoxActividad()}" style="float:right" jsf:onclick="loadingModal()">
+                                    <span class="glyphicon glyphicon-remove"/>Cancelar
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="panel panel-featured-top-warning" style="overflow-y:auto;height:330px">
+                                    <div class="panel-body">
+                                        <h:dataTable value="#{actaAcuerdoController.listaActaAcuerdoDetalleXActa}" rendered="#{actaAcuerdoController.listaActaAcuerdoDetalleXActa.size() > 0}" var="item" class="table table-striped" style="font-size:x-small">
+                                            <h:column>
+                                                <f:facet name="header">Código</f:facet>
+                                                <h:outputText value="#{item.codigo}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Actor(es) que asume(n) el acuerdo y compromiso</f:facet>
+                                                <h:dataTable value="#{item.listaActor}" var="act" style="font-size:x-small">
+                                                    <ul>
+                                                        <h:column>
+                                                            <li>
+                                                                <h:outputText value="#{act.nombre} #{act.apellidoPat} " />
+                                                            </li>
+                                                        </h:column>
+                                                    </ul>
+                                                </h:dataTable>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Fecha registro</f:facet>
+                                                <h:outputText value="#{item.fechaRegistro}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                </h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Finaliza</f:facet>
+                                                <h:outputText value="#{item.fechaCumplimiento}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                </h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Alertar</f:facet>
+                                                <h:outputText rendered="#{!item.indAlertar}" value="SI" />
+                                                <h:outputText rendered="#{item.indAlertar}" value="NO" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header"></f:facet>
+                                                <h:panelGroup rendered="#{registroController.esUsuarioRegistro}">
+                                                    <a jsf:rendered="#{!actaAcuerdoController.verBotonEditar}" onclick="confirmar2#{item.id}()" style="cursor:pointer">
+                                                    <span class="glyphicon glyphicon-remove" style="font-size:medium;color:red"/>
+                                                </a>
+                                                </h:panelGroup>
+                                                
+                                                &#160;&#160;&#160;
+                                                <a style="text-decoration:none" jsf:action="#{actaAcuerdoController.editActaAcuerdoxActividad(item)}" jsf:rendered="#{registroController.esUsuarioRegistro}" jsf:onclick="loadingModal()">
+                                                    <span class="glyphicon glyphicon-edit" style="font-size:medium"/>
+                                                </a>
+                                                <gc:confirmRemoveSubmit bean="#{actaAcuerdoController.removeActaAcuerdoxActividad(item)}" classGC="confirmacion2#{item.id}" mensaje="¿Está seguro que desea eliminar el registro?" />
+                                                <script>
+                                                    function confirmar2#{item.id}() {
+                                                        $(".confirmacion2#{item.id}").modal('show');
+                                                    }
+                                                </script>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </h:panelGroup>
+                <script>
+                    function agregarAcuerdo(tipo) {
+                        if ($('#txtDescripcion').val() === "") {
+                            $('#txtDescripcion').addClass('error');
+                            alertar("Debe de ingresar el detalle del acuerdo");
+                            return false;
+                        }
+                        else {
+                            $('#txtDescripcion').removeClass('error');
+                        }
+                        if ($('#idFormAgregarAcuerdo\\:checkIndCumplimientoBoolean').is(':checked')) {
+                            $('#txtFechaCumplimiento').removeClass('error');
+                        }
+                        else {
+                            if ($('#txtFechaCumplimiento').val() === "") {
+                                $('#txtFechaCumplimiento').addClass('error');
+                                alertar("Debe de ingresar la fecha correspondiente");
+                                return false;
+                            } else {
+                                $('#txtFechaCumplimiento').removeClass('error');
+                                /*var dt = converterFecha($('#txtFechaCumplimiento').val());
+                                var dat = new Date();
+                                if (comparaFechas(dt, dat) === 2) {
+                                    $('#txtFechaCumplimiento').addClass('error');
+                                    alertar("La fecha debe ser mayor o igual que hoy");
+                                    return false;
+                                } else {
+                                    $('#txtFechaCumplimiento').removeClass('error');
+                                }*/
+                            }
+                        }
+                        if ($('#idFormAgregarAcuerdo\\:checkIndAlertar').is(':checked')) {
+                        } else {
+                            var i = 0;
+                            if ($('#txtInicioDefinitivo').val() !== "") {
+                                if ($('#txtFinDefinitivo').val() !== "") {
+                                    var fec1 = converterFecha($('#txtInicioDefinitivo').val());
+                                    var fec2 = converterFecha($('#txtFinDefinitivo').val());
+                                    if (fec1 > fec2) {
+                                        $('#txtInicioDefinitivo').addClass('error');
+                                        $('#txtFinDefinitivo').addClass('error');
+                                        alertar("La fecha de inicio no puede ser mayor que la fecha de fin");
+                                        return false;
+                                    } else {
+                                        $('#txtInicioDefinitivo').removeClass('error');
+                                        $('#txtFinDefinitivo').removeClass('error');
+                                    }
+                                }
+                            }
+                            if (i === 0) {
+                            } else {
+                                alertar("Debe completar todos los campos resaltados de la programacion de las alertas");
+                                return false;
+                            }
+                        }
+                        if (tipo === 1) {
+                            confirmar1();
+                        } else {
+                            loadingModal();
+                        }
+                    }
+                    $(document).ready(function () {
+                        var i = 1;
+                        $('#idImagen').on('click', function () {
+                            $('#idImagen').removeClass();
+                            if (i === 1)
+                            {
+                                $('#idImagen').addClass('glyphicon glyphicon-plus');
+                                i = 2;
+                            }
+                            else
+                            {
+                                $('#idImagen').addClass('glyphicon glyphicon-minus');
+                                i = 1;
+                            }
+                        });
+                        $('#idFormAgregarAcuerdo\\:checkIndCumplimientoBoolean').on('click', function () {
+                            if ($('#idFormAgregarAcuerdo\\:checkIndCumplimientoBoolean').is(':checked')) {
+                                $('#txtFechaCumplimiento').attr('disabled', true).val('');
+                            }
+                            else {
+                                $('#txtFechaCumplimiento').removeAttr('disabled');
+                            }
+                        });
+                        if ($('#idFormAgregarAcuerdo\\:checkIndAlertar').is(':checked')) {
+                            $('#idDivAlert').addClass('vacio');
+                        }
+                        else {
+                            $('#idDivAlert').removeClass('vacio');
+                        }
+                        $('#idFormAgregarAcuerdo\\:checkIndAlertar').on('click', function () {
+                            if ($('#idFormAgregarAcuerdo\\:checkIndAlertar').is(':checked')) {
+                                $('#idDivAlert').addClass('vacio');
+                            }
+                            else {
+                                $('#idDivAlert').removeClass('vacio');
+                            }
+                        });
+                        if ($('#idFormAgregarAcuerdo\\:checkIndCumplimientoBoolean').is(':checked')) {
+                            $('#txtFechaCumplimiento').attr('disabled', true);
+                        }
+                        else {
+                            $('#txtFechaCumplimiento').removeAttr('disabled');
+                        }
+                    });
+                </script>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.ProblemaDetalleDAO">
+    
+    <resultMap id="problemaDetalleMap" type="problemaDetalle">
+        <id property="id" column="N_ID_PROBLEMADETALLE" />
+        <result property="idProblema" column="N_ID_PROBLEMA"/>
+        <result property="detalle" column="C_DETALLEPROBLEMA"/>
+        <result property="numeracion" column="N_NUMERACION"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="nombre" column="C_NOMBRE"/>
+    </resultMap>  
+    
+           
+    <insert id="problemaDetalleInsertar" parameterType="problemaDetalle">
+        INSERT INTO SIMCO_ANALISIS_PROBLEMAS_DET
+        (
+        N_ID_PROBLEMADETALLE,
+        N_ID_PROBLEMA,
+        C_DETALLEPROBLEMA,
+        C_NOMBRE,
+        C_ESTADO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_ANALISIS_PROBLEM_DET.NextVal,
+        #{idProblema},
+        #{detalle},
+        #{nombre},
+        #{estado}
+        )
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_ANALISIS_PROBLEM_DET.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="problemaDetalleUpdate" parameterType="problemaDetalle">
+        UPDATE SIMCO_ANALISIS_PROBLEMAS_DET
+        <set>
+           C_ESTADO = 'INA'
+        </set>
+        <where>
+            N_ID_PROBLEMADETALLE = #{id} 
+        </where>
+    </update>
+    
+    <update id="problemaDetalleUpdateDatos" parameterType="problemaDetalle">
+        UPDATE SIMCO_ANALISIS_PROBLEMAS_DET
+        <set>
+            <if test="detalle != null">
+                C_DETALLEPROBLEMA = #{detalle},
+            </if>
+            <if test="nombre != null">
+                C_NOMBRE = #{nombre},
+            </if>
+           C_ESTADO = 'ACT'
+        </set>
+        <where>
+            N_ID_PROBLEMADETALLE = #{id} 
+        </where>
+    </update>
+    
+    <select id="problemaDetalleBuscar" resultMap="problemaDetalleMap" parameterType="long">
+        SELECT * from SIMCO_ANALISIS_PROBLEMAS_DET
+        WHERE N_ID_PROBLEMA = #{id}
+        AND C_ESTADO = 'ACT'
+    </select>
+    
+</mapper>

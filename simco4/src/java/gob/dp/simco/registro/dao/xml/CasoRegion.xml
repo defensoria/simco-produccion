@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.CasoRegionDao">
+    
+    <resultMap id="casoRegionMap" type="casoRegion">
+        <id property="id" column="N_IDCASOREGION" />
+        <result property="idCaso" column="N_ID_CASO"/>
+        <result property="idDepartamento" column="C_IDDEPARTAMENTO"/>
+        <result property="idProvincia" column="C_IDPROVINCIA"/>
+        <result property="idDistrito" column="C_IDDISTRITO"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="principal" column="C_PRINCIPAL"/>
+    </resultMap>  
+
+
+    <select id="casoRegionBuscar" resultMap="casoRegionMap" parameterType="long">
+        SELECT *
+        FROM SIMCO_REG_CASOREGION
+        WHERE
+        N_ID_CASO=#{id}
+        AND C_ESTADO = 'ACT'
+        ORDER BY N_IDCASOREGION    
+    </select>
+    
+    <insert id="casoRegionInsertar" parameterType="casoRegion">
+        INSERT INTO SIMCO_REG_CASOREGION
+        (
+        N_IDCASOREGION,
+        N_ID_CASO,
+        <if test="idDepartamento != null">
+            C_IDDEPARTAMENTO,
+        </if>
+        <if test="idProvincia != null">
+            C_IDPROVINCIA,
+        </if>
+        <if test="idDistrito != null">
+            C_IDDISTRITO,
+        </if>
+        <if test="principal != null">
+            C_PRINCIPAL,
+        </if>
+        C_ESTADO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_CASOREGION.NextVal,
+        #{idCaso},
+        <if test="idDepartamento != null">
+            #{idDepartamento},
+        </if>
+        <if test="idProvincia != null">
+            #{idProvincia},
+        </if>
+        <if test="idDistrito != null">
+            #{idDistrito},
+        </if>
+        <if test="principal != null">
+            #{principal},
+        </if>
+        #{estado}
+        )  
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_CASOREGION.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="casoRegionUpdate" parameterType="long">
+        UPDATE SIMCO_REG_CASOREGION
+        <set>
+            C_ESTADO = 'INA'
+        </set>    
+        <where>
+            N_IDCASOREGION=#{id}
+        </where>
+    </update>
+    
+    <update id="casoRegionUpdatePrincipal" parameterType="long">
+        UPDATE SIMCO_REG_CASOREGION
+        <set>
+            C_PRINCIPAL = 'A'
+        </set>    
+        <where>
+            N_IDCASOREGION=#{id}
+        </where>
+    </update>
+
+</mapper>

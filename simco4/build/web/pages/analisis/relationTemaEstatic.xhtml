@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<ui:composition template="../template/template.xhtml">
+<ui:define name="content">
+<link href="/simco/faces/vis/css/vis.css" rel="stylesheet"/>
+<script src="/simco/faces/vis/js/vis.js"></script>
+<h:form>
+<style type="text/css">#mynetwork{width:50%;height:50%;border:2px solid grey}#mynetwork2{width:50%;height:50%;border:2px solid grey}.legend{width:30%;height:30%}#project-label{display:block;font-weight:bold;margin-bottom:1em}#project-icon{float:left;height:32px;width:32px}#project-description{margin:0;padding:0}</style>
+<table style="width:100%">
+<tr>
+<td>
+<span class="text-resalt-primary" style="font-size:2em;font-weight:bold">Cuadro de actores por tema</span>
+</td>
+<td>
+<a class="btn btn-info" jsf:action="relationTema">
+<span class="glyphicon glyphicon-share"/>Version Dinamica
+</a>
+</td>
+</tr>
+</table>
+<br/><br/><br/>
+<div id="mynetwork11" class="panel" style="width:80%;height:500px">
+</div>
+<script type="text/javascript">#{graficController.nodes}#{graficController.edges}
+var container=document.getElementById('mynetwork11');var data={nodes:nodes,edges:edges};var options={physics:{barnesHut:{gravitationalConstant:0,springConstant:0,centralGravity:0}},smoothCurves:{dynamic:false,type:'1'}};var network=new vis.Network(container,data,options);</script>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

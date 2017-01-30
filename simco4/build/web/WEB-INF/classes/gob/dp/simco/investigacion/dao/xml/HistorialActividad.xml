@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.investigacion.dao.HistorialActividadDAO">
+    
+    <resultMap id="historialActividadMap" type="historialActividad">
+        <id property="id" column="N_ID_HISTO" />
+        <result property="idInvestigacion" column="N_ID_INVESTIGACION"/>
+        <result property="usuario" column="C_USUARIO"/>
+        <result property="nombre" column="C_NOMBRE"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="descripcion" column="C_DESCRIPCION"/>
+
+    </resultMap> 
+
+    <insert id="historialActividadInsert" parameterType="historialActividad">
+        INSERT INTO SIMCO_HIST_INVESTIGACION
+        (
+        N_ID_HISTO,
+        N_ID_INVESTIGACION,
+        C_USUARIO,
+        C_NOMBRE,
+        D_FECREGISTRO,
+        C_DESCRIPCION
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_HIST_INVESTIGACION.NextVal,
+        #{idInvestigacion},
+        #{usuario},
+        #{nombre},
+        #{fechaRegistro},
+        #{descripcion}
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_HIST_INVESTIGACION.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <select id="historialActividadBuscar" resultMap="historialActividadMap" parameterType="long">
+        SELECT * FROM SIMCO_HIST_INVESTIGACION
+        WHERE N_ID_INVESTIGACION = #{id}
+    </select>
+</mapper>

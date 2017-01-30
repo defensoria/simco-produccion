@@ -1,0 +1,546 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm" class="form-horizontal">
+                <h:messages />
+                <script>
+                    sessionStorage.setItem('menuHijoSession', 'Análisis');
+                    sessionStorage.setItem('menuNietoSession', 'Problemas');
+                </script>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:70%;font-size:2em;font-weight:bold" class="text-resalt-primary">
+                            Problemas
+                        </td>
+                        <td style="width:30%">
+                            <div>
+                                <div id="idDivRegistro" class="form-group has-feedback" style="width:100%;margin:auto;display:#{analisisController.verAutoCompleteCaso == true? '':'none'}">
+                                    <input type="text" style="width:100%" id="nombreCaso" jsf:value="#{analisisController.caso.nombre}" placeholder="buscar caso"/>
+                                    <input type="hidden" id="idCaso" jsf:value="#{analisisController.caso.id}"/>
+                                    <a style="float:right;font-size:large;margin:auto" jsf:action="#{analisisController.cargarComboActoresXcaso(analisisController.caso)}" jsf:onclick="loadingModal()">
+                                        <span class="glyphicon glyphicon-search form-control-feedback"/>
+                                        <f:ajax render="@form" execute="@form" onevent="closeModal" />
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br/><br/>
+                <table style="width:100%">
+                    <tr style="vertical-align:top">
+                        <td style="width:50%;padding-right:5px">
+                            <div class="panel panel-featured-top-resalt" style="min-height:600px">
+                                <div class="panel-body">
+                                    <span class="text-resalt-green">Demandas y posiciones de los actores</span>
+                                    <br/><br/>
+                                    
+                                    <h:selectOneMenu value="#{analisisController.idActor}" class="selectActor" style="width:50%" onchange="loadingModal()">
+                                        <f:selectItem itemLabel="Seleccionar" itemValue="0"/>
+                                        <f:selectItems value="#{analisisController.listaActoresXCaso}" var="y" itemLabel="#{y.nombre} #{y.apellidoPat} #{y.apellidoMat}" itemValue="#{y.id}" />
+                                        <f:ajax listener="#{analisisController.listener}" render="@form" onevent="closeModal"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:dataTable value="#{analisisController.actividadActors}" var="actor" style="width:80%">
+                                    <h:column>
+                                        <table style="width:100%">
+                                            <tr>
+                                                <td style="width:5%"></td>
+                                                <td style="width:95%">
+                                                    <div class="panel panel-default" style="width:100%">
+                                                        <div class="panel-body">
+                                                            <table style="width:100%">
+                                                                <tr>
+                                                                    <td style="width:50%">
+                                                                        <span style="color:#0074cc;font-size:1.3em">Demanda</span>
+                                                                    </td>
+                                                                    <td style="width:50%;text-align:right">
+                                                                        <a style="cursor:pointer" jsf:action="#{analisisController.verActividad(actor.actividad.id)}" class="round tooltip-top" title="ir a la actuación defensorial o acontecimiento">
+                                                                            <span class="glyphicon glyphicon-log-in" style="font-size:large"/>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <br/>
+                                                            <h:outputText value="#{actor.demanda}" />
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </td>
+                        <td style="padding-left:5px">
+                            <div class="panel panel-featured-top-resalt" style="min-height:600px">
+                                <div class="panel-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="width:50%">
+                                                <span class="text-resalt-green">Resumen de las demandas y posiciones</span>&#160;&#160;
+                                                <a jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" jsf:action="#{analisisController.desarchivarTodas()}" jsf:onclick="loadingModal()" title="hábilitar resumenes de demandas">
+                                                    <span class="glyphicon glyphicon-ok-circle" style="font-size:large;color:blue"/>
+                                                    <f:ajax render="@form" onevent="closeModal"/>
+                                                </a>
+                                            </td>
+                                            <td style="text-align:left">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="padding-right: 5px">
+                                                            <h:selectOneMenu value="#{analisisController.idActor}" onchange="loadingModal()" style="width: 90%">
+                                                                <f:selectItem itemLabel="Seleccionar" itemValue="0"/>
+                                                                <f:selectItems value="#{analisisController.listaActoresXCaso}" var="y" itemLabel="#{y.nombre} #{y.apellidoPat} #{y.apellidoMat}" itemValue="#{y.id}" />
+                                                                <f:ajax listener="#{analisisController.filtarXactor()}" render="@form" onevent="closeModal"/>
+                                                            </h:selectOneMenu>
+                                                        </td>
+                                                        <td style="float: right">
+                                                            <a jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" style="float:right;font-size:large;margin:auto" jsf:action="#{analisisController.analisisDemandaxActor()}" jsf:onclick="loadingModal()" title="Agregar tema">
+                                                                <span class="glyphicon glyphicon-plus" style="font-size: large"/>
+                                                                <f:ajax render=":idForm1" onevent="openModal"/>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p/><p/>
+                                    <h:dataTable value="#{analisisController.analisisActors}" var="analisis" style="width:95%">
+                                        <h:column>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td style="width:100%">
+                                                        <h:panelGroup rendered="#{analisis.archivado != 1}">
+                                                            <div class="panel panel-default" style="width:100%">
+                                                                <div class="panel-body">
+                                                                    <table style="width:100%">
+                                                                        <tr>
+                                                                            <td style="width:50%">
+                                                                                <span style="color:#0074cc">#{analisis.actor.nombre} #{analisis.actor.apellidoPat} #{analisis.actor.apellidoMat}</span>
+                                                                            </td>
+                                                                            <td style="width:50%;text-align:right">
+                                                                                <a jsf:rendered="#{casoController.esComisionadoRegistro}" jsf:action="#{analisisController.archivarAnalisisActor(analisis)}" jsf:onclick="loadingModal()">
+                                                                                    <span class="glyphicon glyphicon-ok-circle" style="font-size:large;color:silver"/>
+                                                                                    <f:ajax render="@form" onevent="closeModal" />
+                                                                                </a>
+                                                                                &#160;
+                                                                                <h:panelGroup rendered="#{casoController.esComisionadoRegistro}">
+                                                                                    <a style="cursor:pointer" onclick="confirmarTemas12#{analisis.actor.id}()">
+                                                                                        <span class="glyphicon glyphicon-remove" style="font-size:large;color:red"/>
+                                                                                    </a>
+                                                                                </h:panelGroup>
+                                                                                <gc:confirmRemoveAjax bean="#{analisisController.deleteAnalisisActor(analisis)}" classGC="confirmarTemas12#{analisis.actor.id}" />
+                                                                                <script>
+                                                                                    function confirmarTemas12#{analisis.actor.id}() {
+                                                                                        $(".confirmarTemas12#{analisis.actor.id}").modal("show");
+                                                                                    }
+                                                                                </script>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <br/>
+                                                                    <h:outputText value="#{analisis.resumen}" />
+                                                                    <br/>
+                                                                    <div style="text-align:left">
+                                                                        <h:dataTable value="#{analisis.temas}" var="temaActor" style="float:right;width:40%">
+                                                                            <h:column>
+                                                                                <div class="alert alert-danger fade in" role="alert" style="margin-bottom:2px;padding:7px;background-color:#0074cc;border-color:transparent;color:white">
+                                                                                    <strong>
+                                                                                        <h:outputText value="#{temaActor.detalle}" />
+                                                                                    </strong>
+                                                                                </div>
+                                                                            </h:column>
+                                                                        </h:dataTable>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </h:panelGroup>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="panel panel-featured-top-resalt">
+                                <div class="panel-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="text-align:left">
+                                                <span class="text-resalt-primary">Temas y posiciones</span>
+                                            </td>
+                                            <td style="float:right">
+                                                <gc:confirmAjax bean="#{canvasController.saveGraficTema()}" classGC="confirmarTemas" />
+                                                <script>
+                                                    function confirmarTemas() {
+                                                        $(".confirmarTemas").modal("show");
+                                                    }
+                                                </script>
+                                                <h:panelGroup rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}">
+                                                    <a class="btn btn-primary" onclick="confirmarTemas()">
+                                                        <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                                    </a>
+                                                </h:panelGroup>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <br/>
+                                <h:selectOneMenu value="#{canvasController.idTemaGrafico}" style="width:30%" onchange="loadingModal()">
+                                    <f:selectItem itemLabel="Seleccionar" itemValue="0"/>
+                                    <f:selectItems value="#{analisisController.temas}" var="y" itemLabel="#{y.detalle}" itemValue="#{y.id}" />
+                                    <f:ajax render="@form" execute="@form" listener="#{canvasController.cambiarCanvas}" onevent="closeModal"/>
+                                </h:selectOneMenu>
+                                <br/>
+                                <br/>
+                                <style>
+                                    .content{background:linear-gradient(to left,silver 24%,#fff 24%,#fff 25%,silver 25%,silver 49%,#fff 49%,#fff 50%,silver 50%,silver 74%,#fff 74%,#fff 75%,silver 75%)}
+                                </style>
+                                <div style="width:100%">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="width:50%;vertical-align:top">
+                                                <center>
+                                                    <img src="/simco/faces/bootstrap/img/derechaAzul.png" width="15%" height="30px"/>
+                                                    <span class="text-resalt-primary"> Convergencia </span>
+                                                    <img src="/simco/faces/bootstrap/img/izquierdaAzul.png" width="15%" height="30px"/>
+                                                    <br/><br/>
+                                                    <h:dataTable value="#{canvasController.listaActoresXCasoGrafico}" class="table content" var="actorTema">
+                                                        <h:column>
+                                                            <div class="slider" style="margin-top:1%;margin-bottom:4%;padding:0">
+                                                                <div class="slider-track" style="height:0">
+                                                                    <div style="left:0;width:70%" class="slider-selection">
+                                                                    </div>
+                                                                    <div tabindex="0" style="height:3.5em;width:3.5em" class="slider-handle round tooltip-right">
+                                                                    </div>
+                                                                    <div tabindex="0" style="left:0" class="slider-handle round hide">
+                                                                    </div>
+                                                                </div>
+                                                                <div style="top:-30px" class="tooltip_care">
+                                                                </div>
+                                                                <div style="top:-30px" class="tooltip top tooltip_min_care">
+                                                                </div>
+                                                                <div style="top:18px" class="tooltip bottom tooltip_max_care">
+                                                                </div>
+                                                                <input name="nivel#{actorTema.actor.id}" style="display:none;width:97%" value="#{actorTema.nivel}" class="ex1" title="care" data-slider-id="ex1Slider" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="#{actorTema.nivel.toString() == null? '50' : actorTema.nivel.toString() }" type="text"/>
+                                                            </div>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                    <img src="/simco/faces/bootstrap/img/izquierdaRojo.png" width="15%" height="40px"/>
+                                                    <span class="text-resalt-red"> Divergencia </span>
+                                                    <img src="/simco/faces/bootstrap/img/derechaRojo.png" width="15%" height="40px"/>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <h:dataTable value="#{canvasController.listaActoresXCasoGrafico}" class="table table-hover" var="actorTema">
+                                                    <h:column>
+                                                        <div class="slider" style="margin-top:1%;margin-bottom:4%;padding:0">
+                                                            <div class="slider-track" style="height:0">
+                                                                <div style="left:0;width:70%" class="slider-selection">
+                                                                </div>
+                                                                <div tabindex="0" style="left:0" class="slider-handle round hide">
+                                                                </div>
+                                                            </div>
+                                                            <div style="top:-30px" class="tooltip_care">
+                                                            </div>
+                                                            <div style="top:-30px" class="tooltip top tooltip_min_care">
+                                                            </div>
+                                                            <div style="top:18px" class="tooltip bottom tooltip_max_care">
+                                                            </div>
+                                                            <h:outputText class="text-primary" style="font-weight:bold" value="#{actorTema.actor.nombre} #{actorTema.actor.apellidoPat} #{actorTema.actor.apellidoMat}"/>
+                                                            <input name="nivel#{actorTema.actor.id}" style="display:none;width:100%" value="#{actorTema.nivel}" class="ex1" title="care" data-slider-id="ex1Slider" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="#{actorTema.nivel.toString() == null? '10' : actorTema.nivel.toString() }" type="text"/>
+                                                        </div>
+                                                    </h:column>
+                                                </h:dataTable>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <div class="panel panel-featured-top-warning">
+                    <div class="panel-body">
+                        <table style="width:100%">
+                            <tr>
+                                <td>
+                                    <gc:confirmSubmit bean="#{analisisController.saveProblema()}" />
+                                    <span class="text-resalt-primary">Síntesis del problema</span>
+                                </td>
+                                <td style="text-align:right">
+                                    <h:panelGroup rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}">
+                                        <a class="btn btn-primary" onclick="confirmar()">
+                                            <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                        </a>
+                                    </h:panelGroup>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/><br/>
+                        <style>.col3{vertical-align:top}</style>
+                        <table style="width:100%;vertical-align:top">
+                            <tr>
+                                <td style="width:50%;padding-right:5px">
+                                    <textarea jsf:value="#{analisisController.problema.sintesis}" rows="5" style="width:100%" placeholder="Síntesis general" maxlength="3700"/>
+                                    <br/><br/>
+                                    <span class="text-resalt-primary">Problemas</span>
+                                    <a style="text-decoration:none" jsf:rendered="#{analisisController.problema.id != null}" jsf:action="#{analisisController.addProblemaDetalle()}">
+                                        <span style="font-size:large" class="glyphicon glyphicon-plus"></span>
+                                        <f:ajax render="@form" execute="@form"/>
+                                    </a>
+                                    <br/>
+                                    <h:dataTable value="#{analisisController.listaProblemaDetalle}" var="det" binding="#{rowdet}" style="width:100%">
+                                        <h:column>
+                                            <h:outputText value="&#160;&#160;" />
+                                        </h:column>
+                                        <h:column>
+                                            <gc:confirmRemoveAjax bean="#{analisisController.removeDetalleProblema(det)}" classGC="confirm#{rowdet.rowIndex+1}" mensaje="¿Está seguro que desea eliminar el problema?"/>
+                                            <div class="form-group">
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <td style="width:90%;vertical-align:top">
+                                                            <label><b>Nombre:</b></label>
+                                                            <input type="text" jsf:value="#{det.nombre}" placeholder="Nombre"/>
+                                                            <br/>
+                                                            <label><b>Síntesis del problema:</b></label>
+                                                            <textarea jsf:value="#{det.detalle}" rows="5" style="width:100%" placeholder="Sintesis Problema"/>
+                                                        </td>
+                                                        <td>
+                                                            <table style="width:5%">
+                                                                <tr>
+                                                                    <td style="vertical-align: top">
+                                                                        <span style="background:#3183B9" class="badge">#{rowdet.rowIndex+1}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><p></p><p></p></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <script>
+                                                                            function confirm#{rowdet.rowIndex+1}() {
+                                                                                $(".confirm#{rowdet.rowIndex+1}").modal("show");
+                                                                            }                                                                                
+                                                                        </script>
+                                                                        <h:panelGroup rendered="#{casoController.esComisionadoRegistro}">
+                                                                            <a onclick="confirm#{rowdet.rowIndex+1}()" style="cursor:pointer">
+                                                                                <span style="color:red;font-size:medium" class="glyphicon glyphicon-remove"></span>
+                                                                            </a>
+                                                                        </h:panelGroup>    
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <br/>
+                                            </div>
+                                            <br/>
+                                        </h:column>
+                                        <h:column class="col3">
+                                        </h:column>
+                                    </h:dataTable>
+                                </td>
+                                <td style="width:50%;padding-left:5px;vertical-align:top">
+                                    <style>.circle{margin-left:auto;margin-right:auto;border-radius:50%;position:relative}.circle-border{border:1px solid black;width:70%;text-align:center;margin-bottom:5px}.numer{background:#31b0d5}.circle-solid{background-color:whitesmoke}.circle:before{content:"";display:block;padding-top:30%}.circle-inner{position:relative;bottom:0;left:0}</style>
+                                    <h:outputText value="#{analisisController.graficaInner}" escape="true" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('.tooltip-right').tooltip({placement: 'right', viewport: {selector: 'body', padding: 2}});
+                        $('.tooltip-bottom').tooltip({placement: 'bottom', viewport: {selector: 'body', padding: 2}});
+                        $('.tooltip-viewport-right').tooltip({placement: 'right', viewport: {selector: '.container-viewport', padding: 2}});
+                        $('.tooltip-viewport-bottom').tooltip({placement: 'bottom', viewport: {selector: '.container-viewport', padding: 2}});
+                    });
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $('.ex1').slider({formater: function (value) {
+                                return'Nivel: ' + value;
+                            }});
+                    });
+                </script>
+            </h:form>
+            <div class="modal fade" id="temasModal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <h:form id="idForm1">
+                            <h:messages/>
+                            <div class="modal-header">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width:50%">
+                                            <span class="text-resalt-primary" style="font-weight:bold">#{analisisController.actor.nombre} #{analisisController.actor.apellidoPat}</span>
+                                        </td>
+                                        <td style="text-align:right">
+                                            <a type="button" class="close" data-dismiss="modal">
+                                                <span style="color:red" class="glyphicon glyphicon-remove"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group" style="height:100%">
+                                    <span class="text-resalt-primary">Descripción:</span>
+                                    <textarea jsf:value="#{analisisController.analisisActor.resumen}" rows="5" maxlength="3700"/>
+                                </div>
+                                <div class="form-group">
+                                    <div class="panel panel-success" style="width:100%">
+                                        <div class="panel-heading">
+                                            <span class="glyphicon glyphicon-asterisk"></span>
+                                            Agregar tema
+                                            <a href="#" id="addActuacion">
+                                                <span id="spanAddActuacion" class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        </div>
+                                        <div id="idPanelBodyActuacion" class="panel-body">
+                                            <table style="width:100%">
+                                                <tr style="width:80%">
+                                                    <td>
+                                                        <div id="idMensajeInfo" class="alert alert-warning" role="alert" style="margin-bottom:0;display:none;padding:2px">
+                                                            <table style="width:100%">
+                                                                <tr>
+                                                                    <td style="padding-right:8px">
+                                                                        <img style="width:30px" src="../../bootstrap/img/warning.png" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <div style="font-size:1.5em">Tiene que ingresar el nombre del tema</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <h:panelGroup id="addAcciones">
+                                                            <div class="form-group has-success has-feedback">
+                                                                <label class="control-label" for="inputSuccess2">Título del tema</label>
+                                                                <input type="text" jsf:value="#{analisisController.tema.detalle}" class="txtTema" placeholder="Nuevo tema" aria-describedby="inputSuccess2Status"/>
+                                                                <a jsf:onclick="return validaCampoTema()" jsf:action="#{analisisController.saveTema()}">
+                                                                    <span class="glyphicon glyphicon-share-alt form-control-feedback" aria-hidden="true"></span>
+                                                                    <f:ajax render="@form" execute="@form"/>
+                                                                </a>
+                                                            </div>
+                                                            <script>
+                                                                function validaCampoTema() {
+                                                                    if ($(".txtTema").val() === '') {
+                                                                        $(".txtTema").addClass("error");
+                                                                        $("#idMensajeInfo").css('display', '');
+                                                                        return false;
+                                                                    } else {
+                                                                        $(".txtTema").removeClass("error");
+                                                                        $("#idMensajeInfo").css('display', 'none');
+                                                                        return true;
+                                                                    }
+                                                                    return true;
+                                                                }
+                                                            </script>
+                                                        </h:panelGroup>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <script>
+                                            $("#idPanelBodyActuacion").hide();
+                                            $("#spanAddActuacion").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                                            var i = 1;
+                                            $("#addActuacion").click(function () {
+                                                if (i === 1)
+                                                {
+                                                    $("#idPanelBodyActuacion").slideDown(400).delay(800);
+                                                    $("#spanAddActuacion").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+                                                    i = 2;
+                                                }
+                                                else
+                                                {
+                                                    $("#idPanelBodyActuacion").slideUp(300).delay(800);
+                                                    $("#spanAddActuacion").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                                                    i = 1;
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                    <span class="text-resalt-primary">Listado de temas</span>
+                                    <h:selectOneMenu value="#{analisisController.idTema}">
+                                        <f:selectItem itemLabel="Seleccionar" itemValue="0"/>
+                                        <f:selectItems value="#{analisisController.temas}" var="y" itemLabel="#{y.detalle}" itemValue="#{y.id}" />
+                                        <f:ajax render="@form" execute="@form" listener="#{analisisController.agregarTema()}" />
+                                    </h:selectOneMenu>
+                                    <br/>
+                                    <span class="text-resalt-primary">Temas vinculados al actor:</span>
+                                    <h:dataTable value="#{analisisController.temasSeleccinados}" var="tema" style="width:35%">
+                                        <h:column>
+                                            <div class="alert alert-warning fade in" role="alert" style="margin-bottom:3px;padding:5px">
+                                                <strong>
+                                                    <h:outputText style="font-size:1.2em" value="#{tema.detalle}" />
+                                                </strong>
+                                                &#160;&#160;&#160;&#160;&#160;
+                                                <a style="float:right" jsf:action="#{analisisController.removeTema(tema)}">
+                                                    <span class="glyphicon glyphicon-remove" style="font-size:large;color:red"></span>
+                                                    <f:ajax render="@form"/>
+                                                </a>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width:50%">
+                                        </td>
+                                        <td style="text-align:right">
+                                            <a class="btn btn-primary" jsf:action="#{analisisController.saveAnalisisActor()}">
+                                                <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#idAgregarTema').on('click', function () {
+                                        $('#txtNuevoTema').removeClass('ocultar');
+                                    });
+                                });
+                            </script>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function openModal(data) {
+                    if (data.status === 'success') {
+                        $("#loadModal").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $(".modal-backdrop").removeClass("modal-backdrop");
+                        if ($(".selectActor").val() !== '0') {
+                            $('#temasModal').modal('show');
+                        } else {
+                            alertar("Debe de seleccionar un Actor");
+                        }
+                    }
+                }
+                function closeModal(data) {
+                    if (data.status === 'success') {
+                        $('#temasModal').modal('hide');
+                    }
+                }
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

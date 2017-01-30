@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadMedioVerificacionDao">
+    
+    <resultMap id="actividadMedioVerificacionMap" type="actividadMedioVerificacion">
+        <result property="actividad.id" column="N_ID_ACTIVIDAD" />
+        <result property="medioVerificacion.id" column="N_ID_MEDIO"/>
+        <result property="estado" column="C_ESTADOACTMEDIO"/>
+    </resultMap>  
+
+    <insert id="actividadMedioVerificacionInsertar" parameterType="actividadMedioVerificacion">
+        INSERT INTO SIMCO_REG_ACTIVIDAD_MEDIOS
+        (
+        N_ID_MEDIO,
+        N_ID_ACTIVIDAD,
+        C_ESTADOACTMEDIO
+        )
+        VALUES 
+        (
+        #{medioVerificacion.id},
+        #{actividad.id},
+        #{estado}
+        )
+    </insert>
+
+    <update id="actividadMedioVerificacionUpdate" parameterType="actividadMedioVerificacion">
+        UPDATE SIMCO_REG_ACTIVIDAD_MEDIOS
+        <set>
+            C_ESTADOACTMEDIO = #{estado}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{actividad.id}
+            AND
+            N_ID_MEDIO = #{medioVerificacion.id}
+        </where>
+    </update>
+    
+    <delete id="actividadMedioVerificacionDelete" parameterType="actividadMedioVerificacion">
+        DELETE FROM SIMCO_REG_ACTIVIDAD_MEDIOS
+        where N_ID_ACTIVIDAD = #{actividad.id}
+        and N_ID_MEDIO = #{medioVerificacion.id}
+    </delete>
+
+</mapper>

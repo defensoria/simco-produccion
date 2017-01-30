@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.reporte.dao.ReporteSimcoCasoDao">
+    
+    <resultMap id="reporteSimcoCasoMap" type="reporteSimcoCaso">
+        <result property="codigoCaso" column="C_CODIGOCASO"/>
+        <result property="nombreCaso" column="C_NOMCASO"/>
+        <result property="fechaInicioCaso" column="FECHA_INICIO"/>
+        <result property="fechaFinCaso" column="FECHA_FIN"/>
+        <result property="fechaModificacion" column="FECHA_MODIFICACION"/>
+        <result property="regionPrincial" column="C_DESCDPTO"/>
+        <result property="provinciaPrincial" column="C_DESCPROV"/>
+        <result property="distritoPrincial" column="C_DESCDSTRO"/>
+        <result property="tipologia" column="TIPOCASO"/>
+        <result property="estado" column="TIPOESTADO"/>
+        <result property="actividad" column="TIPOACTIVIDAD"/>
+        <result property="fase" column="FASE"/>
+        <result property="acuerdos" column="ACUERDOS"/>
+        <result property="idCaso" column="N_ID_CASO"/>
+        <result property="primerNivel" column="PRIMERNIVEL"/>
+        <result property="segundoNivel" column="SEGUNDONIVEL"/>
+        <result property="tercerNivel" column="TERCERNIVEL"/>
+        <result property="momentoDialogo" column="MOMENTO_DIALOGO"/>
+        <result property="mecanismoDialogo" column="MECANISMO_DIALOGO"/>
+        <result property="participacion" column="PARTICIPACION"/>
+        <result property="inversionInvolucrada" column="N_INVERSIONINVOLUCRADA"/>
+        
+    </resultMap>      
+
+    <select id="reporteCasos" parameterType="reporteSimcoCaso"  resultMap="reporteSimcoCasoMap">
+        SELECT DISTINCT A.N_ID_CASO, A.C_CODIGOCASO, A.C_NOMCASO, TO_CHAR(A.D_FECHAINICIO, 'dd/mm/yyyy') FECHA_INICIO, TO_CHAR(A.D_FECHAFIN, 'dd/mm/yyyy') FECHA_FIN, 
+        B.C_DESCDPTO, M.C_DESCPROV, N.C_DESCDSTRO, C.NOMBRE_PARAMETRO TIPOCASO, D.NOMBRE_PARAMETRO TIPOESTADO, E.NOMBRE_PARAMETRO TIPOACTIVIDAD, 
+        F.NOMBRE_PARAMETRO FASE, G.ACUERDOS, O.C_NOMBRE PRIMERNIVEL, P.C_NOMBRE SEGUNDONIVEL, Q.C_NOMBRE TERCERNIVEL, 
+        TO_CHAR(A.D_FECHAMODIFICACION, 'dd/mm/yyyy') FECHA_MODIFICACION, R.NOMBRE_PARAMETRO MOMENTO_DIALOGO, S.NOMBRE_PARAMETRO MECANISMO_DIALOGO, 
+        T.NOMBRE_PARAMETRO PARTICIPACION, A.N_INVERSIONINVOLUCRADA, A.D_FECHACREACION
+        FROM SIMCO_REG_CASO A
+        LEFT JOIN SIMCO_UBIGEO_DPTO B ON A.C_IDDEPART = B.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_PROV M ON A.C_IDPROV = M.C_ID_PROV AND B.C_ID_DPTO = M.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_DSTRO N ON A.C_IDDISTR = N.C_ID_DSTRO AND B.C_ID_DPTO = N.C_ID_DPTO AND M.C_ID_PROV = N.C_ID_PROV
+        LEFT JOIN SIMCO_PARAMETRO C ON C.VALOR_PARAMETRO = A.C_TIPOCASO AND C.PADRE_PARAMETRO = 90
+        LEFT JOIN SIMCO_PARAMETRO D ON D.VALOR_PARAMETRO = A.C_TIPOESTADO AND D.PADRE_PARAMETRO = 120
+        LEFT JOIN SIMCO_PARAMETRO E ON E.VALOR_PARAMETRO = A.C_SUBTIPOCASO AND E.PADRE_PARAMETRO = 130
+        LEFT JOIN SIMCO_PARAMETRO F ON F.VALOR_PARAMETRO = A.C_TIPODIALOGO AND F.PADRE_PARAMETRO = 210
+        LEFT JOIN SIMCO_PARAMETRO R ON R.VALOR_PARAMETRO = A.C_MOMENTODIALOGO AND R.PADRE_PARAMETRO = 240
+        LEFT JOIN SIMCO_PARAMETRO S ON S.VALOR_PARAMETRO = A.C_TIPOMECANISMO AND S.PADRE_PARAMETRO = 220
+        LEFT JOIN SIMCO_PARAMETRO T ON T.VALOR_PARAMETRO = A.C_TIPOPARTICIPACION AND T.PADRE_PARAMETRO = 230
+        LEFT JOIN SIMCO_REG_PRIMER_NIVEL O ON O.C_ID_CODIGOPRIMERO = A.C_PRIMERNIVEL
+        LEFT JOIN SIMCO_REG_SEGUNDO_NIVEL P ON P.C_IDCODIGOSEGUNDO = A.C_SEGUNDONIVEL
+        LEFT JOIN SIMCO_REG_TERCER_NIVEL Q ON Q.C_ID_CODIGOTERCERO = A.C_TERCERNIVEL
+        LEFT JOIN (
+        SELECT COUNT(*) ACUERDOS, D1.N_ID_CASO FROM SIMCO_REG_DET_ACTA_ACUERDO A1
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO B1 ON A1.N_ID_ACTA = B1.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C1 ON B1.N_ID_ACTA = C1.N_ID_ACTA
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D1 ON C1.N_ID_ACTIVIDAD = D1.N_ID_ACTIVIDAD
+        GROUP BY D1.N_ID_CASO
+        ) G ON A.N_ID_CASO = G.N_ID_CASO
+        LEFT JOIN (
+        SELECT A2.C_TIPOACONTECIMIENTO, B2.N_ID_CASO, A2.N_ID_ACTIVIDAD FROM SIMCO_REG_ACTIVIDAD A2
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B2 ON A2.N_ID_ACTIVIDAD = B2.N_ID_ACTIVIDAD
+        ) J ON A.N_ID_CASO = J.N_ID_CASO 
+        LEFT JOIN SIMCO_REG_ACTIVIDAD_ACTOR K ON J.N_ID_ACTIVIDAD = K.N_ID_ACTIVIDAD       
+        LEFT JOIN SIMCO_REG_ACTOR L ON K.N_ID_ACTOR = L.N_ID_ACTOR         
+        WHERE A.C_INDVIGENTE = 'A' 
+        <if test="anho != 0">
+            AND TO_CHAR(A.D_FECHACREACION, 'yyyy') = #{anho} 
+        </if>
+        <if test="tipologia != 0">
+            AND A.C_TIPOCASO = #{tipologia} 
+        </if>
+        <if test="estado != 0">
+            AND A.C_TIPOESTADO = #{estado} 
+        </if> 
+        <if test="idRegion != null">
+            AND A.C_IDDEPART = #{idRegion} 
+        </if> 
+        <if test="tipoAcontecimiento != null">
+            AND J.C_TIPOACONTECIMIENTO = #{tipoAcontecimiento} 
+        </if>
+        <if test="idActor != null">
+            AND K.N_ID_ACTOR = #{idActor} 
+        </if>
+        <if test="tipoActor != 'NN'">
+            AND L.C_TIPOGENERAL = #{tipoActor} 
+        </if> 
+        <if test="esComunidadNativaInt == 1">
+            AND L.C_TIPOORGANIZACION = '10' 
+            AND L.C_CLASIFICACION = 'OR'
+        </if>
+        <if test="esComunidadNativaInt == 0">
+            AND L.C_TIPOORGANIZACION NOT IN ('10') 
+            AND L.C_CLASIFICACION = 'OR' 
+        </if>
+        <if test="inversionInvolucrada != null">
+            AND A.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
+        </if> 
+        
+        ORDER BY A.D_FECHACREACION
+    </select>
+    
+    <select id="cantidadAcuerdosCaso" resultType="java.lang.Integer" parameterType="long">
+        SELECT COUNT(D.N_ID_ACTA) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO D ON C.N_ID_ACTA = D.N_ID_ACTA
+        WHERE A.N_ID_CASO = #{id}
+    </select>
+    
+    
+    <select id="cantidadEmpresaMineraCaso" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(D.N_ID_ACTOR) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTOR D ON C.N_ID_ACTOR = D.N_ID_ACTOR
+        WHERE D.C_SUBTIPO2EMPRESA = '01' AND D.C_SUBTIPO3EMPRESA = '01'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+     
+
+    <select id="cantidadMuertosPNP" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(distinct N_ID_VICTIMAS) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTIVIDAD_VICTIMA D ON B.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '01' AND D.C_TIPOESTADO = '02'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+    
+    <select id="cantidadMuertosCiviles" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(distinct N_ID_VICTIMAS) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTIVIDAD_VICTIMA D ON B.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '01' AND D.C_TIPOESTADO = '01'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+    
+    <select id="cantidadMuertosFFAA" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(distinct N_ID_VICTIMAS) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTIVIDAD_VICTIMA D ON B.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '01' AND D.C_TIPOESTADO = '03'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+
+
+    <select id="cantidadHeridosPNP" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(distinct N_ID_VICTIMAS) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTIVIDAD_VICTIMA D ON B.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '02' AND D.C_TIPOESTADO = '02'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+    
+    <select id="cantidadHeridosCiviles" resultType="java.lang.Integer" parameterType="String">
+        SELECT COUNT(distinct N_ID_VICTIMAS) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTIVIDAD_VICTIMA D ON B.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '02' AND D.C_TIPOESTADO = '01'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+    
+    <select id="cantidadHeridosFFAA" resultType="java.lang.Integer" parameterType="String">
+        SELECT  COUNT(distinct N_ID_VICTIMAS) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_ACTIVIDAD_VICTIMA D ON B.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '02' AND D.C_TIPOESTADO = '03'
+        AND A.C_CODIGOCASO = #{value}
+    </select>
+</mapper>

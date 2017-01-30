@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActorAcuerdoDao">
+    
+    <resultMap id="actorAcuerdoMap" type="actorAcuerdo">
+        <result property="actaAcuerdoDetalle.id" column="N_ID_ACUERDO" />
+        <result property="actor.id" column="N_ID_ACTOR"/>
+        <result property="estado" column="C_ESTACTORACUERDO"/>
+        <result property="tipo" column="C_INDTIPOACTORACUERDO"/>
+    </resultMap>  
+
+    <insert id="actorAcuerdoInsertar" parameterType="actorAcuerdo">
+        INSERT INTO SIMCO_REG_ACTOR_ACUERDO
+        (
+        N_ID_ACUERDO,
+        N_ID_ACTOR,
+        C_ESTACTORACUERDO,
+        C_INDTIPOACTORACUERDO
+        )
+        VALUES 
+        (
+        #{actaAcuerdoDetalle.id},
+        #{actor.id},
+        #{estado},
+        #{tipo}
+        )
+</insert>
+
+<select id="actorAcuerdoValida" resultType="java.lang.Integer" parameterType="actorAcuerdo">
+     select count(*)
+     from SIMCO_REG_ACTOR_ACUERDO 
+     where
+     N_ID_ACUERDO =#{actaAcuerdoDetalle.id}
+        AND
+     N_ID_ACTOR = #{actor.id}
+        AND
+    C_INDTIPOACTORACUERDO = #{tipo}
+        AND
+    C_ESTACTORACUERDO = #{estado}
+</select>
+
+    <update id="actorAcuerdoUpdate" parameterType="actorAcuerdo">
+        UPDATE SIMCO_REG_ACTOR_ACUERDO
+        <set>
+            N_ID_ACTOR = #{actor.id}
+        </set>
+        <where>
+            N_ID_ACUERDO =#{actaAcuerdoDetalle.id}
+            AND
+            N_ID_ACTOR = #{actor.id}
+            AND
+            C_INDTIPOACTORACUERDO = #{tipo}
+        </where>
+    </update>
+    
+    <update id="actorAcuerdoAnular" parameterType="long">
+        UPDATE SIMCO_REG_ACTOR_ACUERDO
+        <set>
+            C_ESTACTORACUERDO = 'INA'
+        </set>
+        <where>
+            N_ID_ACUERDO =#{id}
+        </where>
+    </update>
+    
+    <delete id="actorAcuerdoDelete" parameterType="long">
+        DELETE FROM SIMCO_REG_ACTOR_ACUERDO
+        WHERE N_ID_ACUERDO = #{id}
+    </delete>
+
+</mapper>

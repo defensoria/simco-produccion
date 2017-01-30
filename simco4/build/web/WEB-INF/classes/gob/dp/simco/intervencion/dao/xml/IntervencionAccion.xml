@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.intervencion.dao.IntervencionAccionDao">
+
+    <resultMap id="intervencionAccionMap" type="intervencionAccion">
+        <id property="id" column="N_ID_ACCION" />
+        <result property="title" column="C_TITLE" />
+        <result property="descripcion" column="C_DESCRIPCION"/>
+        <result property="color" column="C_COLOR"/>
+        <result property="intervencion.id" column="N_IDINTERVENCION"/>  
+        
+    </resultMap>
+    
+    <insert id="intervencionAccionInsertar" parameterType="intervencionAccion">
+        INSERT INTO SIMCO_INTER_ACCION
+        (
+        N_ID_ACCION,
+        C_TITLE,
+        C_DESCRIPCION,
+        C_COLOR,
+        N_IDINTERVENCION
+        )
+        VALUES
+        (
+        SEQ_SIMCO_INTER_ACCION.NextVal,
+        #{title},
+        #{descripcion},
+        #{color},
+        #{intervencion.id}
+        ) 
+    </insert>
+
+    <select id="intervencionAccionBuscar" resultMap="intervencionAccionMap" parameterType="long">
+        SELECT 
+            N_ID_ACCION,
+            C_TITLE,
+            C_DESCRIPCION,
+            C_COLOR,
+            N_IDINTERVENCION
+        FROM SIMCO_INTER_ACCION 
+        WHERE N_ID_ACCION = #{id}
+    </select>
+    
+    <select id="intervencionAccionBuscarxCaso" resultMap="intervencionAccionMap" parameterType="long">
+        SELECT 
+            N_ID_ACCION,
+            C_TITLE,
+            C_DESCRIPCION,
+            C_COLOR,
+            N_IDINTERVENCION
+        FROM SIMCO_INTER_ACCION
+        where N_IDINTERVENCION = #{id}
+        ORDER BY N_ID_ACCION
+    </select>
+    
+    <select id="intervencionAccionBuscarxIntervencion" resultMap="intervencionAccionMap" parameterType="long">
+        SELECT DISTINCT B.* from SIMCO_INTER_ETAPA A
+        INNER JOIN SIMCO_INTER_ACCION B ON A.N_ID_ACCION = B.N_ID_ACCION
+        WHERE A.N_IDINTERVENCION = #{id} AND C_ESTADOACTIVO = 'ACT'
+        ORDER BY B.N_ID_ACCION
+    </select>
+    
+    
+</mapper>

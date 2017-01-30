@@ -1,0 +1,697 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm" class="form-horizontal" enctype="multipart/form-data">
+                <gc:confirmSubmit bean="#{registroController.registrarActividad()}"/>
+                <gc:confirmSubmit bean="#{registroController.inactivarActividad()}" classGC="confirmacion2" mensaje="Esta seguro inactivar el registro?"/>
+                <input type="hidden" jsf:value="#{registroController.actividad.coordenadaX}" id="idCoordenadaX"/>
+                <input type="hidden" jsf:value="#{registroController.actividad.coordenadaY}" id="idCoordenadaY"/>
+                <input type="hidden" jsf:value="#{registroController.actividad.zoom}" id="idZoom"/>
+                <h:inputHidden id="hidCodActividad" value="#{registroController.actividad.id}" />
+                <input type="hidden" id="idTipoRegistro" jsf:value="#{registroController.actividad.tipo}" />
+                <div class="panel panel-featured-top-primary">
+
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%;text-align:left;padding:10px">
+                                <span class="text-info" style="font-weight:bold;font-size:2em">Caso: #{registroController.caso.nombre}</span>
+                            </td>
+                            <td style="width:50%;text-align:right">
+                                <input type="hidden" id="idCaso" jsf:value="#{registroController.caso.id}"/>
+                                
+                                <script>
+                                    function confirmar2() {
+                                        $(".confirmacion2").modal('show');
+                                    }
+                                    
+                                    function openModalBusquedaSinCaso(data) {
+                                        if (data.status === 'success') {
+                                            $("#loadModal").modal('hide');
+                                            $('body').removeClass('modal-open');
+                                            $(".modal-backdrop").removeClass("modal-backdrop");
+                                            $("#idModalAcontecimientoBusqueda").modal('show');
+                                        }
+                                    }
+                                </script>
+                                <h:outputText rendered="#{registroController.caso.id != null and registroController.actividad.tipo == 'AD'}" class="text-resalt-primary" value="Vincular acontecimiento:" />
+                                <a jsf:action="#{registroController.cargarActontecimientoPorCaso()}" jsf:rendered="#{registroController.caso.id != null and registroController.actividad.tipo == 'AD'}" jsf:onclick="loadingModal()">
+                                    <span style="font-size:large" class="glyphicon glyphicon-search"></span>
+                                    <f:ajax render="idPanelGroupAcontecimientoBusqueda" onevent="openModalBusquedaSinCaso" />
+                                </a>
+                                <br/>
+                                <div style="float: right">
+                                    <h:dataTable value="#{registroController.acontecimientoVinculado}" var="acont" class="table table-hover"
+                                                 rendered="#{registroController.acontecimientoVinculado.size() > 0}">
+                                        <h:column>
+                                            <f:facet name="header">Acontecimiento</f:facet>
+                                            <h:outputText value="#{acont.nombre}" />
+                                        </h:column>
+                                        <h:column>
+                                            <a jsf:action="#{registroController.removeAcontecimientoVinculado()}">
+                                                <span class="glyphicon glyphicon-remove" style="color: red"/>
+                                            </a>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="text-titulo-primary-simco" style="color:#878787" id="idTextoRegistro">Nuevo Registro</span><h:outputText value="&#160;&#160;&#160;" />
+                                <a href="#" class="trigger">
+                                    <span style="color:#3183b9;font-size:large;vertical-align:bottom" class="glyphicon glyphicon-chevron-down trigger"></span>
+                                </a>
+                                <div class="popover-markup" style="float:right">
+                                    <div class="head hide"><b class="text-primary">Seleccione</b></div>
+                                    <div class="content hide">
+                                        <div style="width:100%">
+                                            <a class="alink" onclick="asignarTipo('AD')" style="cursor:pointer">
+                                                <div class="alert fade in alert-danger" role="alert" style="padding-bottom:5px;padding-top:5px;margin-bottom:3px">
+                                                    <strong>
+                                                        <h:outputText value="Actuación defensorial" class="cTipoRegistro"/>
+                                                    </strong>
+                                                </div>
+                                            </a>
+                                            <a class="alink" onclick="asignarTipo('AC')" style="cursor:pointer">
+                                                <div class="alert fade in alert-danger" role="alert" style="padding-bottom:5px;padding-top:5px;margin-bottom:3px">
+                                                    <strong>
+                                                        <h:outputText value="Acontecimiento" class="cTipoRegistro" />
+                                                    </strong>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $('.trigger').popover({html: true, placement: 'bottom', tabindex: '0', trigger: 'focus', title: function () {
+                                            return $(this).parent().find('.head').html();
+                                        }, content: function () {
+                                            return $(this).parent().find('.content').html();
+                                        }});
+                                    function asignarTipo(tipo) {
+                                        $("#idTipoRegistro").val(tipo);
+                                        $("#idTextoRegistro").css("color", "#3071A9");
+                                        if (tipo === "AD") {
+                                            $("#idTextoRegistro").text("Actuacion Defensorial");
+                                            $("#idPanelViolencia").css("display", "none");
+                                        }
+                                        if (tipo === "AC") {
+                                            $("#idTextoRegistro").text("Acontecimiento");
+                                            $("#idPanelViolencia").css("display", "");
+                                        }
+                                    }
+                                    if ($("#idTipoRegistro").val() !== "") {
+                                        if ($("#idTipoRegistro").val() === 'AD') {
+                                            $("#idTextoRegistro").text("Actuacion Defensorial");
+                                            $("#idPanelViolencia").css("display", "none");
+                                        }
+                                        if ($("#idTipoRegistro").val() === 'AC') {
+                                            $("#idTextoRegistro").text("Acontecimiento");
+                                            $("#idPanelViolencia").css("display", "");
+                                        }
+                                        $("#idTextoRegistro").css("color", "#3071A9");
+                                    }
+                                    $(document).ready(function () {
+                                        if ($("#idTipoRegistro").val() !== "") {
+                                            if ($("#idTipoRegistro").val() === 'AD') {
+                                                $("#idTextoRegistro").text("Actuacion Defensorial");
+                                                $("#idPanelViolencia").css("display", "none");
+                                            }
+                                            if ($("#idTipoRegistro").val() === 'AC') {
+                                                $("#idTextoRegistro").text("Acontecimiento");
+                                                $("#idPanelViolencia").css("display", "");
+                                            }
+                                            $("#idTextoRegistro").css("color", "#3071A9");
+                                        }
+                                    });
+                                </script>
+                            </td>
+                            <td style="text-align: right; padding-right: 20px; padding-bottom: 10px">
+                                <h:panelGroup rendered="#{registroController.actividad.id != null and registroController.esUsuarioRegistro}">
+                                    <a class="btn btn-warning" onclick="confirmar2()">
+                                        <span class="glyphicon glyphicon-floppy-disk" />Inactivar
+                                    </a>
+                                </h:panelGroup>
+                            </td>
+                        </tr>
+                    </table>
+                    <h:panelGroup id="idPanelGroupAcontecimientoBusqueda">
+                        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="idModalAcontecimientoBusqueda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <a type="button" class="close" data-dismiss="modal">
+                                            <span style="color:red" class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                        <h:outputText class="text-primary" style="font-weight:bold;font-size:1.4em" value="Buscar Acontecimientos"/>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h:dataTable style="width:100%" value="#{registroController.listaActividadesPorCaso}" var="act" class="table table-striped">
+                                            <h:column>
+                                                <f:facet name="header">Nombre</f:facet>
+                                                <h:outputText value="#{act.nombre}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Registro</f:facet>
+                                                <h:outputText value="#{act.fechaRegistro}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                </h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <a jsf:action="#{registroController.vincularAcontecimientoActuacion(act)}">
+                                                    <span class="glyphicon glyphicon-share" style="font-size:large"></span>
+                                                </a>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <div class="panel-body">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width:90%">
+                                    <div id="idDivTxtNombre" class="form-group">
+                                        <label for="txtNombre" class="col-sm-2 control-label">Nombre</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="txtNombre" placeholder="Nombre" jsf:value="#{registroController.actividad.nombre}" style="width:100%" title="Ingrese el nombre" autocomplete="off" maxlength="300"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtFechaFin" class="col-sm-2 control-label">Fecha/Hora de inicio</label>
+                                        <div class="col-sm-7">
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td style="width:50%">
+                                                        <gc:calendar value="#{registroController.actividad.fechaRealizacionIni}" id="txtFechaIni"/>
+                                                    </td>
+                                                    <td>
+                                                        <gc:time value="#{registroController.actividad.horaRealizacionIni}"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtFechaFin" class="col-sm-2 control-label">Fecha/Hora de fin</label>
+                                        <div class="col-sm-7">
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td style="width:50%">
+                                                        <gc:calendar value="#{registroController.actividad.fechaRealizacionFin}" id="txtFechaFin" idDiv="divFechaFin" />
+                                                    </td>
+                                                    <td>
+                                                        <gc:time value="#{registroController.actividad.horaRealizacionFin}" id="txtHoraFin" idDiv="divHoraFin"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-7">
+                                            <h:selectBooleanCheckbox id="idCheckbox" value="#{registroController.actividad.indCurso}" />Todavia en curso
+                                        </div>
+                                    </div>
+                                    <h:panelGroup rendered="#{registroController.actividad.tipo == 'AD'}">
+                                        <div class="form-group" id="idDivCmbTipoActividad">
+                                            <label class="col-sm-2 control-label">Clasificación</label>
+                                            <div class="col-sm-7">
+                                                <h:selectOneMenu class="selectRadio" id="cmbTipoActividad" value="#{registroController.actividad.tipoActividad}" rendered="#{registroController.actividad.tipo == 'AD'}">
+                                                    <f:selectItems value="#{listasComunesController.buscarTipoActividad(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{registroController.actividad.tipo == 'AC'}">
+                                        <div class="form-group" id="idDivCmbTipoActividad">
+                                            <label class="col-sm-2 control-label">Clasificación</label>
+                                            <div class="col-sm-7">
+                                                <h:selectOneMenu class="selectRadio" id="cmbTipoAcontecimiento" value="#{registroController.actividad.tipoAcontecimiento}" rendered="#{registroController.actividad.tipo == 'AC'}">
+                                                    <f:selectItems value="#{listasComunesController.buscarTipoAcontecimiento(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{registroController.actividad.tipo == 'AC'}">
+                                        <div class="form-group" id="idDivCmbTipoActividad">
+                                            <label class="col-sm-2 control-label">Tipo de violencia</label>
+                                            <div class="col-sm-7">
+                                                <gc:selectMultiBootstrap idSelect="idSelectTipoViolencia" idHidden="idSelect4" lista="#{listasComunesController.buscarTipoViolencia(false,false,false)}" value="#{registroController.actividad.tipoViolencia}" rendered="#{registroController.actividad.tipo == 'AC'}"/>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{registroController.actividad.tipo == 'AC'}">
+                                        <div class="form-group" id="idDivCmbTipoActividad">
+                                            <label class="col-sm-2 control-label">Resultado de la violencia</label>
+                                            <div class="col-sm-7">
+                                                <gc:selectMultiBootstrap idSelect="idSelectResultadoViolencia" idHidden="idSelect3" lista="#{listasComunesController.buscarResultadoViolencia(false,false,false)}" value="#{registroController.actividad.resultadoViolencia}" />
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <h:panelGroup rendered="#{registroController.esUsuarioRegistro}">
+                                            <button class="btn btn-primary" id="idBotonGuardar">
+                                                <span class="glyphicon glyphicon-floppy-disk">
+                                                </span> Guardar
+                                            </button>
+                                                </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:10%">
+                                    <span class="text-primary" style="font-size: 1.5em">Seleccionar imagen:</span>
+                                    <h:inputFile class="cMedio" value="#{registroController.file1}"/><br/>
+                                    <span style="color: red">*</span><span>Solo puede subir los formatos: png, jpe y gif</span>
+                                    <div jsf:rendered="#{registroController.actividad.ruta != null}">
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <td>Imagen</td>
+                                                <td>ver</td>
+                                            </tr>
+                                            <tr>
+                                                <td>#{registroController.actividad.ruta}</td>
+                                                <td>
+                                                    <a target="_blank" href="/filesystem/#{registroController.actividad.ruta}">
+                                                        <span class="glyphicon glyphicon-picture" />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <h:panelGroup id="idPanelGroupRegistro" rendered="#{registroController.verDetalleRegistro}">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%;padding-right:5px">
+                                <div class="panel panel-featured-top-primary" style="width:100%;height:250px">
+                                    <div class="panel-body">
+                                        <span class="text-resalt-primary">Descripción</span>
+                                        <textarea rows="8" jsf:value="#{registroController.actividad.descripcion}" style="width:100%;" maxlength="1400"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width:50%;padding-left:5px">
+                                <div class="panel panel-featured-top-primary" style="overflow-y:auto;width:100%;height:250px">
+                                    <div class="panel-body">
+                                        <div>
+                                            <span class="text-resalt-primary">Actores</span>
+                                            <a style="float:right" jsf:action="#{actorController.cargarRegistroAgregarActor2(registroController.caso, registroController.actividad.id)}">
+                                                <span class="glyphicon glyphicon-plus" style="font-size:large"></span>
+                                            </a>
+                                        </div>
+                                        <h:dataTable value="#{actorController.listaActorSeleccionado}" var="actor" class="table table-striped" binding="#{row4}" rendered="#{not empty actorController.listaActorSeleccionado}">
+                                            <h:column>
+                                                <f:facet name="header">N.°</f:facet>
+                                                <h:outputText value="#{row4.rowIndex+1}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Nombre</f:facet>
+                                                <h:outputText value="#{actor.nombre} #{actor.apellidoPat}" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Documento</f:facet>
+                                                <h:outputText value="#{actor.dni == null? actor.ruc :actor.dni}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%;padding-right:5px">
+                                <div class="panel panel-featured-top-primary" style="width:100%;height:250px">
+                                    <div class="panel-body">
+                                        <span class="text-resalt-primary">Comentarios</span>
+                                        <textarea rows="8" jsf:value="#{registroController.actividad.comentario}" style="width:100%;" maxlength="1400"/>
+                                    </div>
+                                </div>
+                                <div class="panel panel-featured-top-primary" style="width:100%;height:250px;overflow-y:auto">
+                                    <div class="panel-body">
+                                        <span class="text-resalt-primary">Noticias</span>
+                                        <a style="float:right;font-size:large" jsf:action="#{registroController.cargarNoticias(2)}">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
+                                        <br/><br/>
+                                        <h:dataTable rendered="#{registroController.listaNoticiasRegistros.size() > 0}" value="#{registroController.listaNoticiasRegistros}" var="notRegistros" style="font-size:.9em" class="table table-hover" binding="#{ro8}">
+                                            <h:column>
+                                                <f:facet name="header">N.°</f:facet>
+                                                <h:outputText style="opacity :#{notRegistros.estado == 'INA'? '0.3':'1'}" value="#{ro8.rowIndex+1})" />
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Noticia</f:facet>
+                                                <h:outputText value="#{notRegistros.titulo}"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding-left:5px">
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv3EboW4Y30kZ5cy5KYjex-jPYYcVcTw4" />
+                                <div class="panel panel-featured-top-primary" style="width:100%;height:520px;vertical-align:top">
+                                    <span class="text-resalt-primary">Ubicación</span>
+                                    <br/>
+                                    <h:panelGroup id="idPanelUbigeo">
+                                        <script>
+                                            $(document).ready(function () {
+                                                $('.selectRadio').multiselect();
+                                            });                                    
+                                        </script>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <h:selectOneMenu value="#{registroController.actividad.idDepartamento}" onchange="loadingModal()">
+                                                        <f:selectItem itemLabel="Departamento" itemValue="0"/>
+                                                        <f:selectItems value="#{registroController.listaDepartamento}" var="y" itemLabel="#{y.value}" itemValue="#{y.label}" />
+                                                        <f:ajax listener="#{registroController.comboProvincia()}" render="idPanelUbigeo" onevent="closeModal"/>
+                                                    </h:selectOneMenu>
+                                                </td>
+                                                <td>
+                                                    <h:selectOneMenu id="cmbProvincia" value="#{registroController.actividad.idProvincia}" onchange="loadingModal()">
+                                                        <f:selectItem itemLabel="Provincia" itemValue="0"/>
+                                                        <f:selectItems value="#{registroController.listaProvincia}" var="y" itemLabel="#{y.value} #{y.label}" itemValue="#{y.id}" />
+                                                        <f:ajax listener="#{registroController.comboDistrito()}" render="idPanelUbigeo" onevent="closeModal"/>
+                                                    </h:selectOneMenu>
+                                                </td>
+                                                <td>
+                                                    <h:selectOneMenu id="cmbDistrito" value="#{registroController.actividad.idDistrito}" onchange="loadingModal()">
+                                                        <f:selectItem itemLabel="Distrito" itemValue="0"/>
+                                                        <f:selectItems value="#{registroController.listaDistrito}" var="y" itemLabel="#{y.value} #{y.label}" itemValue="#{y.id}" />
+                                                        <f:ajax listener="#{registroController.coordenadasDistrito()}" render="idPanelUbigeo" onevent="closeModal"/>
+                                                    </h:selectOneMenu>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <script>
+                                                    function ejectuar() {
+                                                        x = parseFloat(#{registroController.cordenadax});
+                                                        y = parseFloat(#{registroController.cordenaday});
+                                                        z = parseInt(#{registroController.zoom});
+                                                        codeLatLng(x, y, z);
+                                                    }
+                                                    ejectuar();
+                                                </script>
+                                            </tr>
+                                        </table>
+                                    </h:panelGroup>
+                                    <br/>
+                                    <style>
+                                        html,body,#map-canvas{height:100%;
+                                                              margin:0;padding:0
+                                        }
+                                        #panel{position:absolute;
+                                               top:5px;left:50%;
+                                               margin-left:-180px;
+                                               z-index:5;
+                                               background-color:#fff;
+                                               padding:5px;
+                                               border:1px solid #999}
+                                        </style>
+                                        <script>
+                                            /*<![CDATA[*/var markers = [];
+                                            var geocoder;
+                                            var map;
+                                            var marker;
+                                            function initialize() {
+                                                var longitud = parseFloat(-10.18997);
+                                                if ($("#idCoordenadaX").val() !== "") {
+                                                    longitud = parseFloat($("#idCoordenadaX").val());
+                                                }
+                                                var latitud = parseFloat(-75.01515);
+                                                if ($("#idCoordenadaY").val() !== "") {
+                                                    latitud = parseFloat($("#idCoordenadaY").val());
+                                                }
+                                                var nivelZoom = parseInt(6);
+                                                if ($("#idZoom").val() !== "") {
+                                                    nivelZoom = parseInt($("#idZoom").val());
+                                                }
+                                                geocoder = new google.maps.Geocoder();
+                                                var latlng = new google.maps.LatLng(longitud, latitud);
+                                                var mapOptions = {zoom: nivelZoom, center: latlng, mapTypeId: 'roadmap'}
+                                                map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                                                addMarker(latlng);
+                                                google.maps.event.addListener(map, 'click', function (event) {
+                                                    deleteMarkers();
+                                                    $("#idCoordenadaX").val(event.latLng.lat());
+                                                    $("#idCoordenadaY").val(event.latLng.lng());
+                                                    $("#idZoom").val(nivelZoom);
+                                                    addMarker(event.latLng);
+                                                })
+                                            }
+                                            function codeLatLng(x, y, z) {
+                                                $("#idCoordenadaX").val(x);
+                                                $("#idCoordenadaY").val(y);
+                                                $("#idZoom").val(z);
+                                                deleteMarkers();
+                                                var latlng = new google.maps.LatLng(x, y);
+                                                geocoder.geocode({'latLng': latlng}, function (results, status) {
+                                                    if (status === google.maps.GeocoderStatus.OK) {
+                                                        if (results[1]) {
+                                                            var mapOptions = {zoom: z, center: latlng, mapTypeId: 'roadmap'}
+                                                            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                                                            marker = new google.maps.Marker({position: latlng, center: latlng, map: map});
+                                                            markers.push(marker);
+                                                            google.maps.event.addListener(map, 'click', function (event) {
+                                                                deleteMarkers();
+                                                                $("#idCoordenadaX").val(event.latLng.lat());
+                                                                $("#idCoordenadaY").val(event.latLng.lng());
+                                                                $("#idZoom").val(z);
+                                                                addMarker(event.latLng);
+                                                            });
+                                                        } else {
+                                                            alert('No results found');
+                                                        }
+                                                    } else {
+                                                        alert('Geocoder failed due to: ' + status);
+                                                    }
+                                                });
+                                            }
+                                            function addMarker(location) {
+                                                var marker = new google.maps.Marker({position: location, map: map});
+                                                markers.push(marker);
+                                            }
+                                            function setAllMap(map) {
+                                                for (var i = 0; i < markers.length; i++) {
+                                                    markers[i].setMap(map);
+                                                }
+                                            }
+                                            function setAllMap2(map) {
+                                                for (var i = 0; i < marker.length; i++) {
+                                                    marker[i].setMap(map);
+                                                }
+                                            }
+                                            function clearMarkers() {
+                                                setAllMap(null);
+                                            }
+                                            function deleteMarkers() {
+                                                clearMarkers();
+                                                markers = [];
+                                            }
+                                            google.maps.event.addDomListener(window, 'load', initialize);/*]]>*/
+                                        </script>
+                                        <div id="map-canvas" style="height:455px;vertical-align:bottom"></div>
+                                    <br/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right:5px"  jsf:rendered="#{registroController.actividad.tipo == 'AC'}">
+                                <div class="panel panel-featured-top-primary" style="width:100%;height:250px">
+                                    <div class="panel-body">
+                                        <div>
+                                            <span class="text-resalt-primary">Acuerdos</span>
+                                            <a style="float:right;font-size:large" jsf:action="#{actaAcuerdoController.cargarRegistroAgregarAcuerdo2(registroController.actividad.id, 2)}">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                            <br/><br/>
+                                            <span style="font-size:1.3em;font-weight:bold">Descripción: </span>
+                                            <h:outputText value="#{registroController.actaAcuerdo.descripcionItem}" />
+                                            <br/><br/>
+                                            <h:outputText value="Se ha registrado: #{registroController.nroActaAcuerdoDetalle} acuerdo(s)/compromiso(s)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding-left:5px">
+                                <div class="panel panel-featured-top-primary" style="width:100%;height:250px;overflow-y:auto">
+                                    <div class="panel-body">
+                                        <div>
+                                            <span class="text-resalt-primary">Medios de verificación</span>
+                                            <a style="float:right;font-size:large" jsf:action="#{medioVerificacionController.cargarPagina(registroController.actividad.id)}">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                            <br/>
+                                            <h:dataTable value="#{medioVerificacionController.medioVerificacions}" var="med" rendered="#{medioVerificacionController.medioVerificacions.size() > 0}" class="table table-striped">
+                                                <h:column>
+                                                    <h:outputText value="#{med.titulo} - "/>
+                                                    <h:outputText value="#{med.fechaRegistro}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                    </h:outputText>
+                                                    <h:outputText value=" (#{med.codigo}) "/>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right:5px">
+                                <h:panelGroup>
+                                    <div id="idPanelViolencia" class="panel panel-featured-top-primary" style="width:100%;height:250px;overflow-y:auto">
+                                        <div class="panel-body">
+                                            <div>
+                                                <span class="text-resalt-primary">Resultado de la violencia</span>
+                                                <a style="float:right;font-size:large" jsf:action="#{victimaViolenciaController.cargarPagina(registroController.actividad.id, 2)}">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </a>
+                                                <br/>
+                                                <br/>
+                                                <table class="table table-striped" style="width:100%">
+                                                    <c:forEach items="#{victimaViolenciaController.tiposVictima}" var="entry">
+                                                        <tr><td><b>#{entry.key}:</b></td><td>#{entry.value}</td></tr>
+                                                    </c:forEach>
+                                                </table>
+                                                <input type="hidden" id="idContadorVictimas" value="#{victimaViolenciaController.listaVictimas.size()}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                            </td>
+                            <td style="padding-left:5px">
+                            </td>
+                        </tr>
+                    </table>
+                </h:panelGroup>
+                <script>
+                    /*<![CDATA[*/$('.datepicker').datetimepicker({pickTime: false});
+                    $(".datepicker").on("changeDate", function (ev) {
+                        $(this).datetimepicker("hide");
+                    });
+                    $('.timepicker').datetimepicker({pickDate: false});
+                    $('#idBotonGuardar').on('click', function () {
+                        if ($('#txtNombre').val() === "") {
+                            $('#txtNombre').addClass('error');
+                            alertar("Debe de ingresar el nombre de la Actividad");
+                            return false;
+                        }
+                        else {
+                            $('#txtNombre').removeClass('error');
+                        }
+                        if ($('#txtFechaIni').val() === "") {
+                            $('#txtFechaIni').addClass('error');
+                            alertar("Debe de ingresar la fecha de inicio");
+                            return false;
+                        }
+                        else {
+                            $('#txtFechaIni').removeClass('error');
+                        }
+                        if ($('#idForm\\:idCheckbox').is(':checked')) {
+                        } else {
+                            if ($('#txtFechaFin').val() === "") {
+                                $('#txtFechaFin').addClass('error');
+                                alertar("Debe de ingresar la fecha de fin");
+                                return false;
+                            }
+                            else {
+                                $('#txtFechaFin').removeClass('error');
+                            }
+                        }
+                        if ($('#idForm\\:cmbTipoActividad').val() === "-3000") {
+                            $('#idForm\\:cmbTipoActividad').addClass('error');
+                            alertar("Debe de ingresar el tipo de Actuacion Defensorial");
+                            return false;
+                        }
+                        else {
+                            $('#idForm\\:cmbTipoActividad').removeClass('error');
+                        }
+                        var d = Date.parse($('#txtFechaIni').val());
+                        var e = Date.parse($('#txtFechaFin').val());
+                        if (d > e) {
+                            $('#txtFechaIni').addClass('error');
+                            $('#txtFechaFin').addClass('error');
+                            alertar("La fecha de inicio debe ser antes de la fecha fin");
+                            return false;
+                        } else {
+                            $('#txtFechaIni').removeClass('error');
+                            $('#txtFechaFin').removeClass('error');
+                        }
+                        if ($(".cMedio").val() !== "") {
+                            if (!comprueba_extension($(".cMedio").val())) {
+                                alertar("Debe de ingresar un archivo de tipo imagen (.jpe o .png o.gif)");
+                                return false;
+                            }
+                        }
+                        if ($("#idSelectTipoViolencia").val() === '02' || $("#idSelectTipoViolencia").val() === '03') {
+                            if ($("#idContadorVictimas").val() === '0' || $("#idContadorVictimas").val() === '') {
+                                alertar("Debe de registrar victimas de la violencia");
+                                return false;
+                            }
+                        }
+                        confirmar();
+                        return false;
+                    });
+                    function comprueba_extension(archivo) {
+                        extensiones_permitidas = new Array(".gif", ".jpg", ".png");
+                        extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
+                        var permitida = false;
+                        for (var i = 0; i < extensiones_permitidas.length; i++) {
+                            if (extensiones_permitidas[i] === extension) {
+                                permitida = true;
+                                break;
+                            }
+                        }
+                        return permitida;
+                    }
+                    $(document).ready(function ($) {
+                        if ($('#idForm\\:idCheckbox').is(':checked')) {
+                            $('#txtHoraFin').addClass('formDisabled').val('');
+                            $('#divHoraFin').addClass('formDisabled');
+                            $('#txtFechaFin').addClass('formDisabled').removeClass('error').val('');
+                            $('#divFechaFin').addClass('formDisabled');
+                        } else {
+                            $('#txtFechaFin').removeClass('formDisabled');
+                            $('#txtHoraFin').removeClass('formDisabled');
+                            $('#divHoraFin').removeClass('formDisabled');
+                            $('#divFechaFin').removeClass('formDisabled');
+                        }
+                        $('#idForm\\:idCheckbox').on('click', function () {
+                            if ($('#idForm\\:idCheckbox').is(':checked')) {
+                                $('#txtHoraFin').addClass('formDisabled').val('');
+                                $('#divHoraFin').addClass('formDisabled');
+                                $('#txtFechaFin').addClass('formDisabled').removeClass('error').val('');
+                                $('#divFechaFin').addClass('formDisabled');
+                            } else {
+                                $('#txtFechaFin').removeClass('formDisabled');
+                                $('#txtHoraFin').removeClass('formDisabled');
+                                $('#divHoraFin').removeClass('formDisabled');
+                                $('#divFechaFin').removeClass('formDisabled');
+                            }
+                        });
+                    });/*]]>*/
+                    function openModal(data) {
+                        alert(data.status);
+                        if (data.status === 'success') {
+                            $('#busquedaCasoModal').modal('show');
+                        }
+                    }
+                </script>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

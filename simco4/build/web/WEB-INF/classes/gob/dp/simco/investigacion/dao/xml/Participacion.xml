@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.investigacion.dao.ParticipacionDAO">
+    
+    <resultMap id="participacionMap" type="participacion">
+        <id property="id" column="N_ID_INVES_PART" />
+        <result property="idInvestigacion" column="N_ID_INVESTIGACION"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="tipo" column="C_TIPO"/>
+        <result property="usuRegistro" column="C_USUREGISTRO"/>
+        <result property="usuarioNombre" column="C_NOMBREUSU"/>
+        <result property="usuarioCargo" column="C_CARGOUSU"/>
+        <result property="usuarioCodigo" column="C_CODIGOUSU"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="fechaModifica" column="D_FECMODIFICACION"/>
+    </resultMap>
+
+    <insert id="participacionInsertar" parameterType="participacion">
+        INSERT INTO SIMCO_INVESTIGACION_PARTICIPA
+        (
+        N_ID_INVES_PART,
+        <if test="estado !=null">
+            C_ESTADO,
+        </if>
+        <if test="tipo !=null">
+            C_TIPO,
+        </if>
+        <if test="usuRegistro !=null">
+            C_USUREGISTRO,
+        </if>
+        <if test="fechaRegistro !=null">
+            D_FECREGISTRO,
+        </if>
+        <if test="usuarioCodigo !=null">
+            C_CODIGOUSU,
+        </if>
+        <if test="usuarioNombre !=null">
+            C_NOMBREUSU,
+        </if>
+        <if test="usuarioCargo !=null">
+            C_CARGOUSU,
+        </if>
+        N_ID_INVESTIGACION
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_INVESTIGACION_PARTIC.NextVal,
+        <if test="estado !=null">
+            #{estado},
+        </if>
+        <if test="tipo !=null">
+            #{tipo},
+        </if>
+        <if test="usuRegistro !=null">
+            #{usuRegistro},
+        </if>
+        <if test="fechaRegistro !=null">
+            #{fechaRegistro},
+        </if>
+        <if test="usuarioCodigo !=null">
+            #{usuarioCodigo},
+        </if>
+        <if test="usuarioNombre !=null">
+            #{usuarioNombre},
+        </if>
+        <if test="usuarioCargo !=null">
+            #{usuarioCargo},
+        </if>
+        #{idInvestigacion}
+        )
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_INVESTIGACION_PARTIC.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="participacionUpdate" parameterType="participacion">
+        UPDATE SIMCO_INVESTIGACION_PARTICIPA 
+        <set>
+            <if test="tipo !=null">
+                C_TIPO = #{tipo},
+            </if>
+            <if test="usuRegistro !=null">
+                C_USUREGISTRO = #{usuRegistro},
+            </if>
+            <if test="fechaModifica !=null">
+                D_FECMODIFICACION = #{fechaModifica},
+            </if>
+            <if test="usuarioCodigo !=null">
+                C_CODIGOUSU = #{usuarioCodigo},
+            </if>
+            <if test="usuarioNombre !=null">
+                C_NOMBREUSU = #{usuarioNombre},
+            </if>
+            <if test="usuarioCargo !=null">
+                C_CARGOUSU = #{usuarioCargo},
+            </if>
+            C_ESTADO = #{estado}
+        </set>
+        <where>
+            N_ID_INVES_PART = #{id}
+        </where>
+    </update>
+    
+    <select id="participacionBuscar" resultMap="participacionMap" parameterType="participacion">
+        SELECT * FROM SIMCO_INVESTIGACION_PARTICIPA 
+        WHERE N_ID_INVESTIGACION = #{id}
+    </select>
+</mapper>

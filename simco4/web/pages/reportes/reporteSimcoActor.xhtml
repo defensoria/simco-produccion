@@ -1,0 +1,382 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form  class="form-horizontal">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation">
+                                <a jsf:action="#{reporteSimcoController.cargarReporteCaso()}" aria-controls="home" role="tab" data-toggle="tab">
+                                    <span class="text-resalt-comun"/>Reporte de casos
+                                </a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a  jsf:action="#{reporteSimcoController.cargarReporteActor()}" aria-controls="profile" role="tab" data-toggle="tab">
+                                    <span class="text-resalt-comun"/>Reporte de actores
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a jsf:action="#{reporteSimcoController.cargarReporteActividad()}" aria-controls="messages" role="tab" data-toggle="tab">
+                                    <span class="text-resalt-comun"/>Reporte de actividades
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a jsf:action="#{reporteSimcoController.cargarReporteVictima()}" aria-controls="messages" role="tab" data-toggle="tab">
+                                    <span class="text-resalt-comun"/>Reporte de victimas
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 50%">
+                                            <style>
+                                                td{
+                                                    padding-bottom: 7px;
+                                                }
+                                            </style>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <b>Año de Registro:</b>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.anho}">
+                                                            <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                                            <f:selectItems value="#{reporteSimcoController.listaAnhos}" />
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Caso:</b></td>
+                                                    <td>
+                                                        <table style="width: 100%">
+                                                            <tr>
+                                                                <td style="width: 95%">
+                                                                    <input type="text" jsf:value="#{reporteSimcoController.reporteSimcoActor.nombreCaso}" placeholder="Caso" readonly="true" style="background: silver"/>
+                                                                    <h:inputHidden value="#{reporteSimcoController.reporteSimcoActor.codigoCaso}" />
+                                                                </td>
+                                                                <td>
+                                                                    <a class="btn btn-info" jsf:action="#{reporteSimcoController.limpiarReporteActor()}">
+                                                                        <span class="glyphicon glyphicon-search" />Buscar
+                                                                        <f:ajax render="idPanelModalCaso" onevent="openModalBusquedaCaso()" />
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Tipología del caso:</b>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.tipologia}">
+                                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                            <f:selectItems value="#{listasComunesController.buscarTipoCaso(false, false, false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Región del caso:</b>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.idRegion}" >
+                                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                            <f:selectItems value="#{casoController.listaDepartamento}" var="y" itemLabel="#{y.value}" itemValue="#{y.label}" />
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Estado del caso:</b>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.estado}">
+                                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                            <f:selectItems value="#{listasComunesController.buscarEstadoCaso(false, false, false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Que incluya este tipo de aconteciminento:</b>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.tipoAcontecimiento}">
+                                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                            <f:selectItems value="#{listasComunesController.buscarTipoAcontecimiento(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Que incluyan como actor a comunidades nativas:</b>
+                                                    </td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.esComunidadNativa}">
+                                                            <f:selectItem itemLabel="Seleccione" itemValue="0"/>
+                                                            <f:selectItem itemLabel="Si" itemValue="S"/>
+                                                            <f:selectItem itemLabel="No" itemValue="N"/>
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Actor involucrado:</b></td>
+                                                    <td>
+                                                        <table style="width: 100%">
+                                                            <tr>
+                                                                <td style="width: 95%">
+                                                                    <input type="text" jsf:value="#{reporteSimcoController.reporteSimcoActor.nombreActor}" placeholder="Actor" readonly="true" style="background: silver"/>
+                                                                    <h:inputHidden value="#{reporteSimcoController.reporteSimcoActor.idActor}" />
+                                                                </td>
+                                                                <td>
+                                                                    <a class="btn btn-info" jsf:action="#{actorController.limpiarModalBusquedaActor()}">
+                                                                        <span class="glyphicon glyphicon-search" />Buscar
+                                                                        <f:ajax render="idPanelModalActor" onevent="openModalBusquedaActor()" />
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Tipo de actor </b></td>
+                                                    <td>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.tipoActor}">
+                                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                            <f:selectItem itemLabel="Población" itemValue="PE"/>
+                                                            <f:selectItem itemLabel="Organización / empresa" itemValue="EM"/>
+                                                            <f:selectItem itemLabel="Entidad estatal" itemValue="EN"/>
+                                                        </h:selectOneMenu>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Inversión involucrada</b></td>
+                                                    <td>
+                                                        <input type="text" jsf:value="#{reporteSimcoController.reporteSimcoActor.inversionInvolucrada}" style="width: 50%" onkeypress="return validarNumeros(event)"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="vertical-align: top; text-align: right">
+                                            <a class="btn btn-warning" jsf:action="#{reporteSimcoController.limpiarReporteActor()}">
+                                                <span class="glyphicon glyphicon-asterisk" />Limpiar  
+                                            </a>
+                                            &#160;&#160;&#160;
+                                            <a class="btn btn-primary" jsf:action="#{reporteSimcoController.reporteActores()}">
+                                                <span class="glyphicon glyphicon-search" />Buscar  
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <div>
+                                    <a jsf:rendered="#{reporteSimcoController.listReporteActor.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoActorExcel()}">
+                                        <img src="../../bootstrap/img/excel.png" height="45" width="45"/>
+                                    </a>
+                                    <a jsf:rendered="#{reporteSimcoController.listReporteActor.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoActorPdf()}">
+                                        <img src="../../bootstrap/img/pdf.png" height="45" width="45"/>
+                                    </a>
+                                </div>
+                                <br/>
+                                <h:dataTable value="#{reporteSimcoController.listReporteActor}" var="actor" class="table table-bordered table-striped table-hover" headerClass="header_data_table" rendered="#{reporteSimcoController.listReporteActor.size() > 0}"  binding="#{itemD}">
+                                    <h:column>
+                                        <f:facet name="header">#</f:facet>
+                                        <h:outputText value="#{itemD.rowIndex+1}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Nombre completo</f:facet>
+                                        <h:outputText value="#{actor.nombreActor}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Categoría</f:facet>
+                                        <h:outputText value="#{actor.descripcionTipoActor}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Tipo actor</f:facet>
+                                        <h:outputText value="#{actor.subtipo}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Subtipo 1</f:facet>
+                                        <h:outputText value="#{actor.subtipo1}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Subtipo 2</f:facet>
+                                        <h:outputText value="#{actor.subtipo2}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Subtipo 3</f:facet>
+                                        <h:outputText value="#{actor.subtipo3}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Departamento</f:facet>
+                                        <h:outputText value="#{actor.nombreDepartamento}" />
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Número de conflitos en los que participa</f:facet>
+                                        <h:outputText value="#{actor.contadorActorAcontecimiento}" />
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Acuerdos en los que el actor está comprometido a cumplir</f:facet>
+                                        <h:outputText value="#{actor.contadorActorAcuerdoComprometido}" />
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Acuerdos en los que el actor es beneficiario</f:facet>
+                                        <h:outputText value="#{actor.contadorActorAcuerdoBeneficiario}" />
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Actitud frente al diálogo</f:facet>
+                                        <h:outputText value="#{actor.ponderado}" />
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="idModalBusquedaCaso">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-remove" style="color: red"/>
+                                        </button>
+                                        <span class="modal-title text-resalt-primary">Búsqueda de casos</span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h:panelGroup id="idPanelModalCaso">
+                                            <div class="form-group has-feedback" style="width:100%;margin:auto">
+                                                <input type="text" name="nombreCaso" placeholder="Buscar por nombre o código del caso"/>
+                                                <a style="float:right;font-size:large;margin:auto" jsf:action="#{reporteSimcoController.listaCasos(1)}" jsf:onclick="loadingModal()">
+                                                    <span class="glyphicon glyphicon-search form-control-feedback"/>
+                                                    <f:ajax render="idPanelModalCaso" execute="@form" onevent="closeModal"/>
+                                                </a>
+                                            </div>
+                                            <br/>
+                                            <h:dataTable value="#{reporteSimcoController.listadoCasos}" rendered="#{reporteSimcoController.listadoCasos.size() > 0}" var="caso" class="table table-striped" style="font-size:small" binding="#{rowy}">
+                                                <h:column>
+                                                    <f:facet name="header">N.°</f:facet>
+                                                    <h:outputText value="#{(reporteSimcoController.nroPagina-1)*10+rowy.rowIndex+1}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Nombre</f:facet>
+                                                    <h:outputText value="#{caso.nombre}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Código</f:facet>
+                                                    <h:outputText value="#{caso.codigo}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header"></f:facet>
+                                                    <a jsf:action="#{reporteSimcoController.setearCasoActor(caso)}">
+                                                        <span class="glyphicon glyphicon-edit" style="font-size:medium"/>
+                                                    </a>
+                                                </h:column>
+                                            </h:dataTable>
+                                            <ul class="pager">
+                                                <li>
+                                                    <a jsf:rendered="#{reporteSimcoController.listadoCasos.size() > 0}" jsf:action="#{reporteSimcoController.listaCasos(reporteSimcoController.nroPagina -1)}">Anterior
+                                                        <f:ajax render="idPanelModalCaso" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a jsf:rendered="#{reporteSimcoController.listadoCasos.size() > 0}" jsf:action="#{reporteSimcoController.listaCasos(reporteSimcoController.nroPagina +1)}">Siguiente
+                                                        <f:ajax render="idPanelModalCaso" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            function openModalBusquedaCaso() {
+                                $("#idModalBusquedaCaso").modal('show');
+                            }
+                        </script>
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="idModalBusquedaActor">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-remove" style="color: red"/>
+                                        </button>
+                                        <span class="modal-title text-resalt-primary">Búsqueda de actor</span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h:panelGroup id="idPanelModalActor">
+                                            <div class="form-group has-feedback" style="width:100%;margin:auto">
+                                                <input type="text" autocomplete="false" name="nombreActor" placeholder="Buscar por nombre de actor"/>
+                                                <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.buscarActorXnombrePaginado(1)}" jsf:onclick="loadingModal()">
+                                                    <span class="glyphicon glyphicon-search form-control-feedback"/>
+                                                    <f:ajax render="idPanelModalActor" execute="@form" onevent="closeModal"/>
+                                                </a>
+                                            </div>
+                                            <br/>
+                                            <h:dataTable value="#{actorController.listaActorBusquedaGeneral}" rendered="#{actorController.listaActorBusquedaGeneral.size() > 0}" var="item" class="table table-striped" style="font-size:small" binding="#{rowz}">
+                                                <h:column>
+                                                    <f:facet name="header">N.°</f:facet>
+                                                    <h:outputText value="#{(actorController.nroPagina-1)*10+rowz.rowIndex+1}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Nombres</f:facet>
+                                                    <h:outputText value="#{item.nombre} #{item.apellidoPat} #{item.apellidoMat}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Documento</f:facet>
+                                                    <h:outputText rendered="#{item.tipoGeneral == 'PE'}" value="#{item.dni}" />
+                                                    <h:outputText rendered="#{item.tipoGeneral != 'PE'}" value="#{item.ruc}" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">Tipo</f:facet>
+                                                    <h:outputText rendered="#{item.tipoGeneral == 'PE'}" value="Población" />
+                                                    <h:outputText rendered="#{item.tipoGeneral == 'EM'}" value="Organización / empresa" />
+                                                    <h:outputText rendered="#{item.tipoGeneral == 'EN'}" value="Entidad estatal" />
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header"></f:facet>
+                                                    <a jsf:action="#{reporteSimcoController.setearActorActor(item)}">
+                                                        <span class="glyphicon glyphicon-edit" style="font-size:medium"/>
+                                                    </a>
+                                                </h:column>
+                                            </h:dataTable>
+                                            <ul class="pager">
+                                                <li>
+                                                    <a jsf:rendered="#{actorController.listaActorBusquedaGeneral.size() > 0}" jsf:action="#{actorController.buscarActorXnombrePaginado(actorController.nroPagina -1)}">Anterior
+                                                        <f:ajax render="idPanelModalActor" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a jsf:rendered="#{actorController.listaActorBusquedaGeneral.size() > 0}" jsf:action="#{actorController.buscarActorXnombrePaginado(actorController.nroPagina +1)}">Siguiente
+                                                        <f:ajax render="idPanelModalActor" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function openModalBusquedaActor() {
+                                $("#idModalBusquedaActor").modal('show');
+                            }
+                        </script>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

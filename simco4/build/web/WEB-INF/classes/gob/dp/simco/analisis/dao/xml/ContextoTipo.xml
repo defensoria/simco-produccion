@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.ContextoTipoDao">
+    
+    <resultMap id="contextoTipoMap" type="contextoTipo">
+        <result property="id" column="N_ID_TIPOCONTEXTO" />
+        <result property="detalle" column="C_DETALLE"/>
+        <result property="estado" column="C_ESTADO"/>
+    </resultMap>
+
+    <select id="contextoTipoBuscar" resultMap="contextoTipoMap">
+        SELECT * from SIMCO_REG_CONTEXTO_TIPO
+    </select>
+    
+</mapper>

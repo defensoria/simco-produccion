@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadVictimaDao">
+    
+    <resultMap id="actividadVictimaMap" type="actividadVictima">
+        <result property="id" column="N_ID_VICTIMAS" />
+        <result property="idActividad" column="N_ID_ACTIVIDAD"/>
+        <result property="nombre" column="C_NOMBRE"/>
+        <result property="apellidoPaterno" column="C_APEPATERNO"/>
+        <result property="apellidoMaterno" column="C_APEMATERNO"/>
+        <result property="dni" column="C_DNI"/>
+        <result property="edad" column="N_EDAD"/>
+        <result property="tipo" column="C_TIPO"/>
+        <result property="tipoEstado" column="C_TIPOESTADO"/>
+        <result property="descripcion" column="C_DESCRIPCIONVICTIMA"/>
+        <result property="causaMuerte" column="C_CAUSAMUERTE"/>
+        <result property="fechaVictima" column="D_FECHAVICTIMA"/>
+        <result property="detalleEstado" column="C_DETALLEESTADO"/>
+        <result property="lugarAtencion" column="C_LUGARATENCION"/>
+        <result property="centroSalud" column="C_CENTROSALUD"/>
+        <result property="usuRegistro" column="C_USUREGISTRO"/>
+        <result property="fechaRegistro" column="D_FECHAREGISTRO"/>
+        <result property="fechaModificacion" column="D_FECHAMODIFICACOIN"/>
+        <result property="ruta" column="C_RUTA"/>
+        <result property="nombreTipo" column="NOMBRE_PARAMETRO"/>
+        <result property="noIdentificado" column="N_NOIDENTIFICADO"/>
+        <result property="sexo" column="C_SEXO"/>
+        <result property="establecimientoAtencion" column="C_ESTABLECIMIENTO_ATENCION"/>
+    </resultMap>  
+
+    <insert id="actividadVictimaInsertar" parameterType="actividadVictima">
+        INSERT INTO SIMCO_REG_ACTIVIDAD_VICTIMA
+        (
+        N_ID_VICTIMAS,        	
+        N_ID_ACTIVIDAD,
+        <if test="nombre != null">
+            C_NOMBRE,
+        </if>       
+        <if test="apellidoPaterno != null">
+            C_APEPATERNO,
+        </if>
+        <if test="apellidoMaterno != null">
+            C_APEMATERNO,
+        </if>
+        <if test="dni != null">
+            C_DNI,
+        </if>
+        <if test="edad != null">
+            N_EDAD, 
+        </if>
+        <if test="tipo != null">
+            C_TIPO,
+        </if>
+        <if test="tipoEstado != null">
+            C_TIPOESTADO,
+        </if>
+        <if test="descripcion != null">
+            C_DESCRIPCIONVICTIMA,
+        </if>
+        <if test="causaMuerte != null">
+            C_CAUSAMUERTE,
+        </if>
+        <if test="fechaVictima != null">
+            D_FECHAVICTIMA,
+        </if>
+        <if test="detalleEstado != null">
+            C_DETALLEESTADO,
+        </if>
+        <if test="lugarAtencion != null">
+            C_LUGARATENCION, 
+        </if>
+        <if test="centroSalud != null">
+            C_CENTROSALUD, 
+        </if>
+        <if test="usuRegistro != null">
+            C_USUREGISTRO,
+        </if>
+        <if test="ruta != null">
+            C_RUTA,
+        </if>
+        <if test="noIdentificado != null">
+            N_NOIDENTIFICADO,
+        </if>
+        <if test="sexo != null">
+            C_SEXO,
+        </if>
+        <if test="establecimientoAtencion != null">
+            C_ESTABLECIMIENTO_ATENCION,
+        </if>
+        D_FECHAREGISTRO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_VICTIMAS.NextVal,        	
+        #{idActividad},
+        <if test="nombre != null">
+            #{nombre},
+        </if>       
+        <if test="apellidoPaterno != null">
+            #{apellidoPaterno},
+        </if>
+        <if test="apellidoMaterno != null">
+            #{apellidoMaterno},
+        </if>
+        <if test="dni != null">
+            #{dni},
+        </if>
+        <if test="edad != null">
+            #{edad},
+        </if>
+        <if test="tipo != null">
+            trim(#{tipo}),
+        </if>
+        <if test="tipoEstado != null">
+            trim(#{tipoEstado}),
+        </if>
+        <if test="descripcion != null">
+            #{descripcion},
+        </if>
+        <if test="causaMuerte != null">
+            #{causaMuerte},
+        </if>
+        <if test="fechaVictima != null">
+            #{fechaVictima},
+        </if>
+        <if test="detalleEstado != null">
+            #{detalleEstado},
+        </if>
+        <if test="lugarAtencion != null">
+            #{lugarAtencion},
+        </if>
+        <if test="centroSalud != null">
+            #{centroSalud},
+        </if>
+        <if test="usuRegistro != null">
+            #{usuRegistro},
+        </if>
+        <if test="ruta != null">
+            #{ruta},
+        </if>
+        <if test="noIdentificado != null">
+            #{noIdentificado},
+        </if>
+        <if test="sexo != null">
+            #{sexo},
+        </if>
+        <if test="establecimientoAtencion != null">
+            #{establecimientoAtencion},
+        </if>
+        #{fechaRegistro}
+        )
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_VICTIMAS.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="actividadVictimaUpdate" parameterType="actividadVictima">
+        UPDATE SIMCO_REG_ACTIVIDAD_VICTIMA
+        <set>
+            <if test="nombre != null">
+                C_NOMBRE = #{nombre},
+            </if>       
+            <if test="apellidoPaterno != null">
+                C_APEPATERNO = #{apellidoPaterno},
+            </if>
+            <if test="apellidoMaterno != null">
+                C_APEMATERNO = #{apellidoMaterno},
+            </if>
+            <if test="dni != null">
+                C_DNI = #{dni},
+            </if>
+            <if test="edad != null">
+                N_EDAD = #{edad},
+            </if>
+            <if test="tipo != null">
+                C_TIPO = #{tipo},
+            </if>
+            <if test="tipoEstado != null">
+                C_TIPOESTADO = #{tipoEstado},
+            </if>
+            <if test="descripcion != null">
+                C_DESCRIPCIONVICTIMA = #{descripcion},
+            </if>
+            <if test="causaMuerte != null">
+                C_CAUSAMUERTE = #{causaMuerte},
+            </if>
+            <if test="fechaVictima != null">
+                D_FECHAVICTIMA = #{fechaVictima},
+            </if>
+            <if test="detalleEstado != null">
+                C_DETALLEESTADO = #{detalleEstado},
+            </if>
+            <if test="lugarAtencion != null">
+                C_LUGARATENCION = #{lugarAtencion},
+            </if>
+            <if test="centroSalud != null">
+                C_CENTROSALUD = #{centroSalud},
+            </if>
+            <if test="usuRegistro != null">
+                C_USUREGISTRO = #{usuRegistro},
+            </if>
+            <if test="ruta != null">
+                C_RUTA = #{ruta},
+            </if>
+            <if test="noIdentificado != null">
+                N_NOIDENTIFICADO = #{noIdentificado},
+            </if>
+            <if test="sexo != null">
+                C_SEXO = #{sexo},
+            </if>
+            <if test="establecimientoAtencion != null">
+                C_ESTABLECIMIENTO_ATENCION = #{establecimientoAtencion},
+            </if>
+            D_FECHAMODIFICACOIN = #{fechaModificacion}
+        </set>
+        <where>
+            N_ID_VICTIMAS = #{id}
+        </where>
+    </update>
+
+    <select id="actividadVictimaBuscar" parameterType="long" resultMap="actividadVictimaMap" >
+        SELECT 
+        A.N_ID_VICTIMAS,        	
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMBRE,
+        A.C_APEPATERNO,
+        A.C_APEMATERNO,
+        A.C_DNI,
+        A.N_EDAD, 
+        trim(A.C_TIPO) C_TIPO,
+        trim(A.C_TIPOESTADO) C_TIPOESTADO,
+        A.C_DESCRIPCIONVICTIMA,
+        A.C_CAUSAMUERTE,
+        A.D_FECHAVICTIMA,
+        A.C_DETALLEESTADO,
+        A.C_LUGARATENCION, 
+        A.C_CENTROSALUD, 
+        A.C_USUREGISTRO,
+        A.D_FECHAREGISTRO,
+        A.D_FECHAMODIFICACOIN,
+        A.C_RUTA,
+        A.N_NOIDENTIFICADO,
+        B.NOMBRE_PARAMETRO,
+        A.C_SEXO,
+        A.C_ESTABLECIMIENTO_ATENCION
+        FROM
+        SIMCO_REG_ACTIVIDAD_VICTIMA A 
+        LEFT JOIN SIMCO_PARAMETRO B ON TRIM(A.C_TIPO) = TRIM(B.VALOR_PARAMETRO)
+        AND B.PADRE_PARAMETRO = 200
+        WHERE A.N_ID_ACTIVIDAD = #{id}
+    </select>
+    
+    <delete id="actividadVictimaEliminar" parameterType="long">
+        delete from SIMCO_REG_ACTIVIDAD_VICTIMA
+        where N_ID_VICTIMAS = #{id}
+    </delete>
+    
+
+</mapper>

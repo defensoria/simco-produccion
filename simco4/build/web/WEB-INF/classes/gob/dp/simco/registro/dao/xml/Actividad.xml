@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadDao">
+    
+    <resultMap id="actividadMap" type="actividad">
+        <id property="id" column="N_ID_ACTIVIDAD" />
+        <result property="nombre" column="C_NOMACTIVIDAD"/>
+        <result property="descripcion" column="C_DESCRIPACTIVIDAD"/>
+        <result property="lugarRealizacion" column="C_LUGARREALIZACION"/>
+        <result property="fechaRealizacionIni" column="D_FECHAREALIZACIONINI"/>
+        <result property="fechaRealizacionFin" column="D_FECHAREALIZACIONFIN"/>
+        <result property="horaRealizacionIni" column="T_HORAREALIZACIONINI"/>
+        <result property="horaRealizacionFin" column="T_HORAREALIZACIONFIN"/>
+        <result property="comentario" column="C_COMENTARIOACTIVIDAD"/>
+        <result property="codigoActividad" column="C_CODIGOACTIVIDAD"/>
+        <result property="idDepartamento" column="CIDDEPART"/>
+        <result property="idProvincia" column="CIDPROV"/>
+        <result property="idDistrito" column="CIDDISTR"/>
+        <result property="indCurso" column="N_INDCURSO"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="fechaModificacion" column="D_FECMODIFICACION"/>
+        <result property="tipo" column="C_TIPO"/>
+        <result property="version" column="N_VERSION"/>
+        <result property="coordenadaX" column="N_COORDENADAX"/>
+        <result property="coordenadaY" column="N_COORDENADAY"/>
+        <result property="zoom" column="N_ZOOM"/>
+        <result property="ruta" column="C_RUTA"/>
+        <result property="usuarioRegistro" column="C_USUREGISTRO"/>
+        <result property="usuarioModificacion" column="C_USUMODIFICACION"/>
+        <result property="tipoActividad" column="C_TIPO_ACTIVIDAD"/>
+        <result property="justificacionIntervencion" column="C_JUSTINTERVENCION"/>
+        <result property="actividadActividad.estado" column="C_ESTADOACTACT"/>
+        <result property="actividadAcontecimiento.estado" column="C_ESTADO_ACTI_ACONT"/>
+        <result property="actividadActor.estado" column="C_ESTADO_ACTI_ACTOR"/>
+        <result property="actividadCaso.estado" column="C_ESTADOACTCASO"/>
+        <result property="actividadActaAcuerdo.estado" column="C_ESTADOACTIACTA"/>
+        <result property="actividadMedioVerificacion.estado" column="C_ESTADOACTMEDIO"/>
+        <result property="nombreCaso" column="C_NOMCASO"/>
+        <result property="idCaso" column="N_ID_CASO"/>
+        <result property="usuario.codigo" column="C_USUREGISTRO"/>
+        <result property="usuario.nombre" column="NOM_USUARIO"/>
+        <result property="usuario.apellidoPaterno" column="APE_PATERNO"/>
+        <result property="usuario.apellidoMaterno" column="APE_MATERNO"/>
+        <result property="usuario.cargo" column="C_CARGO"/>
+        <result property="usuario.ruta" column="RUTA_IMAGEN"/>
+        <result property="tipoAcontecimiento" column="C_TIPOACONTECIMIENTO"/>
+        <result property="tipoViolencia" column="C_TIPOVIOLENCIA"/>
+        <result property="resultadoViolencia" column="C_RESULTADOVIOLENCIA"/>
+        <result property="idAcontecimiento" column="N_ID_ACONTECIMIENTO"/>
+        <result property="indiceVinculado" column="N_INDICEVINCULADO"/>
+        <result property="indiceActivo" column="N_INDICEACTIVO"/>
+    </resultMap> 
+
+    <sql id="sqlBuscarActividad">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_CODIGOACTIVIDAD,
+        A.N_INDCURSO,
+        A.C_COMENTARIOACTIVIDAD,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10 AND A.N_INDICEACTIVO = 1
+        <where>
+            <if test="nombre != null">
+                A.C_NOMACTIVIDAD=#{nombre}
+            </if>
+            <if test="id != null">
+                A.N_ID_ACTIVIDAD=#{id}
+            </if>
+        </where>
+        ORDER BY A.N_ID_ACTIVIDAD DESC
+    </sql>   
+
+
+    <select id="actividadxActividadBuscar" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        A.N_INDCURSO
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTACT,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTI_ACTIVI D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD_HIJO   
+        WHERE D.N_ID_ACTIVIDAD_PADRE =#{id}
+        AND D.C_ESTADOACTACT = 'ACT' AND A.N_INDICEACTIVO = 1
+        
+    </select>
+    
+    <select id="actividadxActividadBuscarTotal" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTACT,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTI_ACTIVI D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD_HIJO   
+        WHERE D.N_ID_ACTIVIDAD_PADRE =#{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadxActorBuscar" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADO_ACTI_ACTOR,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_ACTOR =#{id}
+        AND D.C_ESTADO_ACTI_ACTOR = 'ACT' AND A.N_INDICEACTIVO = 1
+        
+    </select>
+    
+    <select id="actividadxActorBuscarTotal" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADO_ACTI_ACTOR,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_ACTOR =#{id} AND A.N_INDICEACTIVO = 1
+    </select>
+
+    <select id="actividadBuscarOne" resultMap="actividadMap" parameterType="actividad">
+        <include refid="sqlBuscarActividad"/>
+    </select>          
+
+    <insert id="actividadInsertar" parameterType="actividad">
+        INSERT INTO SIMCO_REG_ACTIVIDAD 
+        (
+        N_ID_ACTIVIDAD,
+        <if test="descripcion != null">
+            C_DESCRIPACTIVIDAD,
+        </if>
+        <if test="lugarRealizacion != null">
+            C_LUGARREALIZACION,
+        </if>
+        <if test="fechaRealizacionIni != null">
+            D_FECHAREALIZACIONINI,
+        </if>
+        <if test="fechaRealizacionFin != null">
+            D_FECHAREALIZACIONFIN,
+        </if>
+        <if test="horaRealizacionIni != null">
+            T_HORAREALIZACIONINI,
+        </if>
+        <if test="horaRealizacionFin != null">
+            T_HORAREALIZACIONFIN,
+        </if>
+        <if test="tipoActividad != null">
+            C_TIPO_ACTIVIDAD,
+        </if>    
+        <if test="fechaRegistro != null">
+            D_FECREGISTRO,
+        </if>
+        <if test="usuarioRegistro != null">
+            C_USUREGISTRO,
+        </if>
+        <if test="version != null">
+            N_VERSION,
+        </if>
+        <if test="tipo != null">
+            C_TIPO,
+        </if>
+        <if test="indCurso != null">
+            N_INDCURSO,
+        </if>
+        <if test="justificacionIntervencion != null">
+            C_JUSTINTERVENCION,
+        </if>
+        <if test="codigoActividad != null">
+            C_CODIGOACTIVIDAD,
+        </if>
+        <if test="comentario != null">
+            C_COMENTARIOACTIVIDAD,
+        </if>
+        <if test="idDepartamento != null">
+            CIDDEPART,
+        </if>
+        <if test="idProvincia != null">
+            CIDPROV,
+        </if>
+        <if test="idDistrito != null">
+            CIDDISTR,
+        </if>
+        <if test="ruta != null">
+            C_RUTA,
+        </if>
+        <if test="tipoAcontecimiento != null">
+            C_TIPOACONTECIMIENTO,
+        </if>
+        <if test="tipoViolencia != null">
+            C_TIPOVIOLENCIA,
+        </if>
+        <if test="resultadoViolencia != null">
+            C_RESULTADOVIOLENCIA,
+        </if>
+        <if test="nombre != null">
+            C_NOMACTIVIDAD,
+        </if>
+        N_INDICEACTIVO
+        
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REGISTRO_ACTIVIDAD.NextVal,
+        <if test="descripcion != null">
+            #{descripcion},
+        </if>
+        <if test="lugarRealizacion != null">
+            #{lugarRealizacion},
+        </if>
+        <if test="fechaRealizacionIni != null">
+            #{fechaRealizacionIni}, 
+        </if>
+        <if test="fechaRealizacionFin != null">
+            #{fechaRealizacionFin}, 
+        </if>
+        <if test="horaRealizacionIni != null">
+            #{horaRealizacionIni},
+        </if>
+        <if test="horaRealizacionFin != null">
+            #{horaRealizacionFin}, 
+        </if>
+        <if test="tipoActividad != null">
+            #{tipoActividad},
+        </if>    
+        <if test="fechaRegistro != null">
+            #{fechaRegistro},
+        </if>
+        <if test="usuarioRegistro != null">
+            #{usuarioRegistro},
+        </if>
+        <if test="version != null">
+            #{version},
+        </if>
+        <if test="tipo != null">
+            #{tipo},
+        </if>
+        <if test="indCurso != null">
+            #{indCurso},
+        </if>
+        <if test="justificacionIntervencion != null">
+            #{justificacionIntervencion},
+        </if>
+        <if test="codigoActividad != null">
+            #{codigoActividad},
+        </if>
+        <if test="comentario != null">
+            #{comentario},
+        </if>
+        <if test="idDepartamento != null">
+            #{idDepartamento},
+        </if>
+        <if test="idProvincia != null">
+            #{idProvincia},
+        </if>
+        <if test="idDistrito != null">
+            #{idDistrito},
+        </if>
+        <if test="ruta != null">
+            #{ruta},
+        </if>
+        <if test="tipoAcontecimiento != null">
+            #{tipoAcontecimiento},
+        </if>
+        <if test="tipoViolencia != null">
+            #{tipoViolencia},
+        </if>
+        <if test="resultadoViolencia != null">
+            #{resultadoViolencia},
+        </if>
+        <if test="nombre != null">
+            #{nombre},
+        </if>
+        1
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REGISTRO_ACTIVIDAD.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="actividadUpdate" parameterType="actividad">
+        UPDATE SIMCO_REG_ACTIVIDAD
+        <set>
+            C_NOMACTIVIDAD= #{nombre},
+            <if test="descripcion != null">
+                C_DESCRIPACTIVIDAD= #{descripcion},
+            </if>
+            <if test="comentario != null">
+                C_COMENTARIOACTIVIDAD = #{comentario},
+            </if>
+            <if test="indCurso != null">
+                N_INDCURSO =#{indCurso},
+            </if>
+            <if test="tipo != null">
+                C_TIPO =#{tipo},
+            </if>
+            <if test="horaRealizacionIni != null">
+                T_HORAREALIZACIONINI = #{horaRealizacionIni},
+            </if>
+            <if test="horaRealizacionFin != null">
+                T_HORAREALIZACIONFIN = #{horaRealizacionFin},
+            </if>
+            <if test="idDepartamento != null">
+                CIDDEPART= #{idDepartamento},
+            </if>
+            <if test="idProvincia != null">
+                CIDPROV= #{idProvincia},
+            </if>
+            <if test="idDistrito != null">
+                CIDDISTR= #{idDistrito},
+            </if>
+            <if test="fechaRealizacionIni != null">
+                D_FECHAREALIZACIONINI= #{fechaRealizacionIni}, 
+            </if>
+            <if test="fechaRealizacionFin != null">
+                D_FECHAREALIZACIONFIN = #{fechaRealizacionFin},
+            </if>
+            <if test="usuarioModificacion != null">
+                C_USUMODIFICACION = #{usuarioModificacion},
+            </if>
+            <if test="coordenadaX != null">
+                N_COORDENADAX = #{coordenadaX},
+            </if>
+            <if test="coordenadaY != null">
+                N_COORDENADAY = #{coordenadaY},
+            </if>
+            <if test="zoom != null">
+                N_ZOOM = #{zoom},
+            </if>
+            <if test="ruta != null">
+                C_RUTA = #{ruta},
+            </if>
+            <if test="tipoAcontecimiento != null">
+                C_TIPOACONTECIMIENTO = #{tipoAcontecimiento},
+            </if>
+            <if test="tipoViolencia != null">
+                C_TIPOVIOLENCIA = #{tipoViolencia},
+            </if>
+            <if test="resultadoViolencia != null">
+                C_RESULTADOVIOLENCIA = #{resultadoViolencia},
+            </if>
+            <if test="tipoActividad != null">
+                C_TIPO_ACTIVIDAD = #{tipoActividad},
+            </if>
+            D_FECMODIFICACION = #{fechaModificacion}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{id}
+        </where>
+    </update>
+        
+    <update id="actividadUpdateAcontecimiento" parameterType="actividad">
+        UPDATE SIMCO_REG_ACTIVIDAD
+        <set>
+            N_ID_ACONTECIMIENTO= #{idAcontecimiento}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{id}
+        </where>
+    </update>
+    
+    <update id="actividadUpdateAcontecimientoQuitar" parameterType="long">
+        UPDATE SIMCO_REG_ACTIVIDAD
+        <set>
+            N_ID_ACONTECIMIENTO = null
+        </set>
+        <where>
+            N_ID_ACTIVIDAD = #{id}
+        </where>
+    </update>
+    
+    <update id="actividadUpdateVincular" parameterType="long">
+        UPDATE SIMCO_REG_ACTIVIDAD
+        <set>
+            N_INDICEVINCULADO = 1
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{id}
+        </where>
+    </update>
+    
+    <update id="actividadUpdateDesVincular" parameterType="long">
+        UPDATE SIMCO_REG_ACTIVIDAD
+        <set>
+            N_INDICEVINCULADO = null
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{id}
+        </where>
+    </update>
+    
+    <update id="actividadInactivar" parameterType="long">
+        UPDATE SIMCO_REG_ACTIVIDAD
+        <set>
+            N_INDICEACTIVO = 0
+        </set>
+        <where>
+            N_ID_ACTIVIDAD=#{id}
+        </where>
+    </update>
+    
+    <select id="actividadxCasoBuscarTotal" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_COMENTARIOACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.D_FECREGISTRO,
+        A.D_FECMODIFICACION,
+        A.N_INDCURSO,
+        D.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        D.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        C.C_NOMCASO,
+        C.N_ID_CASO,
+        A.CIDDEPART,
+        A.CIDPROV,
+        A.CIDDISTR,
+        A.N_COORDENADAX,
+        A.N_COORDENADAY,
+        A.N_ZOOM,
+        A.C_TIPO,
+        A.C_RUTA,
+        A.C_USUREGISTRO,
+        A.C_CODIGOACTIVIDAD,
+        D.NOM_USUARIO,
+        D.APE_PATERNO,
+        D.APE_MATERNO,
+        D.C_CARGO,
+        D.C_RUTA as RUTA_IMAGEN,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO D ON A.C_TIPO_ACTIVIDAD = D.VALOR_PARAMETRO
+        AND D.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        INNER JOIN SIMCO_SEG_USUARIO D ON A.C_USUREGISTRO = D.CODIGO_USUARIO
+        WHERE C.N_ID_CASO =#{id} AND A.N_INDICEACTIVO = 1
+        ORDER BY A.D_FECHAREALIZACIONINI desc
+    </select>
+    
+    <select id="actividadxCodigoCasoBuscarTotal" resultMap="actividadMap" parameterType="String">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_COMENTARIOACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.D_FECREGISTRO,
+        A.D_FECMODIFICACION,
+        A.N_INDCURSO,
+        D.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        D.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        C.C_NOMCASO,
+        C.N_ID_CASO,
+        A.CIDDEPART,
+        A.CIDPROV,
+        A.CIDDISTR,
+        A.N_COORDENADAX,
+        A.N_COORDENADAY,
+        A.N_ZOOM,
+        A.C_TIPO,
+        A.C_RUTA,
+        A.C_USUREGISTRO,
+        A.C_CODIGOACTIVIDAD,
+        D.NOM_USUARIO,
+        D.APE_PATERNO,
+        D.APE_MATERNO,
+        D.C_CARGO,
+        D.C_RUTA as RUTA_IMAGEN,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO D ON A.C_TIPO_ACTIVIDAD = D.VALOR_PARAMETRO
+        AND D.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        INNER JOIN SIMCO_SEG_USUARIO D ON A.C_USUREGISTRO = D.CODIGO_USUARIO
+        WHERE C.C_CODIGOCASO =#{value} AND C.C_INDVIGENTE = 'A' AND A.N_INDICEACTIVO = 1
+        ORDER BY A.D_FECHAREALIZACIONINI desc
+    </select>
+    
+    <select id="actividadxCodigoCasoBuscarTotalAD" resultMap="actividadMap" parameterType="String">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_COMENTARIOACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.D_FECREGISTRO,
+        A.D_FECMODIFICACION,
+        A.N_INDCURSO,
+        D.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        D.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        C.C_NOMCASO,
+        C.N_ID_CASO,
+        A.CIDDEPART,
+        A.CIDPROV,
+        A.CIDDISTR,
+        A.N_COORDENADAX,
+        A.N_COORDENADAY,
+        A.N_ZOOM,
+        A.C_TIPO,
+        A.C_RUTA,
+        A.C_USUREGISTRO,
+        A.C_CODIGOACTIVIDAD,
+        D.NOM_USUARIO,
+        D.APE_PATERNO,
+        D.APE_MATERNO,
+        D.C_CARGO,
+        D.C_RUTA as RUTA_IMAGEN,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN SIMCO_PARAMETRO D ON A.C_TIPO_ACTIVIDAD = D.VALOR_PARAMETRO
+        AND D.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        INNER JOIN SIMCO_SEG_USUARIO D ON A.C_USUREGISTRO = D.CODIGO_USUARIO
+        WHERE C.C_CODIGOCASO =#{value} AND C.C_INDVIGENTE = 'A' AND A.C_TIPO = 'AD' AND A.N_INDICEACTIVO = 1
+        ORDER BY A.D_FECHAREALIZACIONINI desc
+    </select>
+    
+    <select id="actividadxCasoBuscarID" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.*,
+        D.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        D.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        C.N_ID_CASO,
+        C.C_NOMCASO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO D ON A.C_TIPO_ACTIVIDAD = D.VALOR_PARAMETRO
+        AND D.PADRE_PARAMETRO = 10
+        LEFT JOIN (
+        SELECT E.N_ID_ACTIVIDAD, E.N_ID_CASO, F.C_NOMCASO FROM SIMCO_REG_CASO F
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD E 
+        ON F.N_ID_CASO = E.N_ID_CASO AND F.C_INDVIGENTE = 'A'
+        ) C ON A.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        WHERE A.N_ID_ACTIVIDAD = #{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadxCasoBuscar" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.*,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTCASO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_CASO =#{id} AND A.N_INDICEACTIVO = 1
+        AND D.C_ESTADOACTCASO = 'ACT'
+    </select>
+
+    <select id="actividadxActaAcuerdoBuscarTotal" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.*,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTIACTA
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        LEFT JOIN
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_ACTA =#{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadxActaAcuerdoBuscar" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTIACTA,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_ACTA =#{id}
+        AND D.C_ESTADOACTIACTA = 'ACT' AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadxMedioVerificacionBuscarTotal" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTMEDIO,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTIVIDAD_MEDIOS D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_MEDIO =#{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadxMedioVerificacionBuscar" resultMap="actividadMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_JUSTINTERVENCION,
+        B.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
+        B.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
+        D.C_ESTADOACTMEDIO,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        FROM
+        SIMCO_REG_ACTIVIDAD A 
+        LEFT JOIN
+        SIMCO_PARAMETRO B ON A.C_TIPO_ACTIVIDAD = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 10
+        INNER JOIN SIMCO_REG_ACTIVIDAD_MEDIOS D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        WHERE D.N_ID_MEDIO =#{id}
+        AND D.C_ESTADOACTMEDIO = 'ACT' AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    
+    <select id="actividadBusquedaPaginado" resultMap="actividadMap">
+        select  A.N_ID_ACTIVIDAD,
+        A.C_NOMACTIVIDAD,
+        A.C_DESCRIPACTIVIDAD,
+        A.C_LUGARREALIZACION,
+        A.D_FECHAREALIZACIONINI,
+        A.C_TIPO_ACTIVIDAD,
+        A.D_FECHAREALIZACIONFIN,
+        A.T_HORAREALIZACIONINI,
+        A.T_HORAREALIZACIONFIN,
+        A.C_CODIGOACTIVIDAD,
+        A.C_COMENTARIOACTIVIDAD,
+        A.C_TIPOACONTECIMIENTO,
+        A.C_TIPOVIOLENCIA,
+        A.C_RESULTADOVIOLENCIA,
+        A.N_ID_ACONTECIMIENTO,
+        A.N_INDICEVINCULADO,
+        A.N_INDICEACTIVO
+        from simco_reg_actividad A AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadBusquedaSinCasoAC" resultMap="actividadMap">
+        select a.* from SIMCO_REG_ACTIVIDAD a
+        left JOIN SIMCO_REG_CASO_ACTIVIDAD b on a.N_ID_ACTIVIDAD = b.N_ID_ACTIVIDAD
+        where b.N_ID_CASO is null and a.C_TIPO = 'AC' AND A.N_INDICEACTIVO = 1
+        UNION
+        select a.* from SIMCO_REG_ACTIVIDAD a
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD b on a.N_ID_ACTIVIDAD = b.N_ID_ACTIVIDAD
+        where b.N_ID_CASO is not null and a.C_TIPO = 'AC' AND A.N_INDICEACTIVO = 1 AND a.N_ID_ACTIVIDAD NOT IN (
+        select a.N_ID_ACTIVIDAD from SIMCO_REG_ACTIVIDAD a
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD b on a.N_ID_ACTIVIDAD = b.N_ID_ACTIVIDAD
+        where b.N_ID_CASO is not null and a.C_TIPO = 'AC' AND A.N_INDICEACTIVO = 1 and  b.C_ESTADOACTCASO = 'ACT'
+        )
+    </select>
+    
+    <select id="actividadBusquedaPorCasoAC" resultMap="actividadMap" parameterType="long">
+        SELECT A.* FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD AND B.C_ESTADOACTCASO = 'ACT'
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO AND C.C_INDVIGENTE = 'A'
+        WHERE nvl(A.N_INDICEVINCULADO, 0) != 1 AND A.C_TIPO = 'AC' AND C.N_ID_CASO = #{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadBusquedaPorAcontecimiento" resultMap="actividadMap" parameterType="long">
+        SELECT * FROM SIMCO_REG_ACTIVIDAD A WHERE N_ID_ACONTECIMIENTO = #{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="actividadBusquedaSinCasoAD" resultMap="actividadMap">
+        select a.* from SIMCO_REG_ACTIVIDAD a
+        left JOIN SIMCO_REG_CASO_ACTIVIDAD b on a.N_ID_ACTIVIDAD = b.N_ID_ACTIVIDAD
+        where b.N_ID_CASO is null and a.C_TIPO = 'AD' AND A.N_INDICEACTIVO = 1
+        UNION
+        select a.* from SIMCO_REG_ACTIVIDAD a
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD b on a.N_ID_ACTIVIDAD = b.N_ID_ACTIVIDAD
+        where b.N_ID_CASO is not null and a.C_TIPO = 'AD' AND A.N_INDICEACTIVO = 1 AND a.N_ID_ACTIVIDAD NOT IN (
+        select a.N_ID_ACTIVIDAD from SIMCO_REG_ACTIVIDAD a
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD b on a.N_ID_ACTIVIDAD = b.N_ID_ACTIVIDAD
+        where b.N_ID_CASO is not null and a.C_TIPO = 'AD' AND A.N_INDICEACTIVO = 1 and  b.C_ESTADOACTCASO = 'ACT'
+        )
+    </select>
+    
+    <select id="actividadADCodigoGenerado" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_ACTIVIDAD
+        WHERE TO_CHAR(D_FECREGISTRO, 'YYYYMM') = TO_CHAR(SYSDATE,  'YYYYMM')
+        AND N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="contadorAcontecimiento" resultType="java.lang.Integer" parameterType="long">
+        SELECT COUNT(A.N_ID_ACTIVIDAD) FROM SIMCO_REG_ACTIVIDAD A
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD AND B.C_ESTADOACTCASO = 'ACT' AND A.C_TIPO = 'AC'
+WHERE B.N_ID_CASO = #{id} AND A.N_INDICEACTIVO = 1
+    </select>
+    
+    <select id="contadorActuacion" resultType="java.lang.Integer" parameterType="long">
+        SELECT COUNT(A.N_ID_ACTIVIDAD) FROM SIMCO_REG_ACTIVIDAD A
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD AND B.C_ESTADOACTCASO = 'ACT' AND A.C_TIPO = 'AD'
+WHERE B.N_ID_CASO = #{id} AND A.N_INDICEACTIVO = 1
+    </select>
+</mapper>

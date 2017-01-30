@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.TemaDao">
+    
+    <resultMap id="temaMap" type="tema">
+        <id property="id" column="N_ID_TEMA" />
+        <result property="detalle" column="C_DETALLE"/>
+        <result property="caso.id" column="N_ID_CASO"/>
+    </resultMap>  
+    
+    <insert id="temaInsertar" parameterType="tema">
+        INSERT INTO SIMCO_ANALISIS_TEMA
+        (
+        N_ID_TEMA,
+        C_DETALLE,
+        N_ID_CASO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_ANALISIS_TEMA.NextVal,
+        #{detalle},
+        #{caso.id}
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_ANALISIS_TEMA.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <select id="temaBuscar" resultMap="temaMap" parameterType="long">
+        SELECT 
+        N_ID_TEMA,
+        C_DETALLE,
+        N_ID_CASO
+        FROM SIMCO_ANALISIS_TEMA
+        WHERE
+            N_ID_CASO=#{id}
+    </select>
+    
+    <select id="temaxidBuscar" resultMap="temaMap" parameterType="long">
+        SELECT 
+        N_ID_TEMA,
+        C_DETALLE,
+        N_ID_CASO
+        FROM SIMCO_ANALISIS_TEMA
+        WHERE
+            N_ID_TEMA=#{id}
+    </select>
+    
+    <select id="temaxcasoxactorBuscar" resultMap="temaMap" parameterType="tema">
+        SELECT 
+            B.N_ID_TEMA, 
+            B.C_DETALLE 
+        FROM SIMCO_ANALISIS_TEMA_ACTOR A
+        INNER JOIN SIMCO_ANALISIS_TEMA B ON A.N_ID_TEMA = B.N_ID_TEMA
+        WHERE A.N_ID_ACTOR = #{actor.id}
+        AND A.N_ID_CASO = #{caso.id}
+    </select>
+    
+    
+
+</mapper>

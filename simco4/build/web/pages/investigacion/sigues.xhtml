@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<ui:composition template="../template/template.xhtml">
+<ui:define name="content">
+<h:form id="idForm" class="form-horizontal">
+<script>sessionStorage.setItem("menuHijoSession","Sigues");</script>
+<h:dataTable value="#{investigacionController.listaInvestigacion}" var="lista" class="table table-striped" binding="#{r}">
+<h:column>
+<f:facet name="header">N.°</f:facet>
+<h:outputText value="#{r.rowIndex+1}" />
+</h:column>
+<h:column>
+<f:facet name="header">Título</f:facet>
+<h:outputText value="#{lista.titulo}" />
+</h:column>
+<h:column>
+<f:facet name="header">Descripción</f:facet>
+<h:outputText value="#{lista.descripcion}" />
+</h:column>
+<h:column>
+<f:facet name="header">Registro</f:facet>
+<h:outputText value="#{lista.fechaRegistro}">
+<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+</h:outputText>
+</h:column>
+<h:column>
+<a jsf:action="#{investigacionController.irModificar(lista)}">
+<span style="font-size:large" class="glyphicon glyphicon-share"></span>
+</a>
+</h:column>
+</h:dataTable>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

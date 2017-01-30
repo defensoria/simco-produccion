@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.AnalisisActorDao">
+    
+    <resultMap id="analisisActorMap" type="analisisActor">
+        <id property="id" column="N_ID_TEMA" />
+        <result property="detalle" column="C_DETALLE"/>
+        <result property="caso.id" column="N_ID_CASO"/>
+        <result property="actor.id" column="N_ID_ACTOR"/>
+        <result property="resumen" column="C_RESUMENDEMANDA"/>
+        <result property="nivel" column="C_NIVELANALISISACTOR"/>
+        <result property="actor.nombre" column="C_NOMACTOR"/>
+        <result property="actor.apellidoPat" column="C_APELLIDOPATACTOR"/>
+        <result property="actor.apellidoMat" column="C_APELLIDOMATACTOR"/>
+        <result property="archivado" column="C_ARCHIVADO"/>
+    </resultMap>  
+    
+    <insert id="analisisActorInsertar" parameterType="analisisActor">
+        INSERT INTO SIMCO_ANALISIS_ACTOR
+        (
+        N_ID_CASO,
+        N_ID_ACTOR,
+        C_RESUMENDEMANDA,
+        <if test="usuarioRegistro != null">
+            C_USUARIOANALISIS,
+        </if>
+        <if test="tipo != null">
+            C_TIPOUSUARIOCASO,
+        </if>
+        D_FECHAREGISTROANALISIS
+        )
+        VALUES 
+        (
+        #{caso.id},
+        #{actor.id},
+        #{resumen},
+        <if test="usuarioRegistro != null">
+            #{usuarioRegistro},
+        </if>
+        <if test="tipo != null">
+            #{tipo},
+        </if>
+        #{fechaRegistro}
+        )
+    </insert>
+    
+    <select id="analisisActorxcasoBuscar" resultMap="analisisActorMap" parameterType="long">
+        SELECT 
+            A.C_RESUMENDEMANDA, 
+            B.C_NOMACTOR, 
+            B.C_APELLIDOPATACTOR,
+            B.C_APELLIDOMATACTOR,
+            A.N_ID_ACTOR,
+            A.N_ID_CASO,
+            A.C_ARCHIVADO
+        FROM SIMCO_ANALISIS_ACTOR A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE A.N_ID_CASO = #{id}
+    </select>
+    
+    <select id="analisisActorxcasoBuscarxActor" resultMap="analisisActorMap" parameterType="analisisActor">
+        SELECT 
+            A.C_RESUMENDEMANDA, 
+            B.C_NOMACTOR, 
+            B.C_APELLIDOPATACTOR,
+            B.C_APELLIDOMATACTOR,
+            A.N_ID_ACTOR,
+            A.N_ID_CASO,
+            A.C_ARCHIVADO
+        FROM SIMCO_ANALISIS_ACTOR A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE A.N_ID_CASO = #{caso.id}
+        AND A.N_ID_ACTOR = #{actor.id}
+    </select>
+    
+    <select id="analisisActorxcasoBuscarOne" resultMap="analisisActorMap" parameterType="analisisActor">
+        SELECT 
+            A.*,
+            B.C_NOMACTOR, 
+            B.C_APELLIDOPATACTOR
+        FROM SIMCO_ANALISIS_ACTOR A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE A.N_ID_CASO = #{caso.id}
+        AND A.N_ID_ACTOR = #{actor.id}
+    </select>
+    
+    
+    <update id="analisisActorxcasoUpdate" parameterType="analisisActor">
+        UPDATE SIMCO_ANALISIS_ACTOR
+        <set>
+            <if test="resumen != null">
+                C_RESUMENDEMANDA = #{resumen},
+            </if>
+            D_FECHAMODIFICACION = #{fechaModificacion}
+        </set>
+        <where>
+            N_ID_CASO = #{caso.id}
+            AND N_ID_ACTOR = #{actor.id}
+        </where>
+    </update>
+    
+    <delete id="analisisActorDelete" parameterType="analisisActor">
+        DELETE FROM SIMCO_ANALISIS_ACTOR
+        WHERE N_ID_CASO = #{caso.id}
+         AND N_ID_ACTOR = #{actor.id}
+    </delete>
+    
+    <update id="analisisActorArchivar" parameterType="analisisActor">
+        UPDATE SIMCO_ANALISIS_ACTOR
+        <set>
+            C_ARCHIVADO = #{archivado}
+        </set>
+        <where>
+            N_ID_CASO = #{caso.id}
+            AND N_ID_ACTOR = #{actor.id}
+        </where>
+    </update>
+    
+</mapper>

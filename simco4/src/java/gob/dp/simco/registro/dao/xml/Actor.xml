@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActorDao">
+    
+    <resultMap id="actorMap" type="actor">
+        <id property="id" column="N_ID_ACTOR" />
+        <result property="nombre" column="C_NOMACTOR"/>
+        <result property="apellidoPat" column="C_APELLIDOPATACTOR"/>
+        <result property="apellidoMat" column="C_APELLIDOMATACTOR"/>
+        <result property="dni" column="C_DNIACTOR"/>
+        <result property="ruc" column="C_RUCACTOR"/>
+        <result property="fechaNacimiento" column="D_FECNACIMIENTOACTOR"/>
+        <result property="lugarNacimiento" column="C_LUGNACIMIENTOACTOR"/>
+        <result property="infoContacto" column="C_INFOCONTACTO"/>
+        <result property="cargo" column="C_CARGOACTOR"/>
+        <result property="sexo" column="C_SEXO"/>
+        <result property="direccion" column="C_DIRECCIONACTOR"/>
+        <result property="telefono" column="C_TELEFONOACTOR"/>
+        <result property="email" column="C_EMAILACTOR"/>
+        <result property="anexo" column="C_ANEXOACTOR"/>
+        <result property="idDepartamento" column="C_IDDEPARTAMENTO"/>
+        <result property="idProvincia" column="C_IDPROVINCIA"/>
+        <result property="idDistrito" column="C_IDDISTRITO"/>
+        <result property="empresaTipo" column="C_EMPRESATIPO"/>
+        <result property="empresaAmbito" column="C_EMPRESAAMBITO"/>
+        <result property="observaciones" column="C_OBSERVACIONES"/>
+        <result property="entidadTipo" column="C_ENTIDADTIPO"/>
+        <result property="tipoGeneral" column="C_TIPOGENERAL"/>
+        
+        <result property="tipoPoblacion" column="C_TIPOPOBLACION"/>
+        <result property="subTipo1Poblacion" column="C_SUBTIPO1POBLACION"/>
+        <result property="subTipo2Poblacion" column="C_SUBTIPO2POBLACION"/>
+        <result property="tipoEstado" column="C_TIPOESTADO"/>
+        <result property="subTipo1Estado" column="C_SUBTIPO1ESTADO"/>
+        <result property="subTipo2Estado" column="C_SUBTIPO2ESTADO"/>
+        <result property="tipoEmpresa" column="C_TIPOEMPRESA"/>
+        <result property="subTipo1Empresa" column="C_SUBTIPO1EMPRESA"/>
+        <result property="subTipo2Empresa" column="C_SUBTIPO2EMPRESA"/>
+        <result property="subTipo3Empresa" column="C_SUBTIPO3EMPRESA"/>
+        <result property="tipoOrganizacion" column="C_TIPOORGANIZACION"/>
+        <result property="subTipo1Organizacion" column="C_SUBTIPO1ORGANIZACION"/>
+        <result property="subTipo2Organizacion" column="C_SUBTIPO2ORGANIZACION"/>
+        <result property="clasificacion" column="C_CLASIFICACION"/>
+        
+        
+        <result property="tipoActor.nombreParametro" column="PARAMENTRO_TIPO_ACTOR"/>
+        <result property="actividad.id" column="N_ID_ACTIVIDAD"/>
+        <result property="actividadActor.estado" column="C_ESTADO_ACTI_ACTOR"/>
+        <result property="actividadActor.comentario" column="C_COMENT_ACTI_ACTOR"/>
+        <result property="actividadActor.demanda" column="C_DEMAN_ACTI_ACTOR"/>
+        <result property="actividadActor.posicion" column="C_POS_ACTI_ACTOR"/>
+        <result property="actividadActor.nivel" column="N_NIVEL_AD"/>
+        <result property="actividadActor.tipoRol" column="C_TIPO_ROL"/>
+        <result property="caso.id" column="N_ID_CASO"/>
+        <result property="analisisActorIntensidad.nivel" column="N_NIVELINTENSIDAD"/>
+        <result property="tipoAcuerdoDetalle" column="C_INDTIPOACTORACUERDO"/>
+        <result property="tipoAcuerdoDetalle" column="C_INDTIPOACTORACUERDO"/>
+        <result property="nombreActividad" column="C_NOMACTIVIDAD"/>
+        <result property="nombreCaso" column="C_NOMCASO"/>
+        
+    </resultMap>  
+
+    <sql id="sqlBuscarActor">
+        SELECT 
+        A.N_ID_ACTOR,
+        A.C_NOMACTOR,
+        A.C_APELLIDOPATACTOR,
+        A.C_APELLIDOMATACTOR,
+        A.C_DNIACTOR,
+        A.C_RUCACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_LUGNACIMIENTOACTOR,
+        A.C_INFOCONTACTO,
+        A.C_SEXO,
+        A.C_DIRECCIONACTOR,
+        A.C_TELEFONOACTOR,
+        A.C_EMAILACTOR,
+        A.C_ANEXOACTOR,
+        A.C_CARGOACTOR,
+        A.C_TIPOGENERAL,
+        A.C_EMPRESATIPO,
+        A.C_EMPRESAAMBITO,
+        A.C_OBSERVACIONES,
+        A.C_ENTIDADTIPO,
+        A.C_IDDEPARTAMENTO,
+        A.C_IDPROVINCIA,
+        A.C_IDDISTRITO,
+        A.C_TIPOPOBLACION,
+        A.C_SUBTIPO1POBLACION,
+        A.C_SUBTIPO2POBLACION,
+        A.C_TIPOESTADO,
+        A.C_SUBTIPO1ESTADO,
+        A.C_SUBTIPO2ESTADO,
+        A.C_TIPOEMPRESA,
+        A.C_SUBTIPO1EMPRESA,
+        A.C_SUBTIPO2EMPRESA,
+        A.C_TIPOORGANIZACION,
+        A.C_SUBTIPO1ORGANIZACION,
+        A.C_SUBTIPO2ORGANIZACION,
+        A.C_SUBTIPO3EMPRESA,
+        A.C_CLASIFICACION
+        FROM SIMCO_REG_ACTOR A
+        <where>
+            <if test="nombre != null">
+                UPPER(A.C_NOMACTOR||' '||A.C_APELLIDOPATACTOR||' '||A.C_APELLIDOMATACTOR) LIKE '%'||UPPER(#{nombre})||'%'
+            </if>
+            <if test="dni != null">
+                A.C_DNIACTOR=#{dni}
+            </if>
+            <if test="id != null">
+                A.N_ID_ACTOR=#{id}
+            </if>
+        </where>
+        ORDER BY A.N_ID_ACTOR
+    </sql>
+    
+    <select id="actorBuscarOne" resultMap="actorMap" parameterType="actor">
+        <include refid="sqlBuscarActor"/>
+    </select>
+    
+    <select id="actorBuscarSimple" resultMap="actorMap" parameterType="actor">
+        <include refid="sqlBuscarActor"/>
+    </select>           
+    
+    <select id="actorTotalBuscar" parameterType="filtroActor" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM (
+        <include refid="sqlBuscarActor"/>
+        ) TABLA_COUNT
+    </select>    
+
+    <select id="actorBuscar" resultMap="actorMap" parameterType="filtroActor">
+        SELECT T2.* FROM
+        (
+        SELECT  ROWNUM R, T1.* FROM
+        (
+        <include refid="sqlBuscarActor"/>
+        ) T1
+        <where>
+            <if test="numeroRegistroFinal != null">
+                ROWNUM  <![CDATA[<=]]>  #{numeroRegistroFinal}
+            </if>
+        </where>
+        ) T2
+        <where>
+            <if test="numeroRegistroInicial != null">
+                T2.R <![CDATA[>]]>   #{numeroRegistroInicial}
+            </if>
+        </where>
+    </select> 
+    
+    <select id="actorxActividadBuscar" resultMap="actorMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTOR,
+        A.C_NOMACTOR,
+        A.C_APELLIDOPATACTOR,
+        A.C_DNIACTOR,
+        A.C_RUCACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_LUGNACIMIENTOACTOR,
+        A.C_INFOCONTACTO,
+        A.C_CARGOACTOR,
+        B.NOMBRE_PARAMETRO AS PARAMENTRO_TIPO_ACTOR 
+        FROM SIMCO_REG_ACTOR A
+        INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPO_ACTOR = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 20
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR C ON A.N_ID_ACTOR = C.N_ID_ACTOR
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+        AND C.C_ESTADO_ACTI_ACTOR = 'ACT'
+        
+    </select>
+    
+    <select id="actorxActividadBuscarTotal" resultMap="actorMap" parameterType="long">
+        SELECT DISTINCT
+        A.N_ID_ACTOR,
+        A.C_NOMACTOR,
+        A.C_APELLIDOPATACTOR,
+        A.C_DNIACTOR,
+        A.C_RUCACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_LUGNACIMIENTOACTOR,
+        A.C_INFOCONTACTO,
+        A.C_CARGOACTOR,
+        C.C_ESTADO_ACTI_ACTOR,
+        C.C_COMENT_ACTI_ACTOR,
+        C.C_DEMAN_ACTI_ACTOR,
+        C.C_POS_ACTI_ACTOR,
+        C.N_NIVEL_AD,
+        C.C_TIPO_ROL
+        FROM SIMCO_REG_ACTOR A 
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR C ON A.N_ID_ACTOR = C.N_ID_ACTOR
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+    </select>
+
+    <select id="actorxAcuerdoDetalleBusqueda" resultMap="actorMap" parameterType="long">
+        SELECT 
+        A.C_NOMACTOR, 
+        A.C_APELLIDOPATACTOR, 
+        A.N_ID_ACTOR 
+        FROM SIMCO_REG_ACTOR A
+        INNER JOIN SIMCO_REG_ACTOR_ACUERDO B
+        ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE B.C_INDTIPOACTORACUERDO = 'INI'
+        AND B.N_ID_ACUERDO =#{id}
+        AND B.C_ESTACTORACUERDO = 'ACT'
+    </select>
+    
+    <select id="actorxAcuerdoDetalleBusquedaFin" resultMap="actorMap" parameterType="long">
+        SELECT 
+        A.C_NOMACTOR, 
+        A.C_APELLIDOPATACTOR, 
+        A.N_ID_ACTOR 
+        FROM SIMCO_REG_ACTOR A
+        INNER JOIN SIMCO_REG_ACTOR_ACUERDO B
+        ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE B.C_INDTIPOACTORACUERDO = 'FIN'
+        AND B.N_ID_ACUERDO =#{id}
+        AND B.C_ESTACTORACUERDO = 'ACT'
+    </select>
+
+    <insert id="actorInsertar" parameterType="actor">
+        INSERT INTO SIMCO_REG_ACTOR 
+        (
+        N_ID_ACTOR,
+        <if test="apellidoPat != null">
+            C_APELLIDOPATACTOR,
+        </if>
+        <if test="apellidoMat != null">
+            C_APELLIDOMATACTOR,
+        </if>
+        <if test="sexo != null">
+            C_SEXO,
+        </if>
+        <if test="direccion != null">
+            C_DIRECCIONACTOR,
+        </if>
+        <if test="telefono != null">
+            C_TELEFONOACTOR,
+        </if>
+        <if test="email != null">
+            C_EMAILACTOR,
+        </if>
+        <if test="anexo != null">
+            C_ANEXOACTOR,
+        </if>
+        <if test="ruc != null">
+            C_RUCACTOR,
+        </if>
+        <if test="fechaNacimiento != null">
+            D_FECNACIMIENTOACTOR,
+        </if>
+        <if test="lugarNacimiento != null">
+            C_LUGNACIMIENTOACTOR,
+        </if>
+        <if test="infoContacto != null">
+            C_INFOCONTACTO,
+        </if>
+        <if test="cargo != null">
+            C_CARGOACTOR,
+        </if>
+        <if test="idDepartamento != null">
+            C_IDDEPARTAMENTO,
+        </if>
+        <if test="idProvincia != null">
+            C_IDPROVINCIA,
+        </if>
+        <if test="idDistrito != null">
+            C_IDDISTRITO,
+        </if>
+        <if test="empresaTipo != null">
+            C_EMPRESATIPO,
+        </if>
+        <if test="entidadTipo != null">
+            C_ENTIDADTIPO,
+        </if>
+        <if test="empresaAmbito != null">
+            C_EMPRESAAMBITO,
+        </if>
+        <if test="observaciones != null">
+            C_OBSERVACIONES,
+        </if>
+        <if test="dni != null">
+            C_DNIACTOR,
+        </if>
+        <if test="tipoGeneral != null">
+            C_TIPOGENERAL,
+        </if>
+        <if test="tipoPoblacion != null">
+            C_TIPOPOBLACION,
+        </if>
+        <if test="subTipo1Poblacion != null">
+            C_SUBTIPO1POBLACION,
+        </if>
+        <if test="subTipo2Poblacion != null">
+            C_SUBTIPO2POBLACION,
+        </if>
+        <if test="tipoEstado != null">
+            C_TIPOESTADO,
+        </if>
+        <if test="subTipo1Estado != null">
+            C_SUBTIPO1ESTADO,
+        </if>
+        <if test="subTipo2Estado != null">
+            C_SUBTIPO2ESTADO,
+        </if>
+        <if test="tipoEmpresa != null">
+            C_TIPOEMPRESA,
+        </if>
+        <if test="subTipo1Empresa != null">
+            C_SUBTIPO1EMPRESA,
+        </if>
+        <if test="subTipo2Empresa != null">
+            C_SUBTIPO2EMPRESA,
+        </if>
+        <if test="tipoOrganizacion != null">
+            C_TIPOORGANIZACION,
+        </if>
+        <if test="subTipo1Organizacion != null">
+            C_SUBTIPO1ORGANIZACION,
+        </if>
+        <if test="subTipo2Organizacion != null">
+            C_SUBTIPO2ORGANIZACION,
+        </if>
+        <if test="subTipo3Empresa != null">
+            C_SUBTIPO3EMPRESA,
+        </if>
+        <if test="clasificacion != null">
+            C_CLASIFICACION,
+        </if>
+        <if test="fechaRegistro != null">
+            D_FECHAREGISTRO,
+        </if>
+        <if test="usuarioRegistro != null">
+            C_USUREGISTRO,
+        </if>
+        C_NOMACTOR
+        
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REGISTRO_ACTOR.NextVal,
+        <if test="apellidoPat != null">
+            #{apellidoPat},
+        </if>
+        <if test="apellidoMat != null">
+            #{apellidoMat},
+        </if>
+        <if test="sexo != null">
+            #{sexo},
+        </if>
+        <if test="direccion != null">
+            #{direccion},
+        </if>
+        <if test="telefono != null">
+            #{telefono},
+        </if>
+        <if test="email != null">
+            #{email},
+        </if>
+        <if test="anexo != null">
+            #{anexo},
+        </if>
+        <if test="ruc != null">
+            #{ruc},
+        </if>
+        <if test="fechaNacimiento != null">
+            #{fechaNacimiento},
+        </if>
+        <if test="lugarNacimiento != null">
+            #{lugarNacimiento},
+        </if>
+        <if test="infoContacto != null">
+            #{infoContacto},
+        </if>
+        <if test="cargo != null">
+            #{cargo},
+        </if>
+        <if test="idDepartamento != null">
+            #{idDepartamento},
+        </if>
+        <if test="idProvincia != null">
+            #{idProvincia},
+        </if>
+        <if test="idDistrito != null">
+            #{idDistrito},
+        </if>
+        <if test="empresaTipo != null">
+            #{empresaTipo},
+        </if>
+        <if test="entidadTipo != null">
+            #{entidadTipo},
+        </if>
+        <if test="empresaAmbito != null">
+            #{empresaAmbito},
+        </if>
+        <if test="observaciones != null">
+            #{observaciones},
+        </if>
+        <if test="dni != null">
+            #{dni},
+        </if>
+        <if test="tipoGeneral != null">
+            #{tipoGeneral},
+        </if>
+        <if test="tipoPoblacion != null">
+            #{tipoPoblacion},
+        </if>
+        <if test="subTipo1Poblacion != null">
+            #{subTipo1Poblacion},
+        </if>
+        <if test="subTipo2Poblacion != null">
+            #{subTipo2Poblacion},
+        </if>
+        <if test="tipoEstado != null">
+            #{tipoEstado},
+        </if>
+        <if test="subTipo1Estado != null">
+            #{subTipo1Estado},
+        </if>
+        <if test="subTipo2Estado != null">
+            #{subTipo2Estado},
+        </if>
+        <if test="tipoEmpresa != null">
+            #{tipoEmpresa},
+        </if>
+        <if test="subTipo1Empresa != null">
+            #{subTipo1Empresa},
+        </if>
+        <if test="subTipo2Empresa != null">
+            #{subTipo2Empresa},
+        </if>
+        <if test="tipoOrganizacion != null">
+            #{tipoOrganizacion},
+        </if>
+        <if test="subTipo1Organizacion != null">
+            #{subTipo1Organizacion},
+        </if>
+        <if test="subTipo2Organizacion != null">
+            #{subTipo2Organizacion},
+        </if>
+        <if test="subTipo3Empresa != null">
+            #{subTipo3Empresa},
+        </if>
+        <if test="clasificacion != null">
+            #{clasificacion},
+        </if>
+        <if test="fechaRegistro != null">
+            #{fechaRegistro},
+        </if>
+        <if test="usuarioRegistro != null">
+            #{usuarioRegistro},
+        </if>
+        #{nombre}
+        )
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REGISTRO_ACTOR.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="actorUpdate" parameterType="actor">
+        UPDATE SIMCO_REG_ACTOR
+        <set>
+            <if test="apellidoPat != null">
+                C_APELLIDOPATACTOR= #{apellidoPat},
+            </if>
+            <if test="apellidoMat != null">
+                C_APELLIDOMATACTOR= #{apellidoMat},
+            </if>
+            <if test="dni != null">
+                C_DNIACTOR=#{dni},
+            </if>
+            <if test="ruc != null">
+                C_RUCACTOR=#{ruc},
+            </if>
+            <if test="fechaNacimiento != null">
+                D_FECNACIMIENTOACTOR=#{fechaNacimiento},
+            </if>
+            <if test="sexo != null">
+                C_SEXO=#{sexo},
+            </if>
+            <if test="direccion != null">
+                C_DIRECCIONACTOR=#{direccion},
+            </if>
+            <if test="telefono != null">
+                C_TELEFONOACTOR=#{telefono},
+            </if>
+            <if test="email != null">
+                C_EMAILACTOR=#{email},
+            </if>
+            <if test="anexo != null">
+                C_ANEXOACTOR=#{anexo},
+            </if>
+            <if test="lugarNacimiento != null">
+                C_LUGNACIMIENTOACTOR= #{lugarNacimiento},
+            </if>
+            <if test="cargo != null">
+                C_CARGOACTOR= #{cargo},
+            </if>
+            <if test="idDepartamento != null">
+                C_IDDEPARTAMENTO = #{idDepartamento},
+            </if>
+            <if test="idProvincia != null">
+                C_IDPROVINCIA = #{idProvincia},
+            </if>
+            <if test="idDistrito != null">
+                C_IDDISTRITO = #{idDistrito},
+            </if>
+            <if test="empresaTipo != null">
+                C_EMPRESATIPO = #{empresaTipo},
+            </if>
+            <if test="entidadTipo != null">
+                C_ENTIDADTIPO = #{entidadTipo},
+            </if>
+            <if test="empresaAmbito != null">
+                C_EMPRESAAMBITO = #{empresaAmbito},
+            </if>
+            <if test="observaciones != null">
+                C_OBSERVACIONES = #{observaciones},
+            </if>
+            <if test="tipoPoblacion != null">
+            C_TIPOPOBLACION = #{tipoPoblacion},
+        </if>
+        <if test="subTipo1Poblacion != null">
+            C_SUBTIPO1POBLACION = #{subTipo1Poblacion},
+        </if>
+        <if test="subTipo2Poblacion != null">
+            C_SUBTIPO2POBLACION = #{subTipo2Poblacion},
+        </if>
+        <if test="tipoEstado != null">
+            C_TIPOESTADO = #{tipoEstado},
+        </if>
+        <if test="subTipo1Estado != null">
+            C_SUBTIPO1ESTADO = #{subTipo1Estado},
+        </if>
+        <if test="subTipo2Estado != null">
+            C_SUBTIPO2ESTADO = #{subTipo2Estado},
+        </if>
+        <if test="tipoEmpresa != null">
+            C_TIPOEMPRESA = #{tipoEmpresa},
+        </if>
+        <if test="subTipo1Empresa != null">
+            C_SUBTIPO1EMPRESA = #{subTipo1Empresa},
+        </if>
+        <if test="subTipo2Empresa != null">
+            C_SUBTIPO2EMPRESA = #{subTipo2Empresa},
+        </if>
+        <if test="tipoOrganizacion != null">
+            C_TIPOORGANIZACION = #{tipoOrganizacion},
+        </if>
+        <if test="subTipo1Organizacion != null">
+            C_SUBTIPO1ORGANIZACION = #{subTipo1Organizacion},
+        </if>
+        <if test="subTipo2Organizacion != null">
+            C_SUBTIPO2ORGANIZACION = #{subTipo2Organizacion},
+        </if>
+        <if test="subTipo3Empresa != null">
+            C_SUBTIPO3EMPRESA = #{subTipo3Empresa},
+        </if>
+        <if test="clasificacion != null">
+            C_CLASIFICACION = #{clasificacion},
+        </if>
+            C_NOMACTOR=#{nombre}
+        </set>
+        <where>
+            N_ID_ACTOR=#{id}
+        </where>
+    </update>
+
+    <select id="actorActividadBuscarPaginado" resultMap="actorMap" parameterType="filtroActor">
+        SELECT DISTINCT A.N_ID_ACTOR,
+        A.C_NOMACTOR,
+        A.C_APELLIDOPATACTOR,
+        A.C_DNIACTOR,
+        A.C_RUCACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_LUGNACIMIENTOACTOR,
+        A.C_INFOCONTACTO,
+        A.C_CARGOACTOR,
+        A.C_COMENT_ACTI_ACTOR,
+        A.C_DEMAN_ACTI_ACTOR,
+        A.C_POS_ACTI_ACTOR,
+        A.N_NIVEL_AD
+        FROM (
+        SELECT B.N_ID_ACTOR,
+        B.C_NOMACTOR,
+        B.C_APELLIDOPATACTOR,
+        B.C_DNIACTOR,
+        B.C_RUCACTOR,
+        B.D_FECNACIMIENTOACTOR,
+        B.C_LUGNACIMIENTOACTOR,
+        B.C_INFOCONTACTO,
+        B.C_CARGOACTOR,
+        B.C_COMENT_ACTI_ACTOR,
+        B.C_DEMAN_ACTI_ACTOR,
+        B.C_POS_ACTI_ACTOR,
+        B.N_NIVEL_AD,
+        ROWNUM numfila
+        FROM (
+        SELECT DISTINCT D.*, C.C_COMENT_ACTI_ACTOR, 
+        C.C_DEMAN_ACTI_ACTOR,
+        C.C_POS_ACTI_ACTOR,
+        C.N_NIVEL_AD
+        FROM SIMCO_REG_ACTOR D
+        LEFT JOIN SIMCO_REG_ACTIVIDAD_ACTOR C
+        ON D.N_ID_ACTOR = C.N_ID_ACTOR
+        ORDER BY D.N_ID_ACTOR
+        ) B
+        ) A WHERE a.numfila BETWEEN #{ini} AND #{fin}
+    </select> 
+    
+    <select id="actorBuscarPaginado" resultMap="actorMap" parameterType="filtroActor">
+        SELECT  A.N_ID_ACTOR,
+        A.C_NOMACTOR,
+        A.C_APELLIDOPATACTOR,
+        A.C_DNIACTOR,
+        A.C_RUCACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_LUGNACIMIENTOACTOR,
+        A.C_INFOCONTACTO,
+        A.C_CARGOACTOR
+        FROM (
+        SELECT B.N_ID_ACTOR,
+        B.C_NOMACTOR,
+        B.C_APELLIDOPATACTOR,
+        B.C_DNIACTOR,
+        B.C_RUCACTOR,
+        B.D_FECNACIMIENTOACTOR,
+        B.C_LUGNACIMIENTOACTOR,
+        B.C_INFOCONTACTO,
+        B.C_CARGOACTOR,
+        ROWNUM numfila
+        FROM (
+        SELECT  D.*
+        FROM SIMCO_REG_ACTOR D
+        ORDER BY D.N_ID_ACTOR
+        ) B
+        ) A WHERE a.numfila BETWEEN #{ini} AND #{fin}
+    </select>
+    
+    
+    <select id="actorBuscarNombrePaginado" resultMap="actorMap" parameterType="filtroActor">
+        SELECT  A.N_ID_ACTOR,
+        A.C_NOMACTOR,
+        A.C_APELLIDOPATACTOR,
+        A.C_APELLIDOMATACTOR,
+        A.C_DNIACTOR,
+        A.C_RUCACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_LUGNACIMIENTOACTOR,
+        A.C_INFOCONTACTO,
+        A.C_CARGOACTOR,
+        A.C_TIPOGENERAL
+        FROM (
+        SELECT B.N_ID_ACTOR,
+        B.C_NOMACTOR,
+        B.C_APELLIDOPATACTOR,
+        B.C_APELLIDOMATACTOR,
+        B.C_DNIACTOR,
+        B.C_RUCACTOR,
+        B.D_FECNACIMIENTOACTOR,
+        B.C_LUGNACIMIENTOACTOR,
+        B.C_INFOCONTACTO,
+        B.C_CARGOACTOR,
+        B.C_TIPOGENERAL,
+        ROWNUM numfila
+        FROM (
+        SELECT  D.*
+        FROM SIMCO_REG_ACTOR D
+        WHERE UPPER(d.C_NOMACTOR||d.C_APELLIDOPATACTOR||d.C_APELLIDOMATACTOR) LIKE '%'||UPPER(#{nombre})||'%'
+        ORDER BY D.N_ID_ACTOR
+        ) B
+        ) A WHERE a.numfila BETWEEN #{ini} AND #{fin}
+    </select>
+    
+    <select id="actorxCasoBuscar" resultMap="actorMap" parameterType="long">
+        SELECT 
+        DISTINCT
+        A.*,
+        E.N_ID_CASO
+        FROM SIMCO_REG_ACTOR A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO E ON E.N_ID_CASO = D.N_ID_CASO
+        WHERE E.N_ID_CASO =#{id}
+    </select>
+    
+    <select id="actorTodosBuscar" resultMap="actorMap">
+        SELECT 
+        DISTINCT
+        A.N_ID_ACTOR, 
+        A.C_NOMACTOR, 
+        A.C_APELLIDOPATACTOR, 
+        A.C_APELLIDOMATACTOR, 
+        A.C_DNIACTOR
+        FROM SIMCO_REG_ACTOR A
+    </select>
+    
+    <select id="actorBuscarEmpresaEntidad" resultMap="actorMap">
+        SELECT 
+        DISTINCT
+        A.N_ID_ACTOR, 
+        A.C_NOMACTOR, 
+        A.C_APELLIDOPATACTOR, 
+        A.C_APELLIDOMATACTOR, 
+        A.C_DNIACTOR
+        FROM SIMCO_REG_ACTOR A 
+        WHERE A.C_TIPOGENERAL IN ('EM','EN')
+    </select>
+    
+    <select id="actorBuscarTotalSimple" resultMap="actorMap" parameterType="actor">
+        SELECT 
+        DISTINCT
+        N_ID_ACTOR, 
+        C_APELLIDOPATACTOR,
+        C_APELLIDOMATACTOR,
+        C_DNIACTOR,
+        C_RUCACTOR,
+        D_FECNACIMIENTOACTOR,
+        C_SEXO,
+        C_DIRECCIONACTOR,
+        C_TELEFONOACTOR,
+        C_EMAILACTOR,
+        C_ANEXOACTOR,
+        C_LUGNACIMIENTOACTOR,
+        C_CARGOACTOR,
+        C_IDDEPARTAMENTO,
+        C_IDPROVINCIA,
+        C_IDDISTRITO,
+        C_NOMACTOR
+        FROM SIMCO_REG_ACTOR 
+        <where>
+            <if test="dni != null">
+                C_DNIACTOR =#{dni}
+            </if>
+        </where>
+    </select>
+    
+    <select id="actorBuscarTotalSimpleCount" parameterType="actor" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(*)
+        FROM SIMCO_REG_ACTOR 
+        <where>
+            <if test="dni != null">
+                C_DNIACTOR =#{dni}
+            </if>
+        </where>
+    </select>
+    
+    <select id="actorBuscarTotalSimpleCountRUC" parameterType="actor" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(*)
+        FROM SIMCO_REG_ACTOR 
+        <where>
+            <if test="ruc != null">
+                C_RUCACTOR =#{ruc}
+            </if>
+        </where>
+    </select>
+    
+    <select id="actorXactividadSimpleBuscarCount" parameterType="actor" resultType="java.lang.Integer" >
+        SELECT 
+        COUNT(DISTINCT
+        A.N_ID_ACTOR)
+        FROM SIMCO_REG_ACTOR A 
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B
+        ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTIVIDAD C
+        ON C.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+    </select>
+    
+    <select id="actorXactividadSimpleBuscar" resultMap="actorMap" parameterType="long">
+        SELECT 
+        DISTINCT
+        A.N_ID_ACTOR, 
+        A.C_NOMACTOR, 
+        A.C_APELLIDOPATACTOR, 
+        A.C_APELLIDOMATACTOR,
+        A.C_DNIACTOR,
+        A.C_SEXO,
+        A.C_DIRECCIONACTOR,
+        A.C_TELEFONOACTOR,
+        A.C_EMAILACTOR,
+        A.C_ANEXOACTOR,
+        A.D_FECNACIMIENTOACTOR,
+        A.C_RUCACTOR,
+        A.C_TIPOGENERAL
+        FROM SIMCO_REG_ACTOR A 
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B
+        ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTIVIDAD C
+        ON C.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+    </select>
+    
+    <select id="actorxCasoIntensidadBuscar" resultMap="actorMap" parameterType="long">
+        select 
+        DISTINCT
+        A.N_ID_ACTOR, 
+        A.C_NOMACTOR, 
+        A.C_APELLIDOPATACTOR, 
+        A.C_DNIACTOR,
+        E.N_ID_CASO,
+        CASE WHEN F.N_NIVELINTENSIDAD IS NULL THEN 0 ELSE F.N_NIVELINTENSIDAD END N_NIVELINTENSIDAD
+        FROM SIMCO_REG_ACTOR A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO E ON E.N_ID_CASO = D.N_ID_CASO
+        LEFT JOIN SIMCO_ANALISIS_ACT_INTENSIDAD F ON A.N_ID_ACTOR = F.N_ID_ACTOR AND
+        E.N_ID_CASO = F.N_ID_CASO
+        WHERE E.N_ID_CASO =#{id}
+        ORDER BY A.N_ID_ACTOR
+    </select>
+    
+    <select id="actorxActaAcuerdoBuscar" resultMap="actorMap" parameterType="long">
+        SELECT C.*, B.C_INDTIPOACTORACUERDO FROM SIMCO_REG_DET_ACTA_ACUERDO A
+        INNER JOIN SIMCO_REG_ACTOR_ACUERDO B ON A.N_ID_ACUERDO = B.N_ID_ACUERDO
+        INNER JOIN SIMCO_REG_ACTOR C ON B.N_ID_ACTOR = C.N_ID_ACTOR
+        WHERE A.N_ID_ACUERDO = #{id}
+    </select>
+    
+    <select id="actorValidadDNI" parameterType="actor" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_ACTOR
+        WHERE C_DNIACTOR =#{dni}
+    </select>
+    
+    <select id="actorValidadRUC" parameterType="actor" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_ACTOR
+        WHERE C_DNIACTOR =#{ruc}
+    </select>
+    
+    <select id="actoresSigues" resultMap="actorMap" parameterType="String">
+        SELECT distinct C.*, A.C_NOMACTIVIDAD, E.C_NOMCASO FROM SIMCO_REG_ACTIVIDAD A
+INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+INNER JOIN SIMCO_REG_ACTOR C ON B.N_ID_ACTOR = C.N_ID_ACTOR
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+INNER JOIN SIMCO_REG_CASO E ON D.N_ID_CASO = E.N_ID_CASO
+WHERE A.C_USUREGISTRO = #{value}
+    </select>
+    
+</mapper>

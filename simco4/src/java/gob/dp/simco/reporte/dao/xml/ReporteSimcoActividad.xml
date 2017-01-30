@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.reporte.dao.ReporteSimcoActividadDao">
+    
+    <resultMap id="reporteSimcoActividadMap" type="reporteSimcoActividad">
+        <result property="codigoActividad" column="C_CODIGOACTIVIDAD"/>
+        <result property="nombreActividad" column="C_NOMACTIVIDAD"/>
+        <result property="claseActividad" column="C_TIPO"/>
+        <result property="fecha" column="FECHA_REGISTRO"/>
+        <result property="tipoActuacionDefensorialDetalle" column="TIPOACTUACIONDEFENSORIAL"/>
+        <result property="tipoAcontecimiento" column="C_TIPOACONTECIMIENTO"/>
+        <result property="tipoActuacionDefensorial" column="C_TIPO_ACTIVIDAD"/>
+        <result property="tipoViolencia" column="C_TIPOVIOLENCIA"/>
+        <result property="resultadoViolencia" column="C_RESULTADOVIOLENCIA"/>
+        <result property="nombreRegion" column="C_DESCDPTO"/>
+        <result property="nombreProvincia" column="C_DESCPROV"/>
+        <result property="nombreDistrito" column="C_DESCDSTRO"/>
+        <result property="idActividad" column="N_ID_ACTIVIDAD"/>
+        
+        <result property="codigoCaso" column="C_CODIGOCASO"/>
+        <result property="nombreCaso" column="C_NOMCASO"/>
+        <result property="detalleTipologiaCaso" column="TIPOCASO"/>
+        <result property="actividadCaso" column="TIPOACTIVIDAD"/>
+        <result property="codigoAcontecimientoVinculado" column="COD_ACONTECIMIENTO_VINCULADO"/>
+        <result property="nombreAcontecimientoVinculado" column="NOM_ACONTECIMIENTO_VINCULADO"/>
+        
+        
+        
+    </resultMap>      
+
+    <select id="reporteActividad" parameterType="reporteSimcoActividad"  resultMap="reporteSimcoActividadMap">
+       SELECT distinct A.N_ID_ACTIVIDAD, A.C_CODIGOACTIVIDAD, A.C_NOMACTIVIDAD, TO_CHAR(A.D_FECREGISTRO, 'DD/MM/YYYY') FECHA_REGISTRO, A.C_TIPO,
+B.NOMBRE_PARAMETRO TIPOACTUACIONDEFENSORIAL, A.C_TIPOACONTECIMIENTO, A.C_TIPOVIOLENCIA, A.C_RESULTADOVIOLENCIA,
+         D.C_DESCDPTO, J.C_DESCPROV, K.C_DESCDSTRO, F.C_CODIGOCASO, F.C_NOMCASO, G.NOMBRE_PARAMETRO TIPOCASO, 
+        H.NOMBRE_PARAMETRO TIPOACTIVIDAD, I.C_CODIGOACTIVIDAD COD_ACONTECIMIENTO_VINCULADO,I.C_NOMACTIVIDAD NOM_ACONTECIMIENTO_VINCULADO, A.C_TIPO_ACTIVIDAD
+FROM SIMCO_REG_ACTIVIDAD A 
+LEFT JOIN SIMCO_PARAMETRO B ON B.VALOR_PARAMETRO = A.C_TIPO_ACTIVIDAD AND B.PADRE_PARAMETRO = 10 AND A.C_TIPO = 'AD'
+LEFT JOIN SIMCO_UBIGEO_DPTO D ON A.CIDDEPART = D.C_ID_DPTO
+LEFT JOIN SIMCO_UBIGEO_PROV J ON A.CIDPROV = J.C_ID_PROV AND D.C_ID_DPTO = J.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_DSTRO K ON A.CIDDISTR = K.C_ID_DSTRO AND D.C_ID_DPTO = K.C_ID_DPTO AND J.C_ID_PROV = K.C_ID_PROV        
+LEFT JOIN SIMCO_REG_CASO_ACTIVIDAD E ON E.N_ID_ACTIVIDAD = A.N_ID_ACTIVIDAD AND E.C_ESTADOACTCASO = 'ACT'
+LEFT JOIN SIMCO_REG_CASO F ON F.N_ID_CASO = E.N_ID_CASO AND F.C_INDVIGENTE = 'A'
+LEFT JOIN SIMCO_PARAMETRO G ON G.VALOR_PARAMETRO = F.C_TIPOCASO AND G.PADRE_PARAMETRO = 90        
+        LEFT JOIN SIMCO_PARAMETRO H ON H.VALOR_PARAMETRO = F.C_SUBTIPOCASO AND H.PADRE_PARAMETRO = 130
+        LEFT JOIN SIMCO_REG_ACTIVIDAD I ON A.N_ID_ACONTECIMIENTO = I.N_ID_ACTIVIDAD AND I.C_TIPO = 'AC'
+        LEFT JOIN SIMCO_REG_ACTIVIDAD_ACTOR L ON A.N_ID_ACTIVIDAD = L.N_ID_ACTIVIDAD       
+        LEFT JOIN SIMCO_REG_ACTOR M ON M.N_ID_ACTOR = L.N_ID_ACTOR
+        WHERE 1 = 1
+        <if test="anho != 0">
+            AND TO_CHAR(F.D_FECHACREACION, 'yyyy') = #{anho} 
+        </if>
+        <if test="codigoCaso != ''">
+            AND F.C_CODIGOCASO = #{codigoCaso}
+        </if>
+        <if test="tipologiaCaso != ''">
+            AND F.C_TIPOCASO = #{tipologiaCaso} 
+        </if>
+        <if test="idRegion != ''">
+            AND F.C_IDDEPART = #{idRegion} 
+        </if>
+        <if test="estado != ''">
+            AND F.C_TIPOESTADO = #{estado} 
+        </if>
+        <if test="tipoAcontecimiento != ''">
+            AND A.C_TIPOACONTECIMIENTO = #{tipoAcontecimiento} 
+        </if>
+        <if test="idActor != null">
+            AND M.N_ID_ACTOR = #{idActor} 
+        </if>
+        <if test="tipoActor != ''">
+            AND M.C_TIPOGENERAL = #{tipoActor} 
+        </if> 
+        <if test="esComunidadNativaInt == 1">
+            AND M.C_TIPOORGANIZACION = '10' 
+            AND M.C_CLASIFICACION = 'OR'
+        </if>
+        <if test="esComunidadNativaInt == 0">
+            AND M.C_TIPOORGANIZACION NOT IN ('10') 
+            AND M.C_CLASIFICACION = 'OR'
+        </if> 
+        <if test="inversionInvolucrada != null">
+            AND F.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
+        </if>
+ORDER BY A.N_ID_ACTIVIDAD
+    </select>
+    
+    
+</mapper>

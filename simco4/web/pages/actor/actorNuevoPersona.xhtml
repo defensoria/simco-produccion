@@ -1,0 +1,347 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form class="form-horizontal" id="idFormActorNuevo">
+                <gc:confirmSubmit bean="#{actorController.registrarActor()}"/>
+                <script>
+                    sessionStorage.setItem('menuHijoSession', 'Nuevo');
+                    $(document).ready(function () {
+                        $('#idBotonGuardar').on('click', function () {
+                            if ($('#idDniActor').val() !== "")
+                            {
+                                if ($('#idDniActor').val().length !== 8)
+                                {
+                                    $('#idDniActor').addClass('df_input_error');
+                                    $('#idDniActor').focus();
+                                    alertar("El DNI debe tener 8 digitos");
+                                    return false;
+                                }
+                                else {
+                                    $('#idDniActor').removeClass('df_input_error');
+                                }
+                            }
+                            if ($('#idActorNombre').val() === "") {
+                                $('#idActorNombre').addClass('df_input_error');
+                                $('#idActorNombre').focus();
+                                alertar("Debe de ingresar el nombre del Actor");
+                                return false;
+                            }
+                            else {
+                                $('#idActorNombre').removeClass('df_input_error');
+                            }
+                            confirmar();
+                            return false;
+                        });
+                    });
+                </script>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a jsf:action="#{actorController.cargarPagina()}" aria-controls="home" role="tab" data-toggle="tab">
+                                <span class="glyphicon glyphicon-user" style="font-size:medium"/>
+                                <span class="text-resalt-comun"/>Población
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a  jsf:action="#{actorController.cargarPaginaEmpresa()}" aria-controls="profile" role="tab" data-toggle="tab">
+                                <span class="glyphicon glyphicon-user" style="font-size:medium"/>
+                                <span class="text-resalt-comun"/>Organización / empresa
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a jsf:action="#{actorController.cargarPaginaEntidad()}" aria-controls="messages" role="tab" data-toggle="tab">
+                                <span class="glyphicon glyphicon-user" style="font-size:medium"/>
+                                <span class="text-resalt-comun"/>Entidad estatal
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="panel panel-default" style="width:100%">
+                                <div class="panel-heading">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="text-align:right">
+                                                <h:panelGroup rendered="#{seguridadUtilController.tieneRecurso('REC_002')}">
+                                                <a class="btn btn-primary" id="idBotonGuardar">
+                                                    <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                                </a>
+                                                    </h:panelGroup>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="idPanelBodyActuacion" class="panel-body">
+                                    <table style="width:100%">
+                                        <tr style="width:80%">
+                                            <td>
+                                                <h:panelGroup id="addAcciones">
+                                                    <style>.formDisabled{#{actorController.cssDisable}}</style>
+                                                    <div class="form-group">
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td style="width:50%;padding-right:5px; vertical-align: top">
+                                                                    <div class="panel panel-featured-top-primary" style="height:auto">
+                                                                        <div class="panel-body">
+                                                                            <span class="text-resalt-primary">Datos generales del actor</span>
+                                                                            <br/><br/><br/>
+                                                                            <table style="width:100%">
+                                                                                <tr>
+                                                                                    <td colspan="2">
+                                                                                        <div class="form-group has-feedback" style="width:40%;margin:auto;float:left">
+                                                                                            <input autocomplete="off" type="text" maxlength="8" jsf:value="#{actorController.actor.dni}" placeholder="DNI" id="idDniActor" onkeypress="return soloNumbero(event)"/>
+                                                                                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.habilitaFormDNI()}" jsf:onclick="return validaLengDNI()">
+                                                                                                <span class="glyphicon glyphicon-search form-control-feedback"/>
+                                                                                                <f:ajax render="@form" execute="@form" onevent="openRegistroPersona"/>
+                                                                                            </a>
+                                                                                            <br/>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                            <h:panelGroup id="idPanelPoblacion">
+                                                                                <table style="width: 100%">
+                                                                                    <tr>
+                                                                                        <td style="width: 34%">
+                                                                                            <label>Tipo:</label>
+                                                                                            <h:selectOneMenu value="#{actorController.actor.tipoPoblacion}" onchange="loadingModal()">
+                                                                                                <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                                                <f:selectItems value="#{actorController.listaTipoPoblacion}" />
+                                                                                                <f:ajax listener="#{actorController.cargarAjaxListaSubTipo1()}" render="idPanelPoblacion" onevent="closeModal"/>
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                        <td style="width: 34%">
+                                                                                            <label>Sub-tipo1:</label>
+                                                                                            <h:selectOneMenu value="#{actorController.actor.subTipo1Poblacion}" onchange="loadingModal()">
+                                                                                                <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                                                <f:selectItems value="#{actorController.listaSubTipo1Poblacion}" />
+                                                                                                <f:ajax listener="#{actorController.cargarAjaxListaSubTipo2()}" render="idPanelPoblacion" onevent="closeModal"/>
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <label>Sub-tipo2:</label>
+                                                                                            <h:selectOneMenu value="#{actorController.actor.subTipo2Poblacion}">
+                                                                                                <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                                                <f:selectItems value="#{actorController.listaSubTipo2Poblacion}" />
+                                                                                            </h:selectOneMenu>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </h:panelGroup>
+                                                                            <br/>
+                                                                            <table style="width: 100%">
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <b>Nombres:</b>
+                                                                                    </td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.actor.nombre}" id="idActorNombre" placeholder="Nombres" style="width:100%" maxlength="200"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <b>Apellido paterno:</b>
+                                                                                    </td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.actor.apellidoPat}" placeholder="Apellido paterno" style="width:100%" maxlength="70"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <b>Apellido materno:</b>
+                                                                                    </td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.actor.apellidoMat}" placeholder="Apellido materno" style="width:100%" maxlength="70"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                            <br/>
+                                                                            <br/>
+                                                                            <table>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <label>Sexo:</label>
+                                                                                        <h:selectOneRadio value="#{actorController.actor.sexo}">
+                                                                                            <f:selectItem itemValue="M" itemLabel="Masculino" />
+                                                                                            <f:selectItem itemValue="F" itemLabel="Femenino" />
+                                                                                        </h:selectOneRadio>
+                                                                                    </td>
+                                                                                    <td style="width:50%">
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                            <br/>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="vertical-align:top;padding-left:5px">
+                                                                    <div class="panel panel-featured-top-primary" style="height:auto">
+                                                                        <div class="panel-body">
+                                                                            <span class="text-resalt-primary">Datos de contacto</span>
+                                                                            <br/><br/><br/>
+                                                                            <label><b>Dirección</b></label>
+                                                                            <textarea rows="3" jsf:value="#{actorController.actor.direccion}" style="width:100%;height:170px" placeholder="Dirección" maxlength="400"/>
+                                                                            <br/>
+                                                                            <table>
+                                                                                <tr>
+                                                                                    <td><b>Teléfono:</b> </td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.actor.telefono}" placeholder="Numero" style="width:100%" maxlength="20"/>
+                                                                                    </td>
+                                                                                    <td style="padding-bottom: 5px">
+                                                                                        <input type="text" jsf:value="#{actorController.actor.anexo}" placeholder="Anexo" style="width:100%" maxlength="20"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Correo eléctronico: </b></td>
+                                                                                    <td colspan="2">
+                                                                                        <input type="text" jsf:value="#{actorController.actor.email}" placeholder="Correo eléctronico" style="width:100%" maxlength="180"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <h:panelGroup rendered="#{actorController.actor.id != null}">
+                                                                        <script>
+                                                                            /*<![CDATA[*/
+                                                                            $(function () {
+                                                                            #{actorController.cadenaAutocompleteEmpresaEntidad}
+                                                                                $("#actor-persona").autocomplete({minLength: 3, source: projects4, focus: function (event, ui) {
+                                                                                        $("#actor-persona").val(ui.item.label);
+                                                                                        return false;
+                                                                                    }, select: function (event, ui) {
+                                                                                        $("#actor-persona").val(ui.item.label);
+                                                                                        $("#actor-id-persona").val(ui.item.value);
+                                                                                        return false;
+                                                                                    }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                                                                                    return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                                                                                };
+                                                                            });
+                                                                            /*]]>*/
+                                                                        </script>
+                                                                        <table style="width:100%">
+                                                                            <tr>
+                                                                                <td style="width:50%;padding-right:5px;vertical-align:top">
+                                                                                    <div class="panel panel-featured-top-primary">
+                                                                                        <div class="panel-body">
+                                                                                            <span class="text-resalt-primary">Búsqueda de empresa o entidad</span>
+                                                                                            <br/>
+                                                                                            <script>
+                                                                                                function limpiarCampoActorPersona(data) {
+                                                                                                    if (data.status === 'success') {
+                                                                                                        $('#actor-persona').val("");
+                                                                                                        $('#actor-id-persona').val("");
+                                                                                                        $("#loadModal").modal('hide');
+                                                                                                        $('body').removeClass('modal-open');
+                                                                                                        $(".modal-backdrop").removeClass("modal-backdrop");
+                                                                                                    }
+                                                                                                }
+                                                                                            </script>
+                                                                                            <div id="idDivActorPersonaMiembro" class="form-group has-feedback" style="width:50%;text-align:left">
+                                                                                                <input type="text" id="actor-persona" jsf:value="#{actorController.actorMiembroPesona.nombre}"/>
+                                                                                                <input type="hidden" id="actor-id-persona" jsf:value="#{actorController.actorMiembroPesona.idActor}"/>
+                                                                                                <a style="font-size:large;margin:auto" jsf:action="#{actorController.addMiembroPersona()}" jsf:onclick="loadingModal()">
+                                                                                                    <span class="glyphicon glyphicon-plus form-control-feedback"/>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <br/><br/>
+                                                                                            <h:dataTable value="#{actorController.listaMiembrosPersona}" var="persona" class="table table-striped" style="width:100%" binding="#{row6}" rendered="#{actorController.listaMiembrosPersona.size() > 0}">
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">N.°</f:facet>
+                                                                                                    <h:outputText value="#{row6.rowIndex+1}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Nombre</f:facet>
+                                                                                                    <h:outputText value="#{persona.nombre}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Cargo</f:facet>
+                                                                                                    <h:inputText value="#{persona.cargo}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <a jsf:action="#{actorController.addMiembroGuardarPersona(persona)}" jsf:onclick="loadingModal()">
+                                                                                                        <span style="font-size:large" class="glyphicon glyphicon-floppy-disk"></span>
+                                                                                                    </a>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <a jsf:action="#{actorController.removeTempMiembroPersona(persona)}" jsf:onclick="loadingModal()">
+                                                                                                        <span style="color:red;font-size:large" class="glyphicon glyphicon-remove"></span>
+                                                                                                    </a>
+                                                                                                </h:column>
+                                                                                            </h:dataTable>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td style="padding-left:5px;vertical-align:top">
+                                                                                    <div class="panel panel-featured-top-primary">
+                                                                                        <div class="panel-body">
+                                                                                            <span class="text-resalt-primary">Empresas o entidades añadidas</span>
+                                                                                            <br/>
+                                                                                            <h:dataTable value="#{actorController.listaMiembrosRegistradosPersona}" var="person" id="idDatatableMiembrosRegistradosPersona" class="table table-striped" style="width:100%" binding="#{row8}" rendered="#{actorController.listaMiembrosRegistradosPersona.size() > 0}">
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">N.°</f:facet>
+                                                                                                    <h:outputText value="#{row8.rowIndex+1}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Nombre</f:facet>
+                                                                                                    <h:outputText value="#{person.nombre}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <f:facet name="header">Cargo</f:facet>
+                                                                                                    <h:outputText value="#{person.cargo}"/>
+                                                                                                </h:column>
+                                                                                                <h:column>
+                                                                                                    <a jsf:action="#{actorController.removeMiembroRegistradoPersona(person)}" jsf:onclick="loadingModal()">
+                                                                                                        <span style="color:red;font-size:large" class="glyphicon glyphicon-remove"></span>
+                                                                                                    </a>
+                                                                                                </h:column>
+                                                                                            </h:dataTable>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </h:panelGroup>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </h:panelGroup>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="messages">
+
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function openRegistroPersona(data) {
+                        if (data.status === 'success') {
+                            $("#loadModal").modal('hide');
+                            $('body').removeClass('modal-open');
+                            $(".modal-backdrop").removeClass("modal-backdrop");
+                        }
+                    }
+                </script>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

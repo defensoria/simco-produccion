@@ -1,0 +1,248 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm" class="form-horizontal">
+                <h:messages id="idMessages"/>
+                <script>        
+                sessionStorage.setItem("menuHijoSession", "Intervención");            
+                    /*<![CDATA[*/
+                    $(function () {
+                    #{intervencionController.cadenaAutocomplete}
+                        $("#nombreCaso").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
+                                $("#nombreCaso").val(ui.item.label);
+                                return false;
+                            }, select: function (event, ui) {
+                                $("#nombreCaso").val(ui.item.label);
+                                $("#idCaso").val(ui.item.value);
+                                return false;
+                            }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                            return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                        };
+                    });
+                    /*]]>*/
+                </script>
+                <div class="panel panel-featured-top-primary">
+                    <div class="modal-header">
+                        <a type="button" class="close" data-dismiss="modal">
+                            <span style="color:red" class="glyphicon glyphicon-remove"/>
+                        </a> 
+                    </div>
+                    <div class="panel-body">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width:70%">
+                                    <span class="text-resalt-primary" style="font-size:2em">Intervenciones</span>
+                                </td>
+                                <td>
+                                    <div class="form-group has-feedback" style="width:90%;margin:auto;float:right">
+                                        <input type="text" id="nombreCaso" jsf:value="#{intervencionController.caso.nombre}" placeholder="Buscar Caso" autocomplete="off"/>
+                                        <input type="hidden" id="idCaso" jsf:value="#{intervencionController.caso.id}"/>
+                                        <a style="float:right;font-size:large;margin:auto" jsf:action="#{intervencionController.saveIntervencion()}" jsf:onclick="loadingModal()">
+                                            <span class="glyphicon glyphicon-search form-control-feedback"/>
+                                            <f:ajax render="@form" execute="@form" onevent="closeModal"/>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span style="color:#0074cc;font-size:large">Priorizadas</span>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne1">
+                                                <span id="idImagen" class="glyphicon glyphicon-chevron-up" style="font-size:large"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="collapseOne1" class="panel-collapse collapse in">
+                                    <br/>
+                                    <h:dataTable value="#{intervencionController.intervencionPriorizadas}" var="item1" style="width:35%">
+                                        <h:column>
+                                            <div class="alert alert-danger" role="alert">
+                                                <div>
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td>
+                                                                <b>#{item1.nombre}</b>
+                                                            </td>
+                                                            <td style="text-align:right">
+                                                                <h:outputText value="&#160;&#160;"/>
+                                                                <a style="text-decoration:none" jsf:action="#{intervencionController.activar(item1)}" class="alert-link">
+                                                                    <span class="glyphicon glyphicon-star" style="font-size:large;color:#FDED37"></span>
+                                                                    <f:ajax render="@form" execute="@form"/>
+                                                                </a>
+                                                                <a style="text-decoration:none" jsf:action="#{intervencionController.cargarPaginaIntervencionDetalle(item1)}" class="alert-link">
+                                                                    <span class="glyphicon glyphicon-pencil" style="font-size:large"></span>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span style="color:#0074cc;font-size:large">Activas</span>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                <span id="idImagen2" class="glyphicon glyphicon-chevron-up" style="font-size:large"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <br/>
+                                    <h:dataTable value="#{intervencionController.intervencionActivas}" var="item" style="width:35%">
+                                        <h:column>
+                                            <div class="alert alert-info" role="alert">
+                                                <div>
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td style="width:60%">
+                                                                <b>#{item.nombre}</b>
+                                                            </td>
+                                                            <td style="width:10%">
+                                                            </td>
+                                                            <td>
+                                                                <a style="float:right" jsf:action="#{intervencionController.cargarPaginaIntervencionDetalle(item)}" class="alert-link">
+                                                                    <span class="glyphicon glyphicon-pencil" style="font-size:large"></span>
+                                                                </a>
+                                                                <a style="float:right" jsf:action="#{intervencionController.priorizar(item)}" class="alert-link">
+                                                                    <span class="glyphicon glyphicon-star" style="font-size:large"></span>
+                                                                    <f:ajax render="@form" execute="@form"/>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span style="color:#0074cc;font-size:large">Archivadas</span>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2">
+                                                <span id="idImagen3" class="glyphicon glyphicon-chevron-up" style="font-size:large"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="collapseOne2" class="panel-collapse collapse in">
+                                    <br/>
+                                    <h:dataTable value="#{intervencionController.intervencionArchivadas}" var="item" style="width:35%">
+                                        <h:column>
+                                            <div class="alert alert-warning" role="alert">
+                                                <div>
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td>
+                                                                <b>#{item.nombre}</b>
+                                                            </td>
+                                                            <td style="text-align:right">
+                                                                <a style="float:right" jsf:action="#{intervencionController.cargarPaginaIntervencionDetalle(item)}" class="alert-link">
+                                                                    <span class="glyphicon glyphicon-pencil" style="font-size:large"></span>
+                                                                </a>
+                                                                <a style="float:right" jsf:action="#{intervencionController.priorizar(item)}" class="alert-link">
+                                                                    <span class="glyphicon glyphicon-star" style="font-size:large"></span>
+                                                                    <f:ajax render="@form" execute="@form"/>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+            <style>
+                .start{font-size:large
+                }
+                .startClick{font-size:large;
+                            color:#fded37
+                }
+            </style>
+            <script>
+                function openModal(data) {
+                    if (data.status === 'success') {
+                        $('#idModal').modal('show');
+                    }
+                }
+                $(document).ready(function ($) {
+                    var i = 1;
+                    $('#idImagen').on('click', function () {
+                        $('#idImagen').removeClass();
+                        if (i === 1)
+                        {
+                            $('#idImagen').addClass('glyphicon glyphicon-chevron-down');
+                            i = 2;
+                        }
+                        else
+                        {
+                            $('#idImagen').addClass('glyphicon glyphicon-chevron-up');
+                            i = 1;
+                        }
+                    });
+                    $('#idImagen2').on('click', function () {
+                        $('#idImagen2').removeClass();
+                        if (i === 1)
+                        {
+                            $('#idImagen2').addClass('glyphicon glyphicon-chevron-down');
+                            i = 2;
+                        }
+                        else
+                        {
+                            $('#idImagen2').addClass('glyphicon glyphicon-chevron-up');
+                            i = 1;
+                        }
+                    });
+                    $('#idImagen3').on('click', function () {
+                        $('#idImagen3').removeClass();
+                        if (i === 1)
+                        {
+                            $('#idImagen3').addClass('glyphicon glyphicon-chevron-down');
+                            i = 2;
+                        }
+                        else
+                        {
+                            $('#idImagen3').addClass('glyphicon glyphicon-chevron-up');
+                            i = 1;
+                        }
+                    });
+                });
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

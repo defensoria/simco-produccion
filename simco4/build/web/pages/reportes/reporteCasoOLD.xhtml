@@ -1,0 +1,647 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <style>
+                    .colmun{
+                        background: #DDDDDD;
+                        color: #ffffff;
+                    }
+                </style>
+                
+                <table style="width: 100%">
+                    <tr>
+                        <td style="width: 50%; padding-right: 1px; vertical-align: top">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <span style="font-size: 1.5em; font-weight: bold">PERÚ: CONFLICTOS SOCIALES, SEGÚN AÑO, POR ESTADO, 2004-15(Cantidad de casos)</span>
+
+                                </div>
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" jsf:value="#{reporteSimcoController.reporte1.parametro}"  id="idAnhoHidden"/>
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+                                                        if ($("#idAnhoHidden").val().trim() !== "") {
+                                                            var data = $("#idAnhoHidden").val();
+                                                            var dataarray = data.split(",");
+                                                            $("#idSelectAnho").val(dataarray);
+                                                            $("#idSelectAnho").multiselect("refresh");
+                                                        }
+                                                        $("#idSelectAnho").change(function () {
+                                                            $("#idAnhoHidden").val($("#idSelectAnho").val());
+                                                        });
+
+
+                                                        $('#idSelectAnho').multiselect({
+                                                            includeSelectAllOption: true,
+                                                            allSelectedText: 'Todos los Años'
+                                                        });
+                                                    });
+                                                </script>
+                                                <select id="idSelectAnho" multiple="multiple">
+                                                    <c:forEach var="x" items="#{reporteSimcoController.listaAnhos}">
+                                                        <option value="${x.anho}">${x.anho}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <a jsf:action="#{reporteSimcoController.cargarGraficoEstadoAnho()}" class="btn btn-primary">
+                                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <br/>
+                                    <h:dataTable value="#{reporteSimcoController.listaResumen}" rendered="#{reporteSimcoController.listaResumen.size() > 0}" var="resume" style="width: 100%" class="table table-bordered" columnClasses="colmun" headerClass="colmun" >
+                                        <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Estado</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteSimcoController.pdf(1)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteSimcoController.xls(1)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+
+                                        <h:column>
+                                            <f:facet  name="header">Año</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.columna}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Total</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.total}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Activos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.activo}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Latentes</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.latente}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Resueltos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.resuelto}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Retirados</f:facet>
+
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="vertical-align: top; padding-left: 1px">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <span style="font-size: 1.5em; font-weight: bold">PERÚ: CONFLICTOS SOCIALES, SEGÚN AÑO, POR ESTADO, 2004-15(Cantidad de casos)</span>
+                                </div>
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" jsf:value="#{reporteSimcoController.reporte2.parametro}"  id="idAnhoHidden2"/>
+
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+
+                                                        if ($("#idAnhoHidden2").val().trim() !== "") {
+                                                            var data = $("#idAnhoHidden2").val();
+                                                            var dataarray = data.split(",");
+                                                            $("#idSelectAnho2").val(dataarray);
+                                                            $("#idSelectAnho2").multiselect("refresh");
+                                                        }
+                                                        $("#idSelectAnho2").change(function () {
+                                                            $("#idAnhoHidden2").val($("#idSelectAnho2").val());
+                                                        });
+
+
+                                                        $('#idSelectAnho2').multiselect({
+                                                            includeSelectAllOption: true,
+                                                            allSelectedText: 'Todos los Meses'
+                                                        });
+                                                    });
+                                                </script>
+
+                                                <select id="idSelectAnho2">
+                                                    <option value="">Seleccione</option>
+                                                    <c:forEach var="x" items="#{reporteSimcoController.listaAnhos}">
+                                                        <option value="${x.anho}">${x.anho}</option>
+                                                    </c:forEach>
+                                                </select>   
+                                                
+                                                <input type="hidden" jsf:value="#{reporteSimcoController.reporte2.columna}"  id="idAnhoHiddenMes2"/>
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+
+                                                        if ($("#idAnhoHiddenMes2").val().trim() !== "") {
+                                                            var data = $("#idAnhoHiddenMes2").val();
+                                                            var dataarray = data.split(",");
+                                                            $("#idSelectMes2").val(dataarray);
+                                                            $("#idSelectMes2").multiselect("refresh");
+                                                        }
+                                                        $("#idSelectMes2").change(function () {
+                                                            $("#idAnhoHiddenMes2").val($("#idSelectMes2").val());
+                                                        });
+
+
+                                                        $('#idSelectMes2').multiselect({
+                                                            includeSelectAllOption: true,
+                                                            allSelectedText: 'Todos los Meses'
+                                                        });
+                                                    });
+                                                </script>
+
+                                                <select id="idSelectMes2" multiple="multiple">
+                                                    <option value="">Seleccione</option>
+                                                    <c:forEach var="x" items="#{reporteSimcoController.listasMeses}">
+                                                        <option value="${x.key}">${x.value}</option>
+                                                    </c:forEach>
+                                                </select> 
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                <a jsf:action="#{reporteSimcoController.cargarReporte002()}" class="btn btn-primary">
+                                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <h:dataTable value="#{reporteSimcoController.listaResumen2}" rendered="#{reporteSimcoController.listaResumen2.size()>0}" var="resume2" style="width: 100%" class="table table-bordered" columnClasses="colmun" headerClass="colmun" >
+                                        <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Estado</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteSimcoController.pdf(2)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteSimcoController.xls(2)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+
+                                        <h:column>
+                                            <f:facet  name="header">Mes</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume2.columna}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Total</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume2.total}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Activos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume2.activo}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Latentes</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume2.latente}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Resueltos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume2.resuelto}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Retirados</f:facet>
+
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 50%; padding-right: 1px">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <span style="font-size: 1.5em; font-weight: bold">PERÚ: CONFLICTOS SOCIALES, SEGÚN AÑO, POR ESTADO, 2004-15(Cantidad de casos)</span>
+                                </div>
+                                <div class="panel-body">
+                                    <br/>
+                                    <table>             
+                                                <tr>
+                                                    <td>
+                                            <input type="hidden" jsf:value="#{reporteSimcoController.reporte3.parametro}"  id="idAnhoHidden3"/>
+
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+
+                                                        if ($("#idAnhoHidden3").val().trim() !== "") {
+                                                            var data = $("#idAnhoHidden3").val();
+                                                            var dataarray = data.split(",");
+                                                            $("#idSelectAnho3").val(dataarray);
+                                                            $("#idSelectAnho3").multiselect("refresh");
+                                                        }
+                                                        $("#idSelectAnho3").change(function () {
+                                                            $("#idAnhoHidden3").val($("#idSelectAnho3").val());
+                                                        });
+
+
+                                                        $('#idSelectAnho3').multiselect({
+                                                            includeSelectAllOption: true,
+                                                            allSelectedText: 'Todos los Meses'
+                                                        });
+                                                    });
+                                                </script>
+
+                                                <select id="idSelectAnho3">
+                                                    <option value="0">Seleccione</option>
+                                                    <c:forEach var="x" items="#{reporteSimcoController.listaAnhos}">
+                                                        <option value="${x.anho}">${x.anho}</option>
+                                                    </c:forEach>
+                                                </select>    
+                                            </td>
+                                            <td>
+                                                <input type="hidden" jsf:value="#{reporteSimcoController.reporte3.columna}" id="idDepartaHidden"/>
+
+                                                <script type="text/javascript">
+
+                                                    $(document).ready(function () {
+
+                                                        if ($("#idDepartaHidden").val().trim() !== "") {
+                                                            var data = $("#idDepartaHidden").val();
+                                                            var dataarray = data.split(",");
+                                                            $("#idSelectDeparta").val(dataarray);
+                                                            $("#idSelectDeparta").multiselect("refresh");
+                                                        }
+                                                        $("#idSelectDeparta").change(function () {
+                                                            $("#idDepartaHidden").val($("#idSelectDeparta").val());
+                                                        });
+                                                        $('#idSelectDeparta').multiselect({
+                                                            includeSelectAllOption: true,
+                                                            allSelectedText: 'Todos los Departamentos'
+                                                        });
+                                                    });
+                                                </script>
+                                                <select id="idSelectDeparta" multiple="multiple">
+                                                    <c:forEach var="x" items="#{reporteSimcoController.listaDepartamento}">
+                                                        <option value="${x.value}">${x.label}</option>
+                                                    </c:forEach>
+                                                </select>                                            
+
+                                            </td>
+                                            <td>
+                                                <a jsf:action="#{reporteSimcoController.cargarReporte003()}" class="btn btn-primary">
+                                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                                </a>
+                                            </td>        
+                                        </tr>
+                                    </table>
+                                    <h:dataTable value="#{reporteSimcoController.listaResumen3}" var="resume" rendered="#{reporteSimcoController.listaResumen3.size()>0}" style="width: 100%" class="table table-bordered" columnClasses="colmun" headerClass="colmun" >
+                                        <f:facet name="header" >
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td style="text-align: right; width: 55%">
+                                                        <span style="font-weight: bold; font-size: 1.3em">Estado</span>
+                                                    </td>
+                                                    <td style="text-align: right">
+                                                        <a jsf:action="#{reporteSimcoController.pdf(3)}">
+                                                            <img src="../../bootstrap/img/pdf1.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                        <a jsf:action="#{reporteSimcoController.xls(3)}">
+                                                            <img src="../../bootstrap/img/xls.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </f:facet>
+
+                                        <h:column>
+                                            <f:facet  name="header">Año</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.columna}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Total</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.total}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Activos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.activo}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Latentes</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.latente}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Resueltos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.resuelto}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Retirados</f:facet>
+
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="vertical-align: top; padding-left: 1px">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="padding-right: 1px">
+                            <div class="panel panel-featured-top-primary">
+                                <div class="panel-heading">
+                                    <a jsf:action="#{reporteSimcoController.pdf4()}">
+                                        <img src="../../bootstrap/img/pdf.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                    </a>
+                                    <a jsf:action="#{casoController.docx()}">
+                                        <img src="../../bootstrap/img/doc.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                    </a>
+                                </div>
+                                <div class="panel-body">
+
+                                    <span class="text-resalt-primary">PERÚ: CONFLICTOS SOCIALES, SEGÚN AÑO, POR TIPO DE CONFLICTO, 2004-15 (Cantidad de casos)</span>
+                                    <br/>
+                                    <br/>
+                                    <h:dataTable value="#{reporteSimcoController.listaResumen4}" var="resume" style="width: 100%" class="table table-bordered" columnClasses="colmun" headerClass="colmun" >
+                                        <f:facet name="header" >
+                                            <center><h:outputText value="Estado" /></center>
+                                        </f:facet>
+
+                                        <h:column>
+                                            <f:facet  name="header">Año</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.columna}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Total</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.total}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Socio Ambiental</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.socioambiental}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de Gobierno Local</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoLocal}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Laboral</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.laboral}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Comunal</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.comunal}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de gobierno nacional</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoNacional}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de gobierno regional</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoRegional}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Demarcación territorial</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.demarcacionTerritorial}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Electoral</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.electoral}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Cultivo ilegal de hoja de coca</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.cultivoCoca}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Otros asuntos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.otrosAsuntos}" />
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding-right: 1px">
+                            <div class="panel panel-featured-top-primary">
+                                <div class="panel-heading">
+                                    <a jsf:action="#{reporteSimcoController.pdf5()}">
+                                        <img src="../../bootstrap/img/pdf.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                    </a>
+                                    <a jsf:action="#{casoController.docx()}">
+                                        <img src="../../bootstrap/img/doc.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                    </a>
+                                </div>
+                                <div class="panel-body">
+
+                                    <span class="text-resalt-primary">PERÚ: CONFLICTOS SOCIALES, SEGÚN AÑO, POR TIPO DE CONFLICTO, 2004-15 (Cantidad de casos)</span>
+                                    <br/>
+                                    <br/>
+                                    <h:dataTable value="#{reporteSimcoController.listaResumen5}" var="resume" style="width: 100%" class="table table-bordered" columnClasses="colmun" headerClass="colmun" >
+                                        <f:facet name="header" >
+                                            <center><h:outputText value="Estado" /></center>
+                                        </f:facet>
+
+                                        <h:column>
+                                            <f:facet  name="header">Mes</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.columna}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Total</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.total}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Socio Ambiental</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.socioambiental}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de Gobierno Local</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoLocal}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Laboral</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.laboral}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Comunal</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.comunal}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de gobierno nacional</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoNacional}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de gobierno regional</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoRegional}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Demarcación territorial</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.demarcacionTerritorial}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Electoral</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.electoral}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Cultivo ilegal de hoja de coca</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.cultivoCoca}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Otros asuntos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.otrosAsuntos}" />
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="padding-right: 1px">
+                            <div class="panel panel-featured-top-primary">
+                                <div class="panel-heading">
+                                    <a jsf:action="#{reporteSimcoController.pdf6()}">
+                                        <img src="../../bootstrap/img/pdf.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                    </a>
+                                    <a jsf:action="#{casoController.docx()}">
+                                        <img src="../../bootstrap/img/doc.png" alt="Plan de Intervencion" height="30" width="30"/>
+                                    </a>
+                                </div>
+                                <div class="panel-body">
+
+                                    <span class="text-resalt-primary">PERÚ: CONFLICTOS SOCIALES, SEGÚN AÑO, POR TIPO DE CONFLICTO, 2004-15 (Cantidad de casos)</span>
+                                    <br/>
+                                    <br/>
+                                    <h:dataTable value="#{reporteSimcoController.listaResumen6}" var="resume" style="width: 100%" class="table table-bordered" columnClasses="colmun" headerClass="colmun" >
+                                        <f:facet name="header" >
+                                            <center><h:outputText value="Estado" /></center>
+                                        </f:facet>
+
+                                        <h:column>
+                                            <f:facet  name="header">Mes</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.columna}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Total</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.total}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Socio Ambiental</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.socioambiental}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de Gobierno Local</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoLocal}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Laboral</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.laboral}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Comunal</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.comunal}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de gobierno nacional</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoNacional}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Asuntos de gobierno regional</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.asuntosGobiernoRegional}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Demarcación territorial</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.demarcacionTerritorial}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Electoral</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.electoral}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Cultivo ilegal de hoja de coca</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.cultivoCoca}" />
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">Otros asuntos</f:facet>
+                                            <h:outputText class="colmun2" value="#{resume.otrosAsuntos}" />
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.comun.dao.ProvinciaDao">
+    
+    <resultMap id="provinciaMap" type="provincia">
+        <id property="idProvincia" column="C_ID_PROV" />
+        <result property="idDepartamento" column="C_ID_DPTO"/>
+        <result property="descripcion" column="C_DESCPROV"/>
+        <result property="coordenadax" column="C_COORDENADAX"/>
+        <result property="coordenaday" column="C_COORDENADAY"/>
+        <result property="zoom" column="N_ZOOM"/>
+    </resultMap>  
+
+    <select id="provinciaLista" resultMap="provinciaMap" parameterType="String">
+        select 
+        *
+        FROM SIMCO_UBIGEO_PROV
+        WHERE C_ID_DPTO =#{value}
+        ORDER BY C_DESCPROV
+    </select> 
+    
+    <select id="provinciaOne" resultMap="provinciaMap" parameterType="provincia">
+        select 
+        *
+        FROM SIMCO_UBIGEO_PROV
+        WHERE C_ID_PROV = #{idProvincia} AND
+        C_ID_DPTO = #{idDepartamento}
+    </select>    
+</mapper>

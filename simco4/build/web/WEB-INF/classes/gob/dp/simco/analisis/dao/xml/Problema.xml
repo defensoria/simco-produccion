@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.ProblemaDAO">
+    
+    <resultMap id="problemaMap" type="problema">
+        <id property="id" column="N_ID_PROBLEMA" />
+        <result property="idCaso" column="N_ID_CASO"/>
+        <result property="sintesis" column="C_SISTESIS"/>
+        <result property="usuarioRegistro" column="C_USUREGISTRO"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="estado" column="C_ESTADO"/>
+    </resultMap>  
+    
+           
+    <insert id="problemaInsertar" parameterType="problema">
+        INSERT INTO SIMCO_ANALISIS_PROBLEMAS
+        (
+        N_ID_PROBLEMA,
+        N_ID_CASO,
+        C_SISTESIS,
+        D_FECREGISTRO,
+        C_ESTADO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_ANALISIS_PROBLEMAS.NextVal,
+        #{idCaso},
+        #{sintesis},
+        #{fechaRegistro},
+        #{estado}
+        )
+        
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_ANALISIS_PROBLEMAS.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="problemaUpdate" parameterType="problema">
+        UPDATE SIMCO_ANALISIS_PROBLEMAS
+        <set>
+        <if test="sintesis != null">
+           C_SISTESIS = #{sintesis}
+        </if>
+        </set>
+        <where>
+            N_ID_PROBLEMA = #{id} 
+        </where>
+    </update>
+    
+    <select id="problemaBuscar" resultMap="problemaMap" parameterType="long">
+        SELECT * from SIMCO_ANALISIS_PROBLEMAS
+        WHERE N_ID_CASO = #{id}
+    </select>
+    
+</mapper>

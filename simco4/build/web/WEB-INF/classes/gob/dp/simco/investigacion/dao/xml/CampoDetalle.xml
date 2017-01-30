@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.investigacion.dao.CampoDetalleDAO">
+    
+    <resultMap id="campoDetalleMap" type="campoDetalle">
+        <id property="id" column="N_ID_CAMPO_DET" />
+        <result property="idCampo" column="N_ID_INVEST_CAMPOS" />
+        <result property="comentario" column="C_COMENTARIO"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="nombreDocumento" column="C_NOMBREDOC"/>
+        <result property="ruta" column="C_RUTA"/>
+        <result property="usuarioRegistro" column="C_USUREGISTRO"/>
+        <result property="nombreRegistro" column="C_NOMBREREGISTRO"/>
+        <result property="nombreArchivo" column="C_NOMBREARCHIVO"/>
+        <result property="descripcionAdministrador" column="C_DESCRIPCIONADM"/>
+        
+    </resultMap> 
+
+    <insert id="campoDetalleInsertar" parameterType="campoDetalle">
+        INSERT INTO SIMCO_INVESTIGACION_CAMPO_DET
+        (
+        N_ID_CAMPO_DET,
+        <if test="comentario !=null">
+            C_COMENTARIO,
+        </if>
+        <if test="fechaRegistro !=null">
+            D_FECREGISTRO,
+        </if>
+        <if test="nombreDocumento !=null">
+            C_NOMBREDOC,
+        </if>
+        <if test="ruta !=null">
+            C_RUTA,
+        </if>
+        <if test="usuarioRegistro !=null">
+            C_USUREGISTRO,
+        </if>
+        <if test="nombreRegistro !=null">
+            C_NOMBREREGISTRO,
+        </if>
+        <if test="nombreArchivo !=null">
+            C_NOMBREARCHIVO,
+        </if>
+        N_ID_INVEST_CAMPOS
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_INVEST_CAMPO_DET.NextVal,
+        <if test="comentario !=null">
+            #{comentario},
+        </if>
+        <if test="fechaRegistro !=null">
+            #{fechaRegistro},
+        </if>
+        <if test="nombreDocumento !=null">
+            #{nombreDocumento},
+        </if>
+        <if test="ruta !=null">
+            #{ruta},
+        </if>
+        <if test="usuarioRegistro !=null">
+            #{usuarioRegistro},
+        </if>
+        <if test="nombreRegistro !=null">
+            #{nombreRegistro},
+        </if>
+        <if test="nombreArchivo !=null">
+            #{nombreArchivo},
+        </if>
+        #{idCampo}
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_INVEST_CAMPO_DET.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="campoDetalleUpdate" parameterType="campoDetalle">
+        UPDATE SIMCO_INVESTIGACION_CAMPO_DET 
+        <set>
+            C_DESCRIPCIONADM = #{descripcionAdministrador}
+        </set>
+        <where>
+            N_ID_CAMPO_DET = #{id}
+        </where>
+        
+    </update>
+    
+    <select id="campoDetalleBuscar" resultMap="campoDetalleMap" parameterType="long">
+        SELECT * FROM SIMCO_INVESTIGACION_CAMPO_DET
+        WHERE N_ID_INVEST_CAMPOS = #{id} ORDER BY N_ID_CAMPO_DET
+    </select>
+</mapper>

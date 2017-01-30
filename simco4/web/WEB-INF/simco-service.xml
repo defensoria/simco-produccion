@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd
+						http://www.springframework.org/schema/oxm 
+						http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+					    http://www.springframework.org/schema/tx 
+					    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     					http://www.springframework.org/schema/aop 
+     					http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	
+	<context:annotation-config/>
+
+        <context:component-scan  base-package="gob.dp.simco.comun.service"/>
+        
+        <context:component-scan  base-package="gob.dp.simco.administracion.seguridad.service"/>
+        <context:component-scan  base-package="gob.dp.simco.administracion.seguridad.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.administracion.parametro.service"/>
+        <context:component-scan  base-package="gob.dp.simco.administracion.parametro.controller" scoped-proxy="targetClass"  />
+
+        <context:component-scan  base-package="gob.dp.simco.registro.service"/>
+        <context:component-scan  base-package="gob.dp.simco.registro.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.seguimiento.service"/>
+        <context:component-scan  base-package="gob.dp.simco.seguimiento.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.analisis.service"/>
+        <context:component-scan  base-package="gob.dp.simco.analisis.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.intervencion.service"/>
+        <context:component-scan  base-package="gob.dp.simco.intervencion.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.noticia.service"/>
+        
+        
+        <context:component-scan  base-package="gob.dp.simco.comun.service"/>
+        
+        
+        <context:component-scan  base-package="gob.dp.simco.comun.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.investigacion.service"/>
+        <context:component-scan  base-package="gob.dp.simco.investigacion.controller" scoped-proxy="targetClass"  />
+        
+        <context:component-scan  base-package="gob.dp.simco.reporte.service"/>
+        <context:component-scan  base-package="gob.dp.simco.reporte.controller" scoped-proxy="targetClass"  />
+       
+</beans>
+

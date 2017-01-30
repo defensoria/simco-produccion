@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:form id="frmFiltroBusquedaInforme">
+<table>
+<tr>
+<td><h:outputText value="Nombre :" /></td>
+<td><h:inputText value="#{actorController.actorBusquedaTemp.nombre}" maxlength="10"/></td>
+</tr>
+<tr>
+<td><h:outputText value="Apellido :"/></td>
+<td><h:inputText value="#{actorController.actorBusquedaTemp.apellido}" maxlength="10"/></td>
+</tr>
+<tr>
+<td><h:outputText value="DNI :"/></td>
+<td><h:inputText value="#{actorController.actorBusquedaTemp.dni}" maxlength="10"/></td>
+</tr>
+<tr>
+<td>
+<button class="btn btn-primary" jsf:action="#{actorController.listarPaginado(1)}">
+<span class="glyphicon glyphicon-search"></span> Buscar
+<f:ajax render="idDatatableActor" />
+</button>
+</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<p></p>
+<h:dataTable value="#{actorController.listaActorPaginado}" var="actor" id="idDatatableActor" class="table table-striped" style="font-size:small" binding="#{row2}">
+<h:column>
+<f:facet name="header">id</f:facet>
+<h:outputText value="#{row2.rowIndex+1}" />
+</h:column>
+<h:column>
+<f:facet name="header">id</f:facet>
+<h:outputText value="#{actor.id}" />
+</h:column>
+<h:column>
+<f:facet name="header">Nombre</f:facet>
+<h:outputText value="#{actor.nombre}" />
+</h:column>
+<h:column>
+<f:facet name="header">Apellido</f:facet>
+<h:outputText value="#{actor.apellido}" />
+</h:column>
+<h:column>
+<f:facet name="header">DNI</f:facet>
+<h:outputText value="#{actor.dni}" />
+</h:column>
+<h:column>
+<f:facet name="header"></f:facet>
+<button class="btn btn-default btn-xs" jsf:action="#{actorController.listarActorSeleccionado(actor)}">
+<span class="glyphicon glyphicon-ok"></span>
+</button>
+</h:column>
+</h:dataTable>
+<ul class="pager">
+<li><a jsf:action="#{actorController.listarPaginado(actorController.nroPagina -1)}" jsf:rendered="#{not empty actorController.listaActorPaginado}">Anterior
+<f:ajax render="idDatatableActor" />
+</a>
+</li>
+<li>
+<a jsf:action="#{actorController.listarPaginado(actorController.nroPagina +1)}" jsf:rendered="#{not empty actorController.listaActorPaginado}">Siguiente
+<f:ajax render="idDatatableActor" />
+</a>
+</li>
+</ul>
+<button class="btn btn-primary" jsf:action="#{actorController.limpiarListadoActorPaginado()}">Cerrar
+<span style="color:red" class="glyphicon glyphicon-remove"></span>
+</button>
+</h:form>
+</html>

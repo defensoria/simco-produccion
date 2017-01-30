@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadActividadDao">
+    
+    <resultMap id="actividadActividadMap" type="actividadActividad">
+        <result property="padre.id" column="N_ID_ACTIVIDAD_PADRE" />
+        <result property="hijo.id" column="N_ID_ACTIVIDAD_HIJO"/>
+        <result property="estado" column="C_ESTADOACTACT"/>
+    </resultMap>  
+
+    <insert id="actividadActividadInsertar" parameterType="actividadActividad">
+        INSERT INTO SIMCO_REG_ACTI_ACTIVI
+        (
+        N_ID_ACTIVIDAD_PADRE,
+        N_ID_ACTIVIDAD_HIJO,
+        C_ESTADOACTACT
+        )
+        VALUES 
+        (
+        #{padre.id},
+        #{hijo.id},
+        #{estado}
+        )
+    </insert>
+
+    <update id="actividadActividadUpdate" parameterType="actividadActividad">
+        UPDATE SIMCO_REG_ACTI_ACTIVI
+        <set>
+            C_ESTADOACTACT = #{estado}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD_PADRE =#{padre.id}
+            AND
+            N_ID_ACTIVIDAD_HIJO = #{hijo.id}
+        </where>
+    </update>
+    
+    <delete id="actividadActividadDelete" parameterType="actividadActividad">
+        DELETE FROM SIMCO_REG_ACTI_ACTIVI
+        where N_ID_ACTIVIDAD_PADRE = #{padre.id}
+        and N_ID_ACTIVIDAD_HIJO = #{hijo.id}
+    </delete>
+
+</mapper>

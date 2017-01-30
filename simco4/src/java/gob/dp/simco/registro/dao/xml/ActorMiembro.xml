@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActorMiembroDao">
+    
+    <resultMap id="actorMiembroMap" type="actorMiembro">
+        <result property="idActor" column="N_ID_ACTOR" />
+        <result property="idMiembro" column="N_ID_MIEMBRO"/>
+        <result property="cargo" column="C_CARGO"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="nombre" column="NOMBREACTOR"/>
+    </resultMap>  
+
+    <insert id="actorMiembroInsertar" parameterType="actorMiembro">
+        INSERT INTO SIMCO_REG_ACTOR_MIEMBRO
+        (
+        N_ID_ACTOR,
+        N_ID_MIEMBRO,
+        <if test="cargo != null">
+            C_CARGO,
+        </if>
+        C_ESTADO
+        )
+        VALUES 
+        (
+        #{idActor},
+        #{idMiembro},
+        <if test="cargo != null">
+            #{cargo},
+        </if>
+        #{estado}
+        )
+    </insert>
+
+    <update id="actorMiembroUpdate" parameterType="actorMiembro">
+        UPDATE SIMCO_REG_ACTOR_MIEMBRO
+        <set>
+            <if test="cargo != null">
+                C_CARGO = #{cargo},
+            </if>
+            C_ESTADO = #{estado}
+        </set>
+        <where>
+            N_ID_MIEMBRO =#{idMiembro}
+            AND
+            N_ID_ACTOR = #{idActor}
+        </where>
+    </update>
+    
+    <delete id="actorMiembroDelete" parameterType="actorMiembro">
+        DELETE FROM SIMCO_REG_ACTOR_MIEMBRO
+        where N_ID_MIEMBRO =#{idMiembro}
+            AND
+            N_ID_ACTOR = #{idActor}
+    </delete>
+    
+    <select id="actorMiembroBuscarxActor" parameterType="long" resultMap="actorMiembroMap" >
+        SELECT a.*, B.C_NOMACTOR||' '||B.C_APELLIDOPATACTOR||' '||B.C_APELLIDOMATACTOR NOMBREACTOR FROM
+        SIMCO_REG_ACTOR_MIEMBRO A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_MIEMBRO = B.N_ID_ACTOR
+        WHERE A.N_ID_ACTOR = #{id}
+    </select>
+    
+    <select id="actorMiembroBuscarxMiembro" parameterType="long" resultMap="actorMiembroMap" >
+        SELECT a.*, B.C_NOMACTOR||' '||B.C_APELLIDOPATACTOR||' '||B.C_APELLIDOMATACTOR NOMBREACTOR FROM
+        SIMCO_REG_ACTOR_MIEMBRO A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+        WHERE A.N_ID_MIEMBRO = #{id}
+    </select>
+
+    <select id="actorMiembroBuscarTodosxActor" parameterType="long" resultMap="actorMiembroMap" >
+        SELECT * FROM SIMCO_REG_ACTOR_MIEMBRO  
+            WHERE N_ID_ACTOR = #{id}
+    </select>
+</mapper>

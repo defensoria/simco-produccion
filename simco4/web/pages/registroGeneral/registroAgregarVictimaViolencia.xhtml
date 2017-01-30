@@ -1,0 +1,317 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm1" class="form-horizontal" enctype="multipart/form-data">
+                <gc:confirmSubmit bean="#{victimaViolenciaController.guardarVictima()}" />
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:50%;padding-right:5px">
+                            <div class="panel panel-featured-top-primary" style="min-height:700px">
+                                <div class="panel-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td>
+                                                <span class="text-resalt-primary" style="font-size:2em">Víctimas de la violencia&#160;&#160;&#160;&#160;&#160;</span>
+                                                <a class="btn btn-warning" jsf:action="#{victimaViolenciaController.nuevo()}" jsf:rendered="#{registroController.esUsuarioRegistro}">Nuevo
+                                                    <span class="glyphicon glyphicon-user" style="font-size:2em"/>
+                                                </a>
+                                                <br/><br/>
+                                            </td>
+                                            <td style="float:right">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <h:panelGroup rendered="#{registroController.esUsuarioRegistro}">
+                                                                    <a class="btn btn-primary" id="idBtnGuardar">
+                                                                <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                                            </a>
+                                                            </h:panelGroup>
+                                                        </td>
+                                                        <td style="padding-left:5px">
+                                                            <a class="btn btn-danger" jsf:action="#{victimaViolenciaController.regresar()}">
+                                                                <span class="glyphicon glyphicon-share"/>Regresar
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table style="width:100%">
+                                        <tr>
+                                            <label>No identifado</label>
+                                            <h:selectBooleanCheckbox class="checkNN" value="#{victimaViolenciaController.actividadVictima.noIdentificado}">
+                                                <f:ajax listener="#{victimaViolenciaController.seleccionarNoIdentificados()}" render="idPanelVictimaUpdate"/>
+                                            </h:selectBooleanCheckbox>
+                                            <br/><br/><br/>
+                                        </tr>
+                                    </table>
+                                    <h:panelGroup id="idPanelVictimaUpdate">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <td style="width:90%" colspan="2">
+                                                    <label>Nombre</label>
+                                                    <input type="text" id="idActorPersonaNombre" jsf:value="#{victimaViolenciaController.actividadVictima.nombre}" placeholder="Nombre" maxlength="200" />
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label>Apellido Paterno</label>
+                                                    <input type="text" id="idActorPersonaAP" jsf:value="#{victimaViolenciaController.actividadVictima.apellidoPaterno}" placeholder="Apellido paterno" maxlength="150"/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label>Apellido Materno</label>
+                                                    <input type="text" id="idActorPersonaAM" jsf:value="#{victimaViolenciaController.actividadVictima.apellidoMaterno}" placeholder="Apellido materno" maxlength="150"/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label>DNI</label>
+                                                    <input type="text" id="idActorPersonaDNI" jsf:value="#{victimaViolenciaController.actividadVictima.dni}" style="width:50%" placeholder="DNI" maxlength="8" onkeypress="return soloNumbero(event)"/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td style="width:50%">
+                                                    <label>Edad</label>
+                                                    <input type="text" jsf:value="#{victimaViolenciaController.actividadVictima.edad}" style="width:50%" placeholder="Edad" maxlength="2" onkeypress="return soloNumbero(event)"/>
+                                                    <br/>
+                                                </td>
+                                                <td style="width:50%">
+                                                    <label>Sexo</label>
+                                                    <h:selectOneMenu value="#{victimaViolenciaController.actividadVictima.sexo}">
+                                                        <f:selectItem itemLabel="Seleccione" itemValue="0"/>
+                                                        <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                                        <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                                                    </h:selectOneMenu>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-right: 5px">
+                                                    <label>Tipo</label>
+                                                    <h:selectOneMenu value="#{victimaViolenciaController.actividadVictima.tipo}" id="idVictimaTipo">
+                                                        <f:selectItem itemLabel="Seleccione" itemValue="0"/>
+                                                        <f:selectItems value="#{listasComunesController.buscarTipoVictima(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                    </h:selectOneMenu>
+                                                    <br/>
+                                                </td>
+                                                <td>
+                                                    <label>Civil/PNP/FFAA</label>
+                                                    <h:selectOneMenu value="#{victimaViolenciaController.actividadVictima.tipoEstado}">
+                                                        <f:selectItem itemLabel="Seleccione" itemValue="0"/>
+                                                        <f:selectItems value="#{listasComunesController.buscarTipoCivilPNPFFAA(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                    </h:selectOneMenu>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Establecimiento de atención</label>
+                                                    <input type="text" jsf:value="#{victimaViolenciaController.actividadVictima.establecimientoAtencion}" placeholder="Establecimiento de atención" />
+                                                    <br/>
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <label>Adjuntar</label>
+                                                    <h:inputFile class="cMedio" value="#{victimaViolenciaController.file1}"/>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </h:panelGroup>
+                                    <script>
+                                        $("#idBtnGuardar").click(function () {
+                                            if (!$('.checkNN').is(':checked')) {
+                                                if ($("#idActorPersonaNombre").val() === "") {
+                                                    $("#idActorPersonaNombre").addClass("error");
+                                                    alertar("Debe de ingresar el nombre");
+                                                    return false;
+                                                } else {
+                                                    $("#idActorPersonaNombre").removeClass("error");
+                                                }
+                                                if ($("#idActorPersonaAP").val() === "") {
+                                                    $("#idActorPersonaAP").addClass("error");
+                                                    alertar("Debe de ingresar el apellido paterno");
+                                                    return false;
+                                                } else {
+                                                    $("#idActorPersonaAP").removeClass("error");
+                                                }
+                                                if ($("#idActorPersonaDNI").val() !== "") {
+                                                    if ($("#idActorPersonaDNI").val().length !== 8) {
+                                                        $("#idActorPersonaDNI").addClass("error");
+                                                        alertar("El DNI debe tener 8 digitos");
+                                                        return false;
+                                                    } else {
+                                                        $("#idActorPersonaDNI").removeClass("error");
+                                                    }
+                                                }
+                                                if ($("#idForm1\\:idVictimaTipo").val() === "0") {
+                                                    $("#idForm1\\:idVictimaTipo").addClass("error");
+                                                    alertar("Debe de ingresar el tipo de victima");
+                                                    return false;
+                                                } else {
+                                                    $("#idForm1\\:idVictimaTipo").removeClass("error");
+                                                }
+                                                confirmar();
+                                            } else {
+                                                confirmar();
+                                            }
+                                        });
+                                        function soloNumbero(a) {
+                                            var b = window.event ? window.event.keyCode : a.which;
+                                            if ((b === 8) || (b === 46)) {
+                                                return true;
+                                            }
+                                            return/\d/.test(String.fromCharCode(b));
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:50%;padding-left:5px;vertical-align:top">
+                            <div class="panel panel-featured-top-primary" style="min-height:700px">
+                                <div class="panel-body">
+                                    <h:panelGroup rendered="#{victimaViolenciaController.actividadVictima.id != null}">
+                                        <table style="width:90%">
+                                            <tr>
+                                                <td>
+                                                    <h:outputText class="text-resalt-primary" value="Registro de fallecido" rendered="#{victimaViolenciaController.actividadVictima.tipo == '01'}" style="font-size:2em"/>
+                                                    <h:outputText class="text-resalt-primary" value="Registro de herido" rendered="#{victimaViolenciaController.actividadVictima.tipo == '02'}" style="font-size:2em"/>
+                                                    <h:outputText class="text-resalt-primary" value="Registro de secuestrado" rendered="#{victimaViolenciaController.actividadVictima.tipo == '03'}" style="font-size:2em"/>
+                                                    <h:outputText class="text-resalt-primary" value="Registro de Otros tipos de víctima" rendered="#{victimaViolenciaController.actividadVictima.tipo == '04'}" style="font-size:2em"/>
+                                                    <br/><br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:panelGroup rendered="#{victimaViolenciaController.actividadVictima.tipo == '02'}">
+                                                        <label>Lugar de Atencion</label>
+                                                        <input type="text" jsf:value="#{victimaViolenciaController.actividadVictima.lugarAtencion}" maxlength="200"/>
+                                                        <br/>
+                                                    </h:panelGroup>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:panelGroup rendered="#{victimaViolenciaController.actividadVictima.tipo == '01'}">
+                                                        <label>Causas de la muerte</label>
+                                                        <textarea rows="3" jsf:value="#{victimaViolenciaController.actividadVictima.causaMuerte}" style="width:100%;height:170px" placeholder="Descripción"/>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{victimaViolenciaController.actividadVictima.tipo != '01' and victimaViolenciaController.actividadVictima.tipo != '0'}">
+                                                        <label>Desccripcion</label>
+                                                        <textarea rows="3" jsf:value="#{victimaViolenciaController.actividadVictima.descripcion}" style="width:100%;height:170px" placeholder="Descripción"/>
+                                                    </h:panelGroup>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:panelGroup rendered="#{victimaViolenciaController.actividadVictima.tipo == '0'}">
+                                                        <label>Fecha</label>
+                                                        <gc:calendar value="#{victimaViolenciaController.actividadVictima.fechaVictima}" id="txtFechaIni"/>
+                                                        <script>
+                                                            $(".datepicker").datetimepicker({pickTime: false});
+                                                            $(".datepicker").on("changeDate", function (a) {
+                                                                $(this).datetimepicker("hide");
+                                                            });
+                                                            $(".timepicker").datetimepicker({pickDate: false});
+                                                        </script>
+                                                        <br/>
+                                                    </h:panelGroup>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:panelGroup rendered="#{victimaViolenciaController.actividadVictima.tipo == '02'}">
+                                                        <label>Centro de salud</label>
+                                                        <input type="text" jsf:value="#{victimaViolenciaController.actividadVictima.centroSalud}" maxlength="200"/>
+                                                        <br/>
+                                                    </h:panelGroup>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <div class="panel panel-featured-top-primary">
+                                <div class="panel-body">
+                                    <span class="text-resalt-primary" style="font-size:2em">Lista de Victimas</span>
+                                    <br/>
+                                    <h:dataTable value="#{victimaViolenciaController.listaVictimas}" var="victimas" class="table table-striped" binding="#{row}" rendered="#{not empty victimaViolenciaController.listaVictimas}">
+                                        <h:column>
+                                            <f:facet name="header">N.°</f:facet>
+                                            <h:outputText value="#{row.rowIndex+1}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Nombre Completo</f:facet>
+                                            <h:outputText value="#{victimas.nombre} #{victimas.apellidoPaterno} #{victimas.apellidoMaterno}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Documento</f:facet>
+                                            <h:outputText value="#{victimas.dni}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Edad</f:facet>
+                                            <h:outputText value="#{victimas.edad}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Tipo</f:facet>
+                                            <h:outputText value="#{victimas.nombreTipo}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Archivo</f:facet>
+                                            <a target="_blank" href="/filesystem/#{victimas.ruta}">
+                                                #{victimas.ruta}
+                                            </a>
+                                        </h:column>
+                                        <h:column>
+                                            <a jsf:action="#{victimaViolenciaController.setearVictima(victimas)}" jsf:onclick="loadingModal()">
+                                                <span class="glyphicon glyphicon-edit" style="font-size:medium"></span>
+                                                <f:ajax render="@form" onevent="closeModal"/>
+                                            </a>
+                                            &#160;&#160;&#160;&#160;
+                                            <a onclick="confirmar1#{row.rowIndex+1}()" style="cursor:pointer">
+                                                <span class="glyphicon glyphicon-remove" style="font-size:medium;color:red"></span>
+                                            </a>
+                                            <gc:confirmRemoveSubmit bean="#{victimaViolenciaController.eliminarVictima(victimas.id)}" classGC="confirmar1#{row.rowIndex+1}"/>
+                                            <script>
+                                                function confirmar1#{row.rowIndex+1}() {
+                                                    $(".confirmar1#{row.rowIndex+1}").modal("show");
+                                                }
+                                            </script>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

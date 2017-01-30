@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm" class="form-horizontal">
+                <script>
+                    /*<![CDATA[*/
+                    sessionStorage.setItem('menuHijoSession', 'Buscar'); 
+                    $(function(){
+                                        #{actorController.cadenaAutocomplete3}
+                                        #{actorController.cadenaAutocomplete4}
+                                            
+                    $("#caso").autocomplete(
+                            {minLength:3, 
+                             source:projects, 
+                             focus:function(event, ui){
+                                 $("#caso").val(ui.item.label); 
+                                 return false; 
+                             }, 
+                             select:function(event, ui){
+                                 $("#caso").val(ui.item.label); 
+                                 $("#caso-id").val(ui.item.value); 
+                                 return false; 
+                             }
+                         }
+                                 ).data("ui-autocomplete")._renderItem = function(ul, item){
+                             return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul); }; 
+                         $("#actividad").autocomplete({
+                             minLength:3, source:projects2, 
+                             focus:function(event, ui){
+                                 $("#actividad").val(ui.item.label); 
+                                 return false; 
+                             }, 
+                             select:function(event, ui){
+                                 $("#actividad").val(ui.item.label); 
+                                 $("#actividad-id").val(ui.item.value); 
+                                 return false; 
+                             }
+                         }
+                                 ).data("ui-autocomplete")._renderItem = function(ul, item){
+                             return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul); 
+                         }; 
+                     }); 
+                     /*]]>*/                          
+                </script>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span class="text-resalt-primary" style="font-size:2em">Búsqueda de actores</span>
+                        <br/>
+                        <div id="idDivRegistro" class="form-group has-feedback" style="width:40%;margin:auto">
+                            <input type="text" name="nombreActor" autocomplete="false" placeholder="Buscar por nombre de actor"/>
+                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.buscarActorXnombre()}" jsf:onclick="loadingModal()">
+                                <span class="glyphicon glyphicon-search form-control-feedback"/>
+                                <f:ajax render="@form" execute="@form" onevent="closeModal"/>
+                            </a>
+                        </div>
+                        <br/>
+                        <div class="form-group has-feedback" style="width:40%;margin:auto">
+                            <input type="text" id="caso" autocomplete="false" placeholder="Buscar por caso"/>
+                            <input type="hidden" id="caso-id" name="caso-id"/>
+                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.buscarActorXCaso()}" jsf:onclick="loadingModal()">
+                                <span class="glyphicon glyphicon-search form-control-feedback">
+                                    <f:ajax render="@form" execute="@form" onevent="closeModal"/>
+                                </span>
+                            </a>
+                        </div>
+                        <br/>
+                        <div class="form-group has-feedback" style="width:40%;margin:auto">
+                            <input type="text" id="actividad" autocomplete="false" placeholder="Buscar por registro"/>
+                            <input type="hidden" id="actividad-id" name="actividad-id"/>
+                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.buscarActorXRegistro()}" jsf:onclick="loadingModal()">
+                                <span class="glyphicon glyphicon-search form-control-feedback">
+                                    <f:ajax render="@form" execute="@form" onevent="closeModal"/>
+                                </span>
+                            </a>
+                        </div>
+                        <br/>
+                        <br/>
+                        <h:dataTable value="#{actorController.listaActorBusquedaGeneral}" rendered="#{actorController.listaActorBusquedaGeneral.size() > 0}" var="item" class="table table-striped" style="font-size:small" binding="#{row}">
+                            <h:column>
+                                <f:facet name="header">N.°</f:facet>
+                                <h:outputText value="#{row.rowIndex+1}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nombres</f:facet>
+                                <h:outputText value="#{item.nombre} #{item.apellidoPat} #{item.apellidoMat}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Documento</f:facet>
+                                <h:outputText rendered="#{item.tipoGeneral == 'PE'}" value="#{item.dni}" />
+                                <h:outputText rendered="#{item.tipoGeneral != 'PE'}" value="#{item.ruc}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tipo</f:facet>
+                                <h:outputText rendered="#{item.tipoGeneral == 'PE'}" value="Población" />
+                                <h:outputText rendered="#{item.tipoGeneral == 'EM'}" value="Organización / empresa" />
+                                <h:outputText rendered="#{item.tipoGeneral == 'EN'}" value="Entidad estatal" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <a jsf:action="#{actorController.setearActor(item)}">
+                                    <span class="glyphicon glyphicon-edit" style="font-size:medium"/>
+                                </a>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

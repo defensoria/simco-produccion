@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.NoticiaRegistroDAO">
+    
+    <resultMap id="noticiaRegistroMap" type="noticiaRegistro">
+        <id property="id" column="N_ID_NOTICIA"/>
+        <result property="idActividad" column="N_ID_ACTIVIDAD"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="link" column="C_LINK"/>
+        <result property="descripcion" column="C_DESCRIPCION"/>
+        <result property="empresa" column="C_EMPRESA"/>
+        <result property="fechaPublicacion" column="C_FECHAPUB"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="titulo" column="C_TITULO"/>
+        <result property="region" column="C_REGION"/>
+    </resultMap> 
+
+    <select id="noticiaRegistroBuscar" resultMap="noticiaRegistroMap" parameterType="long">
+        SELECT * FROM SIMCO_REG_NOTICIA
+        WHERE N_ID_ACTIVIDAD = #{id}
+        AND C_ESTADO = 'ACT'
+    </select>  
+
+    <insert id="noticiaRegistroInsertar" parameterType="noticiaRegistro">
+        INSERT INTO SIMCO_REG_NOTICIA
+        (
+        N_ID_NOTICIA,         
+        N_ID_ACTIVIDAD,       
+        C_ESTADO,      
+        C_LINK,               
+        C_DESCRIPCION,        
+        C_EMPRESA, 
+        <if test="fechaPublicacion != null">
+            C_FECHAPUB,
+        </if> 
+        <if test="fechaRegistro != null">
+            D_FECREGISTRO,        
+        </if>           
+        C_TITULO,             
+        C_REGION  
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REGISTRO_NOTICIAS.NextVal,
+        #{idActividad},
+        #{estado},
+        #{link},
+        #{descripcion},
+        #{empresa},
+        <if test="fechaPublicacion != null">
+            #{fechaPublicacion},
+        </if>
+        <if test="fechaRegistro != null">
+            #{fechaRegistro},
+        </if>
+        #{titulo},
+        #{region}
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REGISTRO_NOTICIAS.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="noticiaRegistroUpdate" parameterType="noticiaRegistro">
+        UPDATE SIMCO_REG_NOTICIA
+        <set>
+            C_ESTADO = #{estado}
+        </set>
+        <where>
+            N_ID_NOTICIA=#{id}
+        </where>
+    </update>
+</mapper>

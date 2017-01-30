@@ -1,0 +1,492 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form enctype="multipart/form-data" class="form-horizontal">
+                <gc:confirmSubmit bean="#{investigacionController.saveInvestigacion()}" mensaje="¿Desea guardar los cambios?"/>
+                <input type="hidden" id="idUsuarioSession" jsf:value="#{investigacionController.investigacion.usuarioRegistro}" />
+                <input type="hidden" id="idNombreCompleto" jsf:value="#{investigacionController.historialActividad.nombre}" />
+                <input type="hidden" id="idNumeroParticipantes" value="#{investigacionController.listaParticipantes.size()}" />
+                <script>
+                    /*<![CDATA[*/
+                    sessionStorage.setItem('menuHijoSession', 'Crear');
+                    var usu = JSON.parse(sessionStorage.getItem('userSesion'));
+                    $("#idUsuarioSession").val(usu.codigo);
+                    $("#idNombreCompleto").val(usu.nombre + " " + usu.apellidoPat + " " + usu.apellidoMat);
+                    function openModalCampo(data) {
+                        if (data.status === 'success') {
+                            $("#idModalCampo").modal("show");
+                        }
+                    }
+                    function closeModalCampo(data) {
+                        if (data.status === 'success') {
+                            $("#idModalCampo").modal("hide");
+                            $('body').removeClass('modal-open');
+                            $(".modal-backdrop").removeClass("modal-backdrop");
+                        }
+                    }
+                    function openModalCampoDetalle(data) {
+                        if (data.status === 'success') {
+                            $("#idModalCampoDetalle").modal("show");
+                        }
+                    }
+                    function closeModalCampoDetalle(data) {
+                        if (data.status === 'success') {
+                            $("#idModalCampoDetalle").modal("hide");
+                            $('body').removeClass('modal-open');
+                            $(".modal-backdrop").removeClass("modal-backdrop");
+                        }
+                    }
+                    $(function () {#{investigacionController.cadenaUsuarioTotal}
+                        $("#usuario").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
+                                $("#usuario").val(ui.item.label);
+                                return false;
+                            }, select: function (event, ui) {
+                                $("#usuario").val(ui.item.label);
+                                $("#usuario-id").val(ui.item.value);
+                                return false;
+                            }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                            return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                        };
+                    });
+                    $(document).ready(function () {
+                        $("#idBotonGuardar").on('click', function () {
+                            if ($('#idTitulo').val() === "") {
+                                $('#idTitulo').addClass('error');
+                                alertar("Debe de ingresar el titulo de la investigacion");
+                                return false;
+                            }
+                            else {
+                                $('#idTitulo').removeClass('error');
+                            }
+                            if (parseInt($('#idNumeroParticipantes').val()) === 0) {
+                                $('#usuario').addClass('error');
+                                alertar("Debe de ingresar participantes");
+                                return false;
+                            }
+                            else {
+                                $('#usuario').removeClass('error');
+                            }
+                            if ($('#idDescripcion').val() === "") {
+                                $('#idDescripcion').addClass('error');
+                                alertar("Debe de ingresar la descripcion de la investigacion");
+                                return false;
+                            }
+                            else {
+                                $('#idDescripcion').removeClass('error');
+                            }
+                            confirmar();
+                        });
+                    });
+                    function validaRegistroCampo() {
+                        if ($("#idTituloCampo").val() === "") {
+                            $('#idTituloCampo').addClass('error');
+                            return false;
+                        }
+                    }
+                    function validaRegistroCampoDetalle() {
+                        if ($("#idCampoDetalle").val() === "") {
+                            $('#idCampoDetalle').addClass('error');
+                            return false;
+                        }
+                    }
+                    /*]]>*/
+                </script>
+                <div class="modal fade" data-keyboard="false" data-backdrop="static" id="idModalCampo">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding:10px">
+                                <h4 style="color:#3183B9"><b>Campo</b></h4>
+                            </div>
+                            <div style="background:white">
+                                <div class="modal-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td>
+                                                <span class="text-bold">Título</span><br/>
+                                                <input type="text" placeholder="Título" jsf:value="#{investigacionController.campo.titulo}" id="idTituloCampo" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="text-bold">Descripción</span><br/>
+                                                <textarea rows="6" jsf:value="#{investigacionController.campo.descripcion}" placeholder="Descripcion"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="text-align:right">
+                                <a style="text-decoration:none" jsf:onclick="return validaRegistroCampo()" jsf:action="#{investigacionController.saveCampo()}">
+                                    <span style="color:#3183b9;font-size:x-large" class="glyphicon glyphicon-floppy-disk"></span>
+                                </a>
+                                <a href="#" data-dismiss="modal" style="text-decoration:none">
+                                    <span style="color:red;font-size:x-large" class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" data-keyboard="false" data-backdrop="static" id="idModalCampoDetalle">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding:10px">
+                                <h4 style="color:#3183B9"><b>Campo Detalle</b></h4>
+                            </div>
+                            <div style="background:white">
+                                <div class="modal-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td>
+                                                <span class="text-bold">Comentarios</span><br/>
+                                                <textarea rows="4" id="idCampoDetalle" jsf:value="#{investigacionController.campoDetalle.comentario}" placeholder="Comentario"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="text-bold">Archivo</span><br/>
+                                                <h:inputFile value="#{investigacionController.file1}"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="text-align:right">
+                                <a style="text-decoration:none" jsf:onclick="return validaRegistroCampoDetalle()" jsf:action="#{investigacionController.guardarCampoDetalle()}">
+                                    <span style="color:#3183b9;font-size:x-large" class="glyphicon glyphicon-floppy-disk"></span>
+                                </a>
+                                <a href="#" data-dismiss="modal" style="text-decoration:none">
+                                    <span style="color:red;font-size:x-large" class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:50%">
+                            <span class="text-resalt-primary" style="font-size:2.5em">Crear investigación</span>
+                            <br/><br/><br/>
+                        </td>
+                        <td style="float:right">
+                            <a class="btn btn-primary" id="idBotonGuardar">
+                                <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:50%;padding-right:5px">
+                            <div class="panel panel-featured-top-primary" style="min-height:330px">
+                                <span class="text-resalt-primary">Datos generales</span>
+                                <div class="panel-body">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td style="width: 50%; padding-right: 10px; padding-bottom: 5px">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 30%">
+                                                            <span class="text-primary" style="font-weight: bold">Título:</span>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="idTitulo" jsf:value="#{investigacionController.investigacion.titulo}" placeholder="Titulo"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="padding-left: 10px;padding-bottom: 5px">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 30%">
+                                                            <span class="text-primary" style="font-weight: bold">Tipo:</span>
+                                                        </td>
+                                                        <td>
+                                                            <h:selectOneMenu value="#{investigacionController.investigacion.tipo}">
+                                                                <f:selectItems value="#{listasComunesController.buscarTipoInvestigacion(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                            </h:selectOneMenu>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td style="width: 50%; padding-right: 10px;padding-bottom: 5px">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 30%">
+                                                            <span class="text-primary" style="font-weight: bold">Responsable:</span>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text"  jsf:value="#{investigacionController.investigacion.responsable}" placeholder="Resposable"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="padding-left: 10px">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 30%">
+                                                            <span class="text-primary" style="font-weight: bold">Fecha:</span>
+                                                        </td>
+                                                        <td>
+                                                            <gc:calendar value="#{investigacionController.investigacion.fecha}"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table> 
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td style="width: 100%;">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 14%;">
+                                                            <span class="text-primary" style="font-weight: bold">Descripción:</span>
+                                                        </td>
+                                                        <td style="padding-left: 4px">
+                                                            <textarea id="idDescripcion" rows="7" jsf:value="#{investigacionController.investigacion.descripcion}" style="width:100%" placeholder="Descripción"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="padding-left:5px;vertical-align:top">
+                            <div class="panel panel-featured-top-red" style="height:330px;overflow-y:auto">
+                                <div class="panel-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td style="width:25%;vertical-align:top; padding-bottom: 5px">
+                                                <span class="text-resalt-red">Participantes</span>
+                                            </td>
+                                            <td style="width:75%;text-align:right; padding-bottom: 5px">
+                                                <div class="form-group has-feedback" style="width:100%;margin:auto">
+                                                    <input type="text" jsf:value="#{investigacionController.usuario.nombre}" id="usuario" />
+                                                    <input type="hidden" jsf:value="#{investigacionController.usuario.codigo}" id="usuario-id" />
+                                                    <a style="float:right;font-size:large;margin:auto" jsf:action="#{investigacionController.addUsuario()}">
+                                                        <span class="glyphicon glyphicon-plus form-control-feedback"/>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <h:dataTable value="#{investigacionController.listaParticipantes}" var="part" class="table table-striped" style="text-align:left;font-size:.9em">
+                                                    <h:column>
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td style="width:70%">
+                                                                    <h:outputText value="#{part.usuarioNombre}" />
+                                                                </td>
+                                                                <td style="text-align:right">
+                                                                    <table style="width:100%">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <h:selectOneMenu value="#{part.tipo}">
+                                                                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                                                    <f:selectItems value="#{listasComunesController.buscarTipoParticipacion(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                                                </h:selectOneMenu>
+                                                                            </td>
+                                                                            <td style="float:right;width:20%">
+                                                                                <a jsf:action="#{investigacionController.removeUsuario(part)}">
+                                                                                    <span style="color:red;font-size:medium" class="glyphicon glyphicon-remove"></span>
+                                                                                    <f:ajax render="@form" execute="@form" />
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </h:column>
+                                                </h:dataTable>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right:5px;vertical-align:top">
+                            <div class="panel panel-featured-top-primary" style="height:330px;overflow-y:auto">
+                                <div class="panel-body">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td>
+                                                <span class="text-resalt-primary">Campos</span>
+                                            </td>
+                                            <td style="text-align:right">
+                                                <a jsf:rendered="#{investigacionController.investigacion.id != null}" jsf:action="#{investigacionController.limpiarModalCampo()}">
+                                                    <span style="font-size:large" class="glyphicon glyphicon-plus"></span>
+                                                    <f:ajax render="@form" onevent="openModalCampo" />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <h:dataTable value="#{investigacionController.listaCampos}" var="campo" class="table table-striped" binding="#{row4}" style="font-size:.9em">
+                                        <h:column>
+                                            <f:facet name="header">N.°</f:facet>
+                                            <h:outputText value="#{row4.rowIndex+1}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Título</f:facet>
+                                            <h:outputText value="#{campo.titulo}" />
+                                        </h:column>
+                                        <h:column>
+                                            <a jsf:action="#{investigacionController.seteaCampo(campo)}">
+                                                <span class="glyphicon glyphicon-pencil" style="font-size:large"></span>
+                                                <f:ajax render="@form" onevent="openModalCampo"/>
+                                            </a>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="padding-left:5px;vertical-align:top">
+                            <div class="panel panel-featured-top-primary" style="height:330px;overflow-y:auto">
+                                <div class="panel-body">
+                                    <span class="text-resalt-primary">Actividad</span>
+                                    <h:dataTable value="#{investigacionController.listaHistorialActividad}" var="historial" binding="#{ro1}" class="table table-striped" style="font-size:.8em">
+                                        <h:column>
+                                            <h:outputText value="#{ro1.rowIndex+1}). #{historial.nombre} #{historial.descripcion} -" />
+                                            <h:outputText value="#{historial.fechaRegistro}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                            </h:outputText>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="panel panel-default">
+                                <h:dataTable id="idDataTableCampos" value="#{investigacionController.listaCampos}" var="campos" class="table table-hover" style="font-size:.9em">
+                                    <h:column>
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <td>
+                                                            <span class="text-primary" style="font-weight:bold">#{campos.titulo}</span>
+                                                        </td>
+                                                        <td style="text-align:right">
+                                                            <a jsf:action="#{investigacionController.limpiarCampoDetalle(campos)}">
+                                                                <span style="font-size:large" class="glyphicon glyphicon-folder-open"></span>
+                                                                <f:ajax render="@form" onevent="openModalCampoDetalle" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <br/><br/>
+                                                <span class="text-bold">Descripción</span><br/>
+                                                <span class="text-comun">#{campos.descripcion}</span>
+                                                <div class="panel panel-info" style="width:100%">
+                                                    <div class="panel-heading">
+                                                        <a onclick="efecto(this)">
+                                                            <span class="glyphicon glyphicon-plus spanAddActuacion"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="panel-body idPanelBodyActuacion">
+                                                        <section class="panel">
+                                                            <div class="panel-body">
+                                                                <div class="timeline timeline-simple mt-xlg mb-md">
+                                                                    <div class="tm-body">
+                                                                        <div class="tm-title">
+                                                                            <span class="text-primary" style="font-weight:bold;font-size:1.3em">Agregados</span>
+                                                                            <br/>
+                                                                        </div>
+                                                                        <h:dataTable id="idDataTableCampoDetalles" value="#{investigacionController.listarCampoDetalle(campos.id)}" var="det" style="width:100%">
+                                                                            <h:column>
+                                                                                <ol class="tm-items">
+                                                                                    <li>
+                                                                                        <div class="tm-box">
+                                                                                            <div class="timeline-main">
+                                                                                                <span class="text-bold">Detalle:</span>
+                                                                                                <br/>
+                                                                                                <table style="width:100%">
+                                                                                                    <tr>
+                                                                                                        <td style="width:80%">
+                                                                                                            <span class="text-primary">#{det.nombreRegistro}</span>
+                                                                                                            <span class="text-comun">#{det.comentario}</span>
+                                                                                                            <br/>
+                                                                                                            <span class="text-bold">
+                                                                                                                Fecha de registro:
+                                                                                                            </span>
+                                                                                                            <h:outputText value="#{det.fechaRegistro}">
+                                                                                                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
+                                                                                                            </h:outputText>
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <span class="text-bold">Documento:</span>
+                                                                                                            <a target="_blank" href="/filesystem/investigacion/#{det.ruta}" class="text-bold" style="color:purple">
+                                                                                                                #{det.nombreArchivo}
+                                                                                                            </a>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                                <br/>
+                                                                                                <span class="text-bold">Comentario:</span>
+                                                                                                <div class="has-feedback">
+                                                                                                    <textarea rows="3" name="descripcionADM#{det.id}" jsf:value="#{det.descripcionAdministrador}" placeholder="Comentario"/>
+                                                                                                    <a jsf:action="#{investigacionController.comentarAdministrador(det)}">
+                                                                                                        <span style="font-size:large" class="glyphicon glyphicon-floppy-disk form-control-feedback"></span>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <br/>
+                                                                                                <br/><br/>
+                                                                                            </div>
+                                                                                            <hr class="dotted short"/>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                </ol>
+                                                                            </h:column>
+                                                                        </h:dataTable>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                    <script>
+                                                        $(".idPanelBodyActuacion").hide();
+                                                        $(".spanAddActuacion").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                                                        var i = 1;
+                                                        function efecto(valor) {
+                                                            if (i === 1)
+                                                            {
+                                                                $(valor).parent().parent().children(".idPanelBodyActuacion").slideDown(400).delay(800);
+                                                                $(valor).children().removeClass("glyphicon-plus").addClass("glyphicon-minus");
+                                                                i = 2;
+                                                            }
+                                                            else
+                                                            {
+                                                                $(valor).parent().parent().children(".idPanelBodyActuacion").slideUp(300).delay(800);
+                                                                $(valor).children().removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                                                                i = 1;
+                                                            }
+                                                        }                                                    
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

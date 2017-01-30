@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.MedioVerificacionDao">
+
+    <resultMap id="medioVerificacionMap" type="medioVerificacion">
+        <id property="id" column="N_ID_MEDIO" />
+        <result property="observacion" column="C_OBSMEDIO"/>
+        <result property="palabraClave" column="C_PALABRASCLAVE"/>
+        <result property="titulo" column="C_TITULOMEDIO"/>
+        <result property="descripcion" column="C_DESCMEDIO"/>
+        <result property="codigo" column="C_CODIGOMEDIO"/>
+        <result property="tipoArchivo" column="C_TIPOARCHIVO"/>
+        <result property="tipoSoporte" column="C_TIPOSOPORTE"/>
+        <result property="ruta" column="C_RUTA"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="fechaModificacion" column="D_FECMODIFICACION"/>
+        <result property="ubicacion" column="C_UBICACIONFISICA"/>
+        <result property="actividadMedioVerificacion.estado" column="C_ESTADOACTMEDIO"/>
+        
+    </resultMap> 
+
+    <sql id="sqlMedioVerificacion">
+        SELECT 
+        A.N_ID_MEDIO,
+        A.C_OBSMEDIO,
+        A.C_PALABRASCLAVE,
+        B.NOMBRE_PARAMETRO AS PARAMENTRO_TIPO_MEDIO 
+        FROM SIMCO_REG_MEDIO_VERIFICACION A
+        INNER JOIN SIMCO_PARAMETRO B ON C_TIPO_MEDIO = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 40
+        <where>
+            <if test="observacion != null">
+                A.C_OBSMEDIO=#{observacion}
+            </if>
+            <if test="palabraClave != null">
+                A.C_PALABRASCLAVE=#{palabraClave}
+            </if>
+            <if test="id != null">
+                A.N_ID_MEDIO=#{id}
+            </if>
+        </where>
+    </sql> 
+    
+    <select id="medioVerificacionBuscarOne" resultMap="medioVerificacionMap" parameterType="medioVerificacion">
+        <include refid="sqlMedioVerificacion"/>
+    </select> 
+    
+    <select id="medioVerificacionTotalBuscar" parameterType="filtroMedioVerificacion" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM (
+        <include refid="sqlMedioVerificacion"/>
+        ) TABLA_COUNT
+    </select>
+    
+    <insert id="medioVerificacionInsertar" parameterType="medioVerificacion">
+        INSERT INTO SIMCO_REG_MEDIO_VERIFICACION
+        (
+        N_ID_MEDIO,
+        <if test="descripcion != null">
+            C_DESCMEDIO,
+        </if>
+        <if test="tipoArchivo != null">
+            C_TIPOARCHIVO,
+        </if>
+        <if test="tipoSoporte != null">
+            C_TIPOSOPORTE,
+        </if>
+        <if test="ruta != null">
+            C_RUTA,
+        </if>
+        <if test="codigo != null">
+            C_CODIGOMEDIO,
+        </if>
+        <if test="observacion != null">
+            C_OBSMEDIO,
+        </if>    
+        <if test="ubicacion != null">
+            C_UBICACIONFISICA,
+        </if>
+        <if test="palabraClave != null">
+            C_PALABRASCLAVE,
+        </if>
+        D_FECREGISTRO,
+        C_TITULOMEDIO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_MEDIO_VERIFI.NextVal,
+        <if test="descripcion != null">
+            #{descripcion},
+        </if>
+        <if test="tipoArchivo != null">
+            #{tipoArchivo},
+        </if>
+        <if test="tipoSoporte != null">
+            #{tipoSoporte},
+        </if>
+        <if test="ruta != null">
+            #{ruta},
+        </if>
+        <if test="codigo != null">
+            #{codigo},
+        </if>
+        <if test="observacion != null">
+            #{observacion},
+        </if>
+        <if test="ubicacion != null">
+            #{ubicacion},
+        </if>
+        <if test="palabraClave != null">
+            #{palabraClave},
+        </if>
+        #{fechaRegistro},
+        #{titulo}
+        )
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_MEDIO_VERIFI.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="medioVerificacionUpdate" parameterType="medioVerificacion">
+        UPDATE SIMCO_REG_MEDIO_VERIFICACION
+        <set>
+            <if test="titulo != null">
+            C_TITULOMEDIO = #{titulo},
+        </if>
+            <if test="tipoArchivo != null">
+            C_TIPOARCHIVO = #{tipoArchivo},
+        </if>
+        <if test="tipoSoporte != null">
+            C_TIPOSOPORTE = #{tipoSoporte},
+        </if>
+        <if test="ruta != null">
+            C_RUTA = #{ruta},
+        </if>
+        <if test="observacion != null">
+            C_OBSMEDIO = #{observacion},
+        </if>
+        <if test="descripcion != null">
+            C_DESCMEDIO = #{descripcion},
+        </if>
+        <if test="ubicacion != null">
+            C_UBICACIONFISICA = #{ubicacion},
+        </if>
+        <if test="palabraClave != null">
+            C_PALABRASCLAVE = #{palabraClave},
+        </if>
+        D_FECMODIFICACION = #{fechaModificacion}
+        </set>
+        <where>
+            N_ID_MEDIO=#{id}
+        </where>
+    </update>
+ 
+    <select id="medioVerificacionxActividadBuscar" resultMap="medioVerificacionMap" parameterType="long">
+        SELECT 
+        A.*
+        FROM SIMCO_REG_MEDIO_VERIFICACION A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_MEDIOS C
+        ON A.N_ID_MEDIO = C.N_ID_MEDIO
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+        AND C.C_ESTADOACTMEDIO = 'ACT'
+        ORDER BY A.N_ID_MEDIO
+    </select>
+    
+    <select id="medioVerificacionxActividadBuscarTotal" resultMap="medioVerificacionMap" parameterType="long">
+        SELECT 
+        A.N_ID_MEDIO,
+        A.C_OBSMEDIO,
+        A.C_PALABRASCLAVE,
+        B.NOMBRE_PARAMETRO AS PARAMENTRO_TIPO_MEDIO,
+        C.C_ESTADOACTMEDIO 
+        FROM SIMCO_REG_MEDIO_VERIFICACION A
+        INNER JOIN SIMCO_PARAMETRO B ON C_TIPO_MEDIO = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 40
+        INNER JOIN SIMCO_REG_ACTIVIDAD_MEDIOS C
+        ON A.N_ID_MEDIO = C.N_ID_MEDIO
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+    </select>
+    
+    <select id="medioVerificacionCodigoGenerado" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_MEDIO_VERIFICACION
+        WHERE TO_CHAR(D_FECREGISTRO, 'YYYYMM') = TO_CHAR(SYSDATE,  'YYYYMM')
+    </select>
+
+</mapper>

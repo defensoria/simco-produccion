@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActividadActorDao">
+    
+    <resultMap id="actividadActorMap" type="actividadActor">
+        <result property="actividad.id" column="N_ID_ACTIVIDAD" />
+        <result property="actor.id" column="N_ID_ACTOR"/>
+        <result property="tipoPartActor" column="C_TIPO_PART_ACTOR"/>
+        <result property="estado" column="C_ESTADO_ACTI_ACTO"/>
+        <result property="comentario" column="C_COMENT_ACTI_ACTOR"/>
+        <result property="demanda" column="C_DEMAN_ACTI_ACTOR"/>
+        <result property="posicion" column="C_POS_ACTI_ACTOR"/>
+        <result property="nivel" column="N_NIVEL_AD"/>
+        <result property="tipoRol" column="C_TIPO_ROL"/>
+    </resultMap>  
+
+    <insert id="actividadActorInsertar" parameterType="actividadActor">
+        INSERT INTO SIMCO_REG_ACTIVIDAD_ACTOR
+        (
+        N_ID_ACTIVIDAD,
+        N_ID_ACTOR,
+        <if test="tipoPartActor!=null">
+            C_TIPO_PART_ACTOR, 
+        </if>
+        <if test="comentario!=null">
+            C_COMENT_ACTI_ACTOR,
+        </if>
+        <if test="demanda!=null">
+            C_DEMAN_ACTI_ACTOR,
+        </if>
+        <if test="posicion!=null">
+            C_POS_ACTI_ACTOR,
+        </if>
+        <if test="nivel!=null">
+            N_NIVEL_AD,
+        </if>
+        <if test="tipoRol !=null">
+            C_TIPO_ROL,
+        </if>
+        
+        C_ESTADO_ACTI_ACTOR
+        
+        )
+        VALUES 
+        (
+        #{actividad.id},
+        #{actor.id},
+        <if test="tipoPartActor!=null">
+            #{tipoPartActor},
+        </if>
+        <if test="comentario!=null">
+            #{comentario},
+        </if>
+        <if test="demanda!=null">
+            #{demanda},
+        </if>
+        <if test="posicion!=null">
+            #{posicion},
+        </if>
+        <if test="nivel!=null">
+            #{nivel},
+        </if>
+        <if test="tipoRol !=null">
+            #{tipoRol},
+        </if>
+        #{estado}
+        )
+    </insert>
+
+    <select id="actividadActorBuscarOne" parameterType="actividadActor" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_ACTIVIDAD_ACTOR 
+        WHERE N_ID_ACTIVIDAD = #{actividad.id}
+        AND N_ID_ACTOR = #{actor.id}
+    </select>
+
+    <update id="actividadActorUpdate" parameterType="actividadActor">
+        UPDATE SIMCO_REG_ACTIVIDAD_ACTOR
+        <set>
+            C_ESTADO_ACTI_ACTOR = #{estado},
+            C_COMENT_ACTI_ACTOR = #{comentario},
+            C_DEMAN_ACTI_ACTOR = #{demanda},
+            C_POS_ACTI_ACTOR = #{posicion},
+            N_NIVEL_AD = #{nivel},
+            C_TIPO_ROL = #{tipoRol}
+        </set>
+        <where>
+            N_ID_ACTIVIDAD =#{actividad.id}
+            AND
+            N_ID_ACTOR = #{actor.id}
+        </where>
+    </update>
+    
+    <delete id="actividadActorDelete" parameterType="actividadActor">
+        DELETE FROM SIMCO_REG_ACTIVIDAD_ACTOR
+        where N_ID_ACTIVIDAD = #{actividad.id}
+        
+    </delete>
+    
+    <select id="actividadActorXcaso" parameterType="filtroCasoActor" resultMap="actividadActorMap" >
+        SELECT
+        A.N_ID_ACTOR, 
+        A.N_ID_ACTIVIDAD, 
+        A.C_DEMAN_ACTI_ACTOR, 
+        A.C_COMENT_ACTI_ACTOR, 
+        A.N_NIVEL_AD,
+        A.C_TIPO_ROL
+        FROM SIMCO_REG_ACTIVIDAD_ACTOR A
+        INNER JOIN SIMCO_REG_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO D ON C.N_ID_CASO = D.N_ID_CASO
+        WHERE D.N_ID_CASO = #{idCaso}
+        AND A.N_ID_ACTOR = #{idActor}
+    </select>
+
+
+    <select id="actividadActorNivelAD" parameterType="actividadActor" resultMap="actividadActorMap" >
+        SELECT A.* FROM SIMCO_REG_ACTIVIDAD_ACTOR A
+            INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+            INNER JOIN SIMCO_REG_ACTOR C ON A.N_ID_ACTOR = C.N_ID_ACTOR
+            WHERE B.N_ID_CASO = #{idCaso}
+            AND A.N_ID_ACTOR = #{actor.id}
+            ORDER BY C.C_NOMACTOR
+    </select>
+
+
+    <select id="listaActorAD" resultMap="actividadActorMap" parameterType="Long">
+        SELECT * FROM SIMCO_REG_ACTIVIDAD_ACTOR WHERE N_ID_ACTOR = #{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActaAcuerdoDetalleDao">
+
+    <resultMap id="actaAcuerdoDetalleMap" type="actaAcuerdoDetalle">
+        <id property="id" column="N_ID_ACUERDO" />
+        <result property="descripcion" column="C_DESCRIPACUERDO"/>
+        <result property="fechaCumplimiento" column="D_FECHACUMPLIMIENTO"/>
+        <result property="indCumplimiento" column="C_INDCUMPLIMIENTO"/>
+        <result property="codigo" column="C_CODIGOACUERDO"/>
+        <result property="actaAcuerdo.id" column="N_ID_ACTA"/> 
+        <result property="fechaRegistro" column="D_REGISTRODETACTA"/> 
+        <result property="indAlertar" column="C_INDALERTAR"/>
+        <result property="color" column="C_COLOR"/>
+        <result property="indCumplido" column="C_INDCUMPLIDO"/>
+        <!--AGREGADOS--> 
+        <result property="actividad.codigoActividad" column="C_CODIGOACTIVIDAD"/>
+        <result property="actividad.nombre" column="C_NOMACTIVIDAD"/>
+        <result property="caso.codigo" column="C_CODIGOCASO"/>
+        <result property="caso.nombre" column="C_NOMCASO"/>
+        <result property="actividad.id" column="N_ID_ACTIVIDAD"/>
+    </resultMap>        
+
+
+    
+    <insert id="actaAcuerdoDetalleInsertar" parameterType="actaAcuerdoDetalle">
+        INSERT INTO SIMCO_REG_DET_ACTA_ACUERDO
+        (
+        N_ID_ACUERDO,
+        N_ID_ACTA,
+        C_DESCRIPACUERDO,
+        C_INDCUMPLIMIENTO,
+        C_CODIGOACUERDO,
+        <if test="fechaCumplimiento != null">
+            D_FECHACUMPLIMIENTO,
+        </if>
+        D_REGISTRODETACTA,
+        C_USUREGISTRO,
+        C_INDALERTAR
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_DET_ACT_ACUERDO.NextVal,
+        #{actaAcuerdo.id},
+        #{descripcion},
+        #{indCumplimiento},
+        #{codigo},
+        <if test="fechaCumplimiento != null">
+            #{fechaCumplimiento},
+        </if>
+        #{fechaRegistro},
+        #{usuarioRegistro},
+        #{indAlertar}   
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_DET_ACT_ACUERDO.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="actaAcuerdoDetalleUpdate" parameterType="actaAcuerdoDetalle">
+        UPDATE SIMCO_REG_DET_ACTA_ACUERDO
+        <set>
+            C_DESCRIPACUERDO= #{descripcion},
+            <if test="fechaCumplimiento != null">
+                D_FECHACUMPLIMIENTO=#{fechaCumplimiento},
+            </if>
+            <if test="codigo != null">
+                C_CODIGOACUERDO=#{codigo},
+            </if>
+            C_INDCUMPLIMIENTO=#{indCumplimiento},
+            C_INDALERTAR=#{indAlertar}
+        </set>
+        <where>
+            N_ID_ACUERDO=#{id}
+        </where>
+    </update>
+    
+    
+    <update id="actaAcuerdoDetalleUpdateColor" parameterType="actaAcuerdoDetalle">
+        UPDATE SIMCO_REG_DET_ACTA_ACUERDO
+        <set>
+            <if test="indCumplido != null">
+                C_INDCUMPLIDO=#{indCumplido}
+            </if>
+        </set>
+        <where>
+            N_ID_ACUERDO=#{id}
+        </where>
+    </update>
+ 
+ 
+    <select id="actaAcuerdoDetalleBuscarxActa" resultMap="actaAcuerdoDetalleMap" parameterType="long">
+      
+        SELECT 
+        A.N_ID_ACUERDO, 
+        A.D_FECHACUMPLIMIENTO, 
+        A.D_REGISTRODETACTA,
+        A.C_CODIGOACUERDO,
+        A.C_COLOR,
+        A.C_DESCRIPACUERDO,
+        A.C_INDALERTAR,
+        A.C_INDCUMPLIMIENTO,
+        A.C_INDCUMPLIDO
+        FROM SIMCO_REG_DET_ACTA_ACUERDO A
+        WHERE A.N_ID_ACTA = #{id}
+    </select>
+    
+    <select id="actaAcuerdoDetalleCount" resultType="java.lang.Integer" parameterType="long">
+        SELECT 
+        COUNT(A.N_ID_ACUERDO)
+        FROM SIMCO_REG_DET_ACTA_ACUERDO A
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO B ON A.N_ID_ACTA = B.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C ON B.N_ID_ACTA = C.N_ID_ACTA
+        WHERE C.N_ID_ACTIVIDAD = #{id}
+    </select>
+    
+    <select id="actaAcuerdoDetalleSeguimiento" resultMap="actaAcuerdoDetalleMap" parameterType="actaAcuerdoDetalle">
+        select
+        A.N_ID_ACUERDO,
+        A.D_FECHACUMPLIMIENTO, 
+        A.C_INDCUMPLIMIENTO,
+        D.C_CODIGOACTIVIDAD, 
+        D.C_NOMACTIVIDAD,
+        D.N_ID_ACTIVIDAD,
+        A.C_DESCRIPACUERDO, 
+        F.C_CODIGOCASO,
+        F.C_NOMCASO, 
+        A.C_COLOR,
+        A.C_INDCUMPLIDO,
+        A.C_INDALERTAR 
+        from SIMCO_REG_DET_ACTA_ACUERDO A 
+        inner join SIMCO_REG_ACTA_ACUERDO B on A.N_ID_ACTA = b.N_ID_ACTA
+        inner join SIMCO_REG_ACTIVIDAD_ACTAS C on B.N_ID_ACTA = C.N_ID_ACTA
+        inner join SIMCO_REG_ACTIVIDAD D on C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        inner join SIMCO_REG_CASO_ACTIVIDAD E on E.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD AND E.C_ESTADOACTCASO = 'ACT'
+        inner join SIMCO_REG_CASO F on F.N_ID_CASO = E.N_ID_CASO AND F.C_INDVIGENTE = 'A'
+        where a.c_usuregistro = #{usuarioRegistro}
+        order by A.N_ID_ACUERDO
+    </select>
+    
+    <select id="actaAcuerdoDetalleSeguimientoCaso" resultMap="actaAcuerdoDetalleMap" parameterType="long">
+        select
+        A.N_ID_ACUERDO,
+        A.D_FECHACUMPLIMIENTO, 
+        A.C_INDCUMPLIMIENTO,
+        D.C_CODIGOACTIVIDAD, 
+        D.C_NOMACTIVIDAD,
+        A.C_DESCRIPACUERDO, 
+        F.C_CODIGOCASO,
+        F.C_NOMCASO, 
+        A.C_COLOR,
+        D.N_ID_ACTIVIDAD,
+        A.C_INDCUMPLIDO,
+        A.C_INDALERTAR 
+        from SIMCO_REG_DET_ACTA_ACUERDO A 
+        inner join SIMCO_REG_ACTA_ACUERDO B on A.N_ID_ACTA = b.N_ID_ACTA
+        inner join SIMCO_REG_ACTIVIDAD_ACTAS C on B.N_ID_ACTA = C.N_ID_ACTA
+        inner join SIMCO_REG_ACTIVIDAD D on C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        inner join SIMCO_REG_CASO_ACTIVIDAD E on E.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD AND E.C_ESTADOACTCASO = 'ACT'
+        inner join SIMCO_REG_CASO F on F.N_ID_CASO = E.N_ID_CASO AND F.C_INDVIGENTE = 'A'
+        where F.N_ID_CASO = #{id}
+    </select>
+ 
+    <delete id="actaAcuerdoDetalleDelete" parameterType="long">
+        DELETE FROM SIMCO_REG_DET_ACTA_ACUERDO
+        where N_ID_ACUERDO = #{id}
+    </delete>
+    
+    <select id="actaAcuerdoDetalleListaxActa" resultMap="actaAcuerdoDetalleMap" parameterType="long">
+      SELECT * FROM SIMCO_REG_DET_ACTA_ACUERDO 
+      WHERE N_ID_ACTA = #{id}
+    </select>
+    
+    <select id="actaAcuerdoDetalleCodigoGenerado" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_DET_ACTA_ACUERDO
+        WHERE TO_CHAR(D_REGISTRODETACTA, 'YYYYMM') = TO_CHAR(SYSDATE,  'YYYYMM')
+    </select>
+
+</mapper>

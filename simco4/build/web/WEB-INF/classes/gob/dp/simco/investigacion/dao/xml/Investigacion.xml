@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.investigacion.dao.InvestigacionDAO">
+    
+    <resultMap id="investigacionMap" type="investigacion">
+        <id property="id" column="N_ID_INVESTIGACION" />
+        <result property="titulo" column="C_TITULO"/>
+        <result property="descripcion" column="C_DESCRIPCION"/>
+        <result property="estado" column="C_ESTADO"/>
+        <result property="fechaRegistro" column="D_FECREGISTRO"/>
+        <result property="usuarioRegistro" column="C_USUREGISTRO"/>
+        <result property="fechaModificacion" column="D_FECMODIFICACION"/>
+        <result property="version" column="N_VERSION"/>
+        <result property="tipo" column="C_TIPO"/>
+        <result property="fecha" column="D_FECHA"/>
+        <result property="responsable" column="C_RESPONSABLE"/>
+    </resultMap> 
+
+    <insert id="investigacionInsertar" parameterType="investigacion">
+        INSERT INTO SIMCO_INVESTIGACION
+        (
+        N_ID_INVESTIGACION,
+        <if test="descripcion !=null">
+            C_DESCRIPCION,
+        </if>
+        <if test="estado !=null">
+            C_ESTADO,
+        </if>
+        <if test="fechaRegistro !=null">
+            D_FECREGISTRO,  
+        </if>
+        <if test="usuarioRegistro !=null">
+            C_USUREGISTRO,
+        </if>
+        <if test="fechaModificacion !=null">
+            D_FECMODIFICACION,
+        </if>
+        <if test="version !=null">
+            N_VERSION,
+        </if>
+        <if test="tipo !=null">
+            C_TIPO,
+        </if>
+        <if test="fecha !=null">
+            D_FECHA,
+        </if>
+        <if test="responsable !=null">
+            C_RESPONSABLE,
+        </if>
+        C_TITULO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_INVESTIGACION.NextVal,
+        <if test="descripcion !=null">
+            #{descripcion},
+        </if>
+        <if test="estado !=null">
+            #{estado},
+        </if>
+        <if test="fechaRegistro !=null">
+            #{fechaRegistro},
+        </if>
+        <if test="usuarioRegistro !=null">
+            #{usuarioRegistro},
+        </if>
+        <if test="fechaModificacion !=null">
+            #{fechaModificacion},
+        </if>
+        <if test="version !=null">
+            #{version},
+        </if>
+        <if test="tipo !=null">
+            #{tipo},
+        </if>
+        <if test="fecha !=null">
+            #{fecha},
+        </if>
+        <if test="responsable !=null">
+            #{responsable},
+        </if>
+        #{titulo}
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_INVESTIGACION.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="investigacionUpdate" parameterType="investigacion">
+        UPDATE SIMCO_INVESTIGACION 
+        <set>
+            <if test="descripcion !=null">
+                C_DESCRIPCION = #{descripcion},
+            </if>
+            <if test="usuarioRegistro !=null">
+                C_USUREGISTRO = #{usuarioRegistro},
+            </if>
+            <if test="fechaModificacion !=null">
+                D_FECMODIFICACION = #{fechaModificacion},
+            </if>
+            <if test="version !=null">
+                N_VERSION = #{version},
+            </if>
+            <if test="tipo !=null">
+                C_TIPO = #{tipo},
+            </if>
+            <if test="fecha !=null">
+                D_FECHA = #{fecha},
+            </if>
+            <if test="responsable !=null">
+                C_RESPONSABLE = #{responsable},
+            </if>
+            C_ESTADO = #{estado}
+        </set>
+        <where>
+            N_ID_INVESTIGACION = #{id}
+        </where>
+    </update>
+    
+    <select id="investigacionBuscar" resultMap="investigacionMap" parameterType="investigacion">
+        SELECT DISTINCT A.* FROM SIMCO_INVESTIGACION A
+        INNER JOIN SIMCO_INVESTIGACION_PARTICIPA B ON A.N_ID_INVESTIGACION = B.N_ID_INVESTIGACION
+        WHERE A.C_ESTADO = 'ACT'
+        AND B.C_CODIGOUSU = #{usuarioRegistro}
+        ORDER BY A.N_ID_INVESTIGACION
+    </select>
+</mapper>

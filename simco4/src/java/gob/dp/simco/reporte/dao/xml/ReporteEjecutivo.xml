@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.reporte.dao.ReporteEjecutivoDao">
+    
+    <resultMap id="elementoResumenEjecutivoMap" type="elementoResumenEjecutivo">
+        <result property="totalCasosMes" column="TOTAL_MES"/>
+        <result property="totalCasosActivoMes" column="TOTAL_ACTIVO"/>
+        <result property="totalCasosLatenteMes" column="TOTAL_LATENTE"/>
+        <result property="cadenaNombreCaso" column="C_NOMCASO"/>
+        <result property="valor" column="VALOR"/>
+        <result property="nombre" column="NOMBRE"/>
+        <result property="valorParametro" column="VALORPARAMETRO"/>
+    </resultMap> 
+    
+    <select id="totalCasosRegistrados" resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A' AND C_TIPOESTADO IN ('04','05')
+    </select> 
+    
+    <select id="totalCasosActivos"  resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A' AND C_TIPOESTADO IN ('04')
+    </select>
+    
+    <select id="totalCasosLatentes"  resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A' AND C_TIPOESTADO IN ('05')
+    </select>
+    
+    <select id="totalCasosRegistradosMes" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND TO_CHAR(D_FECHAMODIFICACION, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAMODIFICACION, 'MM') = #{mes}
+        AND C_TIPOESTADO IN ('04','05')
+    </select>
+    
+    <select id="totalCasosResueltoMes" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND TO_CHAR(D_FECHAMODIFICACION, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAMODIFICACION, 'MM') = #{mes}
+        AND C_TIPOESTADO IN ('06')
+    </select>
+    
+    <select id="totalCasosDialogo"  resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND C_TIPODIALOGO = '05' AND C_TIPOESTADO IN ('04')
+    </select>
+    
+    <select id="totalCasosDialogoNegociacion"  resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND C_TIPODIALOGO = '05' AND C_TIPOESTADO = '04' AND C_TIPOMECANISMO IN ('01','02')
+    </select>
+    
+    <select id="totalCasosDialogoReuniones"  resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND C_TIPODIALOGO = '05' AND C_TIPOESTADO = '04' AND C_TIPOMECANISMO = '03'
+    </select>
+    
+    <select id="totalCasosDialogoEspacioDialogo"  resultType="java.lang.Integer">
+        SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND C_TIPODIALOGO = '05' AND C_TIPOESTADO = '04' AND C_TIPOPARTICIPACION IN ('01','02','03','04')
+    </select>
+    
+    <select id="totalCasosACVictimaViolencia"  resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT A.C_CODIGOCASO) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AC' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' AND A.C_TIPOESTADO IN ('04','05')
+AND C.C_TIPOVIOLENCIA IS NOT NULL
+    </select>
+    
+    
+    <select id="totalCasosACVictimaViolenciaMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT A.C_CODIGOCASO) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AC' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' AND A.C_TIPOESTADO IN ('04','05')
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+AND C.C_TIPOVIOLENCIA IS NOT NULL
+    </select>
+    
+    <select id="totalCasosACAccionesProtestaMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT C.N_ID_ACTIVIDAD) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AC' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' AND C.C_TIPOACONTECIMIENTO IN ('01','02','03','04','05','06','07','08')
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+    </select>
+    
+    
+    <select id="totalCasosAD"  resultType="java.lang.Integer" >
+        SELECT COUNT(DISTINCT A.N_ID_CASO) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AD' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' 
+    </select>
+    
+    <select id="totalCasosADMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT A.N_ID_CASO) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AD' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' 
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+    </select>
+    
+ <select id="totalActividadAccionesDefensaLegalMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT C.N_ID_ACTIVIDAD) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AD' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' 
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+AND C.C_TIPO_ACTIVIDAD IN ('01','02')
+    </select>
+    
+    <select id="totalActividadAccionesHumanitariasMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT C.N_ID_ACTIVIDAD) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AD' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' 
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+AND C.C_TIPO_ACTIVIDAD IN ('03','04','05')
+    </select>
+    
+    <select id="totalActividadIntermediacionMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT C.N_ID_ACTIVIDAD) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AD' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' 
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+AND C.C_TIPO_ACTIVIDAD IN ('06','07')
+    </select>
+    
+    <select id="totalActividadSupervisionPreventivaMes"  resultType="java.lang.Integer"  parameterType="filtroReporte">
+        SELECT COUNT(DISTINCT C.N_ID_ACTIVIDAD) FROM SIMCO_REG_CASO A 
+INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO
+INNER JOIN SIMCO_REG_ACTIVIDAD C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD AND C.C_TIPO = 'AD' AND C.N_INDICEACTIVO = 1
+WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A' 
+AND TO_CHAR(C.D_FECMODIFICACION, 'YY') = #{anhos}
+AND TO_CHAR(C.D_FECMODIFICACION, 'MM') = #{mes}
+AND C.C_TIPO_ACTIVIDAD IN ('08','09','10','11','12','13','14')
+    </select>
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <select id="totalCasosTotales"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPOESTADO IN (04,05,06)
+    </select>
+    
+    <select id="totalCasosResueltos"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPOESTADO = '06'
+        AND TO_CHAR(D_FECHAPUBLICACION, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAPUBLICACION, 'MM') = #{mes} 
+    </select>
+    
+    <select id="totalCasosPropuestos"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPOESTADO = '02'
+     
+    </select>
+    
+    
+    
+    <select id="totalCasosActivosLatentes"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT * FROM SIMCO_REG_CASO WHERE C_TIPOESTADO = '04') A
+        INNER JOIN (SELECT * FROM SIMCO_REG_CASO WHERE C_TIPOESTADO = '05') B
+        ON A.C_CODIGOCASO = B.C_CODIGOCASO AND B.N_VERSION = (A.N_VERSION+1)
+
+    </select>
+    
+    <select id="totalCasosLatentesObservacion"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT * FROM SIMCO_REG_CASO WHERE C_TIPOESTADO = '05') A
+        INNER JOIN (SELECT * FROM SIMCO_REG_CASO WHERE C_TIPOESTADO = '03') B
+        ON A.C_CODIGOCASO = B.C_CODIGOCASO AND B.N_VERSION = (A.N_VERSION+1)
+    </select>
+
+    
+
+
+
+
+<select id="totalGeneralCasosActivo"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPOESTADO = '04'
+    </select>
+    
+    
+    
+    <select id="totalGeneralCasosReunionesPreparatorias"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPOMECANISMO = '02'
+    </select>
+    
+<select id="totalGeneralCasosParticipacionDefensoria"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPOPARTICIPACION NOT IN ('0')
+    </select>
+    
+<select id="totalGeneralCasosEchoViolencia"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT DISTINCT C.N_ID_CASO FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AC' 
+        AND A.C_TIPOVIOLENCIA NOT IN (0)
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL)
+    </select>
+
+    
+        <select id="totalGeneralCasosAccionesProtesta"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(C.N_ID_CASO) FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AC' 
+        AND A.C_TIPOVIOLENCIA IN (01,02,03,04,05,06,07,08)
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL
+   
+    </select>    
+       
+          
+     <select id="totalGeneralCasosActuacionDefensorial" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT DISTINCT C.N_ID_CASO FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AD' 
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL)
+    </select>           
+    
+    <select id="totalGeneralCasosActuacionDefensorialSupervisionPreventiva" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT DISTINCT C.N_ID_CASO FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AD'
+        AND A.C_TIPO_ACTIVIDAD IN (08,09,10,11,12,13,14) 
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL)
+    </select>
+    
+    <select id="totalGeneralCasosActuacionDefensorialIntermediaciones" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT DISTINCT C.N_ID_CASO FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AD'
+        AND A.C_TIPO_ACTIVIDAD IN (06,07) 
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL)
+    </select>
+    
+    <select id="totalGeneralCasosActuacionDefensorialAccionHumanitaria" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT DISTINCT C.N_ID_CASO FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AD'
+        AND A.C_TIPO_ACTIVIDAD IN (03,04,05) 
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL)
+    </select>
+    
+    <select id="totalGeneralCasosActuacionDefensorialDefensaLegal" resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM (SELECT DISTINCT C.N_ID_CASO FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO C ON B.N_ID_CASO = C.N_ID_CASO
+        WHERE A.C_TIPO = 'AD'
+        AND A.C_TIPO_ACTIVIDAD IN (01,02) 
+        AND C.C_INDVIGENTE = 'A' AND C.D_FECHAPUBLICACION IS NOT NULL)
+    </select>
+    
+    <select id="totalGeneralCasosDialogo"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPODIALOGO = '05'
+    </select>
+    
+    <select id="totalGeneralCasosFaceEscalamiento"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPODIALOGO = '02'
+    </select>
+    
+    <select id="totalGeneralCasosFaceTemprana"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPODIALOGO = '01'
+    </select>
+    
+    <select id="totalGeneralCasosFaceDesescalamiento"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPODIALOGO = '04'
+    </select>
+    
+    <select id="totalGeneralCasosFaceCrisis"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        AND C_TIPODIALOGO = '03'
+    </select>
+    
+    <select id="cadenaNombreCasosResueltos"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+        SELECT C_NOMCASO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_TIPOESTADO = '06'
+  
+    </select>
+    
+    <select id="cadenaNombreCasosPropuestos"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+        SELECT C_NOMCASO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_TIPOESTADO = '02'
+     
+    </select>
+    
+    <select id="totalMensualCasosRegistrados"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+        SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE FROM SIMCO_REG_CASO A
+      INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPOCASO = B.VALOR_PARAMETRO
+      AND B.PADRE_PARAMETRO = 90
+      WHERE A.C_TIPOESTADO IN (04,05,06)
+    
+        GROUP BY B.NOMBRE_PARAMETRO
+    </select>
+    
+    <select id="totalMensualCasosActivos"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+        SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE FROM SIMCO_REG_CASO A
+      INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPOCASO = B.VALOR_PARAMETRO
+      AND B.PADRE_PARAMETRO = 90
+      WHERE A.C_TIPOESTADO IN (04)
+        AND A.C_INDVIGENTE = 'A'
+
+        GROUP BY B.NOMBRE_PARAMETRO
+    </select>
+    
+    
+    <select id="totalMensualNivelGobierno"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+        SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE, B.VALOR_PARAMETRO VALORPARAMETRO  FROM SIMCO_REG_CASO A
+      INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPOCASO = B.VALOR_PARAMETRO
+      AND B.PADRE_PARAMETRO = 110
+      WHERE A.C_INDVIGENTE = 'A'
+        
+        GROUP BY B.NOMBRE_PARAMETRO,B.VALOR_PARAMETRO
+    </select>
+    
+
+
+
+    
+    </mapper>

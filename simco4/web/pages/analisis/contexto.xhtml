@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm" class="form-horizontal">
+                <script>
+                    sessionStorage.setItem('menuHijoSession', 'Análisis');
+                    sessionStorage.setItem('menuNietoSession', 'Contexto');    
+                </script>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <h2>Contexto</h2>
+                        </td>
+                        <td style="text-align: right">
+                            <a jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" class="btn btn-primary" jsf:action="#{analisisController.guardarContexto()}">
+                                <span class="glyphicon glyphicon-floppy-disk" />Guardar
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <c:forEach items="#{analisisController.listaTipoContexto}" var="tipo">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <b>#{tipo.detalle}:</b>
+                        </div>
+                        <div class="panel-body">
+                            <table style="width: 100%">
+                                <c:forEach items="#{tipo.respuesta}" var="res">
+
+                                    <tr>
+                                        <td style="width: 50%; padding-bottom: 5px">
+                                            <b>#{res.pregunta}</b>
+                                        </td>
+                                        <td style="padding-bottom: 5px">
+                                            <textarea jsf:value="#{res.respuesta}" rows="3" placeholder="Respuesta" maxlength="3700"/>
+                                        </td>
+                                    </tr>
+
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
+                    <br/>
+
+                </c:forEach>
+
+            </h:form> 
+
+        </ui:define>
+    </ui:composition>
+</html>            

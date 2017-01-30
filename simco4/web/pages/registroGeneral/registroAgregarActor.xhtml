@@ -1,0 +1,250 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf" 
+      xmlns:gc="http://xmlns.jcp.org/jsf/composite/gc">
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="idForm" class="form-horizontal">
+                <h:inputHidden id="hidCodActividad" value="#{registroController.actividad.id}" />
+                    <script>
+                        /*<![CDATA[*/$(function () {#{actorController.cadenaAutocomplete}
+                            $("#actor").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
+                                    $("#actor").val(ui.item.label);
+                                    return false;
+                                }, select: function (event, ui) {
+                                    $("#actor").val(ui.item.label);
+                                    $("#actor-id").val(ui.item.value);
+                                    return false;
+                                }}).data("ui-autocomplete")._renderItem = function (ul, item) {
+                                return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
+                            };
+                        });/*]]>*/
+                    </script>
+                    <gc:confirmSubmit bean="#{actorController.actividadUnionActor(registroController.actividad.id)}" classGC="confirmacion1"/>
+                    <gc:confirmSubmit bean="#{actorController.actividadUnionActor2(registroController.actividad.id)}" classGC="confirmacion2"/>
+                    <div class="panel panel-default" style="height:auto">
+                    <div class="panel-heading">
+                        <table style="width:100%">
+                            <tr>
+                                <td>
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            <span id="idImagen" class="glyphicon glyphicon-minus" style="font-size:large"></span>
+                                        </a><span class="text-resalt-primary">Búsqueda de actores</span>
+                                    </h4>
+                                </td>
+                                <td>
+                                    <button jsf:rendered="#{!actorController.tip}" class="btn btn-danger" jsf:action="#{registroController.retornarActividad()}" style="float:right">
+                                        <span class="glyphicon glyphicon-share"/>Regresar
+                                    </button>
+                                    <button jsf:rendered="#{actorController.tip}" class="btn btn-danger" jsf:action="#{registroController.retornarActividad()}" style="float:right">
+                                        <span class="glyphicon glyphicon-share"/>Regresar
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table style="width:100%">
+                                <tr>
+                                    <td style="width:50%">
+                                        <div class="panel panel-default" style="overflow-y:auto;height:370px">
+                                            <div class="panel-body">
+                                                <span class="text-resalt-primary">Búsqueda de Actores</span>
+                                                <div class="form-group has-feedback" style="width:100%;margin:auto">
+                                                    <input type="text" jsf:value="#{actorController.actor.nombre}" id="actor" />
+                                                    <input type="hidden" jsf:value="#{actorController.actor.id}" id="actor-id" />
+                                                    <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.listarActorSeleccionadoActividad()}" jsf:onclick="loadingModal()">
+                                                        <span class="glyphicon glyphicon-plus form-control-feedback"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:50%">
+                                        <div class="panel panel-default" style="height:370px;overflow-y:auto">
+                                            <div class="panel-body">
+                                                <div>
+                                                    <span class="text-resalt-primary">Actores del caso</span>
+                                                    <p></p>
+                                                    <h:dataTable value="#{actorController.listaActorPaginado2}" var="acto" class="table table-striped" style="font-size:x-small" binding="#{ro}" rendered="#{not empty actorController.listaActorPaginado2}">
+                                                        <h:column>
+                                                            <f:facet name="header">id</f:facet>
+                                                            <h:outputText value="#{ro.rowIndex+1}" />
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">Nombre</f:facet>
+                                                            <h:outputText value="#{acto.nombre} #{acto.apellidoPat}" />
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header">Documento</f:facet>
+                                                            <h:outputText value="#{acto.dni == null? acto.ruc :acto.dni}" />
+                                                        </h:column>
+                                                        <h:column>
+                                                            <f:facet name="header"></f:facet>
+                                                            <a jsf:action="#{actorController.listarActorSeleccionado(acto)}" jsf:onclick="loadingModal()">
+                                                                <span class="glyphicon glyphicon-share-alt" style="font-size:large"/>
+                                                            </a>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="2">
+                            <div class="panel panel-default" style="overflow-y:auto;margin:auto;height:auto">
+                                <div class="panel-body">
+                                    <div>
+                                        <span class="text-resalt-primary">Actores añadidos</span>
+                                        <h:panelGroup rendered="#{registroController.esUsuarioRegistro}">
+                                        <button jsf:rendered="#{!actorController.tip}" id="idBotonGuardar1" class="btn btn-primary" jsf:onclick="return false" style="float:right">
+                                            <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                        </button>
+                                        <button jsf:rendered="#{actorController.tip}" id="idBotonGuardar2" class="btn btn-primary" jsf:onclick="return false" style="float:right">
+                                            <span class="glyphicon glyphicon-floppy-disk"/>Guardar
+                                        </button>
+                                        <script>
+                                            $("#idBotonGuardar1").click(function () {
+                                                confirmar1();
+                                            });
+                                            $("#idBotonGuardar2").click(function () {
+                                                confirmar2();
+                                            });
+                                            function confirmar1() {
+                                                $(".confirmacion1").modal('show');
+                                            }
+                                            function confirmar2() {
+                                                $(".confirmacion2").modal('show');
+                                            }
+                                            $(document).ready(function () {
+                                                $(".tooltip-top").tooltip(
+                                                        {placement: "top", viewport:
+                                                                    {selector: "body", padding: 2
+                                                                    }
+                                                        }
+                                                );
+                                            }
+                                            );
+                                        </script>
+                                            </h:panelGroup>
+                                    </div>
+                                    <p></p>
+                                    <h:dataTable value="#{actorController.listaActorSeleccionadoFinal}" var="actor" class="table" id="idDatatableActorDetalle" style="font-size:small" binding="#{row3}">
+                                        <h:column>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">#{row3.rowIndex+1} - #{actor.nombre} #{actor.apellidoPat} #{actor.apellidoMat}</div>
+                                                <div class="panel-body">
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td>
+                                                                <label>Comentarios generales</label>
+                                                                <textarea jsf:value="#{actor.actividadActor.comentario}" rows="3" style="width:100%;height:100px" placeholder="Comentarios generales" maxlength="3700"/>
+                                                            </td>
+                                                            <td style="width:33%">
+                                                                <label>Demandas</label>
+                                                                <textarea jsf:value="#{actor.actividadActor.demanda}" rows="3" style="width:100%;height:100px" placeholder="Demandas" maxlength="3700"/>
+                                                            </td>
+                                                            <td>
+                                                                <label>Posición</label>
+                                                                <textarea jsf:value="#{actor.actividadActor.posicion}" rows="3" style="width:100%;height:100px" placeholder="Posición" maxlength="3700"/>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="well">
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td style="width:50%">
+                                                                    <b class="round tooltip-top" title="Actitud frente al diálogo">A.D:</b>
+                                                                    <div class="slider slider-horizontal">
+                                                                        <div class="slider-track">
+                                                                            <div style="left:0;width:70%" class="slider-selection">
+                                                                            </div>
+                                                                            <div tabindex="0" style="left:70%" class="slider-handle round">
+                                                                            </div>
+                                                                            <div tabindex="0" style="left:0" class="slider-handle round hide">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="top:-30px;left:92.5px" class="tooltip top tooltip_care">
+                                                                            <div class="tooltip-arrow">
+                                                                            </div>
+                                                                            <div class="tooltip-inner">nivel: 10</div>
+                                                                        </div>
+                                                                        <div style="top:-30px" class="tooltip top tooltip_min_care">
+                                                                            <div class="tooltip-arrow"></div><div class="tooltip-inner">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div style="top:18px" class="tooltip bottom tooltip_max_care">
+                                                                            <div class="tooltip-arrow">
+                                                                            </div>
+                                                                            <div class="tooltip-inner">
+                                                                            </div>
+                                                                        </div>
+                                                                        <input style="display:none" jsf:value="#{actor.actividadActor.nivel}" class="ex1" data-slider-id="ex1Slider" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="#{actor.actividadActor.nivel.toString() == null? '0' : actor.actividadActor.nivel.toString() }" type="text"/>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="text-align:left">
+                                                                    <b>Rol en la reunión:</b>
+                                                                    <h:selectOneMenu value="#{actor.actividadActor.tipoRol}">
+                                                                        <f:selectItem itemValue="0" itemLabel="Seleccione" />
+                                                                        <f:selectItems value="#{listasComunesController.buscarTipoRolActor(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                                                                    </h:selectOneMenu>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"></f:facet>
+                                            <a style="font-size:large;cursor:pointer" onclick="confirmar1#{row3.rowIndex+1}()">
+                                                <span style="color:red" class="glyphicon glyphicon-remove"/>
+                                            </a>
+                                            <gc:confirmSubmit bean="#{actorController.removeActorSeleccionado(actor)}" classGC="confirmar1#{row3.rowIndex+1}" mensaje="¿Está seguro que desea eliminar el actor?"/>
+                                            <script>
+                                                function confirmar1#{row3.rowIndex+1}() {
+                                                    $(".confirmar1#{row3.rowIndex+1}").modal("show");
+                                                }
+                                            </script>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <script>
+                    $(document).ready(function () {
+                        $('.ex1').slider({formater: function (value) {
+                                return'Nivel: ' + value;
+                            }});
+                        var i = 1;
+                        $('#idImagen').on('click', function () {
+                            $('#idImagen').removeClass();
+                            if (i === 1)
+                            {
+                                $('#idImagen').addClass('glyphicon glyphicon-plus');
+                                i = 2;
+                            }
+                            else
+                            {
+                                $('#idImagen').addClass('glyphicon glyphicon-minus');
+                                i = 1;
+                            }
+                        });
+                    });
+                </script>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.CasoDao">
+    
+    <resultMap id="casoMap" type="caso">
+        <id property="id" column="N_ID_CASO" />
+        <result property="nombre" column="C_NOMCASO"/>
+        <result property="descripcionPreliminar" column="C_DESCPRELIMCASO"/>
+        <result property="tipo" column="C_TIPOCASO"/>
+        <result property="justificacion" column="C_JUSTIFICACION"/>
+        <result property="observaciones" column="C_OBSERVACIONES"/>
+        <result property="estadoRegistro" column="C_ESTADOREGISTRO"/>
+        <result property="creacion" column="D_FECHACREACION"/>
+        <result property="modificacion" column="D_FECHAMODIFICACION"/>
+        <result property="codigo" column="C_CODIGOCASO"/>
+        <result property="tipoAsunto" column="C_TIPOASUNTO"/>
+        <result property="fechaPublicacion" column="D_FECHAPUBLICACION"/>
+        <result property="tipoEstado" column="C_TIPOESTADO"/>
+        <result property="usuarioRegistro" column="C_USUREGISTRO"/>
+        <result property="usuarioModificacion" column="C_USUMODIFICACION"/>
+        <result property="adjuntiaDefensorial" column="C_ADJUNTIADEFENSORIAL"/>
+        <result property="actividadCaso.estado" column="C_ESTADOACTCASO"/>
+        <result property="acontecimientoCaso.estado" column="C_ESTADOACONTCASO"/>
+        <result property="sintesisAnalisis" column="C_SISTESISANALISIS"/>
+        <result property="tipoDialogo" column="C_TIPODIALOGO"/>
+        <result property="tipoMecanismo" column="C_TIPOMECANISMO"/>
+        <result property="tipoParticipacionCaso" column="C_TIPOPARTICIPACION"/>
+        <result property="idDepartamento" column="C_IDDEPART"/>
+        <result property="idProvincia" column="C_IDPROV"/>
+        <result property="idDistrito" column="C_IDDISTR"/>
+        <result property="subTipo" column="C_SUBTIPOCASO"/>
+        <result property="primerNivel" column="C_PRIMERNIVEL"/>
+        <result property="segundoNivel" column="C_SEGUNDONIVEL"/>
+        <result property="tercerNivel" column="C_TERCERNIVEL"/>
+        <result property="tipoMomentoDialogo" column="C_MOMENTODIALOGO"/>
+        <result property="version" column="N_VERSION"/>
+        <result property="indicador" column="C_INDVIGENTE"/>
+        <result property="inversionInvolucrada" column="N_INVERSIONINVOLUCRADA"/>
+        <result property="fechaInicio" column="D_FECHAINICIO"/>
+        <result property="fechaFin" column="D_FECHAFIN"/>
+        <result property="indAprobado" column="C_INDAPROBADO"/>
+        <result property="usuAprobado" column="C_USUAPROBADOR"/>
+        <result property="fechaAprobado" column="D_FECHAAPROBACION"/>
+        
+    </resultMap>  
+
+
+    <select id="casoBuscar" resultMap="casoMap" parameterType="caso">
+        SELECT 
+        A.* 
+        FROM SIMCO_REG_CASO A
+        <where>
+            A.C_ESTADOREGISTRO = 'PEN' 
+            <if test="nombre != null">
+                AND A.C_NOMCASO like #{nombre}
+            </if>
+            <if test="descripcionPreliminar != null">
+                AND A.C_DESCPRELIMCASO=#{descripcionPreliminar}
+            </if>
+            <if test="id != null">
+                AND A.N_ID_CASO=#{id}
+            </if>
+            <if test="usuarioRegistro != null">
+                AND A.C_USUREGISTRO=#{usuarioRegistro}
+            </if>
+            AND A.C_INDVIGENTE= 'A'
+        </where>
+        ORDER BY A.N_ID_CASO
+    </select>
+    
+    <select id="casoBuscarOne" resultMap="casoMap" parameterType="long">
+        SELECT 
+        *
+        FROM SIMCO_REG_CASO A
+        <where>
+            A.C_ESTADOREGISTRO = 'PEN' 
+            AND A.N_ID_CASO=#{id}
+        </where>
+    </select>
+    
+
+    <insert id="casoInsertar" parameterType="caso">
+        INSERT INTO SIMCO_REG_CASO
+        (
+        N_ID_CASO,
+        <if test="descripcionPreliminar != null">
+            C_DESCPRELIMCASO,
+        </if>
+        <if test="tipo != null">
+            C_TIPOCASO,
+        </if>
+        <if test="justificacion != null">
+            C_JUSTIFICACION,
+        </if>
+        <if test="observaciones != null">
+            C_OBSERVACIONES,
+        </if>
+        <if test="estadoRegistro != null">
+            C_ESTADOREGISTRO,
+        </if>
+        <if test="creacion != null">
+            D_FECHACREACION,
+        </if>
+        <if test="fechaPublicacion != null">
+            D_FECHAPUBLICACION,
+        </if>
+        <if test="modificacion != null">
+            D_FECHAMODIFICACION,
+        </if>
+        <if test="tipoEstado != null">
+            C_TIPOESTADO,
+        </if>
+        <if test="tipoAsunto != null">
+            C_TIPOASUNTO,
+        </if>
+        <if test="adjuntiaDefensorial != null">
+            C_ADJUNTIADEFENSORIAL,
+        </if>
+        <if test="usuarioRegistro != null">
+            C_USUREGISTRO,
+        </if>
+        <if test="usuarioModificacion != null">
+            C_USUMODIFICACION,
+        </if>
+        <if test="codigo != null">
+            C_CODIGOCASO,
+        </if>
+        <if test="tipoDialogo != null">
+            C_TIPODIALOGO,
+        </if>
+        <if test="tipoMecanismo != null">
+            C_TIPOMECANISMO,
+        </if>
+        <if test="tipoParticipacionCaso != null">
+            C_TIPOPARTICIPACION,
+        </if>
+        <if test="idDepartamento != null">
+            C_IDDEPART,
+        </if>
+        <if test="idProvincia != null">
+            C_IDPROV,
+        </if>
+        <if test="idDistrito != null">
+            C_IDDISTR,
+        </if>
+        <if test="subTipo != null">
+            C_SUBTIPOCASO,
+        </if>
+        <if test="primerNivel != null">
+            C_PRIMERNIVEL,
+        </if>
+        <if test="segundoNivel != null">
+            C_SEGUNDONIVEL,
+        </if>
+        <if test="tercerNivel != null">
+            C_TERCERNIVEL,
+        </if>
+        <if test="tipoMomentoDialogo != null">
+            C_MOMENTODIALOGO,
+        </if>
+        <if test="version != null">
+            N_VERSION,
+        </if>
+        <if test="indicador != null">
+            C_INDVIGENTE,
+        </if>
+        <if test="inversionInvolucrada != null">
+            N_INVERSIONINVOLUCRADA,
+        </if>
+        <if test="fechaInicio != null">
+            D_FECHAINICIO,
+        </if>
+        <if test="fechaFin != null">
+            D_FECHAFIN,
+        </if>
+        <if test="indAprobado != null">
+            C_INDAPROBADO,
+        </if>
+        <if test="usuAprobado != null">
+            C_USUAPROBADOR,
+        </if>
+        <if test="fechaAprobado != null">
+            D_FECHAAPROBACION,
+        </if>
+         C_NOMCASO
+        )
+        VALUES 
+        (
+        SEQ_SIMCO_REG_CASO.NextVal,
+        <if test="descripcionPreliminar != null">
+            #{descripcionPreliminar},
+        </if>
+        <if test="tipo != null">
+            #{tipo},
+        </if>
+        <if test="justificacion != null">
+            #{justificacion},
+        </if>
+        <if test="observaciones != null">
+            #{observaciones},
+        </if>
+        <if test="estadoRegistro != null">
+            #{estadoRegistro},
+        </if>
+        <if test="creacion != null">
+            #{creacion},
+        </if>
+        <if test="fechaPublicacion != null">
+            #{fechaPublicacion},
+        </if>
+        <if test="modificacion != null">
+            #{modificacion},
+        </if>
+        <if test="tipoEstado != null">
+            #{tipoEstado},
+        </if>
+        <if test="tipoAsunto != null">
+            #{tipoAsunto},
+        </if>
+        <if test="adjuntiaDefensorial != null">
+            #{adjuntiaDefensorial},
+        </if>
+        <if test="usuarioRegistro != null">
+            #{usuarioRegistro},
+        </if>
+        <if test="usuarioModificacion != null">
+            #{usuarioModificacion},
+        </if>
+        <if test="codigo != null">
+            #{codigo},
+        </if>
+        <if test="tipoDialogo != null">
+            #{tipoDialogo},
+        </if>
+        <if test="tipoMecanismo != null">
+            #{tipoMecanismo},
+        </if>
+        <if test="tipoParticipacionCaso != null">
+            #{tipoParticipacionCaso},
+        </if>
+        <if test="idDepartamento != null">
+            #{idDepartamento},
+        </if>
+        <if test="idProvincia != null">
+            #{idProvincia},
+        </if>
+        <if test="idDistrito != null">
+            #{idDistrito},
+        </if>
+        <if test="subTipo != null">
+            #{subTipo},
+        </if>
+        <if test="primerNivel != null">
+            #{primerNivel},
+        </if>
+        <if test="segundoNivel != null">
+            #{segundoNivel},
+        </if>
+        <if test="tercerNivel != null">
+            #{tercerNivel},
+        </if>
+        <if test="tipoMomentoDialogo != null">
+            #{tipoMomentoDialogo},
+        </if>
+        <if test="version != null">
+            #{version},
+        </if>
+        <if test="indicador != null">
+            #{indicador},
+        </if>
+        <if test="inversionInvolucrada != null">
+            #{inversionInvolucrada},
+        </if>
+        <if test="fechaInicio != null">
+            #{fechaInicio},
+        </if>
+        <if test="fechaFin != null">
+            #{fechaFin},
+        </if>
+        <if test="indAprobado != null">
+            #{indAprobado},
+        </if>
+        <if test="usuAprobado != null">
+            #{usuAprobado},
+        </if>
+        <if test="fechaAprobado != null">
+            #{fechaAprobado},
+        </if>
+        #{nombre}
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_CASO.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+    
+    <update id="casoUpdateSistesis" parameterType="caso">
+        UPDATE SIMCO_REG_CASO
+        <set>
+            <if test="sintesisAnalisis != null">
+                C_SISTESISANALISIS = #{sintesisAnalisis}
+            </if>
+            </set>
+        <where>
+            N_ID_CASO=#{id}
+        </where>
+    </update>
+    
+    <update id="casoUpdateAprobar" parameterType="caso">
+        UPDATE SIMCO_REG_CASO
+        <set>
+                C_INDAPROBADO = #{indAprobado},
+                C_USUAPROBADOR = #{usuAprobado},
+                D_FECHAAPROBACION = #{fechaAprobado},
+                C_CODIGOCASO = #{codigo},
+                C_TIPOESTADO = #{tipoEstado},
+                D_FECHAPUBLICACION =#{fechaPublicacion}
+            </set>
+        <where>
+            N_ID_CASO=#{id}
+        </where>
+    </update>
+    
+    <update id="casoUpdate" parameterType="caso">
+        UPDATE SIMCO_REG_CASO
+        <set>
+            <if test="descripcionPreliminar != null">
+                C_DESCPRELIMCASO = #{descripcionPreliminar},
+            </if>
+            <if test="tipo != null">
+                C_TIPOCASO = #{tipo},
+            </if>
+            <if test="justificacion != null">
+                C_JUSTIFICACION = #{justificacion},
+            </if>
+            <if test="observaciones != null">
+                C_OBSERVACIONES = #{observaciones},
+            </if>
+            <if test="estadoRegistro != null">
+                C_ESTADOREGISTRO = #{estadoRegistro},
+            </if>
+            <if test="creacion != null">
+                D_FECHACREACION = #{creacion},
+            </if>
+            <if test="modificacion != null">
+                D_FECHAMODIFICACION = #{modificacion},
+            </if>
+            <if test="usuarioModificacion != null">
+                C_USUMODIFICACION = #{usuarioModificacion},
+            </if>
+            <if test="tipoEstado != null">
+                C_TIPOESTADO = #{tipoEstado},
+            </if>
+            <if test="tipoAsunto != null">
+                C_TIPOASUNTO = #{tipoAsunto},
+            </if>
+            <if test="adjuntiaDefensorial != null">
+                C_ADJUNTIADEFENSORIAL = #{adjuntiaDefensorial},
+            </if>
+            <if test="sintesisAnalisis != null">
+                C_SISTESISANALISIS = #{sintesisAnalisis},
+            </if>
+            <if test="tipoDialogo != null">
+                C_TIPODIALOGO = #{tipoDialogo},
+            </if>
+            <if test="tipoMecanismo != null">
+                C_TIPOMECANISMO = #{tipoMecanismo},
+            </if>
+            <if test="tipoParticipacionCaso != null">
+                C_TIPOPARTICIPACION = #{tipoParticipacionCaso},
+            </if>
+            <if test="idDepartamento != null">
+                C_IDDEPART = #{idDepartamento},
+            </if>
+            <if test="idProvincia != null">
+                C_IDPROV = #{idProvincia},
+            </if>
+            <if test="idDistrito != null">
+                C_IDDISTR = #{idDistrito},
+            </if>
+            <if test="subTipo != null">
+                C_SUBTIPOCASO = #{subTipo},
+            </if>
+            <if test="primerNivel != null">
+                C_PRIMERNIVEL = #{primerNivel},
+            </if>
+            <if test="segundoNivel != null">
+                C_SEGUNDONIVEL = #{segundoNivel},
+            </if>
+            <if test="tercerNivel != null">
+                C_TERCERNIVEL = #{tercerNivel},
+            </if>
+            <if test="tipoMomentoDialogo != null">
+                C_MOMENTODIALOGO = #{tipoMomentoDialogo},
+            </if>
+            <if test="inversionInvolucrada != null">
+                N_INVERSIONINVOLUCRADA = #{inversionInvolucrada},
+            </if>
+            <if test="fechaInicio != null">
+            D_FECHAINICIO = #{fechaInicio},
+        </if>
+        <if test="fechaFin != null">
+            D_FECHAFIN = #{fechaFin},
+        </if>
+            C_NOMCASO=#{nombre}
+        </set>
+        <where>
+            N_ID_CASO=#{id}
+        </where>
+    </update>
+    
+    <update id="casoUpdateIndicador" parameterType="caso">
+        UPDATE SIMCO_REG_CASO
+        <set>
+            C_INDVIGENTE = 'I'
+        </set>
+        <where>
+            N_ID_CASO=#{id}
+        </where>
+    </update>
+ 
+    <select id="casoxActividadBuscar" resultMap="casoMap" parameterType="long">
+        SELECT 
+        A.N_ID_CASO,
+        A.C_NOMCASO,
+        A.C_DESCPRELIMCASO
+        FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B
+        ON A.N_ID_CASO = B.N_ID_CASO
+        WHERE B.N_ID_ACTIVIDAD =#{id}
+        AND B.C_ESTADOACTCASO = 'ACT'
+    </select>
+    
+    <select id="casoxActividadBuscarTotal" resultMap="casoMap" parameterType="long">
+        SELECT 
+        A.N_ID_CASO,
+        A.C_NOMCASO,
+        A.C_DESCPRELIMCASO,
+        B.C_ESTADOACTCASO
+        FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B
+        ON A.N_ID_CASO = B.N_ID_CASO
+        WHERE B.N_ID_ACTIVIDAD =#{id}
+    </select>
+    
+    <select id="casoCodigoGenerado" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_CASO
+        WHERE C_INDVIGENTE = 'A'
+        AND TO_CHAR(D_FECHACREACION, 'MM') = TO_CHAR(SYSDATE, 'MM')
+    </select>
+    
+    <select id="casoxActaAcuerdoDetalle" resultMap="casoMap" parameterType="long" >
+        SELECT E.* FROM SIMCO_REG_DET_ACTA_ACUERDO A
+        INNER JOIN SIMCO_REG_ACTA_ACUERDO B ON B.N_ID_ACTA = A.N_ID_ACTA
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C ON B.N_ID_ACTA = C.N_ID_ACTA
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD AND D.C_ESTADOACTCASO = 'ACT'
+        INNER JOIN SIMCO_REG_CASO E ON D.N_ID_CASO = E.N_ID_CASO AND E.C_INDVIGENTE = 'A'
+        WHERE A.N_ID_ACUERDO = #{id}
+    </select>
+    
+    <select id="buscarCasoXnombreCodigo" resultMap="casoMap" parameterType="filtroCaso">
+        SELECT distinct A.*
+        FROM (
+        SELECT B.*,
+        ROWNUM numfila
+        FROM (
+        SELECT  D.*
+        FROM SIMCO_REG_CASO D WHERE  D.C_INDVIGENTE = 'A'
+        ) B
+        ) A WHERE a.numfila BETWEEN #{ini} AND #{fin}
+        AND UPPER(A.C_CODIGOCASO||A.C_NOMCASO) LIKE '%'||UPPER(#{nombre})||'%'
+       
+    </select>
+    
+    <select id="reporteCaso" resultMap="casoMap" parameterType="filtroReporte">
+        SELECT * FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND D_FECHAPUBLICACION IS NOT NULL
+        <if test="listaDepartamentosSize != null">
+            AND N_IDDEPART IN
+            <foreach item="item" index="index" collection="listaDepartamentos"
+           open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="listaAnhosSize != null">
+            AND TO_CHAR(D_FECHAPUBLICACION, 'YYYY')  IN
+            <foreach item="item" index="index" collection="listaAnhos"
+           open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="listaMesesSize != null">
+            AND TO_CHAR(D_FECHAPUBLICACION, 'MM')  IN
+            <foreach item="item" index="index" collection="listaMeses"
+           open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="clasificacion != 0">
+            AND C_TIPOESTADO = #{clasificacion}
+        </if>
+    </select>
+    
+    
+    <select id="listadoCasosEstadoMes" resultMap="casoMap" parameterType="filtroReporte">
+        SELECT * FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND TO_CHAR(D_FECHAMODIFICACION, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAMODIFICACION, 'MM') = #{mes}
+        AND C_TIPOESTADO = #{tipoEstadoCaso}
+    </select>
+    
+    <select id="listaCasosAntesDeAprobado" resultMap="casoMap" parameterType="String">
+        SELECT * FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDAPROBADO = 'A' AND C_INDVIGENTE = 'I'
+        AND C_CODIGOCASO = #{value} ORDER BY N_ID_CASO DESC
+    </select>
+    
+</mapper>

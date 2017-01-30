@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.intervencion.dao.IntervencionHistorialActDao">
+
+    <resultMap id="intervencionHistorialActMap" type="intervencionHistorialAct">
+        <id property="id" column="N_ID_HIST_INTER" />
+        <result property="tipo" column="N_TIPO"/>
+        <result property="descripcion" column="C_DESCRIPCION" />
+        <result property="usuario" column="C_USUARIO"/>
+        <result property="fecha" column="D_FECHA"/>
+        <result property="idEtapa" column="N_ID_ETAPA"/>
+    </resultMap>
+    
+    <insert id="intervencionHistorialActInsertar" parameterType="intervencionHistorialAct">
+        INSERT INTO SIMCO_HIST_INTER_ETAPA
+        (
+        N_ID_HIST_INTER,
+        C_DESCRIPCION,
+        C_USUARIO,
+        D_FECHA,
+        N_ID_ETAPA
+        )
+        VALUES
+        (SEQ_SIMCO_HIST_INTER_ACT.NextVal,
+        #{descripcion},
+        #{usuario},
+        #{fecha},
+        #{idEtapa}
+        ) 
+    </insert>
+
+    <select id="intervencionHistorialActBuscar" resultMap="intervencionHistorialActMap" parameterType="long">
+        SELECT 
+            N_ID_HIST_INTER,
+            C_DESCRIPCION,
+            C_USUARIO,
+            D_FECHA
+        FROM SIMCO_HIST_INTER_ETAPA
+        WHERE N_ID_ETAPA = #{id}
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.reporte.dao.ReporteSimcoActorDao">
+    
+    <resultMap id="reporteSimcoActorMap" type="reporteSimcoActor">
+        <result property="nombreActor" column="NOMACTOR"/>
+        <result property="tipoActor" column="C_TIPOGENERAL"/>
+        <result property="nombreDepartamento" column="C_DESCDPTO"/>
+        <result property="nombreProvincia" column="C_DESCPROV"/>
+        <result property="nombreDistrito" column="C_DESCDSTRO"/>
+        <result property="idActor" column="N_ID_ACTOR"/>
+        <result property="documento" column="C_DNIACTOR"/>
+        <result property="ruc" column="C_RUCACTOR"/>
+        
+        <result property="tipoPoblacion" column="DES_TIPOPOBLACION"/>
+        <result property="subTipo1Poblacion" column="DES_SUBTIPO1POBLACION"/>
+        <result property="subTipo2Poblacion" column="DES_SUBTIPO2POBLACION"/>
+        <result property="tipoEmpresa" column="DES_TIPOEMPRESA"/>
+        <result property="subTipo1Empresa" column="DES_SUBTIPO1EMPRESA"/>
+        <result property="subTipo2Empresa" column="DES_SUBTIPO2EMPRESA"/>
+        <result property="subTipo3Empresa" column="DES_SUBTIPO3EMPRESA"/>
+        <result property="tipoOrganizacion" column="DES_TIPOORGANIZACION"/>
+        <result property="subTipo1Organizacion" column="DES_SUBTIPO1ORGANIZACION"/>
+        <result property="subTipo2Organizacion" column="DES_SUBTIPO2ORGANIZACION"/>
+        <result property="tipoEntidad" column="DES_TIPOESTADO"/>
+        <result property="subTipo1Entidad" column="DES_SUBTIPO1ESTADO"/>
+        <result property="subTipo2Entidad" column="DES_SUBTIPO2ESTADO"/>
+        <result property="clasificacion" column="C_CLASIFICACION"/>
+        <result property="empresaAmbito" column="DES_EMPRESAAMBITO"/>
+        <result property="sexo" column="C_SEXO"/>
+    </resultMap>      
+
+    <select id="reporteActor" parameterType="reporteSimcoActor"  resultMap="reporteSimcoActorMap">
+        SELECT DISTINCT A.C_NOMACTOR||' '||nvl(A.C_APELLIDOPATACTOR, '')||' '||nvl(A.C_APELLIDOMATACTOR, '') NOMACTOR, A.C_TIPOGENERAL, 
+        B.C_DESCDPTO, A.N_ID_ACTOR, A.C_DNIACTOR, A.C_RUCACTOR, M1.C_NOMBREPARAMETRO DES_TIPOPOBLACION, M2.C_NOMBREPARAMETRO DES_SUBTIPO1POBLACION, 
+        M3.C_NOMBREPARAMETRO DES_SUBTIPO2POBLACION, M7.C_NOMBREPARAMETRO DES_TIPOORGANIZACION,  M8.C_NOMBREPARAMETRO DES_SUBTIPO1ORGANIZACION,  
+        M9.C_NOMBREPARAMETRO DES_SUBTIPO2ORGANIZACION, M10.C_NOMBREPARAMETRO DES_TIPOEMPRESA, M11.C_NOMBREPARAMETRO DES_SUBTIPO1EMPRESA, 
+        M12.C_NOMBREPARAMETRO DES_SUBTIPO2EMPRESA,M13.C_NOMBREPARAMETRO DES_SUBTIPO3EMPRESA, M4.C_NOMBREPARAMETRO DES_TIPOESTADO, M5.C_NOMBREPARAMETRO DES_SUBTIPO1ESTADO, 
+        M6.C_NOMBREPARAMETRO DES_SUBTIPO2ESTADO, A.C_CLASIFICACION, F.NOMBRE_PARAMETRO DES_EMPRESAAMBITO, A.C_SEXO, G.C_DESCPROV, H.C_DESCDSTRO  
+        FROM SIMCO_REG_ACTOR A 
+        LEFT JOIN SIMCO_UBIGEO_DPTO B ON A.C_IDDEPARTAMENTO = B.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_PROV G ON A.C_IDPROVINCIA = G.C_ID_PROV AND A.C_IDDEPARTAMENTO = G.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_DSTRO H ON A.C_IDDISTRITO = H.C_ID_DSTRO AND A.C_IDDEPARTAMENTO = H.C_ID_DPTO AND A.C_IDPROVINCIA = H.C_ID_PROV
+        LEFT JOIN SIMCO_REG_ACTIVIDAD_ACTOR C ON A.N_ID_ACTOR = C.N_ID_ACTOR
+        LEFT JOIN SIMCO_REG_CASO_ACTIVIDAD D ON C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
+        LEFT JOIN SIMCO_REG_CASO E ON D.N_ID_CASO = E.N_ID_CASO AND E.C_INDVIGENTE= 'A'
+        LEFT JOIN (
+        SELECT A2.C_TIPOACONTECIMIENTO, B2.N_ID_CASO, A2.N_ID_ACTIVIDAD FROM SIMCO_REG_ACTIVIDAD A2
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B2 ON A2.N_ID_ACTIVIDAD = B2.N_ID_ACTIVIDAD
+        ) F ON E.N_ID_CASO = F.N_ID_CASO
+        LEFT JOIN SIMCO_MAESTROS M1 ON A.C_TIPOPOBLACION = M1.C_VALORPARAMETRO AND M1.N_GRUPO = 1
+        LEFT JOIN SIMCO_MAESTROS M2 ON A.C_SUBTIPO1POBLACION = M2.C_VALORPARAMETRO AND M2.N_GRUPO = 2
+        LEFT JOIN SIMCO_MAESTROS M3 ON A.C_SUBTIPO2POBLACION = M3.C_VALORPARAMETRO AND M3.N_GRUPO = 3
+        LEFT JOIN SIMCO_MAESTROS M4 ON A.C_TIPOESTADO = M4.C_VALORPARAMETRO AND M4.N_GRUPO = 4
+        LEFT JOIN SIMCO_MAESTROS M5 ON A.C_SUBTIPO1ESTADO = M5.C_VALORPARAMETRO AND M5.N_GRUPO = 5
+        LEFT JOIN SIMCO_MAESTROS M6 ON A.C_SUBTIPO2ESTADO = M6.C_VALORPARAMETRO AND M6.N_GRUPO = 6
+        LEFT JOIN SIMCO_MAESTROS M7 ON A.C_TIPOORGANIZACION = M7.C_VALORPARAMETRO AND M7.N_GRUPO = 7
+        LEFT JOIN SIMCO_MAESTROS M8 ON A.C_SUBTIPO1ORGANIZACION = M8.C_VALORPARAMETRO AND M8.N_GRUPO = 8
+        LEFT JOIN SIMCO_MAESTROS M9 ON A.C_SUBTIPO2ORGANIZACION = M9.C_VALORPARAMETRO AND M9.N_GRUPO = 9
+        LEFT JOIN SIMCO_MAESTROS M10 ON A.C_TIPOEMPRESA = M10.C_VALORPARAMETRO AND M10.N_GRUPO = 10
+        LEFT JOIN SIMCO_MAESTROS M11 ON A.C_SUBTIPO1EMPRESA = M11.C_VALORPARAMETRO AND M11.N_GRUPO = 11
+        LEFT JOIN SIMCO_MAESTROS M12 ON A.C_SUBTIPO2EMPRESA = M12.C_VALORPARAMETRO AND M12.N_GRUPO = 12
+        LEFT JOIN SIMCO_MAESTROS M13 ON A.C_SUBTIPO3EMPRESA = M13.C_VALORPARAMETRO AND M13.N_GRUPO = 13
+        LEFT JOIN SIMCO_PARAMETRO F ON F.VALOR_PARAMETRO = A.C_EMPRESAAMBITO AND F.PADRE_PARAMETRO = 170
+        WHERE 1 = 1 
+        <if test="anho != null">
+            AND TO_CHAR(E.D_FECHACREACION, 'YYYY') = TO_CHAR(#{anho}) 
+        </if>
+        <if test="codigoCaso != ''">
+            AND E.C_CODIGOCASO = #{codigoCaso}
+        </if>
+        <if test="tipologia != null">
+            AND E.C_TIPOCASO = #{tipologia} 
+        </if>
+        <if test="idRegion != null">
+            AND E.C_IDDEPART = #{idRegion} 
+        </if>
+        <if test="estado != null">
+            AND E.C_TIPOESTADO = #{estado} 
+        </if>
+        <if test="tipoAcontecimiento != null">
+            AND F.C_TIPOACONTECIMIENTO = #{tipoAcontecimiento} 
+        </if>
+        <if test="idActor != null">
+            AND A.N_ID_ACTOR = #{idActor} 
+        </if>
+        <if test="tipoActor != ''">
+            AND A.C_TIPOGENERAL = #{tipoActor} 
+        </if>
+        <if test="inversionInvolucrada != null">
+            AND E.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
+        </if>
+    </select>
+    
+    <select id="contarActorAcontecimiento" resultType="java.lang.Integer" parameterType="Long">
+        SELECT COUNT(DISTINCT A.N_ID_ACTIVIDAD) FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE A.C_TIPO = 'AC' AND B.N_ID_ACTOR = #{id}
+    </select>
+    
+    <select id="contarActorAcontecimientoProtesta" resultType="java.lang.Integer" parameterType="Long">
+        SELECT COUNT(DISTINCT A.N_ID_ACTIVIDAD) FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE A.C_TIPO = 'AC' AND A.C_TIPOACONTECIMIENTO IN ('01','02','03','04','05','06','07','08') AND B.N_ID_ACTOR = #{id}
+    </select>
+    
+    <select id="contarActorAcontecimientoProtestaViolencia" resultType="java.lang.Integer" parameterType="Long">
+        SELECT COUNT(DISTINCT A.N_ID_ACTIVIDAD) FROM SIMCO_REG_ACTIVIDAD A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR B ON A.N_ID_ACTIVIDAD = B.N_ID_ACTIVIDAD
+        WHERE A.C_TIPO = 'AC' AND A.C_TIPOACONTECIMIENTO IN ('01','02','03','04','05','06','07','08') AND B.N_ID_ACTOR = #{id}
+        AND A.C_RESULTADOVIOLENCIA IS NOT NULL
+    </select>
+    
+    
+    <select id="contarActorAcuerdoComprometido" resultType="java.lang.Integer" parameterType="Long">
+        SELECT COUNT(N_ID_ACUERDO) FROM SIMCO_REG_ACTOR_ACUERDO WHERE N_ID_ACTOR = #{id}
+        AND C_INDTIPOACTORACUERDO = 'INI'
+    </select>
+    
+    <select id="contarActorAcuerdoBeneficiario" resultType="java.lang.Integer" parameterType="Long">
+        SELECT COUNT(N_ID_ACUERDO) FROM SIMCO_REG_ACTOR_ACUERDO WHERE N_ID_ACTOR = #{id}
+        AND C_INDTIPOACTORACUERDO = 'FIN'
+    </select>
+    
+    <select id="contarCasosPorActor" resultType="java.lang.Integer" parameterType="Long">
+        SELECT COUNT(DISTINCT A.C_CODIGOCASO) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO AND A.C_INDVIGENTE = 'A'
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        WHERE C.N_ID_ACTOR = #{id}
+    </select>
+    
+    <select id="contarCasosPorActorParticipacion" resultType="java.lang.Integer"  parameterType="casoActor">
+        SELECT COUNT(DISTINCT A.C_CODIGOCASO) FROM SIMCO_REG_CASO A
+        INNER JOIN SIMCO_REG_CASO_ACTIVIDAD B ON A.N_ID_CASO = B.N_ID_CASO AND A.C_INDVIGENTE = 'A'
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTOR C ON B.N_ID_ACTIVIDAD = C.N_ID_ACTIVIDAD
+        INNER JOIN SIMCO_REG_CASO_ACTOR D ON D.N_ID_ACTOR = C.N_ID_ACTOR AND D.N_ID_CASO = A.N_ID_CASO
+        WHERE C.N_ID_ACTOR = #{idActor} AND D.C_TIPO = #{tipo}
+    </select>
+    
+    
+    
+</mapper>

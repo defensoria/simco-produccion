@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.analisis.dao.AnalisisActorIntensidadDao">
+    
+    <resultMap id="analisisActorIntensidadMap" type="analisisActorIntensidad">
+        <result property="caso.id" column="N_ID_CASO"/>
+        <result property="actor.id" column="N_ID_ACTOR"/>
+        <result property="nivel" column="N_NIVELINTENSIDAD"/>
+        <result property="usuarioRegistro" column="C_USUARIOREGISTRO"/>
+        <result property="fechaRegistro" column="D_FECHAREGISTRO"/>
+    </resultMap>  
+    
+    <insert id="analisisActorIntensidadInsertar" parameterType="analisisActorIntensidad">
+        INSERT INTO SIMCO_ANALISIS_ACT_INTENSIDAD
+        (
+        N_ID_CASO,
+        N_ID_ACTOR,
+        N_NIVELINTENSIDAD,
+        <if test="usuarioRegistro != null">
+            C_USUARIOREGISTRO,
+        </if>
+        D_FECHAREGISTRO
+        )
+        VALUES 
+        (
+        #{caso.id},
+        #{actor.id},
+        #{nivel},
+        <if test="usuarioRegistro != null">
+            #{usuarioRegistro},
+        </if>
+        #{fechaRegistro}
+        )
+    </insert>
+    
+    <select id="analisisActorIntensidadBuscar" resultMap="analisisActorIntensidadMap" parameterType="long">
+        SELECT 
+            N_ID_CASO,
+            N_ID_ACTOR,
+            N_NIVELINTENSIDAD
+        FROM SIMCO_ANALISIS_ACT_INTENSIDAD
+        WHERE N_ID_CASO = #{id}
+    </select>
+    
+    
+    <update id="analisisActorIntensidadUpdate" parameterType="analisisActorIntensidad">
+        UPDATE SIMCO_ANALISIS_ACT_INTENSIDAD
+        <set>
+            N_NIVELINTENSIDAD = #{nivel}
+        </set>
+        <where>
+            N_ID_CASO = #{caso.id} AND
+            N_ID_ACTOR = #{actor.id}
+        </where>
+    </update>
+    
+    <select id="analisisActorIntensidadBuscarUno" resultType="java.lang.Integer" parameterType="analisisActorIntensidad">
+        SELECT COUNT(*)
+        FROM SIMCO_ANALISIS_ACT_INTENSIDAD
+        WHERE N_ID_CASO = #{caso.id}
+        AND N_ID_ACTOR = #{actor.id}
+    </select>
+    
+</mapper>

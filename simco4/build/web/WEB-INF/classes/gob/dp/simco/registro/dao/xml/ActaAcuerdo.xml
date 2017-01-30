@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="gob.dp.simco.registro.dao.ActaAcuerdoDao">
+
+    <resultMap id="actaAcuerdoMap" type="actaAcuerdo">
+        <id property="id" column="N_ID_ACTA" />
+        <result property="descripcionItem" column="C_DESCITEM"/>
+        <result property="fechaRegistro" column="D_REGISTROACTA"/>
+        <result property="comentario" column="C_COMENTACTA"/>
+        <result property="codigo" column="C_CODIGOACTA"/>
+        <result property="tipo" column="C_TIPO_REGISTRO"/>
+        <result property="ruta" column="C_RUTA"/>
+        <result property="actividadActaAcuerdo.estado" column="C_ESTADOACTIACTA"/>
+    </resultMap>     
+
+    <sql id="sqlBuscarActaAcuerdo">
+        SELECT 
+        A.N_ID_ACTA,
+        A.C_DESCITEM,
+        A.D_REGISTROACTA,
+        A.C_COMENTACTA,
+        A.C_CODIGOACTA,
+        A.C_RUTA,
+        B.NOMBRE_PARAMETRO AS PARAMENTRO_TIPO_ACTA
+        FROM SIMCO_REG_ACTA_ACUERDO A
+        INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPO_REGISTRO = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 30
+        <where>
+            <if test="descripcionItem != null">
+                A.C_DESCITEM=#{descripcionItem}
+            </if>
+            <if test="id != null">
+                A.N_ID_ACTA=#{id}
+            </if>
+        </where>
+    </sql>
+
+    <select id="actaAcuerdoBuscarOne" resultMap="actaAcuerdoMap" parameterType="actaAcuerdo">
+        <include refid="sqlBuscarActaAcuerdo"/>
+    </select>
+
+    <insert id="actaAcuerdoInsertar" parameterType="actaAcuerdo">
+        INSERT INTO SIMCO_REG_ACTA_ACUERDO
+        (
+        <if test="descripcionItem != null">
+            C_DESCITEM,
+        </if>
+        <if test="fechaRegistro != null">
+            D_REGISTROACTA,
+        </if>
+        <if test="comentario != null">
+            C_COMENTACTA,
+        </if>
+        <if test="codigo != null">
+            C_CODIGOACTA,
+        </if>
+        <if test="ruta != null">
+            C_RUTA,
+        </if>
+        <if test="tipo != null">
+            C_TIPO_REGISTRO,
+        </if>
+        N_ID_ACTA
+        )
+        VALUES 
+        (
+        <if test="descripcionItem != null">
+            #{descripcionItem},
+        </if>
+        <if test="fechaRegistro != null">
+            #{fechaRegistro},
+        </if>
+        <if test="comentario != null">
+            #{comentario},
+        </if>
+        <if test="codigo != null">
+            #{codigo},
+        </if>
+        <if test="ruta != null">
+            #{ruta},
+        </if>
+        <if test="tipo != null">
+            #{tipo},
+        </if>
+        SEQ_SIMCO_REG_ACTA_ACUERDO.NextVal
+        )
+    
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT SEQ_SIMCO_REG_ACTA_ACUERDO.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+    <update id="actaAcuerdoUpdate" parameterType="actaAcuerdo">
+        UPDATE SIMCO_REG_ACTA_ACUERDO
+        <set>
+            <if test="descripcionItem != null">
+                C_DESCITEM = #{descripcionItem},
+            </if>
+            <if test="fechaRegistro != null">
+                D_REGISTROACTA = #{fechaRegistro},
+            </if>
+            <if test="comentario != null">
+                C_COMENTACTA = #{comentario},
+            </if>
+            <if test="ruta != null">
+                C_RUTA = #{ruta},
+            </if>
+            <if test="tipo != null">
+                C_TIPO_REGISTRO = #{tipo}
+            </if>
+        </set>
+        <where>
+            N_ID_ACTA=#{id}
+        </where>
+    </update>
+ 
+    <select id="actaAcuerdoxActividadBuscar" resultMap="actaAcuerdoMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTA,
+        A.C_DESCITEM,
+        A.D_REGISTROACTA,
+        A.C_COMENTACTA,
+        A.C_CODIGOACTA,
+        A.C_RUTA,
+        B.NOMBRE_PARAMETRO AS PARAMENTRO_TIPO_ACTA 
+        FROM SIMCO_REG_ACTA_ACUERDO A
+        INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPO_REGISTRO = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 30
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C ON A.N_ID_ACTA = C.N_ID_ACTA
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+        AND C.C_ESTADOACTIACTA = 'ACT' 
+    </select>
+    
+    
+    <select id="actaAcuerdoxActividadBuscarOne" resultMap="actaAcuerdoMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTA,
+        A.C_DESCITEM,
+        A.D_REGISTROACTA,
+        A.C_COMENTACTA,
+        A.C_CODIGOACTA,
+        A.C_RUTA,  
+        A.C_TIPO_REGISTRO
+        FROM SIMCO_REG_ACTA_ACUERDO A
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C ON A.N_ID_ACTA = C.N_ID_ACTA
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+        AND C.C_ESTADOACTIACTA = 'ACT' 
+    </select>
+    
+    <select id="actaAcuerdoxActividadBuscarTotal" resultMap="actaAcuerdoMap" parameterType="long">
+        SELECT 
+        A.N_ID_ACTA,
+        A.C_DESCITEM,
+        A.D_REGISTROACTA,
+        A.C_COMENTACTA,
+        A.C_RUTA, 
+        A.C_CODIGOACTA,
+        B.NOMBRE_PARAMETRO AS PARAMENTRO_TIPO_ACTA,
+        C.C_ESTADOACTIACTA  
+        FROM SIMCO_REG_ACTA_ACUERDO A
+        INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPO_REGISTRO = B.VALOR_PARAMETRO
+        AND B.PADRE_PARAMETRO = 30
+        INNER JOIN SIMCO_REG_ACTIVIDAD_ACTAS C ON A.N_ID_ACTA = C.N_ID_ACTA
+        WHERE C.N_ID_ACTIVIDAD =#{id}
+    </select>
+    
+    <select id="actaAcuerdoCodigoGenerado" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM SIMCO_REG_ACTA_ACUERDO
+        WHERE TO_CHAR(D_REGISTROACTA, 'YYYYMM') = TO_CHAR(SYSDATE,  'YYYYMM')
+    </select>
+
+</mapper>
