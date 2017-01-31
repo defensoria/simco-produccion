@@ -52,10 +52,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import javax.faces.context.ExternalContext;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -700,8 +702,26 @@ public class CasoController extends AbstractManagedBean implements Serializable 
         lista.add(vo);
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
                 lista);
-        jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "documentoCaso.jasper",
-                new HashMap(), beanCollectionDataSource);
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        HttpServletRequest  request = (HttpServletRequest)ec.getRequest();
+	String path = request.getPathTranslated();
+        System.out.println(retornapath(retornapath(path)).concat("/jasper/documentoCaso.jasper"));
+        jasperPrint = JasperFillManager.fillReport(retornapath(retornapath(path)).concat("/jasper/documentoCaso.jasper"),new HashMap(), beanCollectionDataSource);
+    }
+    
+    String retornapath(String cadena){
+        int cont=0;
+        for (int i=0;i< cadena.length();i++){
+            if("\\".equals(cadena.substring(i, i+1))){
+              //  cont++;
+               // if(cont == 2){
+                    cont = i;
+                    //break;
+                //}
+            }
+        }
+        return cadena.substring(0, cont);
     }
 
     public void pdf() throws JRException, IOException {
