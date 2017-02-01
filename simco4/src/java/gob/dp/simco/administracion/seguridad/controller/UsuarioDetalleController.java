@@ -102,6 +102,16 @@ public class UsuarioDetalleController extends AbstractManagedBean implements Ser
         return "usuarioDetalle";
     }
 
+    /*public String verDetallePerfil() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        LoginController loginController = (LoginController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "loginController");
+        Usuario usuarioSession = loginController.getUsuarioSesion();
+        UsuarioLogin usuarioLogin = new UsuarioLogin();
+        usuarioLogin.setCodigo(usuarioSession.getCodigo());
+        verDetalleUsuario(usuarioLogin);
+        return "perfil";
+    }*/
+    
     public String verDetallePerfil() {
         FacesContext context = FacesContext.getCurrentInstance();
         LoginController loginController = (LoginController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "loginController");
@@ -109,6 +119,8 @@ public class UsuarioDetalleController extends AbstractManagedBean implements Ser
         UsuarioLogin usuarioLogin = new UsuarioLogin();
         usuarioLogin.setCodigo(usuarioSession.getCodigo());
         verDetalleUsuario(usuarioLogin);
+        if(StringUtils.isNotBlank(usuario.getRuta()))
+            loginController.cambiarImagen(usuario.getRuta());
         return "perfil";
     }
 
@@ -234,7 +246,8 @@ public class UsuarioDetalleController extends AbstractManagedBean implements Ser
     }
 
     public void agregarImagen() {
-        String nameArchive = getFilename(file1);
+        if(file1 != null){
+            String nameArchive = getFilename(file1);
         String extencion = "";
         if (StringUtils.isNotBlank(nameArchive)) {
             switch (file1.getContentType()) {
@@ -252,7 +265,7 @@ public class UsuarioDetalleController extends AbstractManagedBean implements Ser
             DateFormat fechaHora = new SimpleDateFormat("yyyyMMddHHmmss");
             String formato = fechaHora.format(new Date());
             String ruta = formato + extencion;
-            File file = new File(ConstantesUtil.FILE_SYSTEM + ruta);
+            File file = new File(FILE_SYSTEM + ruta);
             try (InputStream input = file1.getInputStream()) {
                 Files.copy(input, file.toPath());
             } catch (IOException ex) {
@@ -261,6 +274,7 @@ public class UsuarioDetalleController extends AbstractManagedBean implements Ser
             usuario.setRuta("/filesystem/" + ruta);
             usuarioService.modificarUsuarioSimple(usuario);
             verDetallePerfil();
+        }
         }
     }
 

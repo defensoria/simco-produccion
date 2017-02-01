@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="documentoCaso" pageWidth="595" pageHeight="842" columnWidth="451" leftMargin="72" rightMargin="72" topMargin="36" bottomMargin="36" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="458"/>
+	<property name="ireport.y" value="156"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\u01\\simco\\reportes\\"]]></defaultValueExpression>
 	</parameter>
@@ -30,6 +30,10 @@
 	<field name="acontecimientos" class="java.util.List"/>
 	<field name="listaCasoRegiones" class="java.util.List"/>
 	<field name="imagePath" class="java.lang.String"/>
+	<field name="rutaReporte1" class="java.lang.String"/>
+	<field name="rutaReporte2" class="java.lang.String"/>
+	<field name="rutaReporte3" class="java.lang.String"/>
+	<field name="rutaReporte4" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -312,14 +316,14 @@
 			<subreport>
 				<reportElement positionType="Float" x="0" y="262" width="451" height="34" isRemoveLineWhenBlank="true" uuid="5290f845-564c-4152-9cdc-0745e0b48403"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasoRegiones})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "casoUbigeo.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte4}]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="89" splitType="Stretch">
 			<subreport runToBottom="false">
 				<reportElement positionType="Float" x="0" y="50" width="451" height="39" uuid="e4f99744-c928-4167-9d0c-c0e9b366ce17"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{actores})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "casoActor.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte2}]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement x="0" y="16" width="290" height="20" forecolor="#0033FF" uuid="c70c1ac9-51c7-4300-9913-adac5b585f15"/>
@@ -333,7 +337,7 @@
 			<subreport>
 				<reportElement x="0" y="47" width="451" height="39" uuid="1720d8fd-4649-4213-80b3-41982db5d5fa"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{actuacionesDefensoriales})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "casoActuacionDefensorial.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte3}]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement x="0" y="18" width="290" height="17" forecolor="#0033FF" uuid="5b728470-bc65-4612-9691-1d6aa5d5b52e"/>
@@ -347,7 +351,7 @@
 			<subreport>
 				<reportElement x="0" y="45" width="451" height="39" uuid="ad53ffaa-8ceb-4041-8df9-cc4de348bf6e"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{acontecimientos})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "casoAcontecimientos.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement x="0" y="15" width="290" height="19" forecolor="#0033FF" uuid="03ea8ed5-36eb-45bd-af11-2639716d7ded"/>

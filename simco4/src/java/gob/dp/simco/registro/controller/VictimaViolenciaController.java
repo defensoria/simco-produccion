@@ -231,7 +231,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
             DateFormat fechaHora = new SimpleDateFormat("yyyyMMddHHmmss");
             String formato = fechaHora.format(new Date());
             String ruta = formato + getFileExtension(getFilename(file1));
-            File file = new File(ConstantesUtil.FILE_SYSTEM + ruta);
+            File file = new File(FILE_SYSTEM + ruta);
             try (InputStream input = file1.getInputStream()) {
                 Files.copy(input, file.toPath());
             } catch (IOException ex) {

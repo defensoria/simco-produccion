@@ -479,7 +479,7 @@ public class ActaAcuerdoController extends AbstractManagedBean implements Serial
         if (StringUtils.isNoneBlank(nameArchive)) {
             String formato = RandomStringUtils.random(32, 0, 20, true, true, "qw32rfHIJk9iQ8Ud7h0X".toCharArray());
             String ruta = formato + extencion;
-            File file = new File(ConstantesUtil.FILE_SYSTEM + ruta);
+            File file = new File(FILE_SYSTEM + ruta);
             try (InputStream input = fil.getInputStream()) {
                 Files.copy(input, file.toPath());
             } catch (IOException ex) {

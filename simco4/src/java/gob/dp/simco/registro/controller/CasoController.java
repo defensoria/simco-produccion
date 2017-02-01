@@ -19,7 +19,6 @@ import gob.dp.simco.comun.entity.Provincia;
 import gob.dp.simco.comun.service.UbigeoService;
 import gob.dp.simco.registro.bean.AdjuntiaDefensorialVO;
 import gob.dp.simco.registro.bean.FiltroParametro;
-import gob.dp.simco.comun.ConstantesUtil;
 import gob.dp.simco.comun.Mail;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.Actividad;
@@ -660,7 +659,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 radvo.setDepartamento(departamen == null ? "" : departamen.getDescripcion());
                 radvo.setProvincia(provin == null ? "" : provin.getDescripcion());
                 radvo.setDistrito(distri == null ? "" : distri.getDescripcion());
-                radvo.setUrlImagen(a.getRuta() == null ? null : ConstantesUtil.BASE_URL_PRODUCCION_IMAGE + a.getRuta());
+                radvo.setImagePath(a.getRuta() == null ? null : hostAddress().concat(a.getRuta()));
                 radvos.add(radvo);
             }
             vo.setActuacionesDefensoriales(radvos);
@@ -688,42 +687,27 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 radvo.setDepartamento(departamen == null ? "" : departamen.getDescripcion());
                 radvo.setProvincia(provin == null ? "" : provin.getDescripcion());
                 radvo.setDistrito(distri == null ? "" : distri.getDescripcion());
-                radvo.setUrlImagen(a.getRuta() == null ? null : ConstantesUtil.BASE_URL_PRODUCCION_IMAGE + a.getRuta());
+                radvo.setImagePath(a.getRuta() == null ? null : hostAddress().concat(a.getRuta()));
                 radvos2.add(radvo);
             }
             vo.setAcontecimientos(radvos2);
-            vo.setImagePath(ConstantesUtil.BASE_URL_IMAGEPATH + "logoPlanIntervencion.png");
         }
+        vo.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
+        vo.setRutaReporte1(retornaRutaPath().concat("/jasper/casoAcontecimientos.jasper"));
+        vo.setRutaReporte2(retornaRutaPath().concat("/jasper/casoActor.jasper"));
+        vo.setRutaReporte3(retornaRutaPath().concat("/jasper/casoActuacionDefensorial.jasper"));
+        vo.setRutaReporte4(retornaRutaPath().concat("/jasper/casoUbigeo.jasper"));
         if (listaCasoRegion != null) {
             if (listaCasoRegion.size() > 0) {
                 vo.setListaCasoRegiones(listaCasoRegion);
             }
         }
         lista.add(vo);
-        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
-                lista);
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext ec = fc.getExternalContext();
-        HttpServletRequest  request = (HttpServletRequest)ec.getRequest();
-	String path = request.getPathTranslated();
-        System.out.println(retornapath(retornapath(path)).concat("/jasper/documentoCaso.jasper"));
-        jasperPrint = JasperFillManager.fillReport(retornapath(retornapath(path)).concat("/jasper/documentoCaso.jasper"),new HashMap(), beanCollectionDataSource);
+        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista);
+        
+        jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/documentoCaso.jasper"),new HashMap(), beanCollectionDataSource);
     }
     
-    String retornapath(String cadena){
-        int cont=0;
-        for (int i=0;i< cadena.length();i++){
-            if("\\".equals(cadena.substring(i, i+1))){
-              //  cont++;
-               // if(cont == 2){
-                    cont = i;
-                    //break;
-                //}
-            }
-        }
-        return cadena.substring(0, cont);
-    }
-
     public void pdf() throws JRException, IOException {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

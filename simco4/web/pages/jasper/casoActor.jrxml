@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="casoActor" pageWidth="451" pageHeight="842" columnWidth="451" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="90f8c69a-2dee-42f3-a9b9-c040121b239f"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreCompleto" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="numero" class="java.lang.String"/>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="29" y="0" width="422" height="16" forecolor="#666666" backcolor="#FFFFFF" uuid="1d87568d-25cb-4d51-9ee9-42fae1565c77"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="29" height="16" uuid="b618bed0-90c0-4d47-a695-0f0b3be3802c"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

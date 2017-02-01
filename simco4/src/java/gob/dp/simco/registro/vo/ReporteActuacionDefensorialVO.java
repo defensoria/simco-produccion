@@ -29,6 +29,8 @@ public class ReporteActuacionDefensorialVO {
     
     private String urlImagen;
     
+    private String imagePath;
+    
 
     public String getNombre() {
         return nombre;
@@ -101,8 +103,13 @@ public class ReporteActuacionDefensorialVO {
     public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
     }
-    
-    
-    
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
     
 }

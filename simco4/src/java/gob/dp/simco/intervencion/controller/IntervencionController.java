@@ -35,9 +35,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import javax.faces.context.ExternalContext;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -265,14 +267,13 @@ public class IntervencionController extends AbstractManagedBean implements Seria
                 ias.add(ia);
             }
             vo.setAcciones(ias);
-            vo.setImagePath(ConstantesUtil.BASE_URL_IMAGEPATH + "logoPlanIntervencion.png");
-
+            vo.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
+            vo.setRutaReporte1(retornaRutaPath().concat("/jasper/planIntervencionAccion.jasper"));
+            vo.setRutaReporte2(retornaRutaPath().concat("/jasper/planIntervencionEtapaAccion.jasper"));
+            vo.setRutaReporte3(retornaRutaPath().concat("/jasper/casoAcontecimientos.jasper"));
             lista.add(vo);
-
-            JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
-                    lista);
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "planIntervencion.jasper",
-                    new HashMap(), beanCollectionDataSource);
+            JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/planIntervencion.jasper"),new HashMap(), beanCollectionDataSource);
             return true;
         } else {
             msg.messageAlert("No existe un plan de intervencion para este caso", null);

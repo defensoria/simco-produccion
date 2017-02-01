@@ -3,7 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/vo/ReporteCasoVO.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/RegistroController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/controller/IntervencionController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/inicio/perfil.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/FunctionUtil.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/ConstantesUtil.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/caso/fichaCaso.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/CasoController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/UsuarioDetalleController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/vo/ReporteActuacionDefensorialVO.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/LoginController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/ActaAcuerdoController.java</file>
         </group>
     </open-files>
 </project-private>

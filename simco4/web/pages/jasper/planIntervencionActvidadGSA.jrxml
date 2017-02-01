@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planIntervencionActvidadGSA" pageWidth="451" pageHeight="842" columnWidth="451" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\u01\\simco\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="fechaLimiteString" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="detalle" class="java.lang.String"/>
+	<field name="avanceString" class="java.lang.String"/>
+	<field name="ieas" class="java.util.List"/>
+	<field name="numero1" class="java.lang.String"/>
+	<field name="numero2" class="java.lang.String"/>
+	<field name="numero3" class="java.lang.String"/>
+	<field name="ims" class="java.util.List"/>
+	<detail>
+		<band height="71" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="22" width="374" height="20" uuid="4020276b-a36e-4f92-951f-33bc3092a900"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaLimiteString}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="79" y="42" width="372" height="20" uuid="dcd274b2-4357-4ead-9b72-e5a242727777"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="45" y="0" width="406" height="20" uuid="9602247a-de9c-45b1-9899-7ce7e09431ea"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="0" width="31" height="20" uuid="61d20ac5-b540-4944-9117-cae2606d7064"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="22" width="61" height="20" uuid="1588eccc-93e0-41aa-91b4-4f6884bd62f2"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha limite:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="42" width="61" height="20" uuid="7d62a63c-5a41-4b01-9549-6a5b3c6fc457"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Descripcion:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

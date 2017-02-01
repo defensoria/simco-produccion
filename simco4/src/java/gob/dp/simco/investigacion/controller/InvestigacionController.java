@@ -18,7 +18,6 @@ import gob.dp.simco.investigacion.service.CampoService;
 import gob.dp.simco.investigacion.service.HistorialActividadService;
 import gob.dp.simco.investigacion.service.InvestigacionService;
 import gob.dp.simco.investigacion.service.ParticipacionService;
-import gob.dp.simco.comun.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import java.io.File;
 import java.io.InputStream;
@@ -182,7 +181,7 @@ public class InvestigacionController extends AbstractManagedBean implements Seri
         try {
             DateFormat fechaHora = new SimpleDateFormat("yyyyMMddHHmmss");
             String formato = fechaHora.format(new Date());
-            String ruta = ConstantesUtil.FILE_SYSTEM_INVESTIGACION+campo.getId().toString();
+            String ruta = FILE_SYSTEM+"investigacion"+campo.getId().toString();
             //+"/"+formato + getFilename(file1)
             File file = new File(ruta);
             if (!file.exists()) {

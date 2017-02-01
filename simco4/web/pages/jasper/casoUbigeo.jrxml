@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="casoUbigeo" pageWidth="451" pageHeight="842" columnWidth="451" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="90f8c69a-2dee-42f3-a9b9-c040121b239f"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreDistrito" class="java.lang.String"/>
+	<field name="nombreProvincia" class="java.lang.String"/>
+	<field name="nombreDepartamento" class="java.lang.String"/>
+	<columnHeader>
+		<band height="29">
+			<staticText>
+				<reportElement x="67" y="5" width="109" height="20" uuid="fe09decc-d238-4fd7-8c8c-919f4e7f2837"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="5" width="126" height="20" uuid="78d98da3-c617-45fd-9c73-0e5ea182c89b"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distrito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="5" width="119" height="20" uuid="33eefb79-4755-44e3-b08b-7e0dc9a62fcb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="67" y="3" width="109" height="15" uuid="cee5ae59-b23c-479f-a24c-21a91448c606"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreDepartamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="3" width="119" height="15" uuid="d5b6a26e-b946-460b-b237-c9ed3184d495"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreProvincia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="3" width="126" height="15" uuid="e080ab22-c64e-4c8a-9dac-d15a620ee949"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreDistrito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="3" width="10" height="15" uuid="59c1bef3-8a96-426c-85d6-37efef573aec"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="3" width="10" height="15" uuid="da5193eb-3857-4194-a805-630d2aeb1375"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement x="54" y="7" width="5" height="5" backcolor="#000000" uuid="ffe20d9f-97d0-4536-a162-63039dba724e"/>
+			</ellipse>
+		</band>
+	</detail>
+</jasperReport>

@@ -5,6 +5,7 @@
  */
 package gob.dp.simco.comun;
 
+import gob.dp.simco.comun.mb.AbstractManagedBean;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
  *
  * @author carlos
  */
-public class FunctionUtil {
+public class FunctionUtil extends AbstractManagedBean{
     
     private static final Logger log = Logger.getLogger(FunctionUtil.class);
     
@@ -34,7 +35,7 @@ public class FunctionUtil {
             if (StringUtils.isNoneBlank(nameArchive)) {
                 String formato = RandomStringUtils.random(32, 0, 20, true, true, "qw32rfHIJk9iQ8Ud7h0X".toCharArray());
                 String ruta = formato + extencion;
-                File file = new File(ConstantesUtil.FILE_SYSTEM + ruta);
+                File file = new File(FILE_SYSTEM+ruta);
                 try (InputStream input = fil.getInputStream()) {
                     Files.copy(input, file.toPath());
                 } catch (IOException ex) {
