@@ -15,6 +15,8 @@
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/UsuarioDetalleController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/vo/ReporteActuacionDefensorialVO.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/vo/ReportPlanIntervencionVO.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionEtapa.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/LoginController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/ActaAcuerdoController.java</file>
         </group>

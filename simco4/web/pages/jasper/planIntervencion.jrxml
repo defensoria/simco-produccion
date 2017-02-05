@@ -62,27 +62,21 @@
 			</textField>
 		</band>
 		<band height="102">
-			<subreport>
-				<reportElement positionType="Float" x="0" y="59" width="523" height="42" uuid="e2503d10-7be3-425c-9272-a394ede94e6c"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{acciones})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
-			</subreport>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="24" width="523" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="ab2610eb-11f0-4aa3-a925-530c669e5eed"/>
+				<reportElement mode="Transparent" x="0" y="21" width="523" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="ab2610eb-11f0-4aa3-a925-530c669e5eed"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[2. Lineamientos de estrategia (campos de acción)]]></text>
 			</staticText>
+			<subreport>
+				<reportElement x="0" y="56" width="523" height="46" uuid="f73e1da7-9b79-403b-bff4-d80b9c6d78d6"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{acciones})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
+			</subreport>
 		</band>
 		<band height="110">
-			<subreport>
-				<reportElement x="0" y="51" width="523" height="42" uuid="ea281d4c-1647-453c-abd9-623a459beed6"/>
-				<subreportParameter name="SUBREPORT_DIR"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{accionesSeleccionadas})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte2}]]></subreportExpression>
-			</subreport>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="15" width="523" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="df000ea6-b22c-45ab-9e68-11f80647dee6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -91,6 +85,12 @@
 				</textElement>
 				<text><![CDATA[3. Detalles del Plan]]></text>
 			</staticText>
+			<subreport>
+				<reportElement x="0" y="51" width="523" height="41" uuid="2cc2a9b2-1e7e-4e1c-af9f-6649e448bbfd"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{accionesSeleccionadas})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte2}]]></subreportExpression>
+			</subreport>
 		</band>
 		<band height="82">
 			<staticText>
@@ -102,7 +102,7 @@
 				<text><![CDATA[4. Gestión para el cumplimiento de acuerdos]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="0" y="40" width="523" height="42" uuid="1a130b0f-be1a-470a-bf68-17bb12afe59a"/>
+				<reportElement x="0" y="47" width="523" height="35" uuid="2e18c7c8-2a3a-403d-9774-b5ac39d188d9"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{etapasTotales})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$F{rutaReporte3}]]></subreportExpression>

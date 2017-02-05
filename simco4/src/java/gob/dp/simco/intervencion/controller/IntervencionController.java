@@ -270,7 +270,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
             vo.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             vo.setRutaReporte1(retornaRutaPath().concat("/jasper/planIntervencionAccion.jasper"));
             vo.setRutaReporte2(retornaRutaPath().concat("/jasper/planIntervencionEtapaAccion.jasper"));
-            vo.setRutaReporte3(retornaRutaPath().concat("/jasper/casoAcontecimientos.jasper"));
+            vo.setRutaReporte3(retornaRutaPath().concat("/jasper/planIntervencionEtapaAccionGSA.jasper"));
             lista.add(vo);
             JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista);
             jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/planIntervencion.jasper"),new HashMap(), beanCollectionDataSource);

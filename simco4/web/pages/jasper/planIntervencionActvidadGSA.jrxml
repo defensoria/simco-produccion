@@ -19,7 +19,7 @@
 	<field name="numero3" class="java.lang.String"/>
 	<field name="ims" class="java.util.List"/>
 	<detail>
-		<band height="71" splitType="Stretch">
+		<band height="126" splitType="Stretch">
 			<textField>
 				<reportElement x="79" y="22" width="374" height="20" uuid="4020276b-a36e-4f92-951f-33bc3092a900"/>
 				<textElement>
