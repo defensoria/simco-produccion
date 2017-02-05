@@ -11,16 +11,18 @@
                 <gc:confirmSubmit classGC="confirmacionGuardarTodo" bean="#{intervencionController.saveIntervencionEtapa()}"/>
                 <table style="width:100%">
                     <tr>
-                        <td style="width:60%; padding-right: 3px">
-                            <h:outputText style="text-justify: kashida" value="#{intervencionController.intervencion.descripcion}" />
-                            <br/>
-                            <span class="text-titulo-comun-simco">Intervención - #{intervencionController.intervencion.nombre}</span>
-                            <a style="text-decoration:none;cursor: pointer" onclick="openModalDetalle()">
-                                <span class="glyphicon glyphicon-align-justify" style="font-size:large"></span>
-                            </a>
+                        <td style="width:60%; padding-right: 3px; vertical-align: top">
+                            <span class="text-resalt-primary" style="font-size: 2em; font-weight: bold">Intervención - #{intervencionController.intervencion.nombre}</span>
                             <a jsf:action="#{intervencionController.pdf()}" >
                                 <img src="../../bootstrap/img/pdf.png" alt="Plan de Intervencion" height="45" width="45"/>
                             </a>
+                            <br/>
+                            <br/>
+                            <span style="font-size: 1.5em; font-weight: bold">Descripción
+                            <a style="text-decoration:none;cursor: pointer" onclick="openModalDetalle()">
+                                <span class="glyphicon glyphicon-pencil" style="font-size:large"></span>
+                            </a>
+                            </span>
                         </td>
                         <td style="width:25%; vertical-align: top">
                             <div class="panel panel-warning">
@@ -63,7 +65,7 @@
                                 </a>
                             </h:panelGroup>
                             &#160;
-                            <a class="btn btn-default" jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" jsf:action="#{intervencionController.archivar()}">
+                            <a class="btn btn-warning" jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" jsf:action="#{intervencionController.archivar()}">
                                 <span class="glyphicon glyphicon-folder-open"/>Archivar
                             </a>
                         </td>

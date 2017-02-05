@@ -205,7 +205,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
             List<IntervencionEtapa> etapasTotales = intervencionEtapaService.intervencionEtapaxIntervencion(intervencion.getId());
             for(IntervencionEtapa ei : etapasTotales){
                 List<IntervencionEtapaActuacion> listiea = intervencionEtapaActuacionService.intervencionEtapaActuacionBuscarActividadGSA(ei.getId());
-                ei.setRutaReporte3(retornaRutaPath().concat("/jasper/planIntervencionEtapaMiembro.jasper"));
+                ei.setRutaReporte1(retornaRutaPath().concat("/jasper/"));
                 ei.setIeas(listiea);
             }
             vo.setEtapasTotales(etapasTotales);
@@ -216,6 +216,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
                 j = ++j;
                 ia.setNumero("3." + j + " Campo de accion " + j + ":");
                 ia.setEtapas(intervencionEtapaService.intervencionEtapaxAccion(ia.getId()));
+                ia.setRutaReporte1(retornaRutaPath().concat("/jasper/"));
                 int k = 0;
                 for (IntervencionEtapa ie : ia.getEtapas()) {
                     k = ++k;
@@ -230,8 +231,8 @@ public class IntervencionController extends AbstractManagedBean implements Seria
                     ie.setFechaLimiteString(s4);
                     ie.setNumero2(ie.getNumero1() + ".1");
                     ie.setNumero3(ie.getNumero1() + ".2");
-                    ie.setRutaReporte1(retornaRutaPath().concat("/jasper/planIntervencionEtapaActuacion.jasper"));
-                    ie.setRutaReporte2(retornaRutaPath().concat("/jasper/planIntervencionEtapaMiembro.jasper"));
+                    ie.setRutaReporte1(retornaRutaPath().concat("/jasper/"));
+                    ie.setRutaReporte1(retornaRutaPath().concat("/jasper/"));
                     ie.setIeas(intervencionEtapaActuacionService.intervencionEtapaActuacionBuscarActividad(ie.getId()));
                     for (IntervencionEtapaActuacion etapaActuacion : ie.getIeas()) {
                         if (etapaActuacion.getActividadId() != null) {
@@ -271,15 +272,13 @@ public class IntervencionController extends AbstractManagedBean implements Seria
             }
             vo.setAcciones(ias);
             vo.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
-            vo.setRutaReporte1(retornaRutaPath().concat("/jasper/planIntervencionAccion.jasper"));
-            vo.setRutaReporte2(retornaRutaPath().concat("/jasper/planIntervencionEtapaAccion.jasper"));
-            vo.setRutaReporte3(retornaRutaPath().concat("/jasper/planIntervencionEtapaAccionGSA.jasper"));
+            vo.setRutaReporte1(retornaRutaPath().concat("/jasper/"));
             lista.add(vo);
             JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista);
             jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/planIntervencion.jasper"),new HashMap(), beanCollectionDataSource);
             return true;
         } else {
-            msg.messageAlert("No existe un plan de intervencion para este caso", null);
+            msg.messageAlert("No existe un plan de intervención para este caso", null);
             return false;
         }
     }
@@ -649,17 +648,18 @@ public class IntervencionController extends AbstractManagedBean implements Seria
         intervencion.setEstado("ARC");
         updateIntervencion();
         listarIntervenciones();
-        msg.messageAlert("Se archivo el Plan de Intervencion", null);
+        msg.messageAlert("Se archivo el plan de intervención", null);
         return "intervencion";
     }
 
     public void updateDetalle() {
         updateIntervencion();
-        msg.messageInfo("Se registro la descripcion correctamente", null);
+        msg.messageInfo("Se registro la descripción correctamente", null);
     }
 
     public void updateIntervencion() {
         intervencionService.intervencionUpdate(intervencion);
+        msg.messageInfo("Se actualizó el detalle de la intervención", null);
     }
 
     public void openModalRegistroDescripcion(IntervencionEtapa etapa) {

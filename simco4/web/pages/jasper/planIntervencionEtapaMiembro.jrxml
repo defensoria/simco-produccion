@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planIntervencionEtapaMiembro" pageWidth="451" pageHeight="842" columnWidth="451" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planIntervencionEtapaMiembro" pageWidth="448" pageHeight="842" columnWidth="448" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<subDataset name="dataset1" uuid="53714e5f-ecfa-43e4-b266-b8b7817bbae1"/>
-	<subDataset name="dataset2" uuid="99ab5e63-23b9-4009-bf30-39e841750e29"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String"/>
 	<detail>
 		<band height="23" splitType="Stretch">
-			<ellipse>
-				<reportElement x="6" y="8" width="5" height="5" backcolor="#000000" uuid="11ecff13-5e6c-4b95-a8be-432dcea2e876"/>
-			</ellipse>
 			<textField>
-				<reportElement x="16" y="3" width="341" height="20" forecolor="#666666" uuid="f5b634e2-431a-4d78-b6e0-67ef0199b6c6"/>
+				<reportElement x="16" y="3" width="432" height="20" forecolor="#666666" uuid="f5b634e2-431a-4d78-b6e0-67ef0199b6c6"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="3" width="16" height="20" forecolor="#666666" uuid="26d319fd-8b22-4695-96c4-ce6c5b26b761"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

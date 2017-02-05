@@ -8,7 +8,7 @@
 	</queryString>
 	<field name="detalle" class="java.lang.String"/>
 	<field name="ieas" class="java.util.List"/>
-	<field name="rutaReporte3" class="java.lang.String"/>
+	<field name="rutaReporte1" class="java.lang.String"/>
 	<detail>
 		<band height="31" splitType="Stretch">
 			<textField>
@@ -18,16 +18,13 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{detalle}]]></textFieldExpression>
 			</textField>
-			<ellipse>
-				<reportElement x="16" y="17" width="5" height="5" backcolor="#000000" uuid="32bfac4a-dce3-4f3f-ace1-a7ad4118cb40"/>
-			</ellipse>
 		</band>
 		<band height="41">
 			<subreport>
-				<reportElement x="55" y="0" width="396" height="38" uuid="1a530da4-d1bc-4afd-94db-b669a30eb647"/>
+				<reportElement x="37" y="0" width="414" height="38" uuid="1a530da4-d1bc-4afd-94db-b669a30eb647"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{ieas})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte3}]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}+"planIntervencionEtapaAccionesGSA.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

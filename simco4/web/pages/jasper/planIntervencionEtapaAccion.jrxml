@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planIntervencionEtapaAccion" pageWidth="451" pageHeight="842" columnWidth="451" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planIntervencionEtapaAccion" pageWidth="523" pageHeight="842" columnWidth="523" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -12,27 +12,28 @@
 	<field name="rutaReporte1" class="java.lang.String"/>
 	<detail>
 		<band height="27" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement x="167" y="0" width="284" height="22" uuid="3d2634ae-fc88-410f-9833-8de9176bd1ff"/>
-				<textElement>
-					<font size="12" isBold="true" isStrikeThrough="false"/>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="158" y="0" width="365" height="22" forecolor="#000000" backcolor="#FFFFFF" uuid="3d2634ae-fc88-410f-9833-8de9176bd1ff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="6" y="0" width="161" height="22" uuid="d9df454a-7eca-4455-87f5-083880775d34"/>
+				<reportElement x="6" y="0" width="152" height="22" uuid="d9df454a-7eca-4455-87f5-083880775d34"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="76">
 			<subreport>
-				<reportElement x="0" y="0" width="451" height="56" uuid="0f66315b-353d-467a-8043-cc44e1eb7410"/>
+				<reportElement x="0" y="0" width="523" height="56" uuid="0f66315b-353d-467a-8043-cc44e1eb7410"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{etapas})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}+"planIntervencionEtapaAccionEtapa.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

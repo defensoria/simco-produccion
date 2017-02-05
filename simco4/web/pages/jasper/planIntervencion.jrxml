@@ -14,86 +14,84 @@
 	<field name="imagePath" class="java.lang.String"/>
 	<field name="etapasTotales" class="java.util.List"/>
 	<field name="rutaReporte1" class="java.lang.String"/>
-	<field name="rutaReporte2" class="java.lang.String"/>
-	<field name="rutaReporte3" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="174" splitType="Stretch">
+		<band height="147" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="235" height="59" uuid="cdd0478e-af9c-4f5b-ac48-e942fbfcc84d"/>
 				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="0" y="83" width="523" height="27" forecolor="#0033FF" uuid="49ef1176-77b7-445f-acf8-c8b87c301bcd"/>
+				<reportElement x="0" y="67" width="523" height="27" forecolor="#0033FF" uuid="49ef1176-77b7-445f-acf8-c8b87c301bcd"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PLAN DE INTERVENCION]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="126" width="523" height="33" uuid="b24fd3cb-7ccd-4a4c-b11c-6cbe006e4a6b"/>
+				<reportElement x="0" y="99" width="523" height="33" uuid="b24fd3cb-7ccd-4a4c-b11c-6cbe006e4a6b"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial" size="16" isBold="true"/>
+					<font fontName="Arial" size="16" isBold="true" isUnderline="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["CASO: "+$F{nombre}.toUpperCase()]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<detail>
-		<band height="90" splitType="Stretch">
+		<band height="85" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="21" width="523" height="35" uuid="4a527e8c-2a7e-4826-ba69-283ca552bc83"/>
+				<reportElement x="0" y="21" width="523" height="30" uuid="4a527e8c-2a7e-4826-ba69-283ca552bc83"/>
 				<textElement>
-					<font fontName="Arial" size="13" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[1. Descripción de la intervención]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement isPrintRepeatedValues="false" x="25" y="56" width="498" height="34" uuid="7b51c60d-2811-45d3-86b7-a93a192b629e"/>
+				<reportElement isPrintRepeatedValues="false" x="25" y="51" width="498" height="34" forecolor="#666666" uuid="7b51c60d-2811-45d3-86b7-a93a192b629e"/>
 				<textElement textAlignment="Justified">
-					<font fontName="SansSerif"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="102">
+		<band height="97">
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="21" width="523" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="ab2610eb-11f0-4aa3-a925-530c669e5eed"/>
+				<reportElement mode="Transparent" x="0" y="21" width="523" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="ab2610eb-11f0-4aa3-a925-530c669e5eed"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[2. Lineamientos de estrategia (campos de acción)]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="0" y="56" width="523" height="46" uuid="f73e1da7-9b79-403b-bff4-d80b9c6d78d6"/>
+				<reportElement x="0" y="51" width="523" height="46" uuid="f73e1da7-9b79-403b-bff4-d80b9c6d78d6"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{acciones})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}+"planIntervencionAccion.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="110">
+		<band height="86">
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="15" width="523" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="df000ea6-b22c-45ab-9e68-11f80647dee6"/>
+				<reportElement mode="Transparent" x="0" y="15" width="523" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="df000ea6-b22c-45ab-9e68-11f80647dee6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[3. Detalles del Plan]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="0" y="51" width="523" height="41" uuid="2cc2a9b2-1e7e-4e1c-af9f-6649e448bbfd"/>
+				<reportElement x="0" y="45" width="523" height="41" uuid="2cc2a9b2-1e7e-4e1c-af9f-6649e448bbfd"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{accionesSeleccionadas})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte2}]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}+"planIntervencionEtapaAccion.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
-		<band height="82">
+		<band height="83">
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="0" width="523" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="d5fe0006-00e3-4d6a-be90-5bbe678b9d1e"/>
+				<reportElement mode="Transparent" x="0" y="17" width="523" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="d5fe0006-00e3-4d6a-be90-5bbe678b9d1e"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[4. Gestión para el cumplimiento de acuerdos]]></text>
@@ -102,19 +100,24 @@
 				<reportElement x="0" y="47" width="523" height="35" uuid="2e18c7c8-2a3a-403d-9774-b5ac39d188d9"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{etapasTotales})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte3}]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}+"planIntervencionEtapaAccionGSA.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="50">
 			<textField>
-				<reportElement x="403" y="30" width="80" height="20" uuid="8c8ac525-cec4-4438-a103-71015fe0f476"/>
-				<textElement textAlignment="Right"/>
+				<reportElement x="435" y="30" width="59" height="20" uuid="8c8ac525-cec4-4438-a103-71015fe0f476"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="483" y="30" width="40" height="20" uuid="325fec95-b407-46a6-aaba-59da811559e5"/>
+				<reportElement x="494" y="30" width="29" height="20" uuid="325fec95-b407-46a6-aaba-59da811559e5"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
