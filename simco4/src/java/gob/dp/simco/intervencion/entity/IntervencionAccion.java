@@ -28,6 +28,8 @@ public class IntervencionAccion implements Serializable{
     private String numero;
     
     private List<IntervencionEtapa> etapas;
+    
+    private String rutaReporte1;
 
     public Long getId() {
         return id;
@@ -83,6 +85,14 @@ public class IntervencionAccion implements Serializable{
 
     public void setEtapas(List<IntervencionEtapa> etapas) {
         this.etapas = etapas;
+    }
+
+    public String getRutaReporte1() {
+        return rutaReporte1;
+    }
+
+    public void setRutaReporte1(String rutaReporte1) {
+        this.rutaReporte1 = rutaReporte1;
     }
     
     

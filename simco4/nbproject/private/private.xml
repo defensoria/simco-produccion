@@ -13,10 +13,15 @@
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/caso/fichaCaso.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/CasoController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/UsuarioDetalleController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/template/template1.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionMiembro.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/vo/ReporteActuacionDefensorialVO.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/vo/ReportPlanIntervencionVO.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/template/template.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionEtapa.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionEtapaActuacion.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionAccion.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/LoginController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/ActaAcuerdoController.java</file>
         </group>

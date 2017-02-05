@@ -3,15 +3,13 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\u01\\simco\\reportes\\"]]></defaultValueExpression>
-	</parameter>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
 	<field name="title" class="java.lang.String"/>
 	<field name="etapas" class="java.util.List"/>
 	<field name="numero" class="java.lang.String"/>
+	<field name="rutaReporte1" class="java.lang.String"/>
 	<detail>
 		<band height="27" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
@@ -34,7 +32,7 @@
 				<reportElement x="0" y="0" width="451" height="56" uuid="0f66315b-353d-467a-8043-cc44e1eb7410"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{etapas})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "planIntervencionEtapaAccionEtapa.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

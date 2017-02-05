@@ -3,9 +3,6 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\u01\\simco\\reportes\\"]]></defaultValueExpression>
-	</parameter>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
@@ -18,6 +15,8 @@
 	<field name="numero2" class="java.lang.String"/>
 	<field name="numero3" class="java.lang.String"/>
 	<field name="ims" class="java.util.List"/>
+	<field name="rutaReporte1" class="java.lang.String"/>
+	<field name="rutaReporte2" class="java.lang.String"/>
 	<detail>
 		<band height="71" splitType="Stretch">
 			<textField>
@@ -67,7 +66,7 @@
 			<subreport>
 				<reportElement x="77" y="20" width="374" height="16" uuid="2634936d-11dd-4676-8527-e6f72d71fb1e"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{ieas})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "planIntervencionEtapaActuacion.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte1}]]></subreportExpression>
 			</subreport>
 			<textField>
 				<reportElement x="79" y="0" width="372" height="20" uuid="988aa54d-f7af-4b9d-b673-80e6522e8492"/>
@@ -95,7 +94,7 @@
 			<subreport>
 				<reportElement x="77" y="24" width="374" height="14" uuid="6a933e12-e1df-4006-9092-658303e5f147"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{ims})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "planIntervencionEtapaMiembro.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte2}]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement x="79" y="4" width="372" height="20" uuid="714ed988-0efe-4ab7-a646-9235dee66cb1"/>

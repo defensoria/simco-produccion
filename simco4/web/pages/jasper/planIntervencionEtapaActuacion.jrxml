@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="planIntervencionEtapaActuacion" pageWidth="374" pageHeight="842" columnWidth="374" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="53714e5f-ecfa-43e4-b266-b8b7817bbae1"/>
+	<subDataset name="dataset2" uuid="99ab5e63-23b9-4009-bf30-39e841750e29"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="detalleReporte" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<ellipse>
+				<reportElement x="6" y="7" width="5" height="5" backcolor="#000000" uuid="11ecff13-5e6c-4b95-a8be-432dcea2e876"/>
+			</ellipse>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="14" y="3" width="360" height="20" forecolor="#666666" uuid="7dbc491a-b3e1-49d6-8ba8-c42b084f330e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleReporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

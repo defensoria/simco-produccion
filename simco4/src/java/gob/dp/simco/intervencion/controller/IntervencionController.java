@@ -205,6 +205,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
             List<IntervencionEtapa> etapasTotales = intervencionEtapaService.intervencionEtapaxIntervencion(intervencion.getId());
             for(IntervencionEtapa ei : etapasTotales){
                 List<IntervencionEtapaActuacion> listiea = intervencionEtapaActuacionService.intervencionEtapaActuacionBuscarActividadGSA(ei.getId());
+                ei.setRutaReporte3(retornaRutaPath().concat("/jasper/planIntervencionEtapaMiembro.jasper"));
                 ei.setIeas(listiea);
             }
             vo.setEtapasTotales(etapasTotales);
@@ -229,6 +230,8 @@ public class IntervencionController extends AbstractManagedBean implements Seria
                     ie.setFechaLimiteString(s4);
                     ie.setNumero2(ie.getNumero1() + ".1");
                     ie.setNumero3(ie.getNumero1() + ".2");
+                    ie.setRutaReporte1(retornaRutaPath().concat("/jasper/planIntervencionEtapaActuacion.jasper"));
+                    ie.setRutaReporte2(retornaRutaPath().concat("/jasper/planIntervencionEtapaMiembro.jasper"));
                     ie.setIeas(intervencionEtapaActuacionService.intervencionEtapaActuacionBuscarActividad(ie.getId()));
                     for (IntervencionEtapaActuacion etapaActuacion : ie.getIeas()) {
                         if (etapaActuacion.getActividadId() != null) {
@@ -257,8 +260,8 @@ public class IntervencionController extends AbstractManagedBean implements Seria
             }
 
             vo.setAccionesSeleccionadas(accionesSeleccionadas);
-
             vo.setEtapas(listPlanificado);
+            
             List<IntervencionAccion> ias = new ArrayList<>();
             int i = 0;
             for (IntervencionAccion ia : accions) {

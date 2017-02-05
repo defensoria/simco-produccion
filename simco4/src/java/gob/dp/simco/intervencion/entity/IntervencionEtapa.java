@@ -60,6 +60,12 @@ public class IntervencionEtapa implements Serializable{
     private String numero3;
     
     private String color;
+    
+    private String rutaReporte1;
+    
+    private String rutaReporte2;
+    
+    private String rutaReporte3;
 
     public Long getId() {
         return id;
@@ -236,5 +242,30 @@ public class IntervencionEtapa implements Serializable{
     public void setColor(String color) {
         this.color = color;
     }
+
+    public String getRutaReporte1() {
+        return rutaReporte1;
+    }
+
+    public void setRutaReporte1(String rutaReporte1) {
+        this.rutaReporte1 = rutaReporte1;
+    }
+
+    public String getRutaReporte2() {
+        return rutaReporte2;
+    }
+
+    public void setRutaReporte2(String rutaReporte2) {
+        this.rutaReporte2 = rutaReporte2;
+    }
+
+    public String getRutaReporte3() {
+        return rutaReporte3;
+    }
+
+    public void setRutaReporte3(String rutaReporte3) {
+        this.rutaReporte3 = rutaReporte3;
+    }
+    
     
 }
