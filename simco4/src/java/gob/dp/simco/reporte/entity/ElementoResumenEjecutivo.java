@@ -14,6 +14,10 @@ import java.util.List;
  */
 public class ElementoResumenEjecutivo implements Serializable{
     
+    private String imagePath001;
+    
+    private String rutaReporte;
+    
     private String mesPublicacion;
     
     private Integer totalCasosRegistrados;
@@ -78,9 +82,7 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<EstadoConflicto> estadoConflictos;
     
-    private List<CuadroMensualAño> listaCuadroMensualAño;
-    
-    
+    private List<CuadroGenericoMes> listaCuadroGenericoMes;
     
     
     
@@ -98,7 +100,7 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private String titulo1;
     
-    private String imagePath001;
+    
     
     private List<ElementoNombreValor> listaMensualCasosTotales;
     
@@ -1568,12 +1570,20 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.totalActividadAccionesDefensaLegalMes = totalActividadAccionesDefensaLegalMes;
     }
 
-    public List<CuadroMensualAño> getListaCuadroMensualAño() {
-        return listaCuadroMensualAño;
+    public String getRutaReporte() {
+        return rutaReporte;
     }
 
-    public void setListaCuadroMensualAño(List<CuadroMensualAño> listaCuadroMensualAño) {
-        this.listaCuadroMensualAño = listaCuadroMensualAño;
+    public void setRutaReporte(String rutaReporte) {
+        this.rutaReporte = rutaReporte;
+    }
+
+    public List<CuadroGenericoMes> getListaCuadroGenericoMes() {
+        return listaCuadroGenericoMes;
+    }
+
+    public void setListaCuadroGenericoMes(List<CuadroGenericoMes> listaCuadroGenericoMes) {
+        this.listaCuadroGenericoMes = listaCuadroGenericoMes;
     }
 
 }

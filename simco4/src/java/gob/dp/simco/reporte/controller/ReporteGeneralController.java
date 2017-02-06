@@ -16,13 +16,12 @@ import gob.dp.simco.comun.service.RegistroCargaService;
 import gob.dp.simco.comun.service.ReporteService;
 import gob.dp.simco.comun.service.UbigeoService;
 import gob.dp.simco.comun.type.MesesEnum;
-import gob.dp.simco.comun.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.registro.service.CasoService;
 import gob.dp.simco.registro.type.EstadoCasoType;
 import gob.dp.simco.registro.type.MesType;
-import gob.dp.simco.reporte.entity.CuadroMensualAño;
+import gob.dp.simco.reporte.entity.CuadroGenericoMes;
 import gob.dp.simco.reporte.entity.ElementoNombreValor;
 import gob.dp.simco.reporte.entity.ElementoReporte;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
@@ -290,6 +289,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         totalGeneralActuacionDefensaLegal = reporteEjecutivoService.totalGeneralCasosActuacionDefensorialDefensaLegal(filtroReporte);
         
         /**********SET**************/
+        ejecutivo.setRutaReporte(retornaRutaPath().concat("/jasper/"));
         ejecutivo.setTitulo1("ESTADO DE LOS CONFLICTOS SOCIALES: "+MesesEnum.get(filtroReporte.getMes()).getValue()+" - 20"+filtroReporte.getAnhos());
         ejecutivo.setTotalCasosRegistrados(totalCasosRegistrados);
         ejecutivo.setTotalCasosActivos(totalCasosActivos);
@@ -324,24 +324,32 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         ejecutivo.setTotalActividadSupervisionPreventivaMes(totalActividadSupervisionPreventivaMes);
         
         /*NUMERO DE CASOS POR MES*/
-        Integer numeroMes = Integer.parseInt(filtroReporte.getMes().toString());
-        List<CuadroMensualAño> lista = new ArrayList<>();
+        Integer numeroMes = Integer.parseInt(filtroReporte.getMes());
+        List<CuadroGenericoMes> lista = new ArrayList<>();
         String anhoe = filtroReporte.getAnhos();
         for(int i = 0; i< 13; i++){
-            CuadroMensualAño cma = new CuadroMensualAño();
+            CuadroGenericoMes cma = new CuadroGenericoMes();
             if(numeroMes ==  0){
-                Integer anho = Integer.parseInt(filtroReporte.getAnhos().toString()) - 1;
-                anhoe = anhoe.toString();
+                Integer anho = Integer.parseInt(filtroReporte.getAnhos()) - 1;
+                anhoe = anho.toString();
                 numeroMes--;
                 numeroMes = 12;
             }
             String mes = String.format("%2s",numeroMes).replace(' ', '0');
-            cma.setMes(MesType.get(mes).getValue());
-            cma.setAnho("20"+anhoe);
+            System.out.println("mes::"+mes);
+            System.out.println("anho::"+"20"+anhoe);
+            if(i == 0){
+                cma.setMes1(mes);
+                
+            }
+            
+            //cma.setColumna1(("20"+anhoe));
+            //cma.setColumna2(MesType.get(mes).getValue());
             FiltroReporte fr = new FiltroReporte();
             fr.setMes(mes);
             fr.setAnhos(anhoe);
-            cma.setCantidad(reporteEjecutivoService.totalCasosRegistradosMes(fr));
+            System.out.println("cantidad::"+reporteEjecutivoService.totalCasosRegistradosMes(fr));;
+            //cma.setCantidad(reporteEjecutivoService.totalCasosRegistradosMes(fr));
             lista.add(cma);
             numeroMes--;
             
@@ -908,7 +916,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
 		HttpServletRequest  request = (HttpServletRequest)ec.getRequest();
 		String path = request.getPathTranslated();
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listaResumenEjecutivo);
-        jasperPrint = JasperFillManager.fillReport(retornapath(path).concat("/reportePublicResumenEjecutivo.jasper"),new HashMap(), beanCollectionDataSource);
+        jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/reportePublicResumenEjecutivo.jasper"),new HashMap(), beanCollectionDataSource);
      }
     
     public void generarReportePublicoMensual() throws JRException, IOException {

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="72" rightMargin="0" topMargin="36" bottomMargin="36" isFloatColumnFooter="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="0.9090909090909108"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="4198"/>
+	<property name="ireport.y" value="4128"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -251,8 +251,8 @@
 	<field name="hechoViolenciaTexto1" class="java.lang.String"/>
 	<field name="accionesProtestaTexto1" class="java.lang.String"/>
 	<field name="imagePath001" class="java.lang.String"/>
-	<field name="imagePath002" class="java.lang.String"/>
 	<field name="titulo1" class="java.lang.String"/>
+	<field name="rutaReporte" class="java.lang.String"/>
 	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -261,11 +261,11 @@
 		<band height="770" splitType="Stretch">
 			<image scaleImage="FillFrame">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="-72" y="-36" width="595" height="483" uuid="57dc9dbd-dfe7-440d-8da4-18ac44a9b546"/>
-				<imageExpression><![CDATA[$F{imagePath001}]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"portada01.png"]]></imageExpression>
 			</image>
 			<image scaleImage="FillFrame">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="-72" y="580" width="595" height="190" uuid="d25078a0-de71-49e3-b0d2-9d31eb6b8ac6"/>
-				<imageExpression><![CDATA[$F{imagePath002}]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"portada02.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="-72" y="447" width="595" height="28" forecolor="#FFFFFF" uuid="0faef444-b71c-44d1-a341-586e0f3ccd03"/>
@@ -979,14 +979,14 @@ Correo electrónico: conflictos@defensoria.gob.pe
 		</band>
 		<band height="770">
 			<textField>
-				<reportElement x="2" y="61" width="450" height="36" uuid="e6a5b70b-bff6-4840-9a83-972cbe8725c3"/>
+				<reportElement x="8" y="189" width="450" height="36" uuid="e6a5b70b-bff6-4840-9a83-972cbe8725c3"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Calibri" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estadoConflictoTexto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="38" y="177" width="361" height="46" forecolor="#999999" uuid="88b01c5d-bfbd-4d39-8f98-e9395df482a2"/>
+				<reportElement x="38" y="271" width="361" height="46" forecolor="#999999" uuid="88b01c5d-bfbd-4d39-8f98-e9395df482a2"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
@@ -997,7 +997,7 @@ PERÚ: CONFLICTOS ACTIVOS Y LATENTES, SEPTIEMBRE 2013-14
 			</staticText>
 			<stackedBar3DChart>
 				<chart>
-					<reportElement x="0" y="223" width="451" height="228" uuid="21fc884d-be95-4402-9069-65982b3769f7"/>
+					<reportElement x="0" y="331" width="451" height="120" uuid="21fc884d-be95-4402-9069-65982b3769f7"/>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -1098,21 +1098,29 @@ PERÚ: CONFLICTOS SOCIALES POR FASE, SEPTIEMBRE 2014
 				</textElement>
 				<text><![CDATA[1.1 FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="-1" y="147" width="33" height="20" forecolor="#0066FF" backcolor="#3399FF" uuid="60a52435-0b29-4bd1-a65e-003455a790a3"/>
-			</rectangle>
-			<staticText>
-				<reportElement mode="Opaque" x="377" y="157" width="100" height="20" forecolor="#FFFFFF" backcolor="#3399FF" uuid="441aac5f-6eb8-4844-aae5-24df87201606"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[ENE]]></text>
-			</staticText>
 			<subreport>
-				<reportElement x="13" y="97" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
+				<reportElement x="19" y="225" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subReporteResumenEjecutivoCuadro001.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="3" y="55" width="458" height="20" uuid="6a610436-3189-4222-8102-f901eee1e752"/>
+				<text><![CDATA[A continuación se presenta la frecuencia mensual del último año:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="90" width="458" height="44" uuid="946691c7-b63a-419b-b63b-e4244974a8dc"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cuadro N.° 1:
+PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES, SEPTIEMBRE 2015-16
+(Número de casos)
+]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="5" y="134" width="442" height="43" uuid="5aa1a598-cf37-4b17-adc3-2538ccc9d623"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte}+"subReporteResumenEjecutivoListaMes001.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="770">
