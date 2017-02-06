@@ -9,6 +9,7 @@ import gob.dp.simco.analisis.entity.AnalisisActorIntensidad;
 import gob.dp.simco.analisis.service.AnalisisActorIntensidadService;
 import gob.dp.simco.comun.ConstantesUtil;
 import gob.dp.simco.comun.FunctionUtil;
+import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.comun.type.AnhosEnum;
 import gob.dp.simco.intervencion.entity.Intervencion;
 import gob.dp.simco.intervencion.service.IntervencionService;
@@ -68,7 +69,7 @@ import org.springframework.context.annotation.Scope;
  */
 @Named
 @Scope("session")
-public class ReporteSimcoController implements Serializable {
+public class ReporteSimcoController extends AbstractManagedBean implements Serializable {
 
     @Autowired
     private ReporteSimcoCasoService reporteSimcoCasoService;
@@ -164,6 +165,7 @@ public class ReporteSimcoController implements Serializable {
         listReporteCasos = reporteSimcoCasoService.reporteCasos(reporteSimcoCaso);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         for (ReporteSimcoCaso rs : listReporteCasos) {
+            rs.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             String esEmpresaMinera = "No";
             String esComunidadNativa = "No";
             List<Actor> listaActor = listaActoresCaso(rs.getIdCaso());
@@ -227,6 +229,7 @@ public class ReporteSimcoController implements Serializable {
     public void reporteActores() {
         listReporteActor = reporteSimcoActorService.reporteActor(reporteSimcoActor);
         for (ReporteSimcoActor a : listReporteActor) {
+            a.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             if (StringUtils.equals(a.getTipoActor(), "PE")) {
                 a.setDescripcionTipoActor("Población");
             }
@@ -285,6 +288,7 @@ public class ReporteSimcoController implements Serializable {
     public void reporteActividades() {
         listReporteActividad = reporteSimcoActividadService.reporteActividad(reporteSimcoActividad);
         for (ReporteSimcoActividad ac : listReporteActividad) {
+            ac.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             ac.setCantidadActores(actorService.actorXactividadSimpleBuscarCount(ac.getIdActividad()));
             if (StringUtils.equals(ac.getClaseActividad(), "AD")) {
                 ac.setClaseActividad("Actuacion defensorial");
@@ -378,6 +382,7 @@ public class ReporteSimcoController implements Serializable {
     public void reporteVictimas(){
         listReporteVictima  = reporteSimcoVictimaService.reporteVictima(reporteSimcoVictima);
         for(ReporteSimcoVictima rsv : listReporteVictima){
+            rsv.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             if(StringUtils.isNotBlank(rsv.getTipoAcontecimiento())){
                 rsv.setSubTipoAcontecimientoDetalle(obtenerSubTipoAcontecimiento(rsv.getTipoAcontecimiento()));
                 rsv.setTipoAcontecimientoDetalle(obtenerTipoAcontecimiento(rsv.getTipoAcontecimiento()));
@@ -548,36 +553,36 @@ public class ReporteSimcoController implements Serializable {
     public void initJasperSimcoCaso(int tipo) throws JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listReporteCasos);
         if (tipo == 1) {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoCasoExcel.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/") + "reporteSimcoCasoExcel.jasper", new HashMap(), beanCollectionDataSource);
         } else {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoCasoPdf.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoCasoPDF.jasper", new HashMap(), beanCollectionDataSource);
         }
     }
 
     public void initJasperSimcoActor(int tipo) throws JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listReporteActor);
         if (tipo == 1) {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoActorExcel.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoActorExcel.jasper", new HashMap(), beanCollectionDataSource);
         } else {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoActorPdf.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoActorPDF.jasper", new HashMap(), beanCollectionDataSource);
         }
     }
 
     public void initJasperSimcoActividad(int tipo) throws JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listReporteActividad);
         if (tipo == 1) {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoActividadExcel.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoActividadExcel.jasper", new HashMap(), beanCollectionDataSource);
         } else {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoActividadPdf.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoActividadPDF.jasper", new HashMap(), beanCollectionDataSource);
         }
     }
     
     public void initJasperSimcoVictima(int tipo) throws JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listReporteVictima);
         if (tipo == 1) {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoVictimaExcel.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoVictimaExcel.jasper", new HashMap(), beanCollectionDataSource);
         } else {
-            jasperPrint = JasperFillManager.fillReport(ConstantesUtil.BASE_URL_REPORT + "reporteSimcoVictimaPdf.jasper", new HashMap(), beanCollectionDataSource);
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/")  + "reporteSimcoVictimaPDF.jasper", new HashMap(), beanCollectionDataSource);
         }
     }
 

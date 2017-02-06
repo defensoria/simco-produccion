@@ -100,8 +100,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private String imagePath001;
     
-    private String imagePath002;
-    
     private List<ElementoNombreValor> listaMensualCasosTotales;
     
     private List<ElementoNombreValor> listaMensualCasosActivos;
@@ -1360,14 +1358,6 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setImagePath001(String imagePath001) {
         this.imagePath001 = imagePath001;
-    }
-
-    public String getImagePath002() {
-        return imagePath002;
-    }
-
-    public void setImagePath002(String imagePath002) {
-        this.imagePath002 = imagePath002;
     }
 
     public String getTitulo1() {

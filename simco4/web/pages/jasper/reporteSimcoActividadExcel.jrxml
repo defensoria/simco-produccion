@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoActividadExcel" pageWidth="5107" pageHeight="600" orientation="Landscape" columnWidth="5107" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigoCaso" class="java.lang.String"/>
+	<field name="nombreCaso" class="java.lang.String"/>
+	<field name="detalleTipologiaCaso" class="java.lang.String"/>
+	<field name="actividadCaso" class="java.lang.String"/>
+	<field name="codigoActividad" class="java.lang.String"/>
+	<field name="nombreActividad" class="java.lang.String"/>
+	<field name="claseActividad" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="codigoAcontecimientoVinculado" class="java.lang.String"/>
+	<field name="nombreAcontecimientoVinculado" class="java.lang.String"/>
+	<field name="grupoActividadDetalle" class="java.lang.String"/>
+	<field name="tipoActividadDetalle" class="java.lang.String"/>
+	<field name="subTipoAcontecimientoDetalle" class="java.lang.String"/>
+	<field name="tipoViolenciaItem1" class="java.lang.String"/>
+	<field name="tipoViolenciaItem2" class="java.lang.String"/>
+	<field name="tipoViolenciaItem3" class="java.lang.String"/>
+	<field name="tipoViolenciaItem4" class="java.lang.String"/>
+	<field name="tipoViolenciaItem5" class="java.lang.String"/>
+	<field name="tipoViolenciaItem6" class="java.lang.String"/>
+	<field name="tipoViolenciaItem7" class="java.lang.String"/>
+	<field name="resultadoViolenciaItem1" class="java.lang.Integer"/>
+	<field name="resultadoViolenciaItem2" class="java.lang.Integer"/>
+	<field name="resultadoViolenciaItem3" class="java.lang.Integer"/>
+	<field name="resultadoViolenciaItem4" class="java.lang.Integer"/>
+	<field name="resultadoViolenciaItem5" class="java.lang.Integer"/>
+	<field name="resultadoViolenciaItem6" class="java.lang.Integer"/>
+	<field name="resultadoViolenciaItem7" class="java.lang.Integer"/>
+	<field name="nombreProvincia" class="java.lang.String"/>
+	<field name="nombreDistrito" class="java.lang.String"/>
+	<field name="nombreRegion" class="java.lang.String"/>
+	<field name="cantidadAcuerdos" class="java.lang.Integer"/>
+	<field name="cantidadActores" class="java.lang.Integer"/>
+	<field name="imagePath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="536" height="59" uuid="cdd0478e-af9c-4f5b-ac48-e942fbfcc84d"/>
+				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="88">
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="38" width="132" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b9d4f71b-c42b-4439-8dbe-062b518f16b8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código del caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="175" y="38" width="361" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="f6bd9974-50de-421a-84c5-0c12903b8120"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre del caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="38" width="131" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="bb2e6085-c706-4237-8226-90b9f685728d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tipología del caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="667" y="38" width="132" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="799787e6-14ff-489a-aa33-af0f2cc3d7d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tipo de actividad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="917" y="38" width="363" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="f49c8de2-0b7b-4071-9286-ad05414c8ae1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre del acontecimiento / actuación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="799" y="38" width="118" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="d3cb9c8a-ef5c-4a46-b8cf-89dd7d46ae69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código del acontecimiento / actuación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1280" y="38" width="120" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="282acbf5-c8d1-4416-81b9-f9b25b866a96"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Acontecimiento / Actuación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1400" y="38" width="104" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="90d61ed8-51cc-4741-b74f-b3f2cc2013ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1504" y="63" width="95" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="f9c2fc11-d51d-43e2-aa7f-64d43319a77d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1599" y="63" width="289" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="facf1152-2704-4697-a1a0-7f75213ab90b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2128" y="63" width="265" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="d011c0ea-6b0a-4d00-abb1-3c1e29c50b6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2393" y="63" width="289" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="80b13fde-d8f0-4e38-b804-556dc081469a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2682" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c61c98c8-144b-4add-b9ee-ef964fcc2eaf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Atentados contra la integridad física]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2822" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="43503b09-b6b0-4892-91d0-d9ec1ae3931e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Atentados contra la vida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2962" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c4ddc386-ec33-4c11-8c16-3df4be39ac28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Acciones contra la tranquilidad social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3102" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="19547b6f-d1e0-4a18-9634-dfaca9bac411"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destrucción o daño de la propiedad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1888" y="63" width="240" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="a2a4687a-1a71-4457-a7b5-e4b3209b4372"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="38" width="43" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="778951b4-4934-4381-a8f2-f7762137af74"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3242" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="60f3039e-5014-46e1-a2a5-143a1b31915c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Enfrentamiento entre sectores de la sociedad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3382" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="ccbfc545-adeb-44b9-935e-ceb8260d2c5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Enfrentamiento con la PNP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3522" y="63" width="140" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="7a27adc4-66dd-483b-a3ea-a488f8643c87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atentados contra la libertad personal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1504" y="38" width="384" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="ec2b2806-12a1-442e-a0dc-d9cc07eaf3aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Acontecimiento vincuado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1888" y="38" width="794" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="84f7ca8a-977d-454e-8247-2c0081ded24d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Clasificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2682" y="38" width="980" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="d472a3d4-ea7a-4565-aabf-0cac62509b3b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de violencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3762" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="43381d19-1948-49cd-9733-1ce534078177"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Heridos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4062" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="78e150c9-b9e8-4cf0-94c6-f626dfe16407"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desaparecidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4162" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="a6d09856-058c-4a6a-af9f-c537b0c7f396"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4262" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="3fcaca41-c3bf-41e5-b6d0-6067a9ff4f9f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Otros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3662" y="38" width="700" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="3a156024-3d7a-4d0f-8fad-bc9ed499d07b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resultado de la violencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3662" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="3f74dc07-b7d3-4241-a3b1-3292a626db35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Muertos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3862" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c8e2117f-3c13-4e8d-91d1-ea02a0bb3ec8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Secuestrados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3962" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="a3be89ae-d930-47e1-be98-19d2445dc409"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detenidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4362" y="63" width="171" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="cdf6ce5c-be9a-4444-b190-bf761e9d1bad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Región]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4533" y="63" width="189" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b83ca123-151d-4320-b138-4847466d9e8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4722" y="63" width="189" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="0f1dee99-5be1-4e1d-aa67-1fa9f593ce5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distrito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4362" y="38" width="549" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="96869b99-b446-4ecf-a672-4b9af01ec88e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ubicación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4911" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="fae0b3aa-3222-465a-9e02-184e646fa784"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de acuerdos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="5011" y="38" width="96" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="62a55f10-03ef-4cbe-b761-be7545c6c6ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de actores]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="43" height="20" uuid="9b5de7eb-69d7-4578-9050-f4c1097dabc0"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="43" y="0" width="132" height="20" uuid="ae382a18-42a2-41bd-85ea-7ed42d3de2e9"/>
+				<textFieldExpression><![CDATA[$F{codigoCaso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="175" y="0" width="361" height="20" uuid="d97d74a7-d17f-42bd-80a4-506f11563b14"/>
+				<textFieldExpression><![CDATA[$F{nombreCaso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="536" y="0" width="130" height="20" uuid="94e7c499-09e4-415e-ae8c-bf923f52c1ba"/>
+				<textFieldExpression><![CDATA[$F{detalleTipologiaCaso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="666" y="0" width="132" height="20" uuid="dd5dbbf7-0cc5-477f-bf20-fc5c775c6bfb"/>
+				<textFieldExpression><![CDATA[$F{actividadCaso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="798" y="0" width="118" height="20" uuid="4572589f-bb25-4b2c-a250-0d647159196f"/>
+				<textFieldExpression><![CDATA[$F{codigoActividad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="916" y="0" width="363" height="20" uuid="58e47b0b-5753-4674-916d-f2f6c1893930"/>
+				<textFieldExpression><![CDATA[$F{nombreActividad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1279" y="0" width="120" height="20" uuid="2e9ec56a-0198-4b37-941e-8ab53a707726"/>
+				<textFieldExpression><![CDATA[$F{claseActividad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1399" y="0" width="104" height="20" uuid="ac6c5dad-9a9b-4020-bf11-e57709adcef7"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1503" y="0" width="95" height="20" uuid="44e474ed-7734-4c33-9beb-e60667467481"/>
+				<textFieldExpression><![CDATA[$F{codigoAcontecimientoVinculado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1598" y="0" width="289" height="20" uuid="a1ed2294-b223-4edd-a874-199a615e148e"/>
+				<textFieldExpression><![CDATA[$F{nombreAcontecimientoVinculado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2127" y="0" width="265" height="20" uuid="e87b10cf-fd4a-4fb5-8046-66377f267e3c"/>
+				<textFieldExpression><![CDATA[$F{tipoActividadDetalle}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2392" y="0" width="289" height="20" uuid="d5365bbc-8c5f-4bd3-a8d4-3ba216daca76"/>
+				<textFieldExpression><![CDATA[$F{subTipoAcontecimientoDetalle}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1887" y="0" width="240" height="20" uuid="bc47d4c5-7de6-4007-8664-0c7a4475866f"/>
+				<textFieldExpression><![CDATA[$F{grupoActividadDetalle}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2681" y="0" width="140" height="20" uuid="41f7a9f9-f193-4a3e-b3e0-d315004c2e66"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2821" y="0" width="140" height="20" uuid="c9de30a6-7f8b-459f-a70b-cbbb0d3889eb"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2961" y="0" width="140" height="20" uuid="72ccf436-a7c4-44f8-8aba-5454d0e43291"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3101" y="0" width="140" height="20" uuid="82b0103f-469c-407c-a00e-77aa7d81882a"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3241" y="0" width="140" height="20" uuid="914aed0b-966a-4f94-9252-141d9c457789"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3381" y="0" width="140" height="20" uuid="986305a8-bfcd-45f3-b850-54d552a91f3e"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem6}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3521" y="0" width="140" height="20" uuid="a4a6118b-94d1-4196-9e16-5437a3cbe77d"/>
+				<textFieldExpression><![CDATA[$F{tipoViolenciaItem7}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3661" y="0" width="100" height="20" uuid="f8c3f1b9-2b48-47e2-8d48-f44e3e9fc824"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3761" y="0" width="100" height="20" uuid="04f5284a-dee7-43bb-9a8e-164cb8232a7c"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3861" y="0" width="100" height="20" uuid="e24e6a07-e025-41c7-a4ec-9384d1abaeb0"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3961" y="0" width="100" height="20" uuid="27e8abe9-c741-4552-bd47-6efc48321a45"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4061" y="0" width="100" height="20" uuid="210461aa-57b3-4c16-b031-e9aac27eef2f"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4161" y="0" width="100" height="20" uuid="c2e1697c-e622-4cd8-856d-41fb9320cab8"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem7}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4261" y="0" width="100" height="20" uuid="914720d8-647a-40ba-b891-670d9b519cd1"/>
+				<textFieldExpression><![CDATA[$F{resultadoViolenciaItem6}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4361" y="0" width="171" height="20" uuid="b44586b1-edd0-435b-9c3d-f6d571f5e56d"/>
+				<textFieldExpression><![CDATA[$F{nombreRegion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4532" y="0" width="189" height="20" uuid="88c36ec3-f1af-4544-8949-605f1efd878f"/>
+				<textFieldExpression><![CDATA[$F{nombreProvincia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4721" y="0" width="189" height="20" uuid="dbfff194-79c0-4f4d-a599-96cad3f88101"/>
+				<textFieldExpression><![CDATA[$F{nombreDistrito}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4910" y="0" width="100" height="20" uuid="297622d3-6ddf-4bc3-9094-4b3b31876684"/>
+				<textFieldExpression><![CDATA[$F{cantidadAcuerdos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="5010" y="0" width="96" height="20" uuid="3296c9d5-9edf-444a-87be-099e734254c9"/>
+				<textFieldExpression><![CDATA[$F{cantidadActores}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

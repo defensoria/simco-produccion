@@ -24,17 +24,6 @@ public class ConstantesUtil {
     
     public static final int PAGINADO_20=20;
     
-    
-    public static final String BASE_URL_REPORT = "C:\\u01\\simco\\reportes\\";
-    /**LINUX*/
-    //public static final String BASE_URL_REPORT = "/usr/local/recursos/reportes/";
-    
-    public static final String BASE_URL_IMAGEPATH = "C:\\u01\\simco\\images\\";
-    /**LINUX*/
-    //public static final String BASE_URL_IMAGEPATH = "/usr/local/recursos/images/";
-    
-    public static final String BASE_URL_PRODUCCION_IMAGE = "http://localhost:8080/filesystem/";
-    
     public static final String LISTA_VALOR_TODOS_CODIGO = "-1000";
     
     public static final String LISTA_VALOR_TODOS_NOMBRE = "TODOS";

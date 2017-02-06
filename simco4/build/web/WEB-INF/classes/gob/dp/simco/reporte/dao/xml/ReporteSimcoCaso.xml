@@ -60,7 +60,7 @@
         ) J ON A.N_ID_CASO = J.N_ID_CASO 
         LEFT JOIN SIMCO_REG_ACTIVIDAD_ACTOR K ON J.N_ID_ACTIVIDAD = K.N_ID_ACTIVIDAD       
         LEFT JOIN SIMCO_REG_ACTOR L ON K.N_ID_ACTOR = L.N_ID_ACTOR         
-        WHERE A.C_INDVIGENTE = 'A' 
+        WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
         <if test="anho != 0">
             AND TO_CHAR(A.D_FECHACREACION, 'yyyy') = #{anho} 
         </if>

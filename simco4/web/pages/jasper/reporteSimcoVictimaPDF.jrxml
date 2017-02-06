@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoVictimaPDF" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="806" leftMargin="18" rightMargin="18" topMargin="18" bottomMargin="18" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="0.9090909090909095"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreCaso" class="java.lang.String"/>
+	<field name="codigoCaso" class="java.lang.String"/>
+	<field name="tipologiaCaso" class="java.lang.String"/>
+	<field name="tipoActividadCaso" class="java.lang.String"/>
+	<field name="nombreActividad" class="java.lang.String"/>
+	<field name="tipoAcontecimientoDetalle" class="java.lang.String"/>
+	<field name="subTipoAcontecimientoDetalle" class="java.lang.String"/>
+	<field name="grupoAcontecimientoDetalle" class="java.lang.String"/>
+	<field name="codigoActividad" class="java.lang.String"/>
+	<field name="departamento" class="java.lang.String"/>
+	<field name="provincia" class="java.lang.String"/>
+	<field name="distrito" class="java.lang.String"/>
+	<field name="cantidadActores" class="java.lang.Integer"/>
+	<field name="dni" class="java.lang.String"/>
+	<field name="tipoVictima" class="java.lang.String"/>
+	<field name="nombreCompletoVictima" class="java.lang.String"/>
+	<field name="edadVictima" class="java.lang.String"/>
+	<field name="sexoVictima" class="java.lang.String"/>
+	<field name="tipoEstadoVictima" class="java.lang.String"/>
+	<field name="imagePath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="536" height="59" uuid="cdd0478e-af9c-4f5b-ac48-e942fbfcc84d"/>
+				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="88">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="63" width="138" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="90d61ed8-51cc-4741-b74f-b3f2cc2013ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="63" width="139" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="f9c2fc11-d51d-43e2-aa7f-64d43319a77d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="facf1152-2704-4697-a1a0-7f75213ab90b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Región]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="377" y="38" width="107" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c61c98c8-144b-4add-b9ee-ef964fcc2eaf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tipo de victima de la violencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="484" y="38" width="157" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c4ddc386-ec33-4c11-8c16-3df4be39ac28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Apellidos y Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="641" y="38" width="46" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="19547b6f-d1e0-4a18-9634-dfaca9bac411"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="687" y="38" width="51" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="60f3039e-5014-46e1-a2a5-143a1b31915c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="738" y="38" width="68" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="ccbfc545-adeb-44b9-935e-ceb8260d2c5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Civil/PNP/FFAA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="38" width="277" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="ec2b2806-12a1-442e-a0dc-d9cc07eaf3aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Clasificacion del acontecimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="138" height="20" uuid="3c749257-7177-4b93-b2b6-f27e1af21e50"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoAcontecimientoDetalle}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="138" y="0" width="139" height="20" uuid="4a8ebca0-a479-4d3b-9299-66d225ca8a37"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subTipoAcontecimientoDetalle}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="0" width="100" height="20" uuid="67da5352-f1bd-4477-9cd4-2b4bbbe16d03"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="0" width="107" height="20" uuid="c3428069-4829-42ab-b9a8-b6855a042e1c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoVictima}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="484" y="0" width="157" height="20" uuid="8ef77d82-ecd8-4e61-9c93-a1770f42a02e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCompletoVictima}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="641" y="0" width="46" height="20" uuid="27d900ac-0b44-478c-b648-4fe83d02855a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edadVictima}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="687" y="0" width="51" height="20" uuid="0e3a928b-f945-40c2-8018-799e5072c5a0"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexoVictima}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="738" y="0" width="68" height="20" uuid="bab6fff8-ae69-45d3-97e8-5d673a8356d0"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoEstadoVictima}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31">
+			<textField>
+				<reportElement x="706" y="11" width="100" height="20" uuid="2860156d-cd26-4bbe-8842-555033ab6f77"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

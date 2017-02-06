@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoCasoPDF" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="806" leftMargin="18" rightMargin="18" topMargin="18" bottomMargin="18" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigoCaso" class="java.lang.String"/>
+	<field name="nombreCaso" class="java.lang.String"/>
+	<field name="fechaInicioCaso" class="java.lang.String"/>
+	<field name="regionPrincial" class="java.lang.String"/>
+	<field name="provinciaPrincial" class="java.lang.String"/>
+	<field name="distritoPrincial" class="java.lang.String"/>
+	<field name="tipologia" class="java.lang.String"/>
+	<field name="actividad" class="java.lang.String"/>
+	<field name="primerNivel" class="java.lang.String"/>
+	<field name="segundoNivel" class="java.lang.String"/>
+	<field name="tercerNivel" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="fechaModificacion" class="java.lang.String"/>
+	<field name="fase" class="java.lang.String"/>
+	<field name="momentoDialogo" class="java.lang.String"/>
+	<field name="mecanismoDialogo" class="java.lang.String"/>
+	<field name="participacion" class="java.lang.String"/>
+	<field name="fechaResolucion" class="java.lang.String"/>
+	<field name="inversionInvolucrada" class="java.lang.Double"/>
+	<field name="mesesResolucion" class="java.lang.Integer"/>
+	<field name="cantidadAcontecimientos" class="java.lang.Integer"/>
+	<field name="cantidadActuaciones" class="java.lang.Integer"/>
+	<field name="cantidadAnalisis" class="java.lang.Integer"/>
+	<field name="cantidadIntervencion" class="java.lang.Integer"/>
+	<field name="cantidadAcuerdos" class="java.lang.Integer"/>
+	<field name="esEmpresaMinera" class="java.lang.String"/>
+	<field name="esComunidadNativa" class="java.lang.String"/>
+	<field name="cantidadMuertoCiviles" class="java.lang.Integer"/>
+	<field name="cantidadMuertoPNP" class="java.lang.Integer"/>
+	<field name="cantidadMuertoFFAA" class="java.lang.Integer"/>
+	<field name="cantidadHeridoCiviles" class="java.lang.Integer"/>
+	<field name="cantidadHeridoPNP" class="java.lang.Integer"/>
+	<field name="cantidadHeridoFFAA" class="java.lang.Integer"/>
+	<field name="imagePath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="282" height="59" uuid="cdd0478e-af9c-4f5b-ac48-e942fbfcc84d"/>
+				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="88">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="38" width="118" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b9d4f71b-c42b-4439-8dbe-062b518f16b8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código del caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="118" y="38" width="142" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="f6bd9974-50de-421a-84c5-0c12903b8120"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre del caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="260" y="38" width="42" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="bb2e6085-c706-4237-8226-90b9f685728d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fecha de inicio de caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="371" y="38" width="97" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="282acbf5-c8d1-4416-81b9-f9b25b866a96"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tipología]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="468" y="38" width="58" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="90d61ed8-51cc-4741-b74f-b3f2cc2013ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Actividad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="526" y="38" width="54" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="d011c0ea-6b0a-4d00-abb1-3c1e29c50b6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="580" y="38" width="55" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c61c98c8-144b-4add-b9ee-ef964fcc2eaf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2693" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="788a7319-d712-409c-bd56-68858f277b93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de Acuertos registrados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2793" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="9e25cc3b-f993-41c9-889d-707490d9fcfa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Indicador de participación de empresas mineras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2893" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="f3c422d7-3ea6-430b-be2d-9feddca2ec24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Indicador de participación de comunidades nativas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="302" y="38" width="69" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b7e8e55e-487e-4b52-ad6d-d07151131531"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Región principal del caso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="635" y="38" width="57" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="1adbd07a-ff9b-4ffa-8664-9a5bb900c4a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cantidad de acuerdos registrados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="692" y="38" width="57" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="3d46906d-a838-4ab6-8ddd-6b1533cd149f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Indicador de participación de empresas mineras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="749" y="38" width="57" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="ef507b2b-5108-48ba-9832-e03d9377821b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Indicador de participación comunidades nativas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="118" height="20" uuid="21326ea6-c762-4cbd-9a3b-6e1a30216b95"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoCaso}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="118" y="0" width="142" height="20" uuid="1d3ae86b-4ac6-41bc-88db-3d956029a781"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCaso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="260" y="0" width="42" height="20" uuid="57ec5fd3-1230-428a-8511-2cb253dfe2bd"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaInicioCaso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="371" y="0" width="97" height="20" uuid="e88d04c6-d4b8-4eac-814e-c5114e65e4e8"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipologia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="468" y="0" width="58" height="20" uuid="9f756b55-237e-4136-b158-e178819d28cd"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="526" y="0" width="54" height="20" uuid="5c73c746-0412-4fbe-b889-f7207cfe1b2c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="580" y="0" width="55" height="20" uuid="40cd85e6-9be2-43c9-8477-2889517d8d1d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fase}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2693" y="0" width="100" height="20" uuid="5d977f94-edd9-4169-b3c0-51ffe72fc84a"/>
+				<textFieldExpression><![CDATA[$F{cantidadAcuerdos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2793" y="0" width="100" height="20" uuid="f5bb4e07-133d-41e2-856a-6dee5eb0bae2"/>
+				<textFieldExpression><![CDATA[$F{esEmpresaMinera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2893" y="0" width="100" height="20" uuid="7fff7626-2a5a-49b9-8881-f2479ae4db54"/>
+				<textFieldExpression><![CDATA[$F{esComunidadNativa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="302" y="0" width="69" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2faf786c-78f1-403f-b1c6-bd1acf8e628f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="635" y="0" width="57" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8ab37cde-a8a6-4626-a7a6-95ff09651861"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadAcuerdos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="692" y="0" width="57" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0e5a6ec4-d2f8-461e-a3e7-3f4263d09a97"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{esEmpresaMinera}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="749" y="0" width="57" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="dbfa6293-cb40-4605-b6bc-a2ae9d27341b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{esComunidadNativa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="32">
+			<textField>
+				<reportElement x="706" y="12" width="100" height="20" uuid="dd971a18-376e-4951-afe6-ffa3112aaced"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

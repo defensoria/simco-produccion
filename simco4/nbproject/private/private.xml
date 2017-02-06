@@ -4,26 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/vo/ReporteCasoVO.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/RegistroController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoActor.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoCaso.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/controller/IntervencionController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/inicio/perfil.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/FunctionUtil.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoActividad.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/ConstantesUtil.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/caso/fichaCaso.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoCaso.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/controller/ReporteSimcoController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/service/IntervencionServiceImpl.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/CasoController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/UsuarioDetalleController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/template/template1.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoVictima.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ElementoResumenEjecutivo.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionMiembro.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/vo/ReporteActuacionDefensorialVO.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/dao/xml/Intervencion.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/intervencion/intervencionDetalle.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/vo/ReportPlanIntervencionVO.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/template/template.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionEtapa.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionEtapaActuacion.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/entity/IntervencionAccion.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/LoginController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/ActaAcuerdoController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/administracion/seguridad/controller/MenuController.java</file>
         </group>
     </open-files>
 </project-private>

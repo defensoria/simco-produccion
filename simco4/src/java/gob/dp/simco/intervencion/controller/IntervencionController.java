@@ -271,7 +271,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
                 ias.add(ia);
             }
             vo.setAcciones(ias);
-            vo.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
+            vo.setImagePath(retornaRutaPath().concat("/images/"));
             vo.setRutaReporte1(retornaRutaPath().concat("/jasper/"));
             lista.add(vo);
             JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista);

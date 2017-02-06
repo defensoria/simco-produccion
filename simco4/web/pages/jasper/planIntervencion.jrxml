@@ -21,7 +21,7 @@
 		<band height="147" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="235" height="59" uuid="cdd0478e-af9c-4f5b-ac48-e942fbfcc84d"/>
-				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath}+"logoPlanIntervencion.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="0" y="67" width="523" height="27" forecolor="#0033FF" uuid="49ef1176-77b7-445f-acf8-c8b87c301bcd"/>

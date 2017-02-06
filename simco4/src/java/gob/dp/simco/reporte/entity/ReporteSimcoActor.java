@@ -109,7 +109,7 @@ public class ReporteSimcoActor implements Serializable {
     
     private Double inversionInvolucrada;
     
-    
+    private String imagePath;
     /**
      *
      * @return
@@ -497,6 +497,14 @@ public class ReporteSimcoActor implements Serializable {
 
     public void setInversionInvolucrada(Double inversionInvolucrada) {
         this.inversionInvolucrada = inversionInvolucrada;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 }

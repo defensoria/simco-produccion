@@ -117,6 +117,7 @@ public class ReporteSimcoActividad {
     
     private Double inversionInvolucrada;
     
+    private String imagePath;
     
     public String getAnho() {
         return anho;
@@ -532,6 +533,14 @@ public class ReporteSimcoActividad {
 
     public void setInversionInvolucrada(Double inversionInvolucrada) {
         this.inversionInvolucrada = inversionInvolucrada;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 }
