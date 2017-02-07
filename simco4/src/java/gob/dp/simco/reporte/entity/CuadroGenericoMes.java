@@ -13,6 +13,8 @@ import java.io.Serializable;
  */
 public class CuadroGenericoMes implements Serializable{
     
+    private String mes0;
+    
     private String mes1;
     
     private String mes2;
@@ -36,8 +38,6 @@ public class CuadroGenericoMes implements Serializable{
     private String mes11;
     
     private String mes12;
-    
-    private String mes13;
 
     public String getMes1() {
         return mes1;
@@ -135,14 +135,12 @@ public class CuadroGenericoMes implements Serializable{
         this.mes12 = mes12;
     }
 
-    public String getMes13() {
-        return mes13;
+    public String getMes0() {
+        return mes0;
     }
 
-    public void setMes13(String mes13) {
-        this.mes13 = mes13;
+    public void setMes0(String mes0) {
+        this.mes0 = mes0;
     }
-    
-    
     
 }

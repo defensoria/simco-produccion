@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="72" rightMargin="0" topMargin="36" bottomMargin="36" isFloatColumnFooter="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="0.9090909090909108"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="4128"/>
+	<property name="ireport.y" value="4224"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -104,6 +104,7 @@
 		<field name="nombre" class="java.lang.String"/>
 		<field name="valor" class="java.lang.Integer"/>
 	</subDataset>
+	<subDataset name="grafic004Dataset" uuid="2d063a22-d03f-4943-a87d-7b5482ac54f1"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
 	</parameter>
@@ -148,6 +149,7 @@
 	<field name="totalActividadAccionesHumanitariasMes" class="java.lang.Integer"/>
 	<field name="totalActividadIntermediacionMes" class="java.lang.Integer"/>
 	<field name="totalActividadSupervisionPreventivaMes" class="java.lang.Integer"/>
+	<field name="listaCuadroGenericoMes" class="java.util.List"/>
 	<field name="totalCasosTotalMes" class="java.lang.Integer"/>
 	<field name="porcentajeGeneralParticipacionDefensoria" class="java.lang.String"/>
 	<field name="totalCasosGeneralEchosViolencia" class="java.lang.Integer"/>
@@ -280,21 +282,21 @@
 			<staticText>
 				<reportElement x="-72" y="447" width="595" height="28" forecolor="#FFFFFF" uuid="83ead58c-ed40-413e-908b-8a0ad8b60f94"/>
 				<textElement textAlignment="Right">
-					<font size="20" isBold="true"/>
+					<font fontName="Arial" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Defensoría del Pueblo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-72" y="475" width="595" height="39" forecolor="#FFFFFF" uuid="95fdc78c-d70e-4a03-936c-6f238dbd7f3b"/>
 				<textElement textAlignment="Right">
-					<font size="22" isBold="true"/>
+					<font fontName="Arial" size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE CONFLICTOS SOCIALES N.° 127]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-72" y="514" width="595" height="28" forecolor="#FFFFFF" uuid="2319f424-6c73-4b8c-91a5-6a01a72423a8"/>
 				<textElement textAlignment="Right">
-					<font size="20" isBold="true"/>
+					<font fontName="Arial" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Septiembre 2014 – Resumen Ejecutivo]]></text>
 			</staticText>
@@ -303,14 +305,14 @@
 			<staticText>
 				<reportElement x="2" y="430" width="449" height="20" uuid="22e5d778-0690-4689-a7ce-90b602e6b4c3"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10" isBold="true"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE CONFLICTOS SOCIALES N° 127 – RESUMEN EJECUTIVO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="2" y="629" width="219" height="30" uuid="a4eb65d4-08dd-4f79-9274-c9b3114031d9"/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Jirón Ucayali N° 388
 Lima 1 – Perú
@@ -319,7 +321,7 @@ Lima 1 – Perú
 			<staticText>
 				<reportElement x="1" y="457" width="450" height="29" uuid="f81a18a8-c702-4abe-bae1-7b3d2d031721"/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Adjuntía para la Prevención de Conflictos sociales y la Gobernabilidad
 Defensoría del Pueblo
@@ -328,7 +330,7 @@ Defensoría del Pueblo
 			<staticText>
 				<reportElement x="3" y="531" width="448" height="87" uuid="7221cebb-493a-421e-90c4-dc77dbf874e4"/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Equipo de trabajo:
 Fabiola Alburqueque Vilches
@@ -342,7 +344,7 @@ Gustavo Ruiz Olaya
 			<staticText>
 				<reportElement x="1" y="493" width="450" height="30" uuid="5ae0d7b9-12de-4337-a718-880e6fd149bf"/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Rolando Luque Mogrovejo
 Adjunto para la Prevención de Conflictos Sociales y la Gobernabilidad
@@ -351,14 +353,14 @@ Adjunto para la Prevención de Conflictos Sociales y la Gobernabilidad
 			<staticText>
 				<reportElement x="1" y="711" width="450" height="34" uuid="5b70cdef-bdf9-4b6f-9c04-55cb50a4980b"/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Este reporte se elaboró con la información remitida por los comisionados de las 28 oficinas defensoriales y 10 módulos de atención defensorial a nivel nacional.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="1" y="664" width="270" height="42" uuid="e365b75d-d6be-4f84-ba14-4b4d3f43ef3b"/>
 				<textElement>
-					<font fontName="Tahoma"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Central telefónica: (511) 311-0300
 Línea gratuita: 0-800-15-170
@@ -374,7 +376,7 @@ Correo electrónico: conflictos@defensoria.gob.pe
 			<staticText>
 				<reportElement x="23" y="253" width="406" height="158" uuid="aaf79289-97bc-4496-97c1-cb56fe6da86a"/>
 				<textElement textAlignment="Center">
-					<font size="20"/>
+					<font fontName="Arial" size="20"/>
 				</textElement>
 				<text><![CDATA[“…la posibilidad del conflicto es inherente a la vida social en la medida que en cualquier colectivo humano siempre será posible encontrar diferencias de percepción u opinión sobre cualquier asunto que competa a dos o más personas o grupos”  ]]></text>
 			</staticText>
@@ -385,7 +387,7 @@ Correo electrónico: conflictos@defensoria.gob.pe
 			<staticText>
 				<reportElement x="0" y="745" width="443" height="25" uuid="a4f1253b-b099-4719-9ad4-e518fa337e55"/>
 				<textElement>
-					<font fontName="Calibri"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[  Defensoría del Pueblo. Ante todo el diálogo, Lima: Defensoría del Pueblo, 2005, p. 11.]]></text>
 			</staticText>
@@ -404,7 +406,7 @@ Correo electrónico: conflictos@defensoria.gob.pe
 			<staticText>
 				<reportElement x="468" y="110" width="42" height="558" forecolor="#999999" uuid="1542f956-a86c-4856-8a48-1107046635db"/>
 				<textElement verticalAlignment="Middle" rotation="Left">
-					<font fontName="Calibri" size="11" isBold="true"/>
+					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Página 4 DEFENSORÍA DEL PUEBLO - APCSG - Reporte de Conflictos Sociales N° 127 - Septiembre]]></text>
 			</staticText>
@@ -414,6 +416,14 @@ Correo electrónico: conflictos@defensoria.gob.pe
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mesPublicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="687" width="261" height="20" uuid="05836501-d30a-4dec-b7b1-ff78b2d19ed0"/>
+				<textFieldExpression><![CDATA[$F{totalCasosACVictimaViolencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="632" width="261" height="20" uuid="60a80f40-68d5-47b7-947e-24017c9aeadd"/>
+				<textFieldExpression><![CDATA[$F{totalCasosACVictimaViolenciaMes}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="770">
@@ -788,14 +798,6 @@ Correo electrónico: conflictos@defensoria.gob.pe
 				<textFieldExpression><![CDATA[$F{porcentajeCasosFaseDialogoEspacionDialogo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="261" height="20" uuid="05836501-d30a-4dec-b7b1-ff78b2d19ed0"/>
-				<textFieldExpression><![CDATA[$F{totalCasosACVictimaViolencia}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="261" y="0" width="261" height="20" uuid="60a80f40-68d5-47b7-947e-24017c9aeadd"/>
-				<textFieldExpression><![CDATA[$F{totalCasosACVictimaViolenciaMes}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="32" y="668" width="18" height="20" uuid="596e0e4f-16da-4938-84fd-9b2e4ca3efc6"/>
 				<textFieldExpression><![CDATA[$F{totalCasosACVictimaViolencia}]]></textFieldExpression>
 			</textField>
@@ -979,14 +981,14 @@ Correo electrónico: conflictos@defensoria.gob.pe
 		</band>
 		<band height="770">
 			<textField>
-				<reportElement x="8" y="189" width="450" height="36" uuid="e6a5b70b-bff6-4840-9a83-972cbe8725c3"/>
+				<reportElement x="3" y="269" width="450" height="84" uuid="e6a5b70b-bff6-4840-9a83-972cbe8725c3"/>
 				<textElement textAlignment="Justified">
-					<font fontName="Calibri" size="11"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estadoConflictoTexto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="38" y="271" width="361" height="46" forecolor="#999999" uuid="88b01c5d-bfbd-4d39-8f98-e9395df482a2"/>
+				<reportElement x="30" y="525" width="361" height="46" forecolor="#999999" uuid="88b01c5d-bfbd-4d39-8f98-e9395df482a2"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
@@ -997,7 +999,7 @@ PERÚ: CONFLICTOS ACTIVOS Y LATENTES, SEPTIEMBRE 2013-14
 			</staticText>
 			<stackedBar3DChart>
 				<chart>
-					<reportElement x="0" y="331" width="451" height="120" uuid="21fc884d-be95-4402-9069-65982b3769f7"/>
+					<reportElement x="0" y="610" width="451" height="120" uuid="21fc884d-be95-4402-9069-65982b3769f7"/>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -1051,39 +1053,6 @@ PERÚ: CONFLICTOS ACTIVOS Y LATENTES, SEPTIEMBRE 2013-14
 				<reportElement x="5" y="27" width="446" height="1" forecolor="#CC0099" uuid="d5c228ba-d286-4141-97f6-9a7012d46bb3"/>
 			</line>
 			<staticText>
-				<reportElement mode="Transparent" x="45" y="494" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="5c749709-b6d8-4c11-afc0-6004a1b99ac4"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 2
-PERÚ: CONFLICTOS SOCIALES POR FASE, SEPTIEMBRE 2014
-(Número de casos)
-
-]]></text>
-			</staticText>
-			<pieChart>
-				<chart isShowLegend="true" renderType="draw" theme="default">
-					<reportElement isPrintRepeatedValues="false" x="58" y="555" width="346" height="215" uuid="c80046ec-a43f-4df5-8cfe-80738f2e9168"/>
-					<chartTitle position="Top"/>
-					<chartSubtitle/>
-					<chartLegend position="Bottom"/>
-				</chart>
-				<pieDataset>
-					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="07e8e1f7-25d9-4d6c-be3b-df544bf79c3f">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{faceTotals})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
-					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-				</pieDataset>
-				<piePlot isShowLabels="true" isCircular="false">
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
-			<staticText>
 				<reportElement x="468" y="110" width="42" height="558" forecolor="#999999" uuid="b7db34a5-f83d-42bb-9b37-fd1e1731680d"/>
 				<textElement verticalAlignment="Middle" rotation="Left">
 					<font fontName="Calibri" size="11" isBold="true"/>
@@ -1099,7 +1068,7 @@ PERÚ: CONFLICTOS SOCIALES POR FASE, SEPTIEMBRE 2014
 				<text><![CDATA[1.1 FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="19" y="225" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
+				<reportElement x="3" y="367" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subReporteResumenEjecutivoCuadro001.jasper"]]></subreportExpression>
@@ -1109,28 +1078,52 @@ PERÚ: CONFLICTOS SOCIALES POR FASE, SEPTIEMBRE 2014
 				<text><![CDATA[A continuación se presenta la frecuencia mensual del último año:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="6" y="90" width="458" height="44" uuid="946691c7-b63a-419b-b63b-e4244974a8dc"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="6" y="77" width="458" height="44" forecolor="#0066FF" uuid="946691c7-b63a-419b-b63b-e4244974a8dc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Cuadro N.° 1:
 PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES, SEPTIEMBRE 2015-16
 (Número de casos)
 ]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="5" y="134" width="442" height="43" uuid="5aa1a598-cf37-4b17-adc3-2538ccc9d623"/>
+				<reportElement x="6" y="122" width="458" height="33" uuid="5aa1a598-cf37-4b17-adc3-2538ccc9d623"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCuadroGenericoMes})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$F{rutaReporte}+"subReporteResumenEjecutivoListaMes001.jasper"]]></subreportExpression>
 			</subreport>
+			<areaChart>
+				<chart>
+					<reportElement x="57" y="169" width="200" height="100" uuid="200810bf-34d6-40e4-9918-08089b7eb511"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="grafic004Dataset" uuid="74dea2fc-4bab-42f0-b84f-e36294fb9400"/>
+					</dataset>
+				</categoryDataset>
+				<areaPlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</areaPlot>
+			</areaChart>
 		</band>
 		<band height="770">
 			<textField>
-				<reportElement x="1" y="35" width="450" height="56" uuid="dabe3c4b-39dd-4e63-9777-52b0b1ab04e5"/>
+				<reportElement x="1" y="400" width="450" height="56" uuid="dabe3c4b-39dd-4e63-9777-52b0b1ab04e5"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{casosNuevosTexto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="42" y="159" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="237869a7-0d23-4b07-8349-0056bb88c57e"/>
+				<reportElement mode="Transparent" x="44" y="467" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="237869a7-0d23-4b07-8349-0056bb88c57e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1144,7 +1137,7 @@ PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
 			</staticText>
 			<lineChart>
 				<chart>
-					<reportElement x="1" y="213" width="450" height="283" uuid="cc640827-c3e6-4a0f-8ed6-6e51e01e3675"/>
+					<reportElement x="5" y="524" width="450" height="233" uuid="cc640827-c3e6-4a0f-8ed6-6e51e01e3675"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -1181,7 +1174,7 @@ PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
 				</linePlot>
 			</lineChart>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="0" width="286" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="53e3118a-81a8-467d-8e30-7621499284eb"/>
+				<reportElement mode="Transparent" x="4" y="363" width="286" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="53e3118a-81a8-467d-8e30-7621499284eb"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Calibri" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1189,7 +1182,7 @@ PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
 				<text><![CDATA[CASOS RESUELTOS Y CASOS NUEVOS]]></text>
 			</staticText>
 			<line>
-				<reportElement x="2" y="27" width="446" height="1" forecolor="#CC0099" uuid="d32859e6-7142-455f-b44b-1aa798710d11"/>
+				<reportElement x="5" y="390" width="446" height="1" forecolor="#CC0099" uuid="d32859e6-7142-455f-b44b-1aa798710d11"/>
 			</line>
 			<staticText>
 				<reportElement x="468" y="110" width="42" height="558" forecolor="#999999" uuid="ca30261e-4f92-459e-b5b1-d325700eda9c"/>
@@ -1198,6 +1191,39 @@ PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
 				</textElement>
 				<text><![CDATA[Página 8 DEFENSORÍA DEL PUEBLO - APCSG - Reporte de Conflictos Sociales N° 127 - Septiembre]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="46" y="21" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="5c749709-b6d8-4c11-afc0-6004a1b99ac4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Gráfico N° 2
+PERÚ: CONFLICTOS SOCIALES POR FASE, SEPTIEMBRE 2014
+(Número de casos)
+
+]]></text>
+			</staticText>
+			<pieChart>
+				<chart isShowLegend="true" renderType="draw" theme="default">
+					<reportElement isPrintRepeatedValues="false" x="59" y="82" width="346" height="215" uuid="c80046ec-a43f-4df5-8cfe-80738f2e9168"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="grafic002Dataset" uuid="07e8e1f7-25d9-4d6c-be3b-df544bf79c3f">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{faceTotals})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+				</pieDataset>
+				<piePlot isShowLabels="true" isCircular="false">
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
 		</band>
 		<band height="770">
 			<pieChart>

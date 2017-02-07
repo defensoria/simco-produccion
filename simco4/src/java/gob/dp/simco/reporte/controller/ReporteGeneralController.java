@@ -327,8 +327,11 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         Integer numeroMes = Integer.parseInt(filtroReporte.getMes());
         List<CuadroGenericoMes> lista = new ArrayList<>();
         String anhoe = filtroReporte.getAnhos();
+        CuadroGenericoMes cma = new CuadroGenericoMes();
+            CuadroGenericoMes cma1 = new CuadroGenericoMes();
+            CuadroGenericoMes cma2 = new CuadroGenericoMes();
         for(int i = 0; i< 13; i++){
-            CuadroGenericoMes cma = new CuadroGenericoMes();
+            
             if(numeroMes ==  0){
                 Integer anho = Integer.parseInt(filtroReporte.getAnhos()) - 1;
                 anhoe = anho.toString();
@@ -338,26 +341,91 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             String mes = String.format("%2s",numeroMes).replace(' ', '0');
             System.out.println("mes::"+mes);
             System.out.println("anho::"+"20"+anhoe);
-            if(i == 0){
-                cma.setMes1(mes);
-                
-            }
-            
-            //cma.setColumna1(("20"+anhoe));
-            //cma.setColumna2(MesType.get(mes).getValue());
             FiltroReporte fr = new FiltroReporte();
             fr.setMes(mes);
             fr.setAnhos(anhoe);
-            System.out.println("cantidad::"+reporteEjecutivoService.totalCasosRegistradosMes(fr));;
+            System.out.println("cantidad::"+reporteEjecutivoService.totalCasosRegistradosMes(fr));
+            if(i == 0){
+                cma1.setMes0(MesType.get(mes).getValue());
+                cma.setMes0("20"+anhoe);
+                cma2.setMes0(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 1){
+            cma1.setMes1(MesType.get(mes).getValue());
+             cma.setMes1("20"+anhoe);
+                cma2.setMes1(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 2){
+                cma1.setMes2(MesType.get(mes).getValue());
+                cma.setMes2("20"+anhoe);
+                cma2.setMes2(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 3){
+                cma1.setMes3(MesType.get(mes).getValue());
+                cma.setMes3("20"+anhoe);
+                cma2.setMes3(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 4){
+                cma1.setMes4(MesType.get(mes).getValue());
+                cma.setMes4("20"+anhoe);
+                cma2.setMes4(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 5){
+                cma1.setMes5(MesType.get(mes).getValue());
+                cma.setMes5("20"+anhoe);
+                cma2.setMes5(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 6){
+                cma1.setMes6(MesType.get(mes).getValue());
+                cma.setMes6("20"+anhoe);
+                cma2.setMes6(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 7){
+                cma1.setMes7(MesType.get(mes).getValue());
+                cma.setMes7("20"+anhoe);
+                cma2.setMes7(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 8){
+                cma1.setMes8(MesType.get(mes).getValue());
+                cma.setMes8("20"+anhoe);
+                cma2.setMes8(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 9){
+                cma1.setMes9(MesType.get(mes).getValue());
+                cma.setMes9("20"+anhoe);
+                cma2.setMes9(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 10){
+                cma1.setMes10(MesType.get(mes).getValue());
+                cma.setMes10("20"+anhoe);
+                cma2.setMes10(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 11){
+                cma1.setMes11(MesType.get(mes).getValue());
+                cma.setMes11("20"+anhoe);
+                cma2.setMes11(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            if(i == 12){
+                cma1.setMes12(MesType.get(mes).getValue());
+                cma.setMes12("20"+anhoe);
+                cma2.setMes12(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+            }
+            
+            
+            //cma.setColumna1(("20"+anhoe));
+            //cma.setColumna2(MesType.get(mes).getValue());
+            
             //cma.setCantidad(reporteEjecutivoService.totalCasosRegistradosMes(fr));
-            lista.add(cma);
+            
             numeroMes--;
             
         }
-        
+        lista.add(cma);
+            lista.add(cma1);
+            lista.add(cma2);
         System.out.println(lista.size());
         
-        
+        ejecutivo.setListaCuadroGenericoMes(lista);
         
         
         

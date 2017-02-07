@@ -832,7 +832,8 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 msg.messageInfo("Se aprobo el caso", null);
             }            
         }
-        return setearFichaCaso(caso);
+        
+        return cargarPaginaCasosSigues();
     }
     
     private void ordenarParametros() {
