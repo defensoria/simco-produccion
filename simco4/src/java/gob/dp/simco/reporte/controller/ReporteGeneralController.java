@@ -21,12 +21,12 @@ import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.registro.service.CasoService;
 import gob.dp.simco.registro.type.EstadoCasoType;
 import gob.dp.simco.registro.type.MesType;
+import gob.dp.simco.reporte.entity.ChartTotal;
 import gob.dp.simco.reporte.entity.CuadroGenericoMes;
 import gob.dp.simco.reporte.entity.ElementoNombreValor;
 import gob.dp.simco.reporte.entity.ElementoReporte;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.EstadoConflicto;
-import gob.dp.simco.reporte.entity.FaceTotal;
 import gob.dp.simco.reporte.entity.FiltroReporte;
 import gob.dp.simco.reporte.entity.NuevoCaso;
 import gob.dp.simco.reporte.service.ReporteEjecutivoService;
@@ -326,11 +326,13 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         /*NUMERO DE CASOS POR MES*/
         Integer numeroMes = Integer.parseInt(filtroReporte.getMes());
         List<CuadroGenericoMes> lista = new ArrayList<>();
+        List<ChartTotal> registradoTotals = new ArrayList<>();
         String anhoe = filtroReporte.getAnhos();
         CuadroGenericoMes cma = new CuadroGenericoMes();
             CuadroGenericoMes cma1 = new CuadroGenericoMes();
             CuadroGenericoMes cma2 = new CuadroGenericoMes();
         for(int i = 0; i< 13; i++){
+            ChartTotal ct = new ChartTotal();
             
             if(numeroMes ==  0){
                 Integer anho = Integer.parseInt(filtroReporte.getAnhos()) - 1;
@@ -344,6 +346,10 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             FiltroReporte fr = new FiltroReporte();
             fr.setMes(mes);
             fr.setAnhos(anhoe);
+            ct.setNombre(MesType.get(mes).getValue()+"-"+anhoe);
+            Integer cantid = reporteEjecutivoService.totalCasosRegistradosMes(fr);
+            ct.setValor(cantid);
+            registradoTotals.add(ct);
             System.out.println("cantidad::"+reporteEjecutivoService.totalCasosRegistradosMes(fr));
             if(i == 0){
                 cma1.setMes0(MesType.get(mes).getValue());
@@ -353,62 +359,62 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             if(i == 1){
             cma1.setMes1(MesType.get(mes).getValue());
              cma.setMes1("20"+anhoe);
-                cma2.setMes1(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes1(cantid.toString());
             }
             if(i == 2){
                 cma1.setMes2(MesType.get(mes).getValue());
                 cma.setMes2("20"+anhoe);
-                cma2.setMes2(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes2(cantid.toString());
             }
             if(i == 3){
                 cma1.setMes3(MesType.get(mes).getValue());
                 cma.setMes3("20"+anhoe);
-                cma2.setMes3(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes3(cantid.toString());
             }
             if(i == 4){
                 cma1.setMes4(MesType.get(mes).getValue());
                 cma.setMes4("20"+anhoe);
-                cma2.setMes4(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes4(cantid.toString());
             }
             if(i == 5){
                 cma1.setMes5(MesType.get(mes).getValue());
                 cma.setMes5("20"+anhoe);
-                cma2.setMes5(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes5(cantid.toString());
             }
             if(i == 6){
                 cma1.setMes6(MesType.get(mes).getValue());
                 cma.setMes6("20"+anhoe);
-                cma2.setMes6(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes6(cantid.toString());
             }
             if(i == 7){
                 cma1.setMes7(MesType.get(mes).getValue());
                 cma.setMes7("20"+anhoe);
-                cma2.setMes7(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes7(cantid.toString());
             }
             if(i == 8){
                 cma1.setMes8(MesType.get(mes).getValue());
                 cma.setMes8("20"+anhoe);
-                cma2.setMes8(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes8(cantid.toString());
             }
             if(i == 9){
                 cma1.setMes9(MesType.get(mes).getValue());
                 cma.setMes9("20"+anhoe);
-                cma2.setMes9(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes9(cantid.toString());
             }
             if(i == 10){
                 cma1.setMes10(MesType.get(mes).getValue());
                 cma.setMes10("20"+anhoe);
-                cma2.setMes10(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes10(cantid.toString());
             }
             if(i == 11){
                 cma1.setMes11(MesType.get(mes).getValue());
                 cma.setMes11("20"+anhoe);
-                cma2.setMes11(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes11(cantid.toString());
             }
             if(i == 12){
                 cma1.setMes12(MesType.get(mes).getValue());
                 cma.setMes12("20"+anhoe);
-                cma2.setMes12(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cma2.setMes12(cantid.toString());
             }
             
             
@@ -423,6 +429,14 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         lista.add(cma);
             lista.add(cma1);
             lista.add(cma2);
+            
+            List<ChartTotal> registradoTotals1 = new ArrayList<>();
+            for(int i = 12; i >= 0; i--){
+                System.out.println(i);
+                registradoTotals1.add(registradoTotals.get(i));
+            }
+            
+            ejecutivo.setRegistradoTotals(registradoTotals1);
         System.out.println(lista.size());
         
         ejecutivo.setListaCuadroGenericoMes(lista);
@@ -477,16 +491,17 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             FiltroReporte fr = new FiltroReporte();
             fr.setAnhos(filtroAnhoString);
             fr.setMes(filtroMesString);
-            //Integer latentes = reporteEjecutivoService.totalCasosLatentes(fr);
-            //Integer activos = reporteEjecutivoService.totalCasosActivos(fr);
-            Integer total = reporteEjecutivoService.totalCasosRegistradosMes(fr);
+            Integer latentes = reporteEjecutivoService.totalCasosLatentes();
+            Integer activos = reporteEjecutivoService.totalCasosActivos();
+            Integer total = reporteEjecutivoService.totalCasosRegistrados();
+            
             filtroMes--;
             if(filtroMes ==  0){
                 filtroAnho--;
                 filtroMes = 12;
             }
-            //EstadoConflicto ec = new EstadoConflicto(MesesEnum.get(filtroMesString).getValue(), activos, latentes, total, "20"+filtroAnhoString);
-            //ecs.add(ec);
+            EstadoConflicto ec = new EstadoConflicto(MesesEnum.get(filtroMesString).getValue(), activos, latentes, total, "20"+filtroAnhoString);
+            ecs.add(ec);
         }
         ejecutivo.setEstadoConflictos(ecs);
         
@@ -747,13 +762,13 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         
         
         
-        List<FaceTotal> fts = new ArrayList<>();
+        List<ChartTotal> fts = new ArrayList<>();
         
-        fts.add(new FaceTotal("Temprana", totalCasosGeneralTemprana));
-        fts.add(new FaceTotal("Escalamiento", totalCasosGeneralEscalamiento));
-        fts.add(new FaceTotal("Crisis", totalCasosGeneralCrisis));
-        fts.add(new FaceTotal("Desescalamiento", totalCasosGeneralDesescalamiento));
-        fts.add(new FaceTotal("Dialogo", totalGeneralDialogo));
+        fts.add(new ChartTotal("Temprana", totalCasosGeneralTemprana));
+        fts.add(new ChartTotal("Escalamiento", totalCasosGeneralEscalamiento));
+        fts.add(new ChartTotal("Crisis", totalCasosGeneralCrisis));
+        fts.add(new ChartTotal("Desescalamiento", totalCasosGeneralDesescalamiento));
+        fts.add(new ChartTotal("Dialogo", totalGeneralDialogo));
         ejecutivo.setFaceTotals(fts);
         ejecutivo.setImagePath001(retornaRutaPath().concat("/images/"));
         listaResumenEjecutivo.add(ejecutivo);

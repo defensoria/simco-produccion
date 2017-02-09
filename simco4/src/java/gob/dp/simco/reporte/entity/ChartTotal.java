@@ -9,16 +9,16 @@ package gob.dp.simco.reporte.entity;
  *
  * @author carlos
  */
-public class FaceTotal {
+public class ChartTotal {
     
     private String nombre;
     
     private Integer valor;
 
-    public FaceTotal() {
+    public ChartTotal() {
     }
 
-    public FaceTotal(String nombre, Integer valor) {
+    public ChartTotal(String nombre, Integer valor) {
         this.nombre = nombre;
         this.valor = valor;
     }

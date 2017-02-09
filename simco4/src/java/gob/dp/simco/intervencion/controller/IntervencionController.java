@@ -21,7 +21,6 @@ import gob.dp.simco.intervencion.service.IntervencionHistorialActService;
 import gob.dp.simco.intervencion.service.IntervencionMiembroService;
 import gob.dp.simco.intervencion.service.IntervencionService;
 import gob.dp.simco.intervencion.vo.ReportPlanIntervencionVO;
-import gob.dp.simco.comun.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.Actividad;
 import gob.dp.simco.registro.entity.Caso;

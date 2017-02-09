@@ -84,6 +84,9 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<CuadroGenericoMes> listaCuadroGenericoMes;
     
+    private List<ChartTotal> registradoTotals;
+    
+    private List<ChartTotal> faceTotals;
     
     
     
@@ -113,10 +116,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     private List<ElementoReporte> elementoReportesAutoridad;
     
     private List<ElementoReporte> elementoReportesDepartamentoEstado;
-    
-    
-    
-    private List<FaceTotal> faceTotals;
     
     private List<NuevoCaso> nuevoCasos;
     
@@ -1186,11 +1185,11 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.estadoConflictos = estadoConflictos;
     }
 
-    public List<FaceTotal> getFaceTotals() {
+    public List<ChartTotal> getFaceTotals() {
         return faceTotals;
     }
 
-    public void setFaceTotals(List<FaceTotal> faceTotals) {
+    public void setFaceTotals(List<ChartTotal> faceTotals) {
         this.faceTotals = faceTotals;
     }
 
@@ -1584,6 +1583,14 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setListaCuadroGenericoMes(List<CuadroGenericoMes> listaCuadroGenericoMes) {
         this.listaCuadroGenericoMes = listaCuadroGenericoMes;
+    }
+
+    public List<ChartTotal> getRegistradoTotals() {
+        return registradoTotals;
+    }
+
+    public void setRegistradoTotals(List<ChartTotal> registradoTotals) {
+        this.registradoTotals = registradoTotals;
     }
 
 }

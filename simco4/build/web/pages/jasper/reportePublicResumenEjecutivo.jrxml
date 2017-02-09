@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="72" rightMargin="0" topMargin="36" bottomMargin="36" isFloatColumnFooter="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="0.9090909090909108"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="4224"/>
+	<property name="ireport.y" value="4432"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -104,7 +104,6 @@
 		<field name="nombre" class="java.lang.String"/>
 		<field name="valor" class="java.lang.Integer"/>
 	</subDataset>
-	<subDataset name="grafic004Dataset" uuid="2d063a22-d03f-4943-a87d-7b5482ac54f1"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
 	</parameter>
@@ -150,6 +149,8 @@
 	<field name="totalActividadIntermediacionMes" class="java.lang.Integer"/>
 	<field name="totalActividadSupervisionPreventivaMes" class="java.lang.Integer"/>
 	<field name="listaCuadroGenericoMes" class="java.util.List"/>
+	<field name="registradoTotals" class="java.util.List"/>
+	<field name="faceTotals" class="java.util.List"/>
 	<field name="totalCasosTotalMes" class="java.lang.Integer"/>
 	<field name="porcentajeGeneralParticipacionDefensoria" class="java.lang.String"/>
 	<field name="totalCasosGeneralEchosViolencia" class="java.lang.Integer"/>
@@ -164,7 +165,6 @@
 	<field name="porcentajeActuacionDefensorial" class="java.lang.String"/>
 	<field name="estadoConflictoTexto" class="java.lang.String"/>
 	<field name="estadoConflictos" class="java.util.List"/>
-	<field name="faceTotals" class="java.util.List"/>
 	<field name="casosNuevosTexto" class="java.lang.String"/>
 	<field name="nuevoCasos" class="java.util.List"/>
 	<field name="listaMensualCasosTotales" class="java.util.List"/>
@@ -981,14 +981,14 @@ Correo electrónico: conflictos@defensoria.gob.pe
 		</band>
 		<band height="770">
 			<textField>
-				<reportElement x="3" y="269" width="450" height="84" uuid="e6a5b70b-bff6-4840-9a83-972cbe8725c3"/>
+				<reportElement x="7" y="322" width="450" height="84" uuid="e6a5b70b-bff6-4840-9a83-972cbe8725c3"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estadoConflictoTexto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="525" width="361" height="46" forecolor="#999999" uuid="88b01c5d-bfbd-4d39-8f98-e9395df482a2"/>
+				<reportElement x="30" y="558" width="361" height="46" forecolor="#999999" uuid="88b01c5d-bfbd-4d39-8f98-e9395df482a2"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
@@ -1068,7 +1068,7 @@ PERÚ: CONFLICTOS ACTIVOS Y LATENTES, SEPTIEMBRE 2013-14
 				<text><![CDATA[1.1 FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="3" y="367" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
+				<reportElement x="16" y="482" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subReporteResumenEjecutivoCuadro001.jasper"]]></subreportExpression>
@@ -1093,28 +1093,61 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES, SEPTIEMBRE 2015-16
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCuadroGenericoMes})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$F{rutaReporte}+"subReporteResumenEjecutivoListaMes001.jasper"]]></subreportExpression>
 			</subreport>
-			<areaChart>
+			<barChart>
 				<chart>
-					<reportElement x="57" y="169" width="200" height="100" uuid="200810bf-34d6-40e4-9918-08089b7eb511"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
+					<reportElement x="5" y="165" width="456" height="142" uuid="76e5b751-e9eb-462a-be32-abb6e912b4eb"/>
+					<chartTitle>
+						<font size="5"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font fontName="Arial" size="5"/>
+					</chartSubtitle>
+					<chartLegend>
+						<font fontName="Arial" size="10"/>
+					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<dataset>
-						<datasetRun subDataset="grafic004Dataset" uuid="74dea2fc-4bab-42f0-b84f-e36294fb9400"/>
+						<datasetRun subDataset="grafic002Dataset" uuid="5b2b538c-fb6d-4bb6-9bb1-974ad83be509">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{registradoTotals})]]></dataSourceExpression>
+						</datasetRun>
 					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["CONFLICTOS SOCIALES REGISTRADOS POR MES"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nombre}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+					</categorySeries>
 				</categoryDataset>
-				<areaPlot>
+				<barPlot>
 					<plot/>
+					<itemLabel>
+						<font fontName="Arial" size="5"/>
+					</itemLabel>
 					<categoryAxisFormat>
-						<axisFormat/>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Arial" size="5"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial" size="5"/>
+							</tickLabelFont>
+						</axisFormat>
 					</categoryAxisFormat>
 					<valueAxisFormat>
 						<axisFormat/>
 					</valueAxisFormat>
-				</areaPlot>
-			</areaChart>
+				</barPlot>
+			</barChart>
+			<staticText>
+				<reportElement x="8" y="419" width="298" height="20" uuid="3e3c16cd-2eb9-422e-908c-b28f7fd56143"/>
+				<text><![CDATA[COMPETENCIAS EN LA ATENCIÓN DE CONFLICTOS SOCIALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="439" width="453" height="43" uuid="dd031000-27cc-4228-b47d-0d365585f84a"/>
+				<text><![CDATA[La identificación de las competencias en la atención de un conflicto social se hace a partir del reconocimiento del papel que desempeñan los sectores en los que se organiza el Estado para la atención de las múltiples demandas que son planteadas durante el desarrollo de un conflicto social, de acuerdo a la normatividad, objetivos y funciones vigentes en cada una de la entidades estatales analizadas.
+Así, durante el mes, la principal competencia (entre varias que coexisten) en la atención de los conflictos sociales registrados recae en el Gobierno Nacional, con 142 casos (68,6%); en los gobiernos regionales con 35 casos (16,9%); y en los gobiernos locales con 18 casos (8,7%). A continuación el cuadro por competencias:
+]]></text>
+			</staticText>
 		</band>
 		<band height="770">
 			<textField>
@@ -1125,7 +1158,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES, SEPTIEMBRE 2015-16
 			<staticText>
 				<reportElement mode="Transparent" x="44" y="467" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="237869a7-0d23-4b07-8349-0056bb88c57e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Calibri" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 3
