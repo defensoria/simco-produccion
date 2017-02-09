@@ -47,14 +47,13 @@
             <property name="dataSource" ref="dataSource1" />
     </bean>
 
-    <context:component-scan base-package="gob.dp.simco.administracion.seguridad.dao"/>
-    <context:component-scan base-package="gob.dp.simco.administracion.parametro.dao"/>
+    <context:component-scan base-package="gob.dp.simco.seguridad.dao"/>
+    <context:component-scan base-package="gob.dp.simco.parametro.dao"/>
     <context:component-scan base-package="gob.dp.simco.registro.dao"/>
     <context:component-scan base-package="gob.dp.simco.seguimiento.dao"/>
     <context:component-scan base-package="gob.dp.simco.analisis.dao"/>
     <context:component-scan base-package="gob.dp.simco.intervencion.dao"/>
     <context:component-scan base-package="gob.dp.simco.comun.dao"/>
-    <context:component-scan base-package="gob.dp.simco.noticia.dao"/>
     <context:component-scan base-package="gob.dp.simco.investigacion.dao"/>
     <context:component-scan base-package="gob.dp.simco.reporte.dao"/>
 </beans>

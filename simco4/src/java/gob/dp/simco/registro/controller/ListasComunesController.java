@@ -5,7 +5,7 @@
  */
 package gob.dp.simco.registro.controller;
 
-import gob.dp.simco.comun.ConstantesUtil;
+import gob.dp.simco.comun.util.ConstantesUtil;
 import gob.dp.simco.registro.entity.Parametro;
 import gob.dp.simco.registro.service.CacheService;
 import java.util.List;

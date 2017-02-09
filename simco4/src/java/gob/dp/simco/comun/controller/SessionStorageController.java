@@ -5,8 +5,8 @@
  */
 package gob.dp.simco.comun.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.entity.Usuario;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;

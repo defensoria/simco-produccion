@@ -5,7 +5,7 @@
  */
 package gob.dp.simco.registro.controller;
 
-import gob.dp.simco.comun.FunctionUtil;
+import gob.dp.simco.comun.util.FunctionUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.Actividad;
 import gob.dp.simco.registro.entity.ActividadMedioVerificacion;

@@ -5,9 +5,9 @@
  */
 package gob.dp.simco.registro.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.BusquedaUsuarioController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
-import gob.dp.simco.comun.ConstantesUtil;
+import gob.dp.simco.seguridad.controller.BusquedaUsuarioController;
+import gob.dp.simco.seguridad.entity.Usuario;
+import gob.dp.simco.comun.util.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.ActaAcuerdo;
 import gob.dp.simco.registro.entity.ActaAcuerdoDetalle;

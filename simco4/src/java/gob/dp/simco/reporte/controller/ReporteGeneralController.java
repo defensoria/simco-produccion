@@ -5,10 +5,10 @@
  */
 package gob.dp.simco.reporte.controller;
 
-import gob.dp.simco.administracion.parametro.entity.Catalogo;
-import gob.dp.simco.administracion.parametro.service.CatalogoService;
-import gob.dp.simco.comun.Filter;
-import gob.dp.simco.comun.FilterList;
+import gob.dp.simco.parametro.entity.Catalogo;
+import gob.dp.simco.parametro.service.CatalogoService;
+import gob.dp.simco.comun.util.Filter;
+import gob.dp.simco.comun.util.FilterList;
 import gob.dp.simco.comun.entity.Departamento;
 import gob.dp.simco.comun.entity.RegistroCarga;
 import gob.dp.simco.comun.entity.Resumen;

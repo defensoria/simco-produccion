@@ -5,9 +5,9 @@
  */
 package gob.dp.simco.investigacion.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
-import gob.dp.simco.administracion.seguridad.service.UsuarioService;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.service.UsuarioService;
 import gob.dp.simco.investigacion.entity.Campo;
 import gob.dp.simco.investigacion.entity.CampoDetalle;
 import gob.dp.simco.investigacion.entity.HistorialActividad;

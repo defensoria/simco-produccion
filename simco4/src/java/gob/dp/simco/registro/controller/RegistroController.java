@@ -5,15 +5,15 @@
  */
 package gob.dp.simco.registro.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.entity.Usuario;
 import gob.dp.simco.comun.entity.Departamento;
 import gob.dp.simco.comun.entity.Distrito;
 import gob.dp.simco.comun.entity.Provincia;
 import gob.dp.simco.comun.service.UbigeoService;
-import gob.dp.simco.noticia.entity.Noticia;
-import gob.dp.simco.noticia.service.NoticiaService;
-import gob.dp.simco.comun.ConstantesUtil;
+import gob.dp.simco.registro.entity.Noticia;
+import gob.dp.simco.registro.service.NoticiaService;
+import gob.dp.simco.comun.util.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.ActaAcuerdo;
 import gob.dp.simco.registro.entity.Actividad;

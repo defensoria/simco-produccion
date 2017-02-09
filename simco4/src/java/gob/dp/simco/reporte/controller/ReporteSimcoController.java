@@ -7,8 +7,8 @@ package gob.dp.simco.reporte.controller;
 
 import gob.dp.simco.analisis.entity.AnalisisActorIntensidad;
 import gob.dp.simco.analisis.service.AnalisisActorIntensidadService;
-import gob.dp.simco.comun.ConstantesUtil;
-import gob.dp.simco.comun.FunctionUtil;
+import gob.dp.simco.comun.util.ConstantesUtil;
+import gob.dp.simco.comun.util.FunctionUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.comun.type.AnhosEnum;
 import gob.dp.simco.intervencion.entity.Intervencion;

@@ -5,9 +5,9 @@
  */
 package gob.dp.simco.intervencion.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.BusquedaUsuarioController;
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.controller.BusquedaUsuarioController;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.entity.Usuario;
 import gob.dp.simco.intervencion.entity.Intervencion;
 import gob.dp.simco.intervencion.entity.IntervencionAccion;
 import gob.dp.simco.intervencion.entity.IntervencionEtapa;

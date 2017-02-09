@@ -1,6 +1,6 @@
 package gob.dp.simco.comun.mb;
 
-import gob.dp.simco.comun.MessagesUtil;
+import gob.dp.simco.comun.util.MessagesUtil;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;

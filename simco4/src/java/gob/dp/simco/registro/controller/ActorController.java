@@ -5,8 +5,8 @@
  */
 package gob.dp.simco.registro.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.entity.Usuario;
 import gob.dp.simco.comun.entity.Departamento;
 import gob.dp.simco.comun.entity.Distrito;
 import gob.dp.simco.comun.entity.Maestro;
@@ -14,7 +14,7 @@ import gob.dp.simco.comun.entity.Provincia;
 import gob.dp.simco.comun.service.MaestroService;
 import gob.dp.simco.comun.service.UbigeoService;
 import gob.dp.simco.registro.bean.FiltroActor;
-import gob.dp.simco.comun.ConstantesUtil;
+import gob.dp.simco.comun.util.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.ActaAcuerdoDetalle;
 import gob.dp.simco.registro.entity.Actividad;

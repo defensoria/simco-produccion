@@ -6,7 +6,7 @@
 
 package gob.dp.simco.registro.service;
 
-import gob.dp.simco.comun.FunctionUtil;
+import gob.dp.simco.comun.util.FunctionUtil;
 import gob.dp.simco.registro.bean.FiltroCasoActor;
 import gob.dp.simco.registro.dao.ActividadActorDao;
 import gob.dp.simco.registro.entity.ActividadActor;

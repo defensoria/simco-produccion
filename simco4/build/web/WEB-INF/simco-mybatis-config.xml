@@ -14,16 +14,16 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.Usuario" alias="usuario"/>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.UsuarioRol" alias="usuarioRol"/>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.UsuarioLogin" alias="usuarioLogin"/>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.Rol" alias="rol"/>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.Recurso" alias="recurso"/>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.entity.RolRecurso" alias="rolRecurso"/>
-        <typeAlias type="gob.dp.simco.administracion.seguridad.bean.FiltroUsuario" alias="filtroUsuario"/>
+        <typeAlias type="gob.dp.simco.seguridad.entity.Usuario" alias="usuario"/>
+        <typeAlias type="gob.dp.simco.seguridad.entity.UsuarioRol" alias="usuarioRol"/>
+        <typeAlias type="gob.dp.simco.seguridad.entity.UsuarioLogin" alias="usuarioLogin"/>
+        <typeAlias type="gob.dp.simco.seguridad.entity.Rol" alias="rol"/>
+        <typeAlias type="gob.dp.simco.seguridad.entity.Recurso" alias="recurso"/>
+        <typeAlias type="gob.dp.simco.seguridad.entity.RolRecurso" alias="rolRecurso"/>
+        <typeAlias type="gob.dp.simco.seguridad.bean.FiltroUsuario" alias="filtroUsuario"/>
         
-        <typeAlias type="gob.dp.simco.administracion.parametro.entity.Catalogo" alias="catalogo"/>
-        <typeAlias type="gob.dp.simco.administracion.parametro.bean.FiltroCatalogo" alias="filtroCatalogo"/>
+        <typeAlias type="gob.dp.simco.parametro.entity.Catalogo" alias="catalogo"/>
+        <typeAlias type="gob.dp.simco.parametro.bean.FiltroCatalogo" alias="filtroCatalogo"/>
                          
         <typeAlias type="gob.dp.simco.registro.entity.Actividad" alias="actividad"/>
         <typeAlias type="gob.dp.simco.registro.entity.Actor" alias="actor"/>
@@ -83,7 +83,7 @@
         <typeAlias type="gob.dp.simco.investigacion.entity.CampoDetalle" alias="campoDetalle"/>
         <typeAlias type="gob.dp.simco.investigacion.entity.HistorialActividad" alias="historialActividad"/>
         
-        <typeAlias type="gob.dp.simco.comun.Auditoria" alias="auditoria"/>
+        <typeAlias type="gob.dp.simco.comun.util.Auditoria" alias="auditoria"/>
         <typeAlias type="gob.dp.simco.comun.entity.Departamento" alias="departamento"/>
         <typeAlias type="gob.dp.simco.comun.entity.Provincia" alias="provincia"/>
         <typeAlias type="gob.dp.simco.comun.entity.Distrito" alias="distrito"/>
@@ -102,13 +102,13 @@
     </typeAliases>
 
     <mappers>
-        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Usuario.xml" />
-        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Rol.xml" />
-        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Recurso.xml" />
-        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/Auditoria.xml" />
-        <mapper resource="gob/dp/simco/administracion/seguridad/dao/xml/UsuarioLogin.xml" />
+        <mapper resource="gob/dp/simco/seguridad/dao/xml/Usuario.xml" />
+        <mapper resource="gob/dp/simco/seguridad/dao/xml/Rol.xml" />
+        <mapper resource="gob/dp/simco/seguridad/dao/xml/Recurso.xml" />
+        <mapper resource="gob/dp/simco/seguridad/dao/xml/Auditoria.xml" />
+        <mapper resource="gob/dp/simco/seguridad/dao/xml/UsuarioLogin.xml" />
         
-        <mapper resource="gob/dp/simco/administracion/parametro/dao/xml/Catalogo.xml" />
+        <mapper resource="gob/dp/simco/parametro/dao/xml/Catalogo.xml" />
         
         <mapper resource="gob/dp/simco/registro/dao/xml/Actividad.xml" />
         <mapper resource="gob/dp/simco/registro/dao/xml/Actor.xml" />

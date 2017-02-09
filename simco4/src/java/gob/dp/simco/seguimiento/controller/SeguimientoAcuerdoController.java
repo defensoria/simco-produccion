@@ -5,9 +5,9 @@
  */
 package gob.dp.simco.seguimiento.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.controller.MenuController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.controller.MenuController;
+import gob.dp.simco.seguridad.entity.Usuario;
 import gob.dp.simco.registro.entity.ActaAcuerdoDetalle;
 import gob.dp.simco.registro.entity.Actor;
 import gob.dp.simco.registro.entity.Caso;

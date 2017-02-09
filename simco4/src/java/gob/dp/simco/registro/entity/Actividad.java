@@ -6,7 +6,7 @@
 
 package gob.dp.simco.registro.entity;
 
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.entity.Usuario;
 import java.io.Serializable;
 import java.util.Date;
 

@@ -5,8 +5,8 @@
  */
 package gob.dp.simco.analisis.controller;
 
-import gob.dp.simco.administracion.seguridad.controller.LoginController;
-import gob.dp.simco.administracion.seguridad.entity.Usuario;
+import gob.dp.simco.seguridad.controller.LoginController;
+import gob.dp.simco.seguridad.entity.Usuario;
 import gob.dp.simco.analisis.entity.AnalisisActor;
 import gob.dp.simco.analisis.entity.AnalisisActorIntensidad;
 import gob.dp.simco.analisis.entity.AnalisisActorTema;

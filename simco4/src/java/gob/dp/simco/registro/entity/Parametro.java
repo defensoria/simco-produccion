@@ -5,7 +5,7 @@
 
 package gob.dp.simco.registro.entity;
 
-import gob.dp.simco.comun.Auditoria;
+import gob.dp.simco.comun.util.Auditoria;
 import java.io.Serializable;
 
 /**

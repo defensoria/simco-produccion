@@ -5,7 +5,7 @@
  */
 package gob.dp.simco.registro.controller;
 
-import gob.dp.simco.comun.ConstantesUtil;
+import gob.dp.simco.comun.util.ConstantesUtil;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.ActividadVictima;
 import gob.dp.simco.registro.service.ActividadVictimaService;

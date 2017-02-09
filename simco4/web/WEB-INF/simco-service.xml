@@ -23,11 +23,11 @@
 
         <context:component-scan  base-package="gob.dp.simco.comun.service"/>
         
-        <context:component-scan  base-package="gob.dp.simco.administracion.seguridad.service"/>
-        <context:component-scan  base-package="gob.dp.simco.administracion.seguridad.controller" scoped-proxy="targetClass"  />
+        <context:component-scan  base-package="gob.dp.simco.seguridad.service"/>
+        <context:component-scan  base-package="gob.dp.simco.seguridad.controller" scoped-proxy="targetClass"  />
         
-        <context:component-scan  base-package="gob.dp.simco.administracion.parametro.service"/>
-        <context:component-scan  base-package="gob.dp.simco.administracion.parametro.controller" scoped-proxy="targetClass"  />
+        <context:component-scan  base-package="gob.dp.simco.parametro.service"/>
+        <context:component-scan  base-package="gob.dp.simco.parametro.controller" scoped-proxy="targetClass"  />
 
         <context:component-scan  base-package="gob.dp.simco.registro.service"/>
         <context:component-scan  base-package="gob.dp.simco.registro.controller" scoped-proxy="targetClass"  />
@@ -41,10 +41,8 @@
         <context:component-scan  base-package="gob.dp.simco.intervencion.service"/>
         <context:component-scan  base-package="gob.dp.simco.intervencion.controller" scoped-proxy="targetClass"  />
         
-        <context:component-scan  base-package="gob.dp.simco.noticia.service"/>
         
-        
-        <context:component-scan  base-package="gob.dp.simco.comun.service"/>
+       <context:component-scan  base-package="gob.dp.simco.comun.service"/>
         
         
         <context:component-scan  base-package="gob.dp.simco.comun.controller" scoped-proxy="targetClass"  />
