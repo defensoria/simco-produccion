@@ -101,6 +101,8 @@ public class ReporteSimcoCaso implements Serializable{
     
     private Double inversionInvolucrada;
     
+    private String descripcionCaso;
+    
     private String imagePath;
 
     public String getCodigoCaso() {
@@ -461,6 +463,14 @@ public class ReporteSimcoCaso implements Serializable{
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getDescripcionCaso() {
+        return descripcionCaso;
+    }
+
+    public void setDescripcionCaso(String descripcionCaso) {
+        this.descripcionCaso = descripcionCaso;
     }
     
 }

@@ -50,4 +50,5 @@ public interface CasoService {
    public List<Caso> listadoCasosEstadoMes(FiltroReporte filtroReporte);
    
    public List<Caso> listaCasosAntesDeAprobado(String codigoCaso);
+   
 }

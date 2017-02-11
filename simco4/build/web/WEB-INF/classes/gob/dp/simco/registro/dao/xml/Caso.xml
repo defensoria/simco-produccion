@@ -41,7 +41,7 @@
         <result property="indAprobado" column="C_INDAPROBADO"/>
         <result property="usuAprobado" column="C_USUAPROBADOR"/>
         <result property="fechaAprobado" column="D_FECHAAPROBACION"/>
-        
+
     </resultMap>  
 
 
@@ -512,5 +512,6 @@
         SELECT * FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDAPROBADO = 'A' AND C_INDVIGENTE = 'I'
         AND C_CODIGOCASO = #{value} ORDER BY N_ID_CASO DESC
     </select>
+    
     
 </mapper>

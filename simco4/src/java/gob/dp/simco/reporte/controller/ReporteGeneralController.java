@@ -29,8 +29,10 @@ import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.EstadoConflicto;
 import gob.dp.simco.reporte.entity.FiltroReporte;
 import gob.dp.simco.reporte.entity.NuevoCaso;
+import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import gob.dp.simco.reporte.service.ReporteEjecutivoService;
 import gob.dp.simco.reporte.service.ReporteGeneralService;
+import gob.dp.simco.reporte.service.ReporteSimcoCasoService;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -107,6 +109,9 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
     
     @Autowired
     private CasoService casoService;
+    
+    @Autowired
+    private ReporteSimcoCasoService reporteSimcoCasoService;
 
     public String reporte() {
         filtroReporte = new FiltroReporte();
@@ -219,7 +224,8 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         Integer totalActividadIntermediacionMes;        
         Integer totalActividadSupervisionPreventivaMes;        
           
-                
+        List<ReporteSimcoCaso> listaCasosNuevosPorMes;        
+        List<ReporteSimcoCaso> listaCasosResueltosPorMes;
                 
         
         
@@ -270,8 +276,11 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         totalActividadIntermediacionMes = reporteEjecutivoService.totalActividadIntermediacionMes(filtroReporte);
         totalActividadSupervisionPreventivaMes = reporteEjecutivoService.totalActividadSupervisionPreventivaMes(filtroReporte);
         
+        listaCasosNuevosPorMes = reporteSimcoCasoService.listaCasosNuevosPorMes(filtroReporte);
+        listaCasosResueltosPorMes = reporteSimcoCasoService.listaCasosResueltosPorMes(filtroReporte);
         
-        
+                
+                
         
         totalActivosLatentes = reporteEjecutivoService.totalCasosActivosLatentes(filtroReporte);
         totalLatentesObservacion = reporteEjecutivoService.totalCasosLatentesObservacion(filtroReporte);
@@ -323,14 +332,18 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         ejecutivo.setTotalActividadIntermediacionMes(totalActividadIntermediacionMes);
         ejecutivo.setTotalActividadSupervisionPreventivaMes(totalActividadSupervisionPreventivaMes);
         
-        /*NUMERO DE CASOS POR MES*/
+        
         Integer numeroMes = Integer.parseInt(filtroReporte.getMes());
-        List<CuadroGenericoMes> lista = new ArrayList<>();
-        List<ChartTotal> registradoTotals = new ArrayList<>();
         String anhoe = filtroReporte.getAnhos();
+        List<CuadroGenericoMes> listaCasosRegistradosMES = new ArrayList<>();
+        List<CuadroGenericoMes> listaCasosResueltosMES = new ArrayList<>();
+        List<ChartTotal> registradoTotals;
         CuadroGenericoMes cma = new CuadroGenericoMes();
-            CuadroGenericoMes cma1 = new CuadroGenericoMes();
-            CuadroGenericoMes cma2 = new CuadroGenericoMes();
+        CuadroGenericoMes cma1 = new CuadroGenericoMes();
+        CuadroGenericoMes cmaCasosRegistradosPorMes = new CuadroGenericoMes();
+        CuadroGenericoMes cmaCasosResueltosPorMes = new CuadroGenericoMes();
+        /*NUMERO DE CASOS POR MES*/
+        registradoTotals = new ArrayList<>();
         for(int i = 0; i< 13; i++){
             ChartTotal ct = new ChartTotal();
             
@@ -341,106 +354,118 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
                 numeroMes = 12;
             }
             String mes = String.format("%2s",numeroMes).replace(' ', '0');
-            System.out.println("mes::"+mes);
-            System.out.println("anho::"+"20"+anhoe);
             FiltroReporte fr = new FiltroReporte();
             fr.setMes(mes);
             fr.setAnhos(anhoe);
             ct.setNombre(MesType.get(mes).getValue()+"-"+anhoe);
             Integer cantid = reporteEjecutivoService.totalCasosRegistradosMes(fr);
+            Integer cantid1 = reporteEjecutivoService.totalCasosResueltoMes(fr);
             ct.setValor(cantid);
             registradoTotals.add(ct);
-            System.out.println("cantidad::"+reporteEjecutivoService.totalCasosRegistradosMes(fr));
             if(i == 0){
                 cma1.setMes0(MesType.get(mes).getValue());
                 cma.setMes0("20"+anhoe);
-                cma2.setMes0(reporteEjecutivoService.totalCasosRegistradosMes(fr).toString());
+                cmaCasosRegistradosPorMes.setMes0(cantid.toString());
+                cmaCasosResueltosPorMes.setMes0(cantid1.toString());
             }
             if(i == 1){
-            cma1.setMes1(MesType.get(mes).getValue());
-             cma.setMes1("20"+anhoe);
-                cma2.setMes1(cantid.toString());
+                cma1.setMes1(MesType.get(mes).getValue());
+                cma.setMes1("20"+anhoe);
+                cmaCasosRegistradosPorMes.setMes1(cantid.toString());
+                cmaCasosResueltosPorMes.setMes1(cantid1.toString());
             }
             if(i == 2){
                 cma1.setMes2(MesType.get(mes).getValue());
                 cma.setMes2("20"+anhoe);
-                cma2.setMes2(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes2(cantid.toString());
+                cmaCasosResueltosPorMes.setMes2(cantid1.toString());
             }
             if(i == 3){
                 cma1.setMes3(MesType.get(mes).getValue());
                 cma.setMes3("20"+anhoe);
-                cma2.setMes3(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes3(cantid.toString());
+                cmaCasosResueltosPorMes.setMes3(cantid1.toString());
             }
             if(i == 4){
                 cma1.setMes4(MesType.get(mes).getValue());
                 cma.setMes4("20"+anhoe);
-                cma2.setMes4(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes4(cantid.toString());
+                cmaCasosResueltosPorMes.setMes4(cantid1.toString());
             }
             if(i == 5){
                 cma1.setMes5(MesType.get(mes).getValue());
                 cma.setMes5("20"+anhoe);
-                cma2.setMes5(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes5(cantid.toString());
+                cmaCasosResueltosPorMes.setMes5(cantid1.toString());
             }
             if(i == 6){
                 cma1.setMes6(MesType.get(mes).getValue());
                 cma.setMes6("20"+anhoe);
-                cma2.setMes6(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes6(cantid.toString());
+                cmaCasosResueltosPorMes.setMes6(cantid1.toString());
             }
             if(i == 7){
                 cma1.setMes7(MesType.get(mes).getValue());
                 cma.setMes7("20"+anhoe);
-                cma2.setMes7(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes7(cantid.toString());
+                cmaCasosResueltosPorMes.setMes7(cantid1.toString());
             }
             if(i == 8){
                 cma1.setMes8(MesType.get(mes).getValue());
                 cma.setMes8("20"+anhoe);
-                cma2.setMes8(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes8(cantid.toString());
+                cmaCasosResueltosPorMes.setMes8(cantid1.toString());
             }
             if(i == 9){
                 cma1.setMes9(MesType.get(mes).getValue());
                 cma.setMes9("20"+anhoe);
-                cma2.setMes9(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes9(cantid.toString());
+                cmaCasosResueltosPorMes.setMes9(cantid1.toString());
             }
             if(i == 10){
                 cma1.setMes10(MesType.get(mes).getValue());
                 cma.setMes10("20"+anhoe);
-                cma2.setMes10(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes10(cantid.toString());
+                cmaCasosResueltosPorMes.setMes10(cantid1.toString());
             }
             if(i == 11){
                 cma1.setMes11(MesType.get(mes).getValue());
                 cma.setMes11("20"+anhoe);
-                cma2.setMes11(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes11(cantid.toString());
+                cmaCasosResueltosPorMes.setMes11(cantid1.toString());
             }
             if(i == 12){
                 cma1.setMes12(MesType.get(mes).getValue());
                 cma.setMes12("20"+anhoe);
-                cma2.setMes12(cantid.toString());
+                cmaCasosRegistradosPorMes.setMes12(cantid.toString());
+                cmaCasosResueltosPorMes.setMes12(cantid1.toString());
             }
-            
-            
-            //cma.setColumna1(("20"+anhoe));
-            //cma.setColumna2(MesType.get(mes).getValue());
-            
-            //cma.setCantidad(reporteEjecutivoService.totalCasosRegistradosMes(fr));
-            
-            numeroMes--;
-            
+            numeroMes--; 
         }
-        lista.add(cma);
-            lista.add(cma1);
-            lista.add(cma2);
+        listaCasosRegistradosMES.add(cma);
+        listaCasosRegistradosMES.add(cma1);
+        listaCasosRegistradosMES.add(cmaCasosRegistradosPorMes);
             
-            List<ChartTotal> registradoTotals1 = new ArrayList<>();
-            for(int i = 12; i >= 0; i--){
-                System.out.println(i);
-                registradoTotals1.add(registradoTotals.get(i));
-            }
+        listaCasosResueltosMES.add(cma);
+        listaCasosResueltosMES.add(cma1);
+        listaCasosResueltosMES.add(cmaCasosResueltosPorMes);
+        
+        
+        List<ChartTotal> registradoTotals1 = new ArrayList<>();
+        for(int i = 12; i >= 0; i--){
+            registradoTotals1.add(registradoTotals.get(i));
+        }
+        
+        
+        /*NUMERO DE CASOS RESUELTOS POR MES*/
+        
+        
             
-            ejecutivo.setRegistradoTotals(registradoTotals1);
-        System.out.println(lista.size());
-        
-        ejecutivo.setListaCuadroGenericoMes(lista);
-        
+        ejecutivo.setRegistradoTotals(registradoTotals1);
+        ejecutivo.setListaCasosRegistradosMES(listaCasosRegistradosMES);
+        ejecutivo.setListaCasosNuevosPorMes(listaCasosNuevosPorMes);
+        ejecutivo.setListaCasosResueltosMES(listaCasosResueltosMES);
+        ejecutivo.setListaCasosResueltosPorMes(listaCasosResueltosPorMes);
         
         
         ejecutivo.setTotalGeneralActuacionDefensorial(totalGeneralActuacion);
@@ -778,14 +803,10 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
     }
     
     public List<ElementoReporte> generarReporteEstadoRegion() {
-         List<Caso> listaCasosReporte1 = null;
         FiltroReporte fr = new FiltroReporte();
         fr.setClasificacion("0");
-        listaCasosReporte1 = reporteGeneralService.reporteCaso(fr);
-        List<Catalogo> catalogos = null;
-        
-            catalogos = catalogoService.parametroPorPadre(290);
-        
+        List<Caso> listaCasosReporte1 = reporteGeneralService.reporteCaso(fr);
+        List<Catalogo> catalogos = catalogoService.parametroPorPadre(290);
         elementoReportes = new ArrayList<>();
         ElementoReporte er1 = new ElementoReporte();
         er1.setTipoConflicto("Total");

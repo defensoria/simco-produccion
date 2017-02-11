@@ -6,6 +6,7 @@
 package gob.dp.simco.reporte.service;
 
 import gob.dp.simco.reporte.dao.ReporteSimcoCasoDao;
+import gob.dp.simco.reporte.entity.FiltroReporte;
 import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -63,8 +64,15 @@ public class ReporteSimcoCasoServiceImpl implements ReporteSimcoCasoService{
         }
         return null;
     }
-    
-    
-    
+
+    @Override
+    public List<ReporteSimcoCaso> listaCasosNuevosPorMes(FiltroReporte filtroReporte) {
+        return reporteSimcoDao.listaCasosNuevosPorMes(filtroReporte);
+    }
+
+    @Override
+    public List<ReporteSimcoCaso> listaCasosResueltosPorMes(FiltroReporte filtroReporte) {
+        return reporteSimcoDao.listaCasosResueltosPorMes(filtroReporte);
+    }
     
 }

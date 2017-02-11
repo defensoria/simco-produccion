@@ -99,5 +99,5 @@ public class CasoDaoImpl extends SqlSessionDaoSupport implements CasoDao{
     public List<Caso> listaCasosAntesDeAprobado(String codigoCaso) {
         return getSqlSession().selectList("gob.dp.simco.registro.dao.CasoDao.listaCasosAntesDeAprobado",codigoCaso);
     }
-    
+
 }

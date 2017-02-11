@@ -5,6 +5,7 @@
  */
 package gob.dp.simco.reporte.dao;
 
+import gob.dp.simco.reporte.entity.FiltroReporte;
 import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -61,5 +62,16 @@ public class ReporteSimcoCasoDaoImpl extends SqlSessionDaoSupport implements Rep
     public Integer cantidadHeridosFFAA(String codigoCaso) {
         return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteSimcoCasoDao.cantidadMuertosPNP",codigoCaso);
     }
+    
+    @Override
+    public List<ReporteSimcoCaso> listaCasosNuevosPorMes(FiltroReporte filtroReporte) {
+        return getSqlSession().selectList("gob.dp.simco.reporte.dao.ReporteSimcoCasoDao.listaCasosNuevosPorMes",filtroReporte);
+    }
+
+    @Override
+    public List<ReporteSimcoCaso> listaCasosResueltosPorMes(FiltroReporte filtroReporte) {
+        return getSqlSession().selectList("gob.dp.simco.reporte.dao.ReporteSimcoCasoDao.listaCasosResueltosPorMes",filtroReporte);
+    }
+    
     
 }

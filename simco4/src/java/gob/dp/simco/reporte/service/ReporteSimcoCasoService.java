@@ -5,6 +5,7 @@
  */
 package gob.dp.simco.reporte.service;
 
+import gob.dp.simco.reporte.entity.FiltroReporte;
 import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import java.util.List;
 
@@ -21,5 +22,9 @@ public interface ReporteSimcoCasoService {
     public Integer cantidadEmpresaMineraCaso(String codigoCaso);
     
     public Integer cantidadMuertosHeridos(String codigoCaso, String estado, String estadoTipo);
+    
+    public List<ReporteSimcoCaso> listaCasosNuevosPorMes(FiltroReporte filtroReporte);
+    
+    public List<ReporteSimcoCaso> listaCasosResueltosPorMes(FiltroReporte filtroReporte);
     
 }

@@ -49,4 +49,6 @@ public interface CasoDao {
    
    public List<Caso> listaCasosAntesDeAprobado(String codigoCaso);
    
+   
+   
 }

@@ -5,6 +5,7 @@
  */
 package gob.dp.simco.reporte.entity;
 
+import gob.dp.simco.registro.entity.Caso;
 import java.io.Serializable;
 import java.util.List;
 
@@ -82,12 +83,18 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<EstadoConflicto> estadoConflictos;
     
-    private List<CuadroGenericoMes> listaCuadroGenericoMes;
+    private List<CuadroGenericoMes> listaCasosRegistradosMES;
+    
+    private List<CuadroGenericoMes> listaCasosResueltosMES;
     
     private List<ChartTotal> registradoTotals;
     
     private List<ChartTotal> faceTotals;
     
+    private List<ReporteSimcoCaso> listaCasosNuevosPorMes;
+    
+    
+    private List<ReporteSimcoCaso> listaCasosResueltosPorMes;
     
     
     
@@ -1577,20 +1584,45 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.rutaReporte = rutaReporte;
     }
 
-    public List<CuadroGenericoMes> getListaCuadroGenericoMes() {
-        return listaCuadroGenericoMes;
+    public List<CuadroGenericoMes> getListaCasosRegistradosMES() {
+        return listaCasosRegistradosMES;
     }
 
-    public void setListaCuadroGenericoMes(List<CuadroGenericoMes> listaCuadroGenericoMes) {
-        this.listaCuadroGenericoMes = listaCuadroGenericoMes;
+    public void setListaCasosRegistradosMES(List<CuadroGenericoMes> listaCasosRegistradosMES) {
+        this.listaCasosRegistradosMES = listaCasosRegistradosMES;
     }
 
+    
     public List<ChartTotal> getRegistradoTotals() {
         return registradoTotals;
     }
 
     public void setRegistradoTotals(List<ChartTotal> registradoTotals) {
         this.registradoTotals = registradoTotals;
+    }
+
+    public List<ReporteSimcoCaso> getListaCasosNuevosPorMes() {
+        return listaCasosNuevosPorMes;
+    }
+
+    public void setListaCasosNuevosPorMes(List<ReporteSimcoCaso> listaCasosNuevosPorMes) {
+        this.listaCasosNuevosPorMes = listaCasosNuevosPorMes;
+    }
+
+    public List<ReporteSimcoCaso> getListaCasosResueltosPorMes() {
+        return listaCasosResueltosPorMes;
+    }
+
+    public void setListaCasosResueltosPorMes(List<ReporteSimcoCaso> listaCasosResueltosPorMes) {
+        this.listaCasosResueltosPorMes = listaCasosResueltosPorMes;
+    }
+
+    public List<CuadroGenericoMes> getListaCasosResueltosMES() {
+        return listaCasosResueltosMES;
+    }
+
+    public void setListaCasosResueltosMES(List<CuadroGenericoMes> listaCasosResueltosMES) {
+        this.listaCasosResueltosMES = listaCasosResueltosMES;
     }
 
 }

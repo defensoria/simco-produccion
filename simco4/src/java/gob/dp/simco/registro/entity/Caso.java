@@ -95,6 +95,13 @@ public class Caso implements Serializable{
     private String nombreAdjuntiaDefensorial;
     
     private String nombreComisionadoRegistro;
+    
+    private String nombreDepartamento;
+    
+    private String nombreProvincia;
+    
+    private String nombreDistrito;
+    
 
     public Long getId() {
         return id;
@@ -414,6 +421,30 @@ public class Caso implements Serializable{
 
     public void setFechaAprobado(Date fechaAprobado) {
         this.fechaAprobado = fechaAprobado;
+    }
+
+    public String getNombreDepartamento() {
+        return nombreDepartamento;
+    }
+
+    public void setNombreDepartamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
+    }
+
+    public String getNombreProvincia() {
+        return nombreProvincia;
+    }
+
+    public void setNombreProvincia(String nombreProvincia) {
+        this.nombreProvincia = nombreProvincia;
+    }
+
+    public String getNombreDistrito() {
+        return nombreDistrito;
+    }
+
+    public void setNombreDistrito(String nombreDistrito) {
+        this.nombreDistrito = nombreDistrito;
     }
     
 }

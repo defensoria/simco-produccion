@@ -24,6 +24,7 @@
         <result property="mecanismoDialogo" column="MECANISMO_DIALOGO"/>
         <result property="participacion" column="PARTICIPACION"/>
         <result property="inversionInvolucrada" column="N_INVERSIONINVOLUCRADA"/>
+        <result property="descripcionCaso" column="C_DESCPRELIMCASO"/>
         
     </resultMap>      
 
@@ -170,4 +171,32 @@
         WHERE C.C_TIPO = 'AC' AND D.C_TIPO = '02' AND D.C_TIPOESTADO = '03'
         AND A.C_CODIGOCASO = #{value}
     </select>
+    
+    
+    <!--REPORTE GENERAL-->
+    <select id="listaCasosNuevosPorMes"  resultMap="reporteSimcoCasoMap" parameterType="filtroReporte">
+        SELECT A.*, B.C_DESCDPTO, M.C_DESCPROV, N.C_DESCDSTRO, C.NOMBRE_PARAMETRO TIPOCASO FROM SIMCO_REG_CASO A 
+        INNER JOIN SIMCO_PARAMETRO C ON A.C_TIPOCASO = C.VALOR_PARAMETRO AND C.PADRE_PARAMETRO = 90
+        LEFT JOIN SIMCO_UBIGEO_DPTO B ON A.C_IDDEPART = B.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_PROV M ON A.C_IDPROV = M.C_ID_PROV AND B.C_ID_DPTO = M.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_DSTRO N ON A.C_IDDISTR = N.C_ID_DSTRO AND B.C_ID_DPTO = N.C_ID_DPTO AND M.C_ID_PROV = N.C_ID_PROV
+        WHERE A.C_INDAPROBADO = 'A' AND A.C_INDVIGENTE = 'A'
+        AND TO_CHAR(A.D_FECHAAPROBACION, 'YY') =  #{anhos}
+        AND TO_CHAR(A.D_FECHAAPROBACION, 'MM') =  #{mes}
+        ORDER BY B.C_DESCDPTO DESC
+    </select>
+    
+    <select id="listaCasosResueltosPorMes"  resultMap="reporteSimcoCasoMap" parameterType="filtroReporte">
+        SELECT A.*, B.C_DESCDPTO, M.C_DESCPROV, N.C_DESCDSTRO, C.NOMBRE_PARAMETRO TIPOCASO FROM SIMCO_REG_CASO A 
+        INNER JOIN SIMCO_PARAMETRO C ON A.C_TIPOCASO = C.VALOR_PARAMETRO AND C.PADRE_PARAMETRO = 90
+        LEFT JOIN SIMCO_UBIGEO_DPTO B ON A.C_IDDEPART = B.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_PROV M ON A.C_IDPROV = M.C_ID_PROV AND B.C_ID_DPTO = M.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_DSTRO N ON A.C_IDDISTR = N.C_ID_DSTRO AND B.C_ID_DPTO = N.C_ID_DPTO AND M.C_ID_PROV = N.C_ID_PROV
+        WHERE A.C_INDAPROBADO = 'A' AND A.C_INDVIGENTE = 'A'
+        AND TO_CHAR(A.D_FECHAMODIFICACION, 'YY') =  #{anhos}
+        AND TO_CHAR(A.D_FECHAMODIFICACION, 'MM') =  #{mes}
+        AND C_TIPOESTADO = '06'
+        ORDER BY B.C_DESCDPTO DESC
+    </select>
+    
 </mapper>

@@ -4,17 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ElementoResumenEjecutivo.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/intervencion/controller/IntervencionController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/service/CasoService.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoCaso.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteEjecutivo.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteGeneral.xml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/type/MesType.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ChartTotal.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/CuadroGenericoMes.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/EstadoConflicto.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/controller/CasoController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/comun/type/MesesEnum.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/dao/ReporteSimcoCasoDaoImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/web/pages/caso/fichaCaso.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/dao/CasoDaoImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoCaso.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/service/ReporteSimcoCasoService.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/dao/CasoDao.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/entity/ElementoResumenEjecutivo.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/service/ReporteSimcoCasoServiceImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/service/CasoServiceImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/reporte/dao/ReporteSimcoCasoDao.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/dao/xml/Caso.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion/simco4/src/java/gob/dp/simco/registro/entity/Caso.java</file>
         </group>
     </open-files>
 </project-private>
