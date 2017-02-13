@@ -143,5 +143,10 @@ public class ActorDaoImpl extends SqlSessionDaoSupport implements ActorDao {
     public Integer actorXactividadSimpleBuscarCount(Long idActividad) {
         return getSqlSession().selectOne("gob.dp.simco.registro.dao.ActorDao.actorXactividadSimpleBuscarCount",idActividad);
     }
+
+    @Override
+    public List<Actor> actoresPorCodigoCaso(String codigoUsuario) {
+        return getSqlSession().selectList("gob.dp.simco.registro.dao.ActorDao.actoresPorCodigoCaso",codigoUsuario);
+    }
     
 }

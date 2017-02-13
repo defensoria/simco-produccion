@@ -5,10 +5,15 @@
  */
 package gob.dp.simco.reporte.service;
 
+import gob.dp.simco.registro.dao.ActorDao;
+import gob.dp.simco.registro.entity.Actor;
 import gob.dp.simco.reporte.dao.ReporteEjecutivoDao;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.FiltroReporte;
+import java.util.HashMap;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import org.codehaus.groovy.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +26,9 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     
     @Autowired
     private ReporteEjecutivoDao reporteEjecutivoDao;
+    
+    @Autowired
+    private ActorDao actorDao;
 
     @Override
     public Integer totalCasosRegistrados() {
@@ -175,8 +183,8 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     }
 
     @Override
-    public List<ElementoResumenEjecutivo> totalMensualNivelGobierno(FiltroReporte filtroReporte) {
-        return reporteEjecutivoDao.totalMensualNivelGobierno(filtroReporte);
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCaso(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalMensualSegunTipologiaCaso(filtroReporte);
     }
 
     
@@ -244,6 +252,47 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     @Override
     public Integer totalActividadAccionesDefensaLegalMes(FiltroReporte filtroReporte) {
         return reporteEjecutivoDao.totalActividadAccionesDefensaLegalMes(filtroReporte);
+    }
+
+    @Override
+    public HashMap<Integer,String> actoresPorCodigoCasoString(String codigoCaso) {
+        List<Actor> list = actorDao.actoresPorCodigoCaso(codigoCaso);
+        StringBuilder primario = new StringBuilder();
+        StringBuilder secundario = new StringBuilder();
+        StringBuilder terciario = new StringBuilder();
+        int count = 0;
+        for(Actor a : list){
+            if(StringUtils.equals(a.getTipoActoCaso(), "01")){
+                if(count > 0) primario.append(", ");
+                if(StringUtils.equals(a.getTipoGeneral(), "PE")){
+                    primario.append(a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat());
+                }else{
+                    primario.append(a.getNombre());
+                }
+            }
+            if(StringUtils.equals(a.getTipoActoCaso(), "02")){
+                if(count > 0) secundario.append(", ");
+                if(StringUtils.equals(a.getTipoGeneral(), "PE")){
+                    secundario.append(a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat());
+                }else{
+                    secundario.append(a.getNombre());
+                }
+            }
+            if(StringUtils.equals(a.getTipoActoCaso(), "03")){
+                if(count > 0) terciario.append(", ");
+                if(StringUtils.equals(a.getTipoGeneral(), "PE")){
+                    terciario.append(a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat());
+                }else{
+                    terciario.append(a.getNombre());
+                }
+            }
+        }
+        count++;
+        HashMap<Integer,String> mapActor=new HashMap<>();  
+        mapActor.put(1, primario.toString());
+        mapActor.put(2, secundario.toString());
+        mapActor.put(3, terciario.toString());
+        return mapActor;
     }
 
     

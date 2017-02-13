@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class FiltroReporte {
     
-    private int tipoReporte;
+    private Integer tipoReporte;
 
     private String titulo;
     
@@ -45,11 +45,13 @@ public class FiltroReporte {
     
     private String tipoEstadoCaso;
     
-    public int getTipoReporte() {
+    private String tipoTipologiaCaso;
+    
+    public Integer getTipoReporte() {
         return tipoReporte;
     }
 
-    public void setTipoReporte(int tipoReporte) {
+    public void setTipoReporte(Integer tipoReporte) {
         this.tipoReporte = tipoReporte;
     }
 
@@ -171,6 +173,14 @@ public class FiltroReporte {
 
     public void setTipoEstadoCaso(String tipoEstadoCaso) {
         this.tipoEstadoCaso = tipoEstadoCaso;
+    }
+
+    public String getTipoTipologiaCaso() {
+        return tipoTipologiaCaso;
+    }
+
+    public void setTipoTipologiaCaso(String tipoTipologiaCaso) {
+        this.tipoTipologiaCaso = tipoTipologiaCaso;
     }
     
 }

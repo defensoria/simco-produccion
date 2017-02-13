@@ -298,37 +298,37 @@ AND C.C_TIPO_ACTIVIDAD IN ('08','09','10','11','12','13','14')
     </select>
     
     <select id="totalGeneralCasosDialogo"  resultType="java.lang.Integer" parameterType="filtroReporte">
-        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
         AND C_TIPODIALOGO = '05'
     </select>
     
     <select id="totalGeneralCasosFaceEscalamiento"  resultType="java.lang.Integer" parameterType="filtroReporte">
-        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
         AND C_TIPODIALOGO = '02'
     </select>
     
     <select id="totalGeneralCasosFaceTemprana"  resultType="java.lang.Integer" parameterType="filtroReporte">
-        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
         AND C_TIPODIALOGO = '01'
     </select>
     
     <select id="totalGeneralCasosFaceDesescalamiento"  resultType="java.lang.Integer" parameterType="filtroReporte">
-        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
         AND C_TIPODIALOGO = '04'
     </select>
     
     <select id="totalGeneralCasosFaceCrisis"  resultType="java.lang.Integer" parameterType="filtroReporte">
-        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        SELECT COUNT(*) FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
         AND C_TIPODIALOGO = '03'
     </select>
     
     <select id="cadenaNombreCasosResueltos"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
-        SELECT C_NOMCASO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_TIPOESTADO = '06'
+        SELECT C_NOMCASO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A' AND C_TIPOESTADO = '06'
   
     </select>
     
     <select id="cadenaNombreCasosPropuestos"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
-        SELECT C_NOMCASO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_TIPOESTADO = '02'
+        SELECT C_NOMCASO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A' AND C_TIPOESTADO = '02'
      
     </select>
     
@@ -346,21 +346,29 @@ AND C.C_TIPO_ACTIVIDAD IN ('08','09','10','11','12','13','14')
       INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPOCASO = B.VALOR_PARAMETRO
       AND B.PADRE_PARAMETRO = 90
       WHERE A.C_TIPOESTADO IN (04)
-        AND A.C_INDVIGENTE = 'A'
+        AND A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
 
         GROUP BY B.NOMBRE_PARAMETRO
     </select>
+  
     
-    
-    <select id="totalMensualNivelGobierno"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+    <select id="totalMensualSegunTipologiaCaso"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
         SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE, B.VALOR_PARAMETRO VALORPARAMETRO  FROM SIMCO_REG_CASO A
-      INNER JOIN SIMCO_PARAMETRO B ON A.C_TIPOCASO = B.VALOR_PARAMETRO
-      AND B.PADRE_PARAMETRO = 110
-      WHERE A.C_INDVIGENTE = 'A'
+      INNER JOIN SIMCO_PARAMETRO B 
         
-        GROUP BY B.NOMBRE_PARAMETRO,B.VALOR_PARAMETRO
+        <if test="tipoReporte == 1">
+                ON A.C_TIPOASUNTO = B.VALOR_PARAMETRO
+            </if>
+            <if test="tipoReporte == 2">
+                ON A.C_TIPOCASO = B.VALOR_PARAMETRO
+            </if>
+            <if test="tipoReporte == 3">
+                ON A.C_SUBTIPOCASO = B.VALOR_PARAMETRO
+            </if>
+            AND B.PADRE_PARAMETRO = #{tipoTipologiaCaso}
+      WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
+        GROUP BY B.NOMBRE_PARAMETRO, B.VALOR_PARAMETRO
     </select>
-    
 
 
 

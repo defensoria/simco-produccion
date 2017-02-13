@@ -5,7 +5,6 @@
  */
 package gob.dp.simco.reporte.dao;
 
-import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.reporte.entity.FiltroReporte;
 import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import java.util.List;
@@ -39,6 +38,8 @@ public interface ReporteSimcoCasoDao {
     public List<ReporteSimcoCaso> listaCasosNuevosPorMes(FiltroReporte filtroReporte);
     
     public List<ReporteSimcoCaso> listaCasosResueltosPorMes(FiltroReporte filtroReporte);
+    
+    public List<ReporteSimcoCaso> listaCasosActivosTotales();
     
     
 }

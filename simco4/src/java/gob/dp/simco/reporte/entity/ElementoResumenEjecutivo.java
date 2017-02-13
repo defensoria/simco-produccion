@@ -5,7 +5,6 @@
  */
 package gob.dp.simco.reporte.entity;
 
-import gob.dp.simco.registro.entity.Caso;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,6 +19,8 @@ public class ElementoResumenEjecutivo implements Serializable{
     private String rutaReporte;
     
     private String mesPublicacion;
+    
+    private String anhoPublicacion;
     
     private Integer totalCasosRegistrados;
     
@@ -93,8 +94,21 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<ReporteSimcoCaso> listaCasosNuevosPorMes;
     
-    
     private List<ReporteSimcoCaso> listaCasosResueltosPorMes;
+    
+    private List<ReporteSimcoCaso> listaCasosActivosTotales;
+    
+    private List<ElementoNombreValor> listaNivelGobierno;
+    
+    private List<ElementoNombreValor> listaNivelGobiernoGrafico;
+    
+    private List<ElementoNombreValor> listaNivelTipo;
+    
+    private List<ElementoNombreValor> listaNivelTipoGrafico;
+    
+    private List<ElementoNombreValor> listaNivelSubTipo;
+    
+    private List<ElementoNombreValor> listaNivelSubTipoGrafico;
     
     
     
@@ -115,10 +129,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     private List<ElementoNombreValor> listaMensualCasosTotales;
     
     private List<ElementoNombreValor> listaMensualCasosActivos;
-    
-    private List<ElementoNombreValor> listaNivelGobierno;
-    
-    private List<ElementoNombreValor> listaNivelGobiernoGrafico;
     
     private List<ElementoReporte> elementoReportesAutoridad;
     
@@ -1623,6 +1633,54 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setListaCasosResueltosMES(List<CuadroGenericoMes> listaCasosResueltosMES) {
         this.listaCasosResueltosMES = listaCasosResueltosMES;
+    }
+
+    public List<ElementoNombreValor> getListaNivelTipo() {
+        return listaNivelTipo;
+    }
+
+    public void setListaNivelTipo(List<ElementoNombreValor> listaNivelTipo) {
+        this.listaNivelTipo = listaNivelTipo;
+    }
+
+    public List<ElementoNombreValor> getListaNivelTipoGrafico() {
+        return listaNivelTipoGrafico;
+    }
+
+    public void setListaNivelTipoGrafico(List<ElementoNombreValor> listaNivelTipoGrafico) {
+        this.listaNivelTipoGrafico = listaNivelTipoGrafico;
+    }
+
+    public List<ElementoNombreValor> getListaNivelSubTipo() {
+        return listaNivelSubTipo;
+    }
+
+    public void setListaNivelSubTipo(List<ElementoNombreValor> listaNivelSubTipo) {
+        this.listaNivelSubTipo = listaNivelSubTipo;
+    }
+
+    public List<ElementoNombreValor> getListaNivelSubTipoGrafico() {
+        return listaNivelSubTipoGrafico;
+    }
+
+    public void setListaNivelSubTipoGrafico(List<ElementoNombreValor> listaNivelSubTipoGrafico) {
+        this.listaNivelSubTipoGrafico = listaNivelSubTipoGrafico;
+    }
+
+    public List<ReporteSimcoCaso> getListaCasosActivosTotales() {
+        return listaCasosActivosTotales;
+    }
+
+    public void setListaCasosActivosTotales(List<ReporteSimcoCaso> listaCasosActivosTotales) {
+        this.listaCasosActivosTotales = listaCasosActivosTotales;
+    }
+
+    public String getAnhoPublicacion() {
+        return anhoPublicacion;
+    }
+
+    public void setAnhoPublicacion(String anhoPublicacion) {
+        this.anhoPublicacion = anhoPublicacion;
     }
 
 }

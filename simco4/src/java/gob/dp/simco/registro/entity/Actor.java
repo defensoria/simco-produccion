@@ -117,6 +117,8 @@ public class Actor implements Serializable{
     private String nombreCaso;
     
     private String nombreActividad;
+    
+    private String tipoActoCaso;
 
     public Long getId() {
         return id;
@@ -516,6 +518,14 @@ public class Actor implements Serializable{
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getTipoActoCaso() {
+        return tipoActoCaso;
+    }
+
+    public void setTipoActoCaso(String tipoActoCaso) {
+        this.tipoActoCaso = tipoActoCaso;
     }
         
 }

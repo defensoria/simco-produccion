@@ -27,4 +27,6 @@ public interface ReporteSimcoCasoService {
     
     public List<ReporteSimcoCaso> listaCasosResueltosPorMes(FiltroReporte filtroReporte);
     
+    public List<ReporteSimcoCaso> listaCasosActivosTotales();
+    
 }

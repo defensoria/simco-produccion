@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subReporteResumenEjecutivoListaCasosActivos" pageWidth="458" pageHeight="842" columnWidth="458" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isTitleNewPage="true" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" isFloatColumnFooter="true" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="regionPrincial" class="java.lang.String"/>
+	<field name="provinciaPrincial" class="java.lang.String"/>
+	<field name="distritoPrincial" class="java.lang.String"/>
+	<field name="tipologia" class="java.lang.String"/>
+	<field name="descripcionCaso" class="java.lang.String"/>
+	<field name="nombreCaso" class="java.lang.String"/>
+	<field name="actorPrimario" class="java.lang.String"/>
+	<field name="actorSecundario" class="java.lang.String"/>
+	<field name="actorTerciario" class="java.lang.String"/>
+	<field name="fase" class="java.lang.String"/>
+	<field name="actividades" class="java.util.List"/>
+	<field name="rutaReporte" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="473">
+			<textField>
+				<reportElement mode="Transparent" x="54" y="61" width="163" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="1281e79b-d3ac-44a7-b5fa-edb45212c746"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipologia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="54" y="81" width="163" height="40" forecolor="#666666" backcolor="#CCCCCC" uuid="47c2b6be-2c1c-4729-ad7b-88be0c7ab62e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionCaso}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="244" y="375" width="34" height="26" forecolor="#666666" backcolor="#CCCCCC" uuid="51ad0918-9a5a-4c58-b018-cb7b57792beb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="54" y="143" width="96" height="20" forecolor="#666666" backcolor="#CCCCCC" uuid="52012658-3608-4498-94ae-fa05de30920c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provinciaPrincial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="58" y="163" width="96" height="20" forecolor="#666666" backcolor="#CCCCCC" uuid="207a8e2c-66b6-44e6-99f9-2db06fea24e1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{distritoPrincial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="21" width="216" height="20" forecolor="#0033CC" backcolor="#CCCCFF" uuid="f5d0b6a6-4e82-46f1-8810-241a265353ab"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="217" y="21" width="241" height="20" forecolor="#0033CC" backcolor="#CCCCFF" uuid="fc2c34fa-0f7c-418a-a6f4-043377c768ae"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Actual]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="41" width="100" height="20" uuid="1d78ff54-bc63-4309-b4f1-43af8081fdf4"/>
+				<textFieldExpression><![CDATA[$F{nombreCaso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="61" width="53" height="20" uuid="e3b62ace-3ff5-447f-8563-1ad914ed1fed"/>
+				<text><![CDATA[Tipo: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="81" width="53" height="20" uuid="9673a943-9e19-4bfd-bdb7-adbdb947ce10"/>
+				<text><![CDATA[Caso:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="121" width="53" height="20" uuid="5be4cacf-02f8-4f48-8c7e-808b199a11d8"/>
+				<text><![CDATA[Ubicación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="121" width="100" height="20" uuid="7af62db9-4680-44f5-93f8-19a2e8e7974b"/>
+				<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="188" width="86" height="20" uuid="c31e2c21-e749-484d-833c-0d44e683da23"/>
+				<text><![CDATA[Actores primarios: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="256" width="217" height="20" uuid="77bb5ada-9e63-462b-b016-040df4aa38ee"/>
+				<text><![CDATA[Actores secundarios: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="316" width="216" height="20" uuid="504bef74-91aa-4723-a29f-e6f9d3e9d921"/>
+				<text><![CDATA[Actores terciarios: ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="208" width="215" height="20" uuid="ecaf8fe2-a513-4990-93b5-edcc58a48500"/>
+				<textFieldExpression><![CDATA[$F{actorPrimario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="276" width="100" height="20" uuid="995e8289-1e73-4d6d-8718-25d101a68dae"/>
+				<textFieldExpression><![CDATA[$F{actorSecundario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="336" width="100" height="20" uuid="05f92030-6654-44d7-9f26-b412f55ad539"/>
+				<textFieldExpression><![CDATA[$F{actorTerciario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1" y="1" width="457" height="20" forecolor="#FFFFFF" backcolor="#3366FF" uuid="51d78c4e-7d45-4c7f-9466-cab7c6a1161b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="217" y="41" width="241" height="20" forecolor="#FFFFFF" backcolor="#FF9900" uuid="f040f2cc-fe3f-4d09-8742-807531859f9e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fase}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="217" y="63" width="241" height="100" uuid="82377dc0-099e-46cf-aa34-226946e16fed"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{actividades})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte} + "casoActividad.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

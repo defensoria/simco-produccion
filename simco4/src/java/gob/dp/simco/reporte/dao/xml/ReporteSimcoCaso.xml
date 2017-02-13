@@ -3,6 +3,7 @@
 <mapper namespace="gob.dp.simco.reporte.dao.ReporteSimcoCasoDao">
     
     <resultMap id="reporteSimcoCasoMap" type="reporteSimcoCaso">
+        <result property="idCaso" column="N_ID_CASO"/>
         <result property="codigoCaso" column="C_CODIGOCASO"/>
         <result property="nombreCaso" column="C_NOMCASO"/>
         <result property="fechaInicioCaso" column="FECHA_INICIO"/>
@@ -16,7 +17,6 @@
         <result property="actividad" column="TIPOACTIVIDAD"/>
         <result property="fase" column="FASE"/>
         <result property="acuerdos" column="ACUERDOS"/>
-        <result property="idCaso" column="N_ID_CASO"/>
         <result property="primerNivel" column="PRIMERNIVEL"/>
         <result property="segundoNivel" column="SEGUNDONIVEL"/>
         <result property="tercerNivel" column="TERCERNIVEL"/>
@@ -196,6 +196,18 @@
         AND TO_CHAR(A.D_FECHAMODIFICACION, 'YY') =  #{anhos}
         AND TO_CHAR(A.D_FECHAMODIFICACION, 'MM') =  #{mes}
         AND C_TIPOESTADO = '06'
+        ORDER BY B.C_DESCDPTO DESC
+    </select>
+    
+    <select id="listaCasosActivosTotales"  resultMap="reporteSimcoCasoMap">
+        SELECT A.*, B.C_DESCDPTO, M.C_DESCPROV, N.C_DESCDSTRO, C.NOMBRE_PARAMETRO TIPOCASO, C.NOMBRE_PARAMETRO FASECASO FROM SIMCO_REG_CASO A 
+        INNER JOIN SIMCO_PARAMETRO C ON A.C_TIPOCASO = C.VALOR_PARAMETRO AND C.PADRE_PARAMETRO = 90
+        LEFT JOIN SIMCO_PARAMETRO D ON A.C_TIPODIALOGO = D.VALOR_PARAMETRO AND D.PADRE_PARAMETRO = 210
+        LEFT JOIN SIMCO_UBIGEO_DPTO B ON A.C_IDDEPART = B.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_PROV M ON A.C_IDPROV = M.C_ID_PROV AND B.C_ID_DPTO = M.C_ID_DPTO
+        LEFT JOIN SIMCO_UBIGEO_DSTRO N ON A.C_IDDISTR = N.C_ID_DSTRO AND B.C_ID_DPTO = N.C_ID_DPTO AND M.C_ID_PROV = N.C_ID_PROV
+        WHERE A.C_INDAPROBADO = 'A' AND A.C_INDVIGENTE = 'A'
+        AND A.C_TIPOESTADO = '04'
         ORDER BY B.C_DESCDPTO DESC
     </select>
     

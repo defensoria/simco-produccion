@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteFiltroCasoEstado" pageWidth="842" pageHeight="2035" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="9e79afe0-411f-4d18-b216-9b88f0226a6d">
+		<field name="columna" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="tipoConflicto" class="java.lang.String"/>
+	<field name="total" class="java.lang.Integer"/>
+	<field name="porcentaje" class="java.lang.String"/>
+	<field name="propuesta" class="java.lang.Integer"/>
+	<field name="borrador" class="java.lang.Integer"/>
+	<field name="observacion" class="java.lang.Integer"/>
+	<field name="activo" class="java.lang.Integer"/>
+	<field name="latente" class="java.lang.Integer"/>
+	<field name="resuelto" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="47">
+			<rectangle>
+				<reportElement x="0" y="9" width="174" height="38" forecolor="#9900CC" backcolor="#9933FF" uuid="419d00f1-1158-4e26-9f90-4bbf85eff8a8"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="383" y="9" width="90" height="38" forecolor="#9900CC" backcolor="#9933FF" uuid="dbd51f82-eea1-4fa7-807d-dfa77e55523d"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="276" y="9" width="107" height="38" forecolor="#9900CC" backcolor="#9933FF" uuid="f98b7f87-8339-403f-bae0-3a7e4bb3ad26"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="9" width="56" height="38" forecolor="#9900CC" backcolor="#9933FF" uuid="515ab653-c4e4-4bde-a0cd-9ee08ce39f15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="175" y="9" width="44" height="38" forecolor="#9900CC" backcolor="#9933FF" uuid="0a6b59c3-73ce-49d4-b944-726a292cc991"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="7" width="174" height="40" forecolor="#FFFFFF" uuid="24835824-c028-4c21-bef6-c2bdf804d3e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Region]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="12" width="32" height="35" forecolor="#FFFFFF" uuid="364e419a-91da-4858-827e-0a18d919a703"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="8" width="35" height="39" forecolor="#FFFFFF" uuid="e844cb41-48c0-40ed-ac1b-c05aa36275b8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="9" width="90" height="38" forecolor="#FFFFFF" uuid="16fc9e97-2749-4d49-b0fc-f56602765480"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Latente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="8" width="90" height="39" forecolor="#FFFFFF" uuid="ff6a809c-f6f5-4e1b-a67c-e4483ce03118"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Activo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="172" height="20" forecolor="#666666" backcolor="#FF33CC" uuid="354c911b-d79a-437a-a7eb-6bd739e2fd37"/>
+				<textFieldExpression><![CDATA[$F{tipoConflicto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="0" width="38" height="20" forecolor="#666666" uuid="94839775-5ef3-4882-a722-076492e640a9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="0" width="90" height="20" forecolor="#666666" uuid="e42d878f-2105-41fc-a712-b06cddb98031"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{latente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="80" height="20" forecolor="#666666" uuid="fd3902a2-e612-43c2-a6d0-824f8c800fb2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{activo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="56" height="20" forecolor="#666666" uuid="d65ab130-c9a9-4f4a-b389-5e9ae3463a37"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

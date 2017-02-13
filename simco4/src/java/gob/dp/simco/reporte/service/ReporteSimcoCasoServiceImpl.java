@@ -74,5 +74,10 @@ public class ReporteSimcoCasoServiceImpl implements ReporteSimcoCasoService{
     public List<ReporteSimcoCaso> listaCasosResueltosPorMes(FiltroReporte filtroReporte) {
         return reporteSimcoDao.listaCasosResueltosPorMes(filtroReporte);
     }
+
+    @Override
+    public List<ReporteSimcoCaso> listaCasosActivosTotales() {
+        return reporteSimcoDao.listaCasosActivosTotales();
+    }
     
 }

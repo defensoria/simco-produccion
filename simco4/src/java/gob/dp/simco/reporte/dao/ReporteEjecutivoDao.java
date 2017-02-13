@@ -79,7 +79,7 @@ public interface ReporteEjecutivoDao {
     
     public List<ElementoResumenEjecutivo> totalMensualCasosActivos(FiltroReporte filtroReporte);
     
-    public List<ElementoResumenEjecutivo> totalMensualNivelGobierno(FiltroReporte filtroReporte);
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCaso(FiltroReporte filtroReporte);
     
     public Integer totalCasosResueltoMes(FiltroReporte filtroReporte);
     

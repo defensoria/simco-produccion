@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="casoActividad" pageWidth="451" pageHeight="842" columnWidth="451" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="90f8c69a-2dee-42f3-a9b9-c040121b239f"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="descripcion" class="java.lang.String"/>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="495da8d6-8897-4bc3-97d3-c3f64d44e361"/>
+				<text><![CDATA[descripcion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="351" height="20" uuid="06a518d3-23f7-46b8-ac8e-e2d3d61a529d"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

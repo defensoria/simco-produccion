@@ -7,6 +7,7 @@ package gob.dp.simco.reporte.service;
 
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.FiltroReporte;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -77,7 +78,7 @@ public interface ReporteEjecutivoService {
     
     public List<ElementoResumenEjecutivo> totalMensualCasosActivos(FiltroReporte filtroReporte);
     
-    public List<ElementoResumenEjecutivo> totalMensualNivelGobierno(FiltroReporte filtroReporte);
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCaso(FiltroReporte filtroReporte);
     
     public Integer totalCasosResueltoMes(FiltroReporte filtroReporte);
     
@@ -98,5 +99,7 @@ public interface ReporteEjecutivoService {
     public Integer totalActividadSupervisionPreventivaMes(FiltroReporte filtroReporte);
     
     public Integer totalActividadAccionesDefensaLegalMes(FiltroReporte filtroReporte);
+    
+    public HashMap<Integer,String> actoresPorCodigoCasoString(String codigoCaso);
     
 }

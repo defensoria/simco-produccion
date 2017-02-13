@@ -67,4 +67,6 @@ public interface ActorDao {
     
     public List<Actor> actorBuscarNombrePaginado(FiltroActor filtroActor);
     
+    public List<Actor> actoresPorCodigoCaso(String codigoUsuario);
+    
 }

@@ -236,8 +236,6 @@ public class RegistroController extends AbstractManagedBean implements Serializa
     }
     
     private void setearEsUsuarioRegistro(){
-        System.out.println("usuarioSession.getCodigo()"+usuarioSession.getCodigo());
-        System.out.println("actividad.getUsuarioRegistro()"+actividad.getUsuarioRegistro());
         esUsuarioRegistro = StringUtils.equals(usuarioSession.getCodigo(), actividad.getUsuarioRegistro());
     }
 

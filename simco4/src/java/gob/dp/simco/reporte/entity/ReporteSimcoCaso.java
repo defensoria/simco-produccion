@@ -5,7 +5,9 @@
  */
 package gob.dp.simco.reporte.entity;
 
+import gob.dp.simco.registro.entity.Actividad;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -104,6 +106,17 @@ public class ReporteSimcoCaso implements Serializable{
     private String descripcionCaso;
     
     private String imagePath;
+    
+    private String actorPrimario;
+    
+    private String actorSecundario;
+    
+    private String actorTerciario;
+    
+    private List<Actividad> actividades;
+    
+    private String rutaReporte;
+    
 
     public String getCodigoCaso() {
         return codigoCaso;
@@ -471,6 +484,46 @@ public class ReporteSimcoCaso implements Serializable{
 
     public void setDescripcionCaso(String descripcionCaso) {
         this.descripcionCaso = descripcionCaso;
+    }
+
+    public String getActorPrimario() {
+        return actorPrimario;
+    }
+
+    public void setActorPrimario(String actorPrimario) {
+        this.actorPrimario = actorPrimario;
+    }
+
+    public String getActorSecundario() {
+        return actorSecundario;
+    }
+
+    public void setActorSecundario(String actorSecundario) {
+        this.actorSecundario = actorSecundario;
+    }
+
+    public String getActorTerciario() {
+        return actorTerciario;
+    }
+
+    public void setActorTerciario(String actorTerciario) {
+        this.actorTerciario = actorTerciario;
+    }
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
+
+    public String getRutaReporte() {
+        return rutaReporte;
+    }
+
+    public void setRutaReporte(String rutaReporte) {
+        this.rutaReporte = rutaReporte;
     }
     
 }

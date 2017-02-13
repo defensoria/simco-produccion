@@ -58,6 +58,9 @@
         <result property="nombreActividad" column="C_NOMACTIVIDAD"/>
         <result property="nombreCaso" column="C_NOMCASO"/>
         
+        
+        <result property="tipoActoCaso" column="TIPO_ACTOR_CASO"/>
+        
     </resultMap>  
 
     <sql id="sqlBuscarActor">
@@ -838,5 +841,14 @@ INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON A.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD
 INNER JOIN SIMCO_REG_CASO E ON D.N_ID_CASO = E.N_ID_CASO
 WHERE A.C_USUREGISTRO = #{value}
     </select>
+    
+    <select id="actoresPorCodigoCaso" resultMap="actorMap" parameterType="String">
+        SELECT A.*, B.C_TIPO TIPO_ACTOR_CASO FROM SIMCO_REG_ACTOR A
+INNER JOIN SIMCO_REG_CASO_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+INNER JOIN SIMCO_REG_CASO C ON C.N_ID_CASO = B.N_ID_CASO
+WHERE C.C_INDAPROBADO = 'A' AND C.C_INDVIGENTE = 'A'
+AND C.C_CODIGOCASO = #{value}
+    </select>
+
     
 </mapper>
