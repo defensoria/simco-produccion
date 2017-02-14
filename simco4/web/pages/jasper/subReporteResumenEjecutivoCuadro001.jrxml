@@ -101,7 +101,7 @@
 	<columnHeader>
 		<band height="19">
 			<staticText>
-				<reportElement mode="Opaque" x="56" y="0" width="128" height="18" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b9d4f71b-c42b-4439-8dbe-062b518f16b8"/>
+				<reportElement mode="Opaque" x="56" y="0" width="128" height="18" forecolor="#FFFFFF" backcolor="#0066FF" uuid="b9d4f71b-c42b-4439-8dbe-062b518f16b8"/>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
@@ -129,6 +129,9 @@
 		<band height="25">
 			<textField>
 				<reportElement x="56" y="2" width="128" height="20" forecolor="#666666" uuid="419945f2-1a00-4e29-aef8-5c7d81fb0269"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>

@@ -26,8 +26,8 @@
     
     <select id="totalCasosRegistradosMes" resultType="java.lang.Integer" parameterType="filtroReporte">
         SELECT COUNT(*) TOTAL_MES FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
-        AND TO_CHAR(D_FECHAMODIFICACION, 'YY') = #{anhos}
-        AND TO_CHAR(D_FECHAMODIFICACION, 'MM') = #{mes}
+        AND TO_CHAR(D_FECHAINICIO, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAINICIO, 'MM') = #{mes}
         AND C_TIPOESTADO IN ('04','05')
     </select>
     

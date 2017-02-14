@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.3310000000000035"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="5108"/>
+	<property name="ireport.y" value="5693"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -83,6 +83,278 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0FFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 8">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 9">
+		<box>
+			<pen lineWidth="1.0" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 9_TH" mode="Opaque" backcolor="#1E90FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 9_CH" mode="Opaque" backcolor="#BFE0FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+	</style>
+	<style name="table 9_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#666666"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 10">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 10_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 10_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 10_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFEFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 11">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CC0033"/>
+		</box>
+	</style>
+	<style name="table 11_TH" mode="Opaque" backcolor="#DC143C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CC0033"/>
+		</box>
+	</style>
+	<style name="table 11_CH" mode="Opaque" backcolor="#FFBFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CC0033"/>
+		</box>
+	</style>
+	<style name="table 11_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CC0033"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FFEFF2"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 12">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 14_TH" mode="Opaque" backcolor="#DC143C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 14_CH" mode="Opaque" backcolor="#FFBFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 14_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FFEFF2"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 15">
+		<box>
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 15_TH" mode="Opaque" backcolor="#DC143C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 15_CH" mode="Opaque" backcolor="#FFBFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<style name="table 15_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#FFEFF2"/>
+		</conditionalStyle>
+	</style>
 	<subDataset name="grafic001Dataset" uuid="2bc66735-6a24-492e-bec9-cf81bcecafef">
 		<field name="mes" class="java.lang.String"/>
 		<field name="activo" class="java.lang.Integer"/>
@@ -106,6 +378,26 @@
 	</subDataset>
 	<subDataset name="dataset1" uuid="9ad7ac78-9f34-4309-bee4-18dc9dba0b95"/>
 	<subDataset name="dataset2" uuid="d56533fe-5f02-4e97-b4eb-8238d2c632ad"/>
+	<subDataset name="dataset3" uuid="63512bba-950f-4cea-9a82-4c403c7ae5cd">
+		<field name="nombre" class="java.lang.String"/>
+		<field name="valor" class="java.lang.Integer"/>
+		<field name="porcentaje" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="dataset4" uuid="eda5bef1-94ee-4f6e-8a14-fb042d5322fe">
+		<field name="mes0" class="java.lang.String"/>
+		<field name="mes1" class="java.lang.String"/>
+		<field name="mes2" class="java.lang.String"/>
+		<field name="mes3" class="java.lang.String"/>
+		<field name="mes4" class="java.lang.String"/>
+		<field name="mes5" class="java.lang.String"/>
+		<field name="mes6" class="java.lang.String"/>
+		<field name="mes7" class="java.lang.String"/>
+		<field name="mes8" class="java.lang.String"/>
+		<field name="mes9" class="java.lang.String"/>
+		<field name="mes10" class="java.lang.String"/>
+		<field name="mes11" class="java.lang.String"/>
+		<field name="mes12" class="java.lang.String"/>
+	</subDataset>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
 	</parameter>
@@ -1476,102 +1768,6 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="53" y="334" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="5c749709-b6d8-4c11-afc0-6004a1b99ac4"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 2
-PERÚ: CONFLICTOS SOCIALES POR FASE, SEPTIEMBRE 2014
-(Número de casos)
-
-]]></text>
-			</staticText>
-			<pieChart>
-				<chart isShowLegend="true" renderType="draw" theme="default">
-					<reportElement isPrintRepeatedValues="false" x="66" y="380" width="346" height="84" uuid="c80046ec-a43f-4df5-8cfe-80738f2e9168"/>
-					<chartTitle position="Top"/>
-					<chartSubtitle/>
-					<chartLegend position="Bottom"/>
-				</chart>
-				<pieDataset>
-					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="07e8e1f7-25d9-4d6c-be3b-df544bf79c3f">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{faceTotals})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
-					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-				</pieDataset>
-				<piePlot isShowLabels="true" isCircular="false">
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
-			<textField>
-				<reportElement x="36" y="464" width="450" height="26" uuid="dabe3c4b-39dd-4e63-9777-52b0b1ab04e5"/>
-				<textElement textAlignment="Justified"/>
-				<textFieldExpression><![CDATA[$F{casosNuevosTexto}]]></textFieldExpression>
-			</textField>
-			<lineChart>
-				<chart>
-					<reportElement x="17" y="587" width="450" height="104" uuid="cc640827-c3e6-4a0f-8ed6-6e51e01e3675"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic003Dataset" uuid="5474d460-4a17-4955-aa42-2d2e7d8b1e78">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{nuevoCasos})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Resueltos"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{resuelto}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Nuevos"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{nuevo}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<linePlot>
-					<plot/>
-					<categoryAxisFormat>
-						<axisFormat>
-							<tickLabelFont>
-								<font size="5"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</linePlot>
-			</lineChart>
-			<staticText>
-				<reportElement mode="Transparent" x="61" y="513" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="237869a7-0d23-4b07-8349-0056bb88c57e"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 3
-PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
-(Número de casos)
-
-
-]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="1" y="657" width="522" height="20" uuid="212f8bd9-14db-4787-b81a-6ce6fc5e33c3"/>
-				<textElement>
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA["•	Cantidad de casos que tuvieron presencia efectiva de la Defensoria del Pueblo en el mes: "+$F{totalCasosADMes}]]></textFieldExpression>
-			</textField>
-			<staticText>
 				<reportElement x="0" y="0" width="521" height="34" forecolor="#0066CC" uuid="f6345264-99a8-4f89-b5c2-71712a7ecf64"/>
 				<textElement textAlignment="Center">
 					<font size="18" isBold="true"/>
@@ -1584,7 +1780,7 @@ PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[1 FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
+				<text><![CDATA[1. FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="79" y="56" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="ea6e37bb-4976-4303-86d0-7cd01e8ccea9"/>
@@ -1597,101 +1793,337 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 (Número de casos)
 ]]></text>
 			</staticText>
-			<stackedBar3DChart>
-				<chart>
-					<reportElement x="21" y="306" width="451" height="28" uuid="edc565b4-a331-4902-a44c-2915aedf8047"/>
-					<chartTitle position="Top"/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic001Dataset" uuid="04271c37-fdb9-4253-8a90-27446ed9fcc3">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{estadoConflictos})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Latentes"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{latente}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Activo"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{activo}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Total"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{total}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat>
-							<tickLabelFont>
-								<font size="5"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</stackedBar3DChart>
-			<subreport>
-				<reportElement x="32" y="102" width="458" height="33" uuid="5aa1a598-cf37-4b17-adc3-2538ccc9d623"/>
-				<subreportParameter name="SUBREPORT_DIR"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasosRegistradosMES})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte}+"subReporteResumenEjecutivoListaMes001.jasper"]]></subreportExpression>
-			</subreport>
 			<barChart>
-				<chart>
-					<reportElement x="36" y="145" width="456" height="142" uuid="76e5b751-e9eb-462a-be32-abb6e912b4eb"/>
+				<chart isShowLegend="false" evaluationTime="Band">
+					<reportElement mode="Opaque" x="84" y="169" width="312" height="128" forecolor="#0099FF" uuid="dbff1ca8-1eeb-4900-a8b6-bcebdab8665e"/>
 					<chartTitle>
 						<font size="5"/>
 					</chartTitle>
 					<chartSubtitle>
 						<font fontName="Arial" size="5"/>
 					</chartSubtitle>
-					<chartLegend>
-						<font fontName="Arial" size="10"/>
+					<chartLegend position="Top">
+						<font fontName="SansSerif" size="7" isBold="true"/>
 					</chartLegend>
 				</chart>
 				<categoryDataset>
 					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="5b2b538c-fb6d-4bb6-9bb1-974ad83be509">
+						<datasetRun subDataset="grafic002Dataset" uuid="b30887af-3da4-469e-b6ed-63daf25c2717">
 							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{registradoTotals})]]></dataSourceExpression>
 						</datasetRun>
 					</dataset>
 					<categorySeries>
-						<seriesExpression><![CDATA["CONFLICTOS SOCIALES REGISTRADOS POR MES"]]></seriesExpression>
+						<seriesExpression><![CDATA["Conflictos por mes"]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{nombre}]]></categoryExpression>
 						<valueExpression><![CDATA[$F{valor}]]></valueExpression>
 					</categorySeries>
 				</categoryDataset>
-				<barPlot>
-					<plot/>
+				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
+					<plot backgroundAlpha="1.0" foregroundAlpha="1.0" labelRotation="60.0">
+						<seriesColor seriesOrder="0" color="#00CC00"/>
+					</plot>
 					<itemLabel>
-						<font fontName="Arial" size="5"/>
+						<font fontName="SansSerif" size="7" isBold="true"/>
 					</itemLabel>
-					<categoryAxisFormat>
-						<axisFormat>
+					<categoryAxisFormat labelRotation="60.0">
+						<axisFormat labelColor="#FF0033" tickLabelColor="#FF0033" verticalTickLabels="false" axisLineColor="#0099FF">
 							<labelFont>
-								<font fontName="Arial" size="5"/>
+								<font fontName="SansSerif" size="6" isBold="true" isUnderline="false" isStrikeThrough="false"/>
 							</labelFont>
 							<tickLabelFont>
-								<font fontName="Arial" size="5"/>
+								<font fontName="SansSerif" size="6" isBold="true"/>
 							</tickLabelFont>
 						</axisFormat>
 					</categoryAxisFormat>
 					<valueAxisFormat>
-						<axisFormat/>
+						<axisFormat labelColor="#FFFFFF" tickLabelColor="#FFFFFF" verticalTickLabels="false" axisLineColor="#FFFFFF">
+							<labelFont>
+								<font size="3"/>
+							</labelFont>
+							<tickLabelFont>
+								<font size="3"/>
+							</tickLabelFont>
+						</axisFormat>
 					</valueAxisFormat>
 				</barPlot>
 			</barChart>
+			<staticText>
+				<reportElement mode="Transparent" x="1" y="318" width="383" height="20" forecolor="#0066CC" backcolor="#FFFFFF" uuid="0f56f18a-d8c9-4cbe-b6c5-c212d8f6e40f"/>
+				<textElement verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[2. COMPETENCIAS EN LA ATENCIÓN DE CONFLICTOS SOCIALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="338" width="520" height="58" uuid="0df1a1f0-a6b0-4d00-8ff4-aed2975f6924"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[La identificación de las competencias en la atención de un conflicto social se hace a partir del reconocimiento del papel que desempeñan los sectores en los que se organiza el Estado para la atención de las múltiples demandas que son planteadas durante el desarrollo de un conflicto social, de acuerdo a la normatividad, objetivos y funciones vigentes en cada una de la entidades estatales analizadas.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="60" y="399" width="390" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="32a9673e-5db9-4de9-b534-2504689fed01"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cuadro N.° 2:
+PERÚ: CONFLICTOS SOCIALES, SEGÚN PRINCIPAL COMPETENCIA DEL GOBIERNO  (Número de casos)
+]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 11" style="table 11" x="101" y="450" width="300" height="50" uuid="c7b0523e-daf2-4ad3-8259-8349e739ff11"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset3" uuid="ad6c34fd-aa01-440a-9f67-e2d575279af7">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="b442a0d0-4417-47f6-aa45-40563685b6db">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#990000" uuid="8b9395ec-d29d-47df-947f-c6e7022d1626"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nivel de gobierno]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="118" height="20" forecolor="#666666" uuid="6dd7b703-10a7-42fe-b0ea-2ed04527622b"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2a1eb0ba-b746-4620-84d4-ac631ada2d64">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="8f16a42a-0e86-4b06-99d3-0e4d56e25d41"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nro. casos ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="867e270e-c772-4c8f-884d-924d4cd60300"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="9b24670e-c91d-40c3-897b-90d6bf37e473">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="56884c06-d277-4b22-9da5-b8bb44b8ca53"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Porcentaje(%)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="e2557aff-1c8b-429b-8194-ff4ceb483c12"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 15" style="table 15" x="10" y="110" width="504" height="50" uuid="c79778a5-d03a-4dd0-824b-dd14fae6ca7c"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset4" uuid="b4fb8af9-1946-4c1a-9316-afd74fb2b9ea">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasosRegistradosMES})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="40" uuid="c9454f85-5d2d-4d49-926b-ebbe8324d18e">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="c5f65edf-48dd-41cd-9af0-ffdbd2e6acc8"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes12}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="945c6243-f6c3-47a7-937b-77c6fa37bdba">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="30ddb2fc-817f-4212-8344-65f3c2a4f0e8"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes11}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="b2ea9c9d-7a6f-4d0d-a2af-e10077622a1d">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="795988e2-1a1c-491d-b57e-f432428da6ad"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes10}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="0f4ccb17-f6e9-4149-8309-2fc28657b0f7">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="39043ff6-92d4-4343-85f6-80c686bec0a3"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes9}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="eea229e0-5dae-49bd-bfd7-429b76db87d3">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="84e1bc3e-4713-4283-bc88-60453c467714"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes8}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="7a5f4365-1182-47a3-a17e-0d0af8ec959a">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="17927a40-3d38-4f0b-ae9e-51bd71883ed5"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes7}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="9269e742-18a9-48f3-847f-e8f05578c990">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="52a3c691-c59b-467c-ba9b-855a20944cdb"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes6}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="e5cd3ab3-5df7-45b2-993a-e54415347d42">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="274703f4-7bb3-4d72-88cc-0ae17d349ecb"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes5}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="588b6889-5a7d-4cbb-afcb-460370dddb25">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="67800f4d-8b1e-454c-9837-e332fa84a6fa"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes4}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="6cb54939-ecc4-44af-bc44-8d2bbc03f2b5">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="2bee1908-a40c-4ac9-83f2-46314cbaae3c"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes3}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="d9a2e2cb-cc91-4175-89dc-fa0c7cf4e284">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="95aa0571-e2bf-4176-8993-cae887a1e91a"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="241cc447-6374-4b2e-b02e-619274497b80">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="2a0ab65a-19af-4db0-8d39-fccdaf243707"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="f2916350-2f93-4f49-9467-6ed4cbbbe2c9">
+						<jr:detailCell style="table 15_TD" height="20" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="af9babc0-dd92-4b12-a8ec-dd4fcdc964b7"/>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes0}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<pieChart>
+				<chart isShowLegend="true" renderType="draw" theme="default">
+					<reportElement isPrintRepeatedValues="false" x="90" y="548" width="318" height="210" uuid="ffa734f6-8228-4f7d-8d49-069dbe1022ff"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="grafic002Dataset" uuid="044232a6-749d-40c8-b34f-678feb83d29e">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreportnew net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+					<labelExpression><![CDATA[$F{nombre}]]></labelExpression>
+				</pieDataset>
+				<piePlot isShowLabels="true" isCircular="false">
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
 		</band>
 		<band height="770">
 			<textField>
@@ -1727,12 +2159,6 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 				</textElement>
 				<text><![CDATA[1.1 FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
 			</staticText>
-			<subreport>
-				<reportElement x="16" y="482" width="442" height="43" uuid="aa16c619-f177-40b3-9e8f-cbce42e57fdb"/>
-				<subreportParameter name="SUBREPORT_DIR"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte}+"subReporteResumenEjecutivoCuadro001.jasper"]]></subreportExpression>
-			</subreport>
 			<staticText>
 				<reportElement x="3" y="55" width="458" height="20" uuid="6a610436-3189-4222-8102-f901eee1e752"/>
 				<text><![CDATA[A continuación se presenta la frecuencia mensual del último año:]]></text>
@@ -1757,27 +2183,6 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES, SEPTIEMBRE 2015-16
 Así, durante el mes, la principal competencia (entre varias que coexisten) en la atención de los conflictos sociales registrados recae en el Gobierno Nacional, con 142 casos (68,6%); en los gobiernos regionales con 35 casos (16,9%); y en los gobiernos locales con 18 casos (8,7%). A continuación el cuadro por competencias:
 ]]></text>
 			</staticText>
-			<pieChart>
-				<chart isShowLegend="true" renderType="draw" theme="default">
-					<reportElement isPrintRepeatedValues="false" x="52" y="592" width="346" height="124" uuid="ffa734f6-8228-4f7d-8d49-069dbe1022ff"/>
-					<chartTitle position="Top"/>
-					<chartSubtitle/>
-					<chartLegend position="Bottom"/>
-				</chart>
-				<pieDataset>
-					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="044232a6-749d-40c8-b34f-678feb83d29e">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobiernoGrafico})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
-					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-				</pieDataset>
-				<piePlot isShowLabels="true" isCircular="false">
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
 		</band>
 		<band height="676">
 			<staticText>
@@ -3000,6 +3405,189 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO, SEPTIEMBRE 2014
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[TIPOLOGÍA DE LOS CONFLICTOS REGISTRADOS]]></text>
+			</staticText>
+			<pieChart>
+				<chart isShowLegend="true" renderType="draw" theme="default">
+					<reportElement isPrintRepeatedValues="false" x="28" y="10" width="346" height="84" uuid="89630c68-f8b1-4626-a5cb-b4f3d0aaec53"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="grafic002Dataset" uuid="2e0236e9-95fc-4f27-819d-24ef7bd712c5">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{faceTotals})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+				</pieDataset>
+				<piePlot isShowLabels="true" isCircular="false">
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="15" y="39" width="451" height="28" uuid="54bb8500-9831-415a-aede-2a374a2d4fae"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="grafic001Dataset" uuid="f0465749-627d-4421-a168-508c5fa17142">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{estadoConflictos})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Latentes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{latente}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Activo"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{activo}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Total"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<tickLabelFont>
+								<font size="5"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<textField>
+				<reportElement x="10" y="94" width="450" height="26" uuid="b68493be-6276-4a2f-b2cf-a9ee12969360"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{casosNuevosTexto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="37" y="146" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="76ace7a1-4191-49b8-90e9-5e9567d75060"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Gráfico N° 3
+PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
+(Número de casos)
+
+
+]]></text>
+			</staticText>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="17" y="0" width="451" height="28" uuid="edc565b4-a331-4902-a44c-2915aedf8047"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="grafic001Dataset" uuid="04271c37-fdb9-4253-8a90-27446ed9fcc3">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{estadoConflictos})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Latentes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{latente}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Activo"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{activo}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Total"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<tickLabelFont>
+								<font size="5"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<lineChart>
+				<chart>
+					<reportElement x="0" y="174" width="450" height="104" uuid="cc640827-c3e6-4a0f-8ed6-6e51e01e3675"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="grafic003Dataset" uuid="5474d460-4a17-4955-aa42-2d2e7d8b1e78">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{nuevoCasos})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Resueltos"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{resuelto}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Nuevos"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{nuevo}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<tickLabelFont>
+								<font size="5"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+			<textField>
+				<reportElement x="12" y="55" width="450" height="26" uuid="dabe3c4b-39dd-4e63-9777-52b0b1ab04e5"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{casosNuevosTexto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="39" y="107" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="237869a7-0d23-4b07-8349-0056bb88c57e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Gráfico N° 3
+PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
+(Número de casos)
+
+
+]]></text>
 			</staticText>
 		</band>
 		<band height="655">
