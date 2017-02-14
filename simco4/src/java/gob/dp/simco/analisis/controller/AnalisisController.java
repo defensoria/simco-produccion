@@ -336,7 +336,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         canvasController.setIdTemaGrafico(0L);
     }
 
-    public void cargarCanvasXcaso(Caso c) {
+    /*public void cargarCanvasXcaso(Caso c) {
         if (c.getId() != null) {
             try {
                 Caso c1 = casoService.casoBuscarOne(c.getId());
@@ -360,7 +360,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         } else {
             msg.messageAlert("Debe seleccionar un caso registrado", null);
         }
-    }
+    }*/
 
     private void obtenerPromedioNivelAD(Caso c) {
         listaActoresXCasoNivelAD = new ArrayList<>();
@@ -429,7 +429,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
             activarTension = "panel-default";
             activarConflicto = "panel-default";
             limpiarListas();
-            cargarCanvasXcaso(c);
+            //cargarCanvasXcaso(c);
             verAutoCompleteCaso = false;
         } catch (Exception e) {
             log.error(e.getCause());

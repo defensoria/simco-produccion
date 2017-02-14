@@ -429,7 +429,7 @@
                             <td style="width:17%"></td>
                             <td><h2 style="text-decoration:none;display:#{menuController.menuHijo.size() == 3? '':'none'}">
                                     <a jsf:action="#{menuController.cargarPagina(22)}" style="text-decoration: none; cursor: pointer">
-                                        <span style="font-weight:bold;font-size:.8em; color: white" class="idNombreCaso"></span>
+                                        <span style="font-weight:bold;font-size:.8em; color: white">#{casoController.caso.nombre}</span>
                                     </a>
                                 </h2>
                                 <div class="right-wrapper pull-right">
@@ -446,7 +446,7 @@
                             </td>
                         </tr>
                     </table>
-                    <script>
+                    <!--<script>
                         $(document).ready(function () {
                             $(".idCaso").val(sessionStorage.getItem("idCaso"));
                             $(".menuHijo").each(function () {
@@ -457,14 +457,14 @@
                                 }
                             });
                             $(".idNombreCaso").html(sessionStorage.getItem("nombreCaso"));
-                            if ($(".idNombreCaso").text().length > 41) {
+                            if ($(".idNombreCaso").text().length > 35) {
                                 $(".idNombreCaso").text($(".idNombreCaso").text().slice(0, 40) + "...")
                             }
                             $(".idNombreCaso").mousemove(function () {
                                 $(".idNombreCaso").tooltip({placement: "bottom", title: sessionStorage.getItem("nombreCaso")});
-                            })
+                            });
                         });
-                    </script>
+                    </script>-->
                 </h:form>
             </header>
             <br/>

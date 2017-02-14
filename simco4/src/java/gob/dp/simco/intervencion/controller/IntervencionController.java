@@ -337,8 +337,11 @@ public class IntervencionController extends AbstractManagedBean implements Seria
             listPlanificado.addAll(list1);
             listEnEjecucion.addAll(list1);
             listEjecutado.addAll(list1);
-
             initContadorActividades(list1);
+        }else{
+            actividadesTotales = 0;
+            actividadesTotalesEjecutadas = 0;
+            actividadesPorcentaje = 0;
         }
     }
 

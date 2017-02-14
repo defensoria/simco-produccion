@@ -790,8 +790,8 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             definirFechaPublicacion();
             ordenarParametros();
             casoService.casoNuevo(caso);
-            if(StringUtils.equals(caso.getTipoEstado(), "02"))
-                enviarSolicitudAprobacion();
+            /*if(StringUtils.equals(caso.getTipoEstado(), "02"))
+                enviarSolicitudAprobacion();*/
             msg.messageInfo("Se registró Correctamente el Caso.", null);
             if (listaCasoRegion.size() > 0) {
                 updateListaRegion();
@@ -805,12 +805,12 @@ public class CasoController extends AbstractManagedBean implements Serializable 
         }
         return true;
     }
-    public void enviarSolicitudAprobacion(){
+    /*public void enviarSolicitudAprobacion(){
         Mail mail = new Mail();	
 		//tblEmailDetalle.setNIdDestinatarioPersona(tblEmailPersona.getNIdEmail());
 		mail.send("careli_2710@hotmail.com","asunto","cuerpo");
 
-    }
+    }*/
     
     public String aprobarSolicitudAprobacion(){
         if(caso.getIndAprobado() == null){

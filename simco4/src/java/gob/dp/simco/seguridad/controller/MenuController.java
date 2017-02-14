@@ -250,9 +250,10 @@ public class MenuController implements Serializable {
 
         if (codigoPagina == 32) {
             AnalisisController analisisController = (AnalisisController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "analisisController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             menuNieto = menuService.menuHijo(26);
-            return analisisController.cargarContexto(caso);
+            return analisisController.cargarContexto(casoController.getCaso());
         }
 
         if (codigoPagina == 18) {
@@ -289,10 +290,10 @@ public class MenuController implements Serializable {
 
         if (codigoPagina == 23) {
             AnalisisController analisisController = (AnalisisController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "analisisController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             menuNieto = menuService.menuHijo(26);
-            return analisisController.cargarPaginaCaso(caso);
-
+            return analisisController.cargarPaginaCaso(casoController.getCaso());
         }
 
         if (codigoPagina == 24) {
@@ -303,14 +304,16 @@ public class MenuController implements Serializable {
 
         if (codigoPagina == 25) {
             IntervencionController intervencionController = (IntervencionController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "intervencionController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
-            return intervencionController.cargarPaginaIntervencionDetalleCaso(caso.getId());
+            return intervencionController.cargarPaginaIntervencionDetalleCaso(casoController.getCaso().getId());
         }
 
         if (codigoPagina == 26) {
             SeguimientoAcuerdoController seguimientoAcuerdoController = (SeguimientoAcuerdoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "seguimientoAcuerdoController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
-            return seguimientoAcuerdoController.cargarPaginaCaso(caso.getId());
+            return seguimientoAcuerdoController.cargarPaginaCaso(casoController.getCaso().getId());
         }
 
         if (codigoPagina == 27) {
@@ -320,30 +323,34 @@ public class MenuController implements Serializable {
 
         if (codigoPagina == 28) {
             AnalisisController analisisController = (AnalisisController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "analisisController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             menuNieto = menuService.menuHijo(26);
-            return analisisController.cargarPaginaCaso(caso);
+            return analisisController.cargarPaginaCaso(casoController.getCaso());
         }
 
         if (codigoPagina == 29) {
             AnalisisController analisisController = (AnalisisController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "analisisController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             menuNieto = menuService.menuHijo(26);
-            return analisisController.cargarPaginaProblemasCaso(caso);
+            return analisisController.cargarPaginaProblemasCaso(casoController.getCaso());
         }
 
         if (codigoPagina == 30) {
             GraficController graficController = (GraficController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "graficController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             menuNieto = menuService.menuHijo(26);
-            return graficController.cargarPaginaRelacionCaso2(caso);
+            return graficController.cargarPaginaRelacionCaso2(casoController.getCaso());
         }
 
         if (codigoPagina == 31) {
             GraficController graficController = (GraficController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "graficController");
+            CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             menuNieto = menuService.menuHijo(26);
-            return graficController.cargarPaginasRelacionTemasCaso(caso);
+            return graficController.cargarPaginasRelacionTemasCaso(casoController.getCaso());
         }
 
         if (codigoPagina == 35) {
