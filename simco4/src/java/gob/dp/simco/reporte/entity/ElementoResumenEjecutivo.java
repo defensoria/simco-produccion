@@ -110,7 +110,9 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<ElementoNombreValor> listaNivelSubTipoGrafico;
     
+    private List<ElementoNombreValor> listaNivelTipoDialogo;
     
+    private List<ElementoNombreValor> listaNivelTipoDialogoGrafico;
     
     
     
@@ -1681,6 +1683,22 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setAnhoPublicacion(String anhoPublicacion) {
         this.anhoPublicacion = anhoPublicacion;
+    }
+
+    public List<ElementoNombreValor> getListaNivelTipoDialogo() {
+        return listaNivelTipoDialogo;
+    }
+
+    public void setListaNivelTipoDialogo(List<ElementoNombreValor> listaNivelTipoDialogo) {
+        this.listaNivelTipoDialogo = listaNivelTipoDialogo;
+    }
+
+    public List<ElementoNombreValor> getListaNivelTipoDialogoGrafico() {
+        return listaNivelTipoDialogoGrafico;
+    }
+
+    public void setListaNivelTipoDialogoGrafico(List<ElementoNombreValor> listaNivelTipoDialogoGrafico) {
+        this.listaNivelTipoDialogoGrafico = listaNivelTipoDialogoGrafico;
     }
 
 }

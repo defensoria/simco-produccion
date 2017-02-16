@@ -229,5 +229,15 @@ public class ReporteEjecutivoDaoImpl extends SqlSessionDaoSupport implements Rep
         return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalActividadAccionesDefensaLegalMes", filtroReporte);
     }
 
+    @Override
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCasoDialogo(FiltroReporte filtroReporte) {
+        return getSqlSession().selectList("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalMensualSegunTipologiaCasoDialogo",filtroReporte);
+    }
+
+    @Override
+    public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosSegunTipologiaCasoDialogo",filtroReporte);
+    }
+
    
 }

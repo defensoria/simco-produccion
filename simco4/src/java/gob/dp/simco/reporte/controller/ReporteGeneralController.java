@@ -668,6 +668,12 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         /*grafic 006**/
         
         
+        
+        
+        
+        
+        
+        
         /*grafic 007**/
         filtroReporte.setTipoTipologiaCaso("90");
         filtroReporte.setTipoReporte(2);
@@ -686,7 +692,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         int totalTipo= 0;
         
         for(ElementoResumenEjecutivo ere : nivelesParametros1){
-            if(StringUtils.equals(ere.getValorParametro(), "01")){
+            /*if(StringUtils.equals(ere.getValorParametro(), "01")){
                 asuntoGobiernoLocalSum++;
             }
             if(StringUtils.equals(ere.getValorParametro(), "02")){
@@ -715,9 +721,10 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             }
             if(StringUtils.equals(ere.getValorParametro(), "10")){
                 otrosSum++;
-            }
+            }*/
+            totalTipo += ere.getValor();
         }
-        totalTipo = asuntoGobiernoLocalSum+asuntoGobiernoNacionalSum+asuntoGobiernoRegionalSum+comunalSum+cultivoIlegalSum+demarcacionTerritorialSum+electoralSum+laboralSum+socioambientalSum+otrosSum;
+        //totalTipo = asuntoGobiernoLocalSum+asuntoGobiernoNacionalSum+asuntoGobiernoRegionalSum+comunalSum+cultivoIlegalSum+demarcacionTerritorialSum+electoralSum+laboralSum+socioambientalSum+otrosSum;
         List<ElementoNombreValor> listNivelTipo = new ArrayList<>();
         List<ElementoNombreValor> listNivelTipoGrafic = new ArrayList<>();
         ElementoNombreValor env2 = new ElementoNombreValor();
@@ -742,9 +749,49 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         
         
         
+        
+        int totalTipo2= 0;
+        filtroReporte.setTipoTipologiaCaso("90");
+        filtroReporte.setTipoReporte(2);
+        List<ElementoResumenEjecutivo> nivelesParametros3 = reporteEjecutivoService.totalMensualSegunTipologiaCasoDialogo(filtroReporte);
+        
+        for(ElementoResumenEjecutivo ere : nivelesParametros3){
+            totalTipo2 += ere.getValor();
+        }
+        //totalTipo = asuntoGobiernoLocalSum+asuntoGobiernoNacionalSum+asuntoGobiernoRegionalSum+comunalSum+cultivoIlegalSum+demarcacionTerritorialSum+electoralSum+laboralSum+socioambientalSum+otrosSum;
+        List<ElementoNombreValor> listNivelTipoDialogo = new ArrayList<>();
+        List<ElementoNombreValor> listNivelTipoDialogoGrafic = new ArrayList<>();
+        ElementoNombreValor env4 = new ElementoNombreValor();
+        env4.setNombre("Total");
+        env4.setValor(totalTipo2);
+        env4.setPorcentaje("100.0%");
+        listNivelTipoDialogo.add(env4);
+        
+        for(ElementoResumenEjecutivo ere : nivelesParametros3){
+            ElementoNombreValor env = new ElementoNombreValor();
+            env.setNombre(ere.getNombre());
+            env.setValor(ere.getValor());
+            env.setPorcentaje(cambiarPorcentaje(totalTipo2, ere.getValor()));
+            listNivelTipoDialogo.add(env);
+            listNivelTipoDialogoGrafic.add(env);
+        }
+        
+       
+        ejecutivo.setListaNivelTipoDialogo(listNivelTipoDialogo);
+        ejecutivo.setListaNivelTipoDialogoGrafico(listNivelTipoDialogoGrafic);
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /*grafic 008**/
         filtroReporte.setTipoTipologiaCaso("130");
         filtroReporte.setTipoReporte(3);
+                //List<ElementoResumenEjecutivo> nivelesParametros2 = reporteEjecutivoService.totalMensualSegunTipologiaCasoDialogo(filtroReporte);
         List<ElementoResumenEjecutivo> nivelesParametros2 = reporteEjecutivoService.totalMensualSegunTipologiaCaso(filtroReporte);
 
         int mineriaSum = 0;
@@ -758,7 +805,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         int totalSubTipo= 0;
         
         for(ElementoResumenEjecutivo ere : nivelesParametros2){
-            if(StringUtils.equals(ere.getValorParametro(), "01")){
+            /*if(StringUtils.equals(ere.getValorParametro(), "01")){
                 mineriaSum++;
             }
             if(StringUtils.equals(ere.getValorParametro(), "02")){
@@ -781,19 +828,20 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             }
             if(StringUtils.equals(ere.getValorParametro(), "08")){
                 otroSum++;
-            }
+            }*/
+            totalSubTipo += ere.getValor();
         }
         
-        totalSubTipo = mineriaSum+hidrocarburosSum+energiaSum+forestalesSum+residuosSolidosSum+aguasResidualesDomesticasSum+agroindustrialSum+otroSum;
+        //totalSubTipo = mineriaSum+hidrocarburosSum+energiaSum+forestalesSum+residuosSolidosSum+aguasResidualesDomesticasSum+agroindustrialSum+otroSum;
         List<ElementoNombreValor> listNivelSubTipo = new ArrayList<>();
         List<ElementoNombreValor> listNivelSubTipoGrafic = new ArrayList<>();
         ElementoNombreValor env3 = new ElementoNombreValor();
         env3.setNombre("Total");
-        env3.setValor(totalTipo);
+        env3.setValor(totalSubTipo);
         env3.setPorcentaje("100.0%");
         listNivelSubTipo.add(env3);
         
-        for(ElementoResumenEjecutivo ere : nivelesParametros1){
+        for(ElementoResumenEjecutivo ere : nivelesParametros2){
             ElementoNombreValor env = new ElementoNombreValor();
             env.setNombre(ere.getNombre());
             env.setValor(ere.getValor());

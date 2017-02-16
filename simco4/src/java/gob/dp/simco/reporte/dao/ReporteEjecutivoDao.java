@@ -81,6 +81,8 @@ public interface ReporteEjecutivoDao {
     
     public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCaso(FiltroReporte filtroReporte);
     
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
+    
     public Integer totalCasosResueltoMes(FiltroReporte filtroReporte);
     
     public Integer totalCasosACVictimaViolencia();
@@ -100,5 +102,8 @@ public interface ReporteEjecutivoDao {
     public Integer totalActividadIntermediacionMes(FiltroReporte filtroReporte);
     
     public Integer totalActividadSupervisionPreventivaMes(FiltroReporte filtroReporte);
+    
+    public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
+    
     
 }

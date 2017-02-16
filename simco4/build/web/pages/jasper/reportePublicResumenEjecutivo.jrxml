@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.3310000000000035"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="13919"/>
+	<property name="ireport.y" value="16049"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -572,6 +572,8 @@
 	<field name="listaNivelTipoGrafico" class="java.util.List"/>
 	<field name="listaNivelSubTipo" class="java.util.List"/>
 	<field name="listaNivelSubTipoGrafico" class="java.util.List"/>
+	<field name="listaNivelTipoDialogo" class="java.util.List"/>
+	<field name="listaNivelTipoDialogoGrafico" class="java.util.List"/>
 	<field name="registradoTotals" class="java.util.List"/>
 	<field name="faceTotals" class="java.util.List"/>
 	<field name="listaCasosNuevosPorMes" class="java.util.List"/>
@@ -3994,7 +3996,7 @@ PERÚ: CONFLICTOS ACTIVOS SEGÚN FASE
 				<textElement>
 					<font fontName="Calibri" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[2. FASES DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
+				<text><![CDATA[3. PROCESOS DE DIÁLOGO EN CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="83" y="355" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="d5ba496b-fd24-41f8-b6d7-992b5673d2e5"/>
@@ -4007,10 +4009,10 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 (Número de casos)]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 11" style="table 11" x="116" y="406" width="300" height="223" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
+				<reportElement key="table 11" style="table 11" x="122" y="412" width="300" height="223" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="dataset3" uuid="8794b4c9-c1d6-4e29-b4ea-406233c60a75">
-						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
+					<datasetRun subDataset="dataset3" uuid="b657a412-de36-4831-ad46-6fbc4c82c332">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoDialogo})]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="120" uuid="1f5c11f1-e908-4f6b-beb8-e51aee659336">
 						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
@@ -4088,7 +4090,7 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 			</staticText>
 			<pieChart>
 				<chart>
-					<reportElement x="3" y="46" width="518" height="211" uuid="5b819d4f-73a7-4276-825c-cfa75f81201b"/>
+					<reportElement x="3" y="89" width="518" height="211" uuid="5b819d4f-73a7-4276-825c-cfa75f81201b"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -4096,7 +4098,7 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 				<pieDataset>
 					<dataset>
 						<datasetRun subDataset="dataset3" uuid="a7f91ead-124f-47b6-b6f6-7f0c3d94b73b">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobiernoGrafico})]]></dataSourceExpression>
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoDialogoGrafico})]]></dataSourceExpression>
 						</datasetRun>
 					</dataset>
 					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
@@ -4109,17 +4111,96 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 				</piePlot>
 			</pieChart>
 			<staticText>
-				<reportElement x="0" y="328" width="521" height="34" forecolor="#33CC00" uuid="be976473-0ff9-40d3-85fa-b34e90aea2ab"/>
+				<reportElement x="-1" y="328" width="521" height="34" forecolor="#33CC00" uuid="be976473-0ff9-40d3-85fa-b34e90aea2ab"/>
 				<textElement textAlignment="Center">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CONFLICTOS SOCIALES DE ACUERDO A TIPO]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="79" y="362" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="b86f9abc-b9da-4159-9be1-4e2e6b4e6a4e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cuadro N.° 10:
+PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO
+(Número de casos)
+]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 11" style="table 11" x="111" y="424" width="300" height="223" uuid="994ec828-ae36-4cda-abf7-8cb1327e2f8c"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset3" uuid="76356800-7f75-4009-ac68-95fae9e90248">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="493bd057-71ae-4d39-8c95-c844c8da2e05">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#990000" uuid="ad285cd2-9f9b-4f38-8231-5a67f97f92dd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nivel de gobierno]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="118" height="20" forecolor="#666666" uuid="678c7f11-38a0-4a33-8044-a888a718dd2d"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="9f3bcd25-b9b4-49e6-a727-aa5f81b4843d">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="aa26b228-d85b-4b44-9542-ea0ed4bc52aa"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nro. casos ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="ad3553bb-403c-49f0-9a51-e9103b4baa83"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ce70055d-24b6-4b98-a6c6-d7dc579b0b64">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="8432d0db-42d6-4818-8b42-dd0902a34c8c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Porcentaje(%)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="d67ca3f8-4a4f-44cd-a1c6-b88a862e14f1"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 		<band height="661">
 			<pieChart>
 				<chart isShowLegend="true" renderType="draw" theme="default">
-					<reportElement isPrintRepeatedValues="false" x="115" y="445" width="346" height="216" uuid="cbe92bbb-518e-4cb9-8b97-f28c599a4075"/>
+					<reportElement isPrintRepeatedValues="false" x="35" y="64" width="436" height="223" uuid="cbe92bbb-518e-4cb9-8b97-f28c599a4075"/>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend position="Bottom"/>
@@ -4138,33 +4219,116 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 					<itemLabel/>
 				</piePlot>
 			</pieChart>
-		</band>
-		<band height="770">
 			<staticText>
-				<reportElement x="62" y="133" width="441" height="20" forecolor="#0066CC" uuid="70a6a2c3-a5a2-4649-bd46-354253ca59a8"/>
+				<reportElement x="17" y="317" width="441" height="20" forecolor="#0066CC" uuid="cece99f9-85eb-4f51-abbf-948c933bc5ff"/>
 				<textElement>
 					<font fontName="Calibri" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[4.2 CONFLICTOS SOCIOAMBIENTALES]]></text>
+				<text><![CDATA[1. CONFLICTOS ACTIVOS POR TIPO]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 11" style="table 11" x="110" y="404" width="300" height="223" uuid="932a214f-dbe4-464e-b1cd-66529fd6a375"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset3" uuid="6f6bc34d-0d50-4a7b-bf26-ebdd744051f7">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="40d88a7f-ec4c-441f-9ae5-9c9fa122de34">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#990000" uuid="fcc8e1ab-c2ab-440a-9149-599e8f9da678"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nivel de gobierno]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="118" height="20" forecolor="#666666" uuid="10aa210b-32c0-41c3-b9a1-ea1822121506"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="db0ccf72-1b91-4093-9d71-e0d8d42f631a">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="6136d9d6-68c7-40a4-a53d-f474179d7dca"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nro. casos ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="97409853-1125-4cf3-af39-52917ccbcea1"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="55758fd0-b7e5-493a-b8c3-e9364a6f1e81">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="10212f5a-90f4-46e2-b1d2-98fd5bb448b7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Porcentaje(%)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="26f65617-795a-432f-948e-2a6465115ce9"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement mode="Transparent" x="76" y="16" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="b0687206-fb7a-4f48-bb93-c3dfa51b7572"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Gráfico N° 8
+PERÚ: CONFLICTOS SOCIALES SEGÚN TIPO
+(Distribución porcentual)
+]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="58" y="178" width="446" height="60" uuid="d16acd0d-a511-45f0-80e0-05d7eac74f0a"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Calibri"/>
+				<reportElement mode="Transparent" x="76" y="337" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="a3af2316-3ed9-4bdc-a3fb-1c47d16d8263"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[De los 143 conflictos socioambientales activos y latentes registrados durante este mes, el 62,8% (91 casos) corresponde a conflictos relacionados a la actividad minera; le siguen los conflictos por actividades hidrocarburíferas con 17,2% (25 casos). A continuación el cuadro de distribución de conflictos socioambientales de acuerdo a actividad:]]></text>
+				<text><![CDATA[Cuadro N.° 11:
+PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
+(Número de casos)
+]]></text>
 			</staticText>
+		</band>
+		<band height="770">
 			<pieChart>
 				<chart isShowLegend="true" renderType="draw" theme="default">
-					<reportElement isPrintRepeatedValues="false" x="88" y="552" width="346" height="216" uuid="88780eac-7ac7-4d6c-b00b-c4fda770393f"/>
+					<reportElement isPrintRepeatedValues="false" x="48" y="59" width="436" height="274" uuid="5cf9df00-3ff6-4ba3-b5a5-ad7d737cd757"/>
 					<chartTitle position="Top"/>
 					<chartSubtitle/>
 					<chartLegend position="Bottom"/>
 				</chart>
 				<pieDataset>
 					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="7de4a303-27d4-406a-b1d7-1142bcb4752e">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelSubTipoGrafico})]]></dataSourceExpression>
+						<datasetRun subDataset="grafic002Dataset" uuid="1616b8c1-deae-4271-a488-8b155585da82">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoGrafico})]]></dataSourceExpression>
 						</datasetRun>
 					</dataset>
 					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
@@ -4175,378 +4339,122 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 					<itemLabel/>
 				</piePlot>
 			</pieChart>
-			<subreport>
-				<reportElement x="44" y="323" width="442" height="229" uuid="4cb3453e-7ad1-468b-95fa-81b70db326c4"/>
-				<subreportParameter name="SUBREPORT_DIR"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelSubTipo})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte}+"subReporteResumenEjecutivoCuadro001.jasper"]]></subreportExpression>
-			</subreport>
 			<staticText>
-				<reportElement mode="Transparent" x="88" y="264" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="8aea5810-0116-4228-8ae5-d0fbd264e3b3"/>
+				<reportElement mode="Transparent" x="71" y="13" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="fe36e0a0-2427-44ec-9f87-e01dade2f65b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Cuadro N.° 12:
-PERÚ: CONFLICTOS SOCIOAMBIENTALES, SEGÚN ACTIVIDAD, SEPTIEMBRE 2016
-(Número de casos)
+				<text><![CDATA[Gráfico N° 9
+PERÚ: CONFLICTOS SOCIALES ACTIVOS POR TIPO
+(Distribución porcentual)
 ]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="6" y="352" width="441" height="20" forecolor="#0066CC" uuid="70a6a2c3-a5a2-4649-bd46-354253ca59a8"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.2 CONFLICTOS SOCIOAMBIENTALES]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 11" style="table 11" x="88" y="372" width="300" height="172" uuid="79e5ecf9-649f-480c-8ec0-e019b32162a1"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset3" uuid="341a3243-dc70-4791-aec2-e4030911779b">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelSubTipo})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="044b6389-412d-46c0-84af-7ec485160976">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#990000" uuid="af88b559-6ed3-4e49-8441-03088297bb90"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nivel de gobierno]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="2" y="0" width="118" height="20" forecolor="#666666" uuid="e793b128-9569-4dc9-a74e-d44f783b8928"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="85ca2dcd-1232-4b24-8694-d0d75baca253">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="042aac12-b122-4eb5-ba2e-b89d211c2608"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nro. casos ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="fed8eec7-fad1-4a74-8597-fb821c620708"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a09af4f4-c6a1-4ded-b265-bd9bcf34fc05">
+						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#990000" uuid="fb99f8a8-0c36-4715-809e-64b29512eeb3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Porcentaje(%)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" forecolor="#666666" uuid="8fdea4b1-c3ce-46f2-9188-6fc0b702066f"/>
+								<textElement textAlignment="Center">
+									<font isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<pieChart>
+				<chart>
+					<reportElement x="4" y="544" width="518" height="211" uuid="055d8a32-e6c0-49d1-a797-2bd64aa4b299"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="dataset3" uuid="e56c47b9-1c82-4437-8e1d-8386a6fc1eaf">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelSubTipoGrafico})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
+					<labelExpression><![CDATA[$F{porcentaje}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
 		</band>
 		<band height="655">
-			<staticText>
-				<reportElement x="36" y="17" width="441" height="20" forecolor="#0066CC" uuid="ab06acb5-8308-4ce7-925b-d02e99751e8d"/>
-				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[V. DETALLE DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="32" y="52" width="446" height="60" uuid="d78e5593-7f89-418d-a54f-91a0af88f9a1"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Calibri"/>
-				</textElement>
-				<text><![CDATA[Observación: Los conflictos sociales en más de un departamento se consideran como uno solo en el número total de conflictos. Ver el detalle de los conflictos en más de un departamento en la página 103.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="24" y="112" width="441" height="20" forecolor="#0066CC" uuid="81120b82-f79e-40fc-95b2-9e84cccdef79"/>
-				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[5.1 CONFLICTOS ACTIVOS DESARROLLADOS EN UN SOLO DEPARTAMENTO]]></text>
-			</staticText>
-			<pieChart>
-				<chart>
-					<reportElement x="191" y="338" width="279" height="231" uuid="7a8c9718-5e56-4288-b1f0-077f7737f884"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<pieDataset>
-					<dataset>
-						<datasetRun subDataset="graficUtilDataset" uuid="74f3bc52-b3de-49b8-86f2-0a488eeeedfc">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaMensualCasosTotales})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
-					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-				</pieDataset>
-				<piePlot>
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
-			<textField>
-				<reportElement x="29" y="372" width="161" height="88" uuid="6fa3c535-7572-41bd-ab23-130e85c87917"/>
-				<textElement textAlignment="Center">
-					<font fontName="Calibri" size="66"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosTotalMes}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="29" y="460" width="162" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2710fc36-ea9b-46f0-be25-02530b8b4286"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[casos en total]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="72" y="269" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="0dd6f058-49e7-44a4-b712-093cd01583f1"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 4
-PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO, SEPTIEMBRE 2014
-(Número de casos)
-
-
-
-]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="58" y="315" width="100" height="57" uuid="a5ee7825-8d3c-48fe-8d81-26fb5ba58dfa"/>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<line>
-				<reportElement x="26" y="208" width="446" height="1" forecolor="#CC0099" uuid="674312e8-8413-4a58-b74b-9f39e5e1ccfc"/>
-			</line>
-			<staticText>
-				<reportElement x="28" y="214" width="449" height="16" uuid="4364f63d-b5b3-415c-a713-2aaa6dda3a82"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Calibri"/>
-				</textElement>
-				<text><![CDATA[A continuación se presenta la información de los conflictos registrados en el mes de acuerdo a su tipo:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="26" y="181" width="286" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="49fddee9-0fa9-4ecb-8390-80d553e3fd8d"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[TIPOLOGÍA DE LOS CONFLICTOS REGISTRADOS]]></text>
-			</staticText>
-			<stackedBar3DChart>
-				<chart>
-					<reportElement x="27" y="183" width="451" height="28" uuid="54bb8500-9831-415a-aede-2a374a2d4fae"/>
-					<chartTitle position="Top"/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic001Dataset" uuid="f0465749-627d-4421-a168-508c5fa17142">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{estadoConflictos})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Latentes"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{latente}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Activo"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{activo}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Total"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{total}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat>
-							<tickLabelFont>
-								<font size="5"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</stackedBar3DChart>
-			<textField>
-				<reportElement x="22" y="238" width="450" height="26" uuid="b68493be-6276-4a2f-b2cf-a9ee12969360"/>
-				<textElement textAlignment="Justified"/>
-				<textFieldExpression><![CDATA[$F{casosNuevosTexto}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="49" y="290" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="76ace7a1-4191-49b8-90e9-5e9567d75060"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 3
-PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
-(Número de casos)
-
-
-]]></text>
-			</staticText>
-			<stackedBar3DChart>
-				<chart>
-					<reportElement x="29" y="144" width="451" height="28" uuid="edc565b4-a331-4902-a44c-2915aedf8047"/>
-					<chartTitle position="Top"/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic001Dataset" uuid="04271c37-fdb9-4253-8a90-27446ed9fcc3">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{estadoConflictos})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Latentes"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{latente}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Activo"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{activo}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Total"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{total}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat>
-							<tickLabelFont>
-								<font size="5"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</stackedBar3DChart>
-			<lineChart>
-				<chart>
-					<reportElement x="12" y="318" width="450" height="104" uuid="cc640827-c3e6-4a0f-8ed6-6e51e01e3675"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic003Dataset" uuid="5474d460-4a17-4955-aa42-2d2e7d8b1e78">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{nuevoCasos})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Resueltos"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{resuelto}]]></valueExpression>
-					</categorySeries>
-					<categorySeries>
-						<seriesExpression><![CDATA["Nuevos"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{mes}+"-"+$F{anho}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{nuevo}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<linePlot>
-					<plot/>
-					<categoryAxisFormat>
-						<axisFormat>
-							<tickLabelFont>
-								<font size="5"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</linePlot>
-			</lineChart>
-			<textField>
-				<reportElement x="24" y="199" width="450" height="26" uuid="dabe3c4b-39dd-4e63-9777-52b0b1ab04e5"/>
-				<textElement textAlignment="Justified"/>
-				<textFieldExpression><![CDATA[$F{casosNuevosTexto}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="51" y="251" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="237869a7-0d23-4b07-8349-0056bb88c57e"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 3
-PERÚ: CASOS RESUELTOS Y CASOS NUEVOS, SEPTIEMBRE 2013-14
-(Número de casos)
-
-
-]]></text>
-			</staticText>
 			<subreport>
-				<reportElement x="35" y="535" width="433" height="100" uuid="e484d9b1-55de-42d8-ad37-146797e0540a"/>
+				<reportElement x="29" y="14" width="474" height="100" uuid="a1b4866e-9410-4363-ba72-a3c72dd48db1"/>
 				<subreportParameter name="SUBREPORT_DIR"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasosActivosTotales})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$F{rutaReporte}+ "subReporteResumenEjecutivoListaCasosActivos.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$F{rutaReporte} + "subReporteResumenEjecutivoListaCasosActivos.jasper"]]></subreportExpression>
 			</subreport>
-		</band>
-		<band height="770">
-			<staticText>
-				<reportElement mode="Transparent" x="68" y="52" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="037d94df-63db-4709-b1f4-828311a461fe"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 5
-PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO, SEPTIEMBRE 2014
-(Número de casos)
-]]></text>
-			</staticText>
-			<textField>
-				<reportElement mode="Transparent" x="20" y="485" width="451" height="58" forecolor="#000000" backcolor="#FFFFFF" uuid="2404b474-c776-4244-8e77-3274c4250c29"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nivelGobiernoTexto}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="65" y="543" width="361" height="46" forecolor="#999999" backcolor="#FFFFFF" uuid="a1a06968-b5a0-45a7-ab5c-6dc245a5f2da"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Cuadro N° 1:
-PERÚ: COMPETENCIAS, SEGÚN NIVEL DE GOBIERNO, SEPTIEMBRE 2014
-(Cantidad de casos)
-
-]]></text>
-			</staticText>
-			<subreport>
-				<reportElement x="27" y="589" width="442" height="171" uuid="ed2bf702-66d8-404b-bb0a-6b37a4c15cc0"/>
-				<subreportParameter name="SUBREPORT_DIR"/>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subReporteResumenEjecutivoCuadro001.jasper"]]></subreportExpression>
-			</subreport>
-			<pieChart>
-				<chart>
-					<reportElement x="189" y="128" width="282" height="251" uuid="db7d6c14-2eb1-4560-8948-c59ce3a9b3b8"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<pieDataset>
-					<dataset>
-						<datasetRun subDataset="graficUtilDataset" uuid="d55cb7a9-7d46-4021-b6f5-a6a30802df24">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaMensualCasosActivos})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
-					<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-				</pieDataset>
-				<piePlot>
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="24" y="168" width="161" height="88" forecolor="#000000" backcolor="#FFFFFF" uuid="e03b008b-1da6-4b44-854d-85f6db313d38"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="66" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosActivoMes}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="23" y="256" width="162" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d5d37d1e-9576-4b21-af4a-a70255e9be2d"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[casos activos]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="21" y="428" width="450" height="57" forecolor="#000000" backcolor="#FFFFFF" uuid="ce770180-bc26-49c1-8d7a-ee0396b1fc19"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[La identificación de las competencias en la atención de un conflicto social se hace a partir del reconocimiento del papel que desempeñan los sectores en los que se organiza el Estado en la atención de las múltiples demandas que son planteadas durante el desarrollo de un conflicto social, de acuerdo a la normatividad, objetivos y funciones vigentes en cada una de la entidades estatales analizadas.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="21" y="389" width="389" height="27" forecolor="#000000" backcolor="#FFFFFF" uuid="1fbb7990-8088-4490-94ab-deccd771cf7f"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[COMPETENCIA EN LA ATENCIÓN DE LOS CONFLICTOS SOCIALES]]></text>
-			</staticText>
 		</band>
 	</detail>
 	<pageFooter>

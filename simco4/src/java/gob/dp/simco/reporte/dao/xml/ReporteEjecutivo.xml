@@ -185,17 +185,22 @@ AND C.C_TIPO_ACTIVIDAD IN ('08','09','10','11','12','13','14')
     <select id="totalCasosResueltos"  resultType="java.lang.Integer" parameterType="filtroReporte">
         SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
         AND C_TIPOESTADO = '06'
-        AND TO_CHAR(D_FECHAPUBLICACION, 'YY') = #{anhos}
-        AND TO_CHAR(D_FECHAPUBLICACION, 'MM') = #{mes} 
+        AND TO_CHAR(D_FECHAINICIO, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAINICIO, 'MM') = #{mes} 
     </select>
     
     <select id="totalCasosPropuestos"  resultType="java.lang.Integer" parameterType="filtroReporte">
-        SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE D_FECHAPUBLICACION IS NOT NULL AND C_INDVIGENTE = 'A'
+        SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A'  AND C_INDAPROBADO = 'A'
         AND C_TIPOESTADO = '02'
      
     </select>
     
-    
+    <select id="totalCasosSegunTipologiaCasoDialogo"  resultType="java.lang.Integer" parameterType="filtroReporte">
+        SELECT COUNT(*) TOTAL_ACTIVO FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        AND C_TIPOCASO = '09'
+        AND TO_CHAR(D_FECHAINICIO, 'YY') = #{anhos}
+        AND TO_CHAR(D_FECHAINICIO, 'MM') = #{mes} 
+    </select>
     
     <select id="totalCasosActivosLatentes"  resultType="java.lang.Integer" parameterType="filtroReporte">
         SELECT COUNT(*) FROM (SELECT * FROM SIMCO_REG_CASO WHERE C_TIPOESTADO = '04') A
@@ -366,6 +371,17 @@ AND C.C_TIPO_ACTIVIDAD IN ('08','09','10','11','12','13','14')
                 ON A.C_SUBTIPOCASO = B.VALOR_PARAMETRO
             </if>
             AND B.PADRE_PARAMETRO = #{tipoTipologiaCaso}
+      WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
+        GROUP BY B.NOMBRE_PARAMETRO, B.VALOR_PARAMETRO
+    </select>
+    
+    
+    <select id="totalMensualSegunTipologiaCasoDialogo"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
+        SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE, B.VALOR_PARAMETRO VALORPARAMETRO  FROM SIMCO_REG_CASO A
+      INNER JOIN SIMCO_PARAMETRO B 
+                ON A.C_TIPOCASO = B.VALOR_PARAMETRO
+            AND B.PADRE_PARAMETRO = #{tipoTipologiaCaso}
+       AND A.C_TIPODIALOGO = '05'
       WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
         GROUP BY B.NOMBRE_PARAMETRO, B.VALOR_PARAMETRO
     </select>

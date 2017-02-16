@@ -102,4 +102,7 @@ public interface ReporteEjecutivoService {
     
     public HashMap<Integer,String> actoresPorCodigoCasoString(String codigoCaso);
     
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
+    
+    public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
 }

@@ -13,7 +13,6 @@ import gob.dp.simco.reporte.entity.FiltroReporte;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.groovy.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -293,6 +292,16 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
         mapActor.put(2, secundario.toString());
         mapActor.put(3, terciario.toString());
         return mapActor;
+    }
+
+    @Override
+    public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCasoDialogo(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalMensualSegunTipologiaCasoDialogo(filtroReporte);
+    }
+
+    @Override
+    public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosSegunTipologiaCasoDialogo(filtroReporte);
     }
 
     
