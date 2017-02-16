@@ -280,7 +280,17 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         totalActividadSupervisionPreventivaMes = reporteEjecutivoService.totalActividadSupervisionPreventivaMes(filtroReporte);
         
         listaCasosNuevosPorMes = reporteSimcoCasoService.listaCasosNuevosPorMes(filtroReporte);
+        int contad = 0;
+        for(ReporteSimcoCaso rsc : listaCasosNuevosPorMes){
+            contad++;
+            rsc.setContador(contad);
+        }
         listaCasosResueltosPorMes = reporteSimcoCasoService.listaCasosResueltosPorMes(filtroReporte);
+        contad = 0;
+        for(ReporteSimcoCaso rsc : listaCasosResueltosPorMes){
+            contad++;
+            rsc.setContador(contad);
+        }
         listaCasosActivosTotales = reporteSimcoCasoService.listaCasosActivosTotales();
         for(ReporteSimcoCaso rsc : listaCasosActivosTotales){
             rsc.setRutaReporte(retornaRutaPath().concat("/jasper/"));
@@ -351,7 +361,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         String anhoe = filtroReporte.getAnhos();
         List<CuadroGenericoMes> listaCasosRegistradosMES = new ArrayList<>();
         List<CuadroGenericoMes> listaCasosResueltosMES = new ArrayList<>();
-        List<ChartTotal> registradoTotals;
+        List<ElementoNombreValor> registradoTotals;
         CuadroGenericoMes cma = new CuadroGenericoMes();
         CuadroGenericoMes cma1 = new CuadroGenericoMes();
         CuadroGenericoMes cmaCasosRegistradosPorMes = new CuadroGenericoMes();
@@ -359,7 +369,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         /*NUMERO DE CASOS POR MES*/
         registradoTotals = new ArrayList<>();
         for(int i = 0; i< 13; i++){
-            ChartTotal ct = new ChartTotal();
+            ElementoNombreValor ct = new ElementoNombreValor();
             
             if(numeroMes ==  0){
                 Integer anho = Integer.parseInt(filtroReporte.getAnhos()) - 1;
@@ -465,7 +475,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         listaCasosResueltosMES.add(cmaCasosResueltosPorMes);
         
         
-        List<ChartTotal> registradoTotals1 = new ArrayList<>();
+        List<ElementoNombreValor> registradoTotals1 = new ArrayList<>();
         for(int i = 12; i >= 0; i--){
             registradoTotals1.add(registradoTotals.get(i));
         }
@@ -614,7 +624,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         int totalGob= 0;
         
         for(ElementoResumenEjecutivo ere : nivelesParametros){
-            if(StringUtils.equals(ere.getValorParametro(), "01")){
+            /*if(StringUtils.equals(ere.getValorParametro(), "01")){
                 gobNacionalSum++;
             }
             if(StringUtils.equals(ere.getValorParametro(), "02")){
@@ -631,9 +641,10 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             }
             if(StringUtils.equals(ere.getValorParametro(), "06")){
                 porderJudicialSum++;
-            }
+            }*/
+            totalGob += ere.getValor();
         }
-        totalGob = gobNacionalSum+gobRegionalSum+gobLocalSum+poderLegislativoSum +porderJudicialSum+otrosOrganismosSum;
+        //totalGob = gobNacionalSum+gobRegionalSum+gobLocalSum+poderLegislativoSum +porderJudicialSum+otrosOrganismosSum;
         List<ElementoNombreValor> listNivelGob = new ArrayList<>();
         List<ElementoNombreValor> listNivelGobGrafic = new ArrayList<>();
         ElementoNombreValor env1 = new ElementoNombreValor();
@@ -960,8 +971,6 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         ejecutivo.setFaceTotals(fts);
         ejecutivo.setImagePath001(retornaRutaPath().concat("/images/"));
         listaResumenEjecutivo.add(ejecutivo);
-
-        
         generarReportePublicoMensual();
     }
     

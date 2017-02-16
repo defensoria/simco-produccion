@@ -117,6 +117,8 @@ public class ReporteSimcoCaso implements Serializable{
     
     private String rutaReporte;
     
+    private Integer contador;
+    
 
     public String getCodigoCaso() {
         return codigoCaso;
@@ -524,6 +526,14 @@ public class ReporteSimcoCaso implements Serializable{
 
     public void setRutaReporte(String rutaReporte) {
         this.rutaReporte = rutaReporte;
+    }
+
+    public Integer getContador() {
+        return contador;
+    }
+
+    public void setContador(Integer contador) {
+        this.contador = contador;
     }
     
 }

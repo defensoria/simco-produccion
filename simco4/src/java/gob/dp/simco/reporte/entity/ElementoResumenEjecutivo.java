@@ -88,7 +88,7 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<CuadroGenericoMes> listaCasosResueltosMES;
     
-    private List<ChartTotal> registradoTotals;
+    private List<ElementoNombreValor> registradoTotals;
     
     private List<ChartTotal> faceTotals;
     
@@ -1603,11 +1603,11 @@ public class ElementoResumenEjecutivo implements Serializable{
     }
 
     
-    public List<ChartTotal> getRegistradoTotals() {
+    public List<ElementoNombreValor> getRegistradoTotals() {
         return registradoTotals;
     }
 
-    public void setRegistradoTotals(List<ChartTotal> registradoTotals) {
+    public void setRegistradoTotals(List<ElementoNombreValor> registradoTotals) {
         this.registradoTotals = registradoTotals;
     }
 
