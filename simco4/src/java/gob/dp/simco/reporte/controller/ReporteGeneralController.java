@@ -804,6 +804,79 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         ejecutivo.setListaCasosActivosTotales(listaCasosActivosTotales);
         /****Casos activos detalle****/
          
+        /****lista casos reactivados****/
+        List<ReporteSimcoCaso> listaCasosReactivadosPorMes = new ArrayList<>();
+        filtroReporte.setTipoEstadoCaso(EstadoCasoType.ACTIVO.getKey());
+        List<Caso> lista = reporteEjecutivoService.listadoCasosEstadoMes(filtroReporte);
+        for(Caso c : lista){
+            filtroReporte.setCodigoCaso(c.getCodigo());
+            List<Caso> listaInactivos =  reporteEjecutivoService.listaCasosAntesDeAprobado(filtroReporte);
+            for(Caso c1 : listaInactivos){
+                if(!StringUtils.equals(c1.getTipoEstado(), EstadoCasoType.ACTIVO.getKey())){
+                    if(StringUtils.equals(c1.getTipoEstado(),EstadoCasoType.LATENTE.getKey())){
+                        filtroReporte.setCodigoCaso(c1.getCodigo());
+                        listaCasosReactivadosPorMes.add(reporteEjecutivoService.casoActivoTotal(filtroReporte));
+                        filtroReporte.setCodigoCaso(null);
+                    }
+                    break;
+                }
+            }
+        }
+        
+        int contad1 = 0;
+        for(ReporteSimcoCaso rsc : listaCasosReactivadosPorMes){
+            contad1++;
+            rsc.setContador(contad1);
+        }
+        ejecutivo.setListaCasosReactivadosPorMes(listaCasosReactivadosPorMes);
+        /****lista casos reactivados****/
+        
+        /****lista casos latentes****/
+        List<ReporteSimcoCaso> listaCasosLatentesPorMes;
+        listaCasosLatentesPorMes = reporteEjecutivoService.casoaLatentesLista(filtroReporte);
+        int contad2 = 0;
+        for(ReporteSimcoCaso rsc : listaCasosLatentesPorMes){
+            contad2++;
+            rsc.setContador(contad2);
+        }
+        ejecutivo.setListaCasosLatentesPorMes(listaCasosLatentesPorMes);
+        /****lista casos latentes****/
+        
+        
+        
+        
+        /****lista casos de activo a latente****/
+        List<ReporteSimcoCaso> listaCasosActivoALatentes = new ArrayList<>();
+        filtroReporte.setTipoEstadoCaso(EstadoCasoType.LATENTE.getKey());
+        List<Caso> listaActivids = reporteEjecutivoService.listadoCasosEstadoMes(filtroReporte);
+        for(Caso c : listaActivids){
+            filtroReporte.setCodigoCaso(c.getCodigo());
+            List<Caso> listaInactivos =  reporteEjecutivoService.listaCasosAntesDeAprobado(filtroReporte);
+            for(Caso c1 : listaInactivos){
+                if(!StringUtils.equals(c1.getTipoEstado(), EstadoCasoType.ACTIVO.getKey())){
+                    if(StringUtils.equals(c1.getTipoEstado(),EstadoCasoType.LATENTE.getKey())){
+                        filtroReporte.setCodigoCaso(c1.getCodigo());
+                        listaCasosActivoALatentes.add(reporteEjecutivoService.casoActivoTotal(filtroReporte));
+                        filtroReporte.setCodigoCaso(null);
+                    }
+                    break;
+                }
+            }
+        }
+        
+        int contad3 = 0;
+        for(ReporteSimcoCaso rsc : listaCasosActivoALatentes){
+            contad3++;
+            rsc.setContador(contad3);
+        }
+        ejecutivo.setListaCasosActivoALatentes(listaCasosActivoALatentes);
+        /****lista casos de activo a latente****/
+        
+        
+        
+        
+        
+        
         ejecutivo.setImagePath001(retornaRutaPath().concat("/images/"));
         listaResumenEjecutivo.add(ejecutivo);
         generarReportePublicoMensual();

@@ -41,5 +41,7 @@ public interface ReporteSimcoCasoDao {
     
     public List<ReporteSimcoCaso> listaCasosActivosTotales(FiltroReporte filtroReporte);
     
+    public ReporteSimcoCaso casoActivoTotal(FiltroReporte filtroReporte);
     
+    public List<ReporteSimcoCaso> casoaLatentesLista(FiltroReporte filtroReporte);
 }

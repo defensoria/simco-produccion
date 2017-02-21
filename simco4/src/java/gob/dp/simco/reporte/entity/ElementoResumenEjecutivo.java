@@ -148,10 +148,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private Integer totalCasosGeneralActivo;
     
-    
-    
-    
-    
     private Integer totalCasosGeneralReunionesPreparatorias;
     
     private String porcentajeGeneralReunionesPreparatorias;
@@ -170,7 +166,13 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private String estadoConflictoTexto;
     
-    private String nivelGobiernoTexto;    
+    private String nivelGobiernoTexto;
+
+    private List<ReporteSimcoCaso> listaCasosReactivadosPorMes;
+    
+    private List<ReporteSimcoCaso> listaCasosLatentesPorMes;
+    
+    private List<ReporteSimcoCaso> listaCasosActivoALatentes;
     
     /***departamentos**/
     private	Integer amazonasAct;
@@ -1239,6 +1241,30 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setListaNivelTipoDialogoGrafico(List<ElementoNombreValor> listaNivelTipoDialogoGrafico) {
         this.listaNivelTipoDialogoGrafico = listaNivelTipoDialogoGrafico;
+    }
+
+    public List<ReporteSimcoCaso> getListaCasosReactivadosPorMes() {
+        return listaCasosReactivadosPorMes;
+    }
+
+    public void setListaCasosReactivadosPorMes(List<ReporteSimcoCaso> listaCasosReactivadosPorMes) {
+        this.listaCasosReactivadosPorMes = listaCasosReactivadosPorMes;
+    }
+
+    public List<ReporteSimcoCaso> getListaCasosLatentesPorMes() {
+        return listaCasosLatentesPorMes;
+    }
+
+    public void setListaCasosLatentesPorMes(List<ReporteSimcoCaso> listaCasosLatentesPorMes) {
+        this.listaCasosLatentesPorMes = listaCasosLatentesPorMes;
+    }
+
+    public List<ReporteSimcoCaso> getListaCasosActivoALatentes() {
+        return listaCasosActivoALatentes;
+    }
+
+    public void setListaCasosActivoALatentes(List<ReporteSimcoCaso> listaCasosActivoALatentes) {
+        this.listaCasosActivoALatentes = listaCasosActivoALatentes;
     }
 
 }

@@ -8,6 +8,7 @@ package gob.dp.simco.reporte.service;
 import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.FiltroReporte;
+import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,5 +119,9 @@ public interface ReporteEjecutivoService {
     public List<Caso> listaCasosAntesDeAprobado(FiltroReporte filtroReporte);
     
     public List<Caso> reporteCaso(FiltroReporte filtroReporte);
+    
+    public ReporteSimcoCaso casoActivoTotal(FiltroReporte filtroReporte);
+    
+    public List<ReporteSimcoCaso> casoaLatentesLista(FiltroReporte filtroReporte);
     
 }

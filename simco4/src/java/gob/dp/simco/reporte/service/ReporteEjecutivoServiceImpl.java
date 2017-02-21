@@ -10,8 +10,10 @@ import gob.dp.simco.registro.dao.CasoDao;
 import gob.dp.simco.registro.entity.Actor;
 import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.reporte.dao.ReporteEjecutivoDao;
+import gob.dp.simco.reporte.dao.ReporteSimcoCasoDao;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.FiltroReporte;
+import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +37,8 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     @Autowired
     private CasoDao casoDao;
     
+    @Autowired
+    private ReporteSimcoCasoDao reporteSimcoCasoDao;
     
     @Override
     public void cargaCasoMes(FiltroReporte filtro) {
@@ -374,6 +378,16 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
         }
         
         return casoDao.reporteCaso(filtroReporte);
+    }
+
+    @Override
+    public ReporteSimcoCaso casoActivoTotal(FiltroReporte filtroReporte) {
+        return reporteSimcoCasoDao.casoActivoTotal(filtroReporte);
+    }
+
+    @Override
+    public List<ReporteSimcoCaso> casoaLatentesLista(FiltroReporte filtroReporte) {
+        return reporteSimcoCasoDao.casoaLatentesLista(filtroReporte);
     }
 
 }
