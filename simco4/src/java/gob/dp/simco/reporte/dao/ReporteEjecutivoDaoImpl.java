@@ -18,20 +18,35 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReporteEjecutivoDaoImpl extends SqlSessionDaoSupport implements ReporteEjecutivoDao {
 
-    
     @Override
-    public Integer totalCasosRegistrados() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosRegistrados");
+    public Integer existeReporteMes(FiltroReporte filtro) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.existeReporteMes", filtro);
     }
     
     @Override
-    public Integer totalCasosActivos() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosActivos");
+    public Integer codigoReporteMes(FiltroReporte filtro) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.codigoReporteMes", filtro);
+    }
+    
+    @Override
+    public void cargaCasoMes(FiltroReporte filtro) {
+        getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.cargaCasoMes", filtro);
+    }
+    
+    
+    @Override
+    public Integer totalCasosRegistrados(FiltroReporte filtro) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosRegistrados", filtro);
+    }
+    
+    @Override
+    public Integer totalCasosActivos(FiltroReporte filtro) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosActivos", filtro);
     }
 
     @Override
-    public Integer totalCasosLatentes() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosLatentes");
+    public Integer totalCasosLatentes(FiltroReporte filtro) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosLatentes", filtro);
     }
 
     @Override
@@ -60,8 +75,8 @@ public class ReporteEjecutivoDaoImpl extends SqlSessionDaoSupport implements Rep
     }
 
     @Override
-    public Integer totalCasosDialogo() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogo");
+    public Integer totalCasosDialogo(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogo", filtroReporte);
     }
 
     @Override
@@ -170,23 +185,23 @@ public class ReporteEjecutivoDaoImpl extends SqlSessionDaoSupport implements Rep
     }
 
     @Override
-    public Integer totalCasosDialogoNegociacion() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogoNegociacion");
+    public Integer totalCasosDialogoNegociacion(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogoNegociacion", filtroReporte);
     }
 
     @Override
-    public Integer totalCasosDialogoReuniones() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogoReuniones");
+    public Integer totalCasosDialogoReuniones(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogoReuniones", filtroReporte);
     }
 
     @Override
-    public Integer totalCasosDialogoEspacioDialogo() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogoEspacioDialogo");
+    public Integer totalCasosDialogoEspacioDialogo(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosDialogoEspacioDialogo", filtroReporte);
     }
 
     @Override
-    public Integer totalCasosACVictimaViolencia() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosACVictimaViolencia");
+    public Integer totalCasosACVictimaViolencia(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosACVictimaViolencia", filtroReporte);
     }
 
     @Override
@@ -200,8 +215,8 @@ public class ReporteEjecutivoDaoImpl extends SqlSessionDaoSupport implements Rep
     }
 
     @Override
-    public Integer totalCasosAD() {
-        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosAD");
+    public Integer totalCasosAD(FiltroReporte filtroReporte) {
+        return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosAD", filtroReporte);
     }
 
     @Override
@@ -239,5 +254,4 @@ public class ReporteEjecutivoDaoImpl extends SqlSessionDaoSupport implements Rep
         return getSqlSession().selectOne("gob.dp.simco.reporte.dao.ReporteEjecutivoDao.totalCasosSegunTipologiaCasoDialogo",filtroReporte);
     }
 
-   
 }

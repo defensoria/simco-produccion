@@ -445,7 +445,7 @@
     
     <select id="casoCodigoGenerado" resultType="java.lang.Integer" >
         SELECT COUNT(*) FROM SIMCO_REG_CASO
-        WHERE C_INDVIGENTE = 'A'
+        WHERE C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A' 
         AND TO_CHAR(D_FECHACREACION, 'MM') = TO_CHAR(SYSDATE, 'MM')
     </select>
     
@@ -473,7 +473,7 @@
     </select>
     
     <select id="reporteCaso" resultMap="casoMap" parameterType="filtroReporte">
-        SELECT * FROM SIMCO_REG_CASO WHERE C_INDVIGENTE = 'A' AND D_FECHAPUBLICACION IS NOT NULL
+        SELECT * FROM SIMCO_REPORTE_CASO WHERE C_INDVIGENTE = 'A' AND D_FECHAPUBLICACION IS NOT NULL
         <if test="listaDepartamentosSize != null">
             AND N_IDDEPART IN
             <foreach item="item" index="index" collection="listaDepartamentos"
@@ -498,19 +498,23 @@
         <if test="clasificacion != 0">
             AND C_TIPOESTADO = #{clasificacion}
         </if>
+        AND C_TIPOESTADO IN ('04','05') AND N_ID_CODIGOCARGA = #{codigoReporte} AND TO_NUMBER(TO_CHAR(D_FECHAINICIO, 'YYMM')) &lt; TO_NUMBER(#{anhoMesString}) + 1 
     </select>
     
     
     <select id="listadoCasosEstadoMes" resultMap="casoMap" parameterType="filtroReporte">
-        SELECT * FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
+        SELECT * FROM SIMCO_REPORTE_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDVIGENTE = 'A' AND C_INDAPROBADO = 'A'
         AND TO_CHAR(D_FECHAMODIFICACION, 'YY') = #{anhos}
         AND TO_CHAR(D_FECHAMODIFICACION, 'MM') = #{mes}
         AND C_TIPOESTADO = #{tipoEstadoCaso}
+        AND N_ID_CODIGOCARGA = #{codigoReporte}
     </select>
     
-    <select id="listaCasosAntesDeAprobado" resultMap="casoMap" parameterType="String">
-        SELECT * FROM SIMCO_REG_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDAPROBADO = 'A' AND C_INDVIGENTE = 'I'
-        AND C_CODIGOCASO = #{value} ORDER BY N_ID_CASO DESC
+    <select id="listaCasosAntesDeAprobado" resultMap="casoMap" parameterType="filtroReporte">
+        SELECT * FROM SIMCO_REPORTE_CASO WHERE D_FECHAINICIO IS NOT NULL AND C_INDAPROBADO = 'A' AND C_INDVIGENTE = 'I'
+        AND N_ID_CODIGOCARGA = #{codigoReporte} AND C_CODIGOCASO = #{codigoCaso} AND N_ID_CODIGOCARGA = #{codigoReporte} 
+        AND TO_NUMBER(TO_CHAR(D_FECHAINICIO, 'YYMM')) &lt; TO_NUMBER(#{anhoMesString}) + 1
+        ORDER BY N_ID_CASO DESC
     </select>
     
     

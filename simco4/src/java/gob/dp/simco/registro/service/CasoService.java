@@ -47,8 +47,4 @@ public interface CasoService {
    
    public void casoUpdateAprobar(Caso caso);
    
-   public List<Caso> listadoCasosEstadoMes(FiltroReporte filtroReporte);
-   
-   public List<Caso> listaCasosAntesDeAprobado(String codigoCaso);
-   
 }

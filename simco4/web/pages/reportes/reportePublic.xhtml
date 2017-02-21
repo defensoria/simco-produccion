@@ -4,7 +4,7 @@
             <h:form>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        Reportes
+                        Descargar reporte mensual
                     </div>
                     <div class="panel-body">
                         <table style="width: 50%">
@@ -17,18 +17,46 @@
                             </h:selectOneMenu>
                                 </td>
                                 <td>
-                                    <label>Seleccione Mess</label>
+                                    <label>Seleccione Mes</label>
                                     <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.mes}" class="selectRadio">
                                 <f:selectItem itemLabel="Seleccione" itemValue="0" />
                                 <f:selectItems value="#{reporteGeneralController.listasMeses}" var="x" />
                             </h:selectOneMenu>
                                 </td>
                                 <td>
-                                    <a jsf:action="#{reporteGeneralController.cargarReporteMensual()}">XX
-                    
-                </a>
                                     <a class="btn btn-primary" jsf:action="#{reporteGeneralController.resumenEjecutivo()}">
                                         <span class="glyphicon glyphicon-print" /> Generar Reporte
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Generar datos del reporte mensual
+                    </div>
+                    <div class="panel-body">
+                        <table style="width: 50%">
+                            <tr>
+                                <td>
+                                    <label>Seleccione Año</label>
+                                    <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.anhos}" class="selectRadio">
+                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
+                                <f:selectItems value="#{listasComunesController.buscarAnhos(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                            </h:selectOneMenu>
+                                </td>
+                                <td>
+                                    <label>Seleccione Mes</label>
+                                    <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.mes}" class="selectRadio">
+                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
+                                <f:selectItems value="#{reporteGeneralController.listasMeses}"/>
+                            </h:selectOneMenu>
+                                </td>
+                                <td>
+                                    <a jsf:action="#{reporteGeneralController.cargarReporteMensual()}" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-print" />Generar datos
                                     </a>
                                 </td>
                             </tr>

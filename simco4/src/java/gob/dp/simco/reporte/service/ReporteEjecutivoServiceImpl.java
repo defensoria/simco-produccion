@@ -6,10 +6,13 @@
 package gob.dp.simco.reporte.service;
 
 import gob.dp.simco.registro.dao.ActorDao;
+import gob.dp.simco.registro.dao.CasoDao;
 import gob.dp.simco.registro.entity.Actor;
+import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.reporte.dao.ReporteEjecutivoDao;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.FiltroReporte;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -28,20 +31,39 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     
     @Autowired
     private ActorDao actorDao;
-
+    
+    @Autowired
+    private CasoDao casoDao;
+    
+    
     @Override
-    public Integer totalCasosRegistrados() {
-        return reporteEjecutivoDao.totalCasosRegistrados();
+    public void cargaCasoMes(FiltroReporte filtro) {
+        reporteEjecutivoDao.cargaCasoMes(filtro);
+    }
+    
+    @Override
+    public boolean existeReporteMes(FiltroReporte filtro) {
+        return reporteEjecutivoDao.existeReporteMes(filtro) > 0;
+    }
+    
+    @Override
+    public Integer codigoReporteMes(FiltroReporte filtro) {
+        return reporteEjecutivoDao.codigoReporteMes(filtro);
     }
 
     @Override
-    public Integer totalCasosActivos() {
-        return reporteEjecutivoDao.totalCasosActivos();
+    public Integer totalCasosRegistrados(FiltroReporte filtro) {
+        return reporteEjecutivoDao.totalCasosRegistrados(filtro);
     }
 
     @Override
-    public Integer totalCasosLatentes() {
-        return reporteEjecutivoDao.totalCasosLatentes();
+    public Integer totalCasosActivos(FiltroReporte filtro) {
+        return reporteEjecutivoDao.totalCasosActivos(filtro);
+    }
+
+    @Override
+    public Integer totalCasosLatentes(FiltroReporte filtro) {
+        return reporteEjecutivoDao.totalCasosLatentes(filtro);
     }
 
     @Override
@@ -65,8 +87,8 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     }
 
     @Override
-    public Integer totalCasosDialogo() {
-        return reporteEjecutivoDao.totalCasosDialogo();
+    public Integer totalCasosDialogo(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosDialogo(filtroReporte);
     }
 
     @Override
@@ -186,16 +208,14 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
         return reporteEjecutivoDao.totalMensualSegunTipologiaCaso(filtroReporte);
     }
 
-    
-
     @Override
-    public Integer totalCasosDialogoNegociacion() {
-        return reporteEjecutivoDao.totalCasosDialogoNegociacion();
+    public Integer totalCasosDialogoNegociacion(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosDialogoNegociacion(filtroReporte);
     }
 
     @Override
-    public Integer totalCasosDialogoReuniones() {
-        return reporteEjecutivoDao.totalCasosDialogoReuniones();
+    public Integer totalCasosDialogoReuniones(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosDialogoReuniones(filtroReporte);
     }
 
     @Override
@@ -204,13 +224,13 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     }
 
     @Override
-    public Integer totalCasosDialogoEspacioDialogo() {
-        return reporteEjecutivoDao.totalCasosDialogoEspacioDialogo();
+    public Integer totalCasosDialogoEspacioDialogo(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosDialogoEspacioDialogo(filtroReporte);
     }
 
     @Override
-    public Integer totalCasosACVictimaViolencia() {
-        return reporteEjecutivoDao.totalCasosACVictimaViolencia();
+    public Integer totalCasosACVictimaViolencia(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosACVictimaViolencia(filtroReporte);
     }
 
     @Override
@@ -224,8 +244,8 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     }
 
     @Override
-    public Integer totalCasosAD() {
-        return reporteEjecutivoDao.totalCasosAD();
+    public Integer totalCasosAD(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalCasosAD(filtroReporte);
     }
 
     @Override
@@ -254,43 +274,41 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     }
 
     @Override
-    public HashMap<Integer,String> actoresPorCodigoCasoString(String codigoCaso) {
-        List<Actor> list = actorDao.actoresPorCodigoCaso(codigoCaso);
+    public HashMap<Integer,String> actoresPorCodigoCasoString(FiltroReporte filtroReporte) {
+        List<Actor> list = actorDao.actoresPorCodigoCaso(filtroReporte);
         StringBuilder primario = new StringBuilder();
         StringBuilder secundario = new StringBuilder();
         StringBuilder terciario = new StringBuilder();
-        int count = 0;
+        primario.append(" ");
+        secundario.append(" ");
+        terciario.append(" ");
         for(Actor a : list){
             if(StringUtils.equals(a.getTipoActoCaso(), "01")){
-                if(count > 0) primario.append(", ");
                 if(StringUtils.equals(a.getTipoGeneral(), "PE")){
-                    primario.append(a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat());
+                    primario.append(" "+a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat()+",");
                 }else{
-                    primario.append(a.getNombre());
+                    primario.append(" "+a.getNombre()+",");
                 }
             }
             if(StringUtils.equals(a.getTipoActoCaso(), "02")){
-                if(count > 0) secundario.append(", ");
                 if(StringUtils.equals(a.getTipoGeneral(), "PE")){
-                    secundario.append(a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat());
+                    secundario.append(" "+a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat()+",");
                 }else{
-                    secundario.append(a.getNombre());
+                    secundario.append(" "+a.getNombre()+",");
                 }
             }
             if(StringUtils.equals(a.getTipoActoCaso(), "03")){
-                if(count > 0) terciario.append(", ");
                 if(StringUtils.equals(a.getTipoGeneral(), "PE")){
-                    terciario.append(a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat());
+                    terciario.append(" "+a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat()+",");
                 }else{
-                    terciario.append(a.getNombre());
+                    terciario.append(" "+a.getNombre()+",");
                 }
             }
         }
-        count++;
         HashMap<Integer,String> mapActor=new HashMap<>();  
-        mapActor.put(1, primario.toString());
-        mapActor.put(2, secundario.toString());
-        mapActor.put(3, terciario.toString());
+        mapActor.put(1, primario.toString().substring(0, primario.toString().length()-1));
+        mapActor.put(2, secundario.toString().substring(0, secundario.toString().length()-1));
+        mapActor.put(3, terciario.toString().substring(0, terciario.toString().length()-1));
         return mapActor;
     }
 
@@ -303,6 +321,59 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
     public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte) {
         return reporteEjecutivoDao.totalCasosSegunTipologiaCasoDialogo(filtroReporte);
     }
-
     
+    @Override
+    public List<Caso> listadoCasosEstadoMes(FiltroReporte filtroReporte) {
+        return casoDao.listadoCasosEstadoMes(filtroReporte);
+    }
+    
+    @Override
+    public List<Caso> listaCasosAntesDeAprobado(FiltroReporte filtroReporte) {
+        return casoDao.listaCasosAntesDeAprobado(filtroReporte);
+    }
+    
+    @Override
+    public List<Caso> reporteCaso(FiltroReporte filtroReporte) {
+        List<Integer> listDeparamentos = new ArrayList<>();
+        if(StringUtils.isNotBlank(filtroReporte.getDepartamento())){
+            String[] adArray = filtroReporte.getDepartamento().split(",");
+            for (String adArray1 : adArray) {
+                listDeparamentos.add(Integer.parseInt(adArray1));
+            }
+            filtroReporte.setListaDepartamentos(listDeparamentos);
+            filtroReporte.setListaDepartamentosSize(listDeparamentos.size());
+        }else{
+            filtroReporte.setListaDepartamentos(listDeparamentos);
+            filtroReporte.setListaDepartamentosSize(null);
+        }
+        
+        List<String> listAnhos = new ArrayList<>();
+        if(StringUtils.isNotBlank(filtroReporte.getAnhos())){
+            String[] adArray = filtroReporte.getAnhos().split(",");
+            for (String adArray1 : adArray) {
+                listAnhos.add(adArray1);
+            }
+            filtroReporte.setListaAnhos(listAnhos);
+            filtroReporte.setListaAnhosSize(listAnhos.size());
+        }else{
+            filtroReporte.setListaAnhos(listAnhos);
+            filtroReporte.setListaAnhosSize(null);
+        }
+        
+        List<String> listMes = new ArrayList<>();
+        if(StringUtils.isNotBlank(filtroReporte.getMes())){
+            String[] adArray = filtroReporte.getMes().split(",");
+            for (String adArray1 : adArray) {
+                listMes.add(adArray1);
+            }
+            filtroReporte.setListaMeses(listMes);
+            filtroReporte.setListaMesesSize(listMes.size());
+        }else{
+            filtroReporte.setListaMeses(listMes);
+            filtroReporte.setListaMesesSize(null);
+        }
+        
+        return casoDao.reporteCaso(filtroReporte);
+    }
+
 }

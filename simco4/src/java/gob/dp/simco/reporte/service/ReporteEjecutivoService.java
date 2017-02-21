@@ -5,6 +5,7 @@
  */
 package gob.dp.simco.reporte.service;
 
+import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
 import gob.dp.simco.reporte.entity.FiltroReporte;
 import java.util.HashMap;
@@ -16,11 +17,17 @@ import java.util.List;
  */
 public interface ReporteEjecutivoService {
     
-    public Integer totalCasosRegistrados(); 
+    public void cargaCasoMes(FiltroReporte filtro);
     
-    public Integer totalCasosActivos();
+    public boolean existeReporteMes(FiltroReporte filtro);
     
-    public Integer totalCasosLatentes();
+    public Integer codigoReporteMes(FiltroReporte filtro);
+    
+    public Integer totalCasosRegistrados(FiltroReporte filtro); 
+    
+    public Integer totalCasosActivos(FiltroReporte filtro);
+    
+    public Integer totalCasosLatentes(FiltroReporte filtro);
     
     public Integer totalCasosActivosLatentes(FiltroReporte filtroReporte);
             
@@ -30,13 +37,13 @@ public interface ReporteEjecutivoService {
     
     public Integer totalGeneralCasosActivo(FiltroReporte filtroReporte);
     
-    public Integer totalCasosDialogo();
+    public Integer totalCasosDialogo(FiltroReporte filtroReporte);
     
-    public Integer totalCasosDialogoNegociacion();  
+    public Integer totalCasosDialogoNegociacion(FiltroReporte filtroReporte);  
     
-    public Integer totalCasosDialogoReuniones();  
+    public Integer totalCasosDialogoReuniones(FiltroReporte filtroReporte);  
     
-    public Integer totalCasosDialogoEspacioDialogo();  
+    public Integer totalCasosDialogoEspacioDialogo(FiltroReporte filtroReporte);  
     
     public Integer totalGeneralCasosReunionesPreparatorias(FiltroReporte filtroReporte);
     
@@ -82,13 +89,13 @@ public interface ReporteEjecutivoService {
     
     public Integer totalCasosResueltoMes(FiltroReporte filtroReporte);
     
-    public Integer totalCasosACVictimaViolencia();
+    public Integer totalCasosACVictimaViolencia(FiltroReporte filtroReporte);
     
     public Integer totalCasosACVictimaViolenciaMes(FiltroReporte filtroReporte);
     
     public Integer totalCasosACAccionesProtestaMes(FiltroReporte filtroReporte);
     
-    public Integer totalCasosAD();
+    public Integer totalCasosAD(FiltroReporte filtroReporte);
     
     public Integer totalCasosADMes(FiltroReporte filtroReporte);
     
@@ -100,9 +107,16 @@ public interface ReporteEjecutivoService {
     
     public Integer totalActividadAccionesDefensaLegalMes(FiltroReporte filtroReporte);
     
-    public HashMap<Integer,String> actoresPorCodigoCasoString(String codigoCaso);
+    public HashMap<Integer,String> actoresPorCodigoCasoString(FiltroReporte filtroReporte);
     
     public List<ElementoResumenEjecutivo> totalMensualSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
     
     public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
+    
+    public List<Caso> listadoCasosEstadoMes(FiltroReporte filtroReporte);
+    
+    public List<Caso> listaCasosAntesDeAprobado(FiltroReporte filtroReporte);
+    
+    public List<Caso> reporteCaso(FiltroReporte filtroReporte);
+    
 }

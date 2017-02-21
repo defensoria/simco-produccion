@@ -15,11 +15,17 @@ import java.util.List;
  */
 public interface ReporteEjecutivoDao {
     
-    public Integer totalCasosRegistrados(); 
+    public void cargaCasoMes(FiltroReporte filtro);
     
-    public Integer totalCasosActivos();
+    public Integer existeReporteMes(FiltroReporte filtro);
     
-    public Integer totalCasosLatentes();
+    public Integer codigoReporteMes(FiltroReporte filtro);
+    
+    public Integer totalCasosRegistrados(FiltroReporte filtro); 
+    
+    public Integer totalCasosActivos(FiltroReporte filtro);
+    
+    public Integer totalCasosLatentes(FiltroReporte filtro);
     
     public Integer totalCasosActivosLatentes(FiltroReporte filtroReporte);
             
@@ -29,13 +35,13 @@ public interface ReporteEjecutivoDao {
     
     public Integer totalGeneralCasosActivo(FiltroReporte filtroReporte);  
     
-    public Integer totalCasosDialogo();  
+    public Integer totalCasosDialogo(FiltroReporte filtroReporte);  
     
-    public Integer totalCasosDialogoNegociacion();  
+    public Integer totalCasosDialogoNegociacion(FiltroReporte filtroReporte);  
     
-    public Integer totalCasosDialogoReuniones();  
+    public Integer totalCasosDialogoReuniones(FiltroReporte filtroReporte);  
     
-    public Integer totalCasosDialogoEspacioDialogo();  
+    public Integer totalCasosDialogoEspacioDialogo(FiltroReporte filtroReporte);  
     
     public Integer totalCasosRegistradosMes(FiltroReporte filtroReporte);        
             
@@ -85,13 +91,13 @@ public interface ReporteEjecutivoDao {
     
     public Integer totalCasosResueltoMes(FiltroReporte filtroReporte);
     
-    public Integer totalCasosACVictimaViolencia();
+    public Integer totalCasosACVictimaViolencia(FiltroReporte filtroReporte);
     
     public Integer totalCasosACVictimaViolenciaMes(FiltroReporte filtroReporte);
     
     public Integer totalCasosACAccionesProtestaMes(FiltroReporte filtroReporte);
     
-    public Integer totalCasosAD();
+    public Integer totalCasosAD(FiltroReporte filtroReporte);
     
     public Integer totalCasosADMes(FiltroReporte filtroReporte);
     

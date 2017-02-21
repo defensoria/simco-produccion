@@ -3,7 +3,6 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<subDataset name="dataset1" uuid="90f8c69a-2dee-42f3-a9b9-c040121b239f"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>

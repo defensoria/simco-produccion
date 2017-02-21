@@ -76,8 +76,8 @@ public class ReporteSimcoCasoServiceImpl implements ReporteSimcoCasoService{
     }
 
     @Override
-    public List<ReporteSimcoCaso> listaCasosActivosTotales() {
-        return reporteSimcoDao.listaCasosActivosTotales();
+    public List<ReporteSimcoCaso> listaCasosActivosTotales(FiltroReporte filtroReporte) {
+        return reporteSimcoDao.listaCasosActivosTotales(filtroReporte);
     }
     
 }

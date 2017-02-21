@@ -9,7 +9,6 @@ import gob.dp.simco.registro.bean.FiltroCaso;
 import gob.dp.simco.registro.dao.CasoDao;
 import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.registro.entity.Parametro;
-import gob.dp.simco.reporte.entity.FiltroReporte;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -127,16 +126,6 @@ public class CasoServiceImpl implements CasoService {
     @Override
     public void casoUpdateAprobar(Caso caso) {
         casoDao.casoUpdateAprobar(caso);
-    }
-
-    @Override
-    public List<Caso> listadoCasosEstadoMes(FiltroReporte filtroReporte) {
-        return casoDao.listadoCasosEstadoMes(filtroReporte);
-    }
-
-    @Override
-    public List<Caso> listaCasosAntesDeAprobado(String codigoCaso) {
-        return casoDao.listaCasosAntesDeAprobado(codigoCaso);
     }
 
 }

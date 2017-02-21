@@ -284,7 +284,7 @@ public class MenuController implements Serializable {
             CasoController casoController = (CasoController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "casoController");
             menuHijo = menuService.menuHijo(27);
             //return casoController.cargarPanel();
-            return casoController.cargarPanel(caso.getId());
+            return casoController.cargarPanel(casoController.getCaso().getId());
 
         }
 

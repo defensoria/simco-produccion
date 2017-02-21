@@ -129,7 +129,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
     private CasoRegion casoRegion;
 
     private List<CasoRegion> listaCasoRegion;
-    
+
     private Boolean esComisionadoRegistro;
 
     @Autowired
@@ -161,10 +161,10 @@ public class CasoController extends AbstractManagedBean implements Serializable 
 
     @Autowired
     private CasoRegionService casoRegionService;
-    
+
     @Autowired
     private UsuarioService usuarioService;
-    
+
     public String cargarPagina() {
         try {
             caso = new Caso();
@@ -181,11 +181,11 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             usuarioSession();
             Caso c1 = new Caso();
             casos = casoService.casoBuscar(c1);
-            for(Caso c : casos){
+            for (Caso c : casos) {
                 FiltroUsuario u = new FiltroUsuario();
                 u.setCodigo(c.getUsuarioRegistro());
                 Usuario u1 = usuarioService.consultarUsuario(u);
-                c.setNombreComisionadoRegistro(u1.getNombre()+" "+u1.getApellidoPaterno()+" "+u1.getApellidoMaterno());
+                c.setNombreComisionadoRegistro(u1.getNombre() + " " + u1.getApellidoPaterno() + " " + u1.getApellidoMaterno());
             }
         } catch (Exception ex) {
             log.error(ex.getMessage());
@@ -220,8 +220,8 @@ public class CasoController extends AbstractManagedBean implements Serializable 
         setearEsComosionadoRegistro();
         return "casoNuevo";
     }
-    
-    private void setearEsComosionadoRegistro(){
+
+    private void setearEsComosionadoRegistro() {
         esComisionadoRegistro = StringUtils.equals(usuarioSession.getCodigo(), caso.getUsuarioRegistro());
     }
 
@@ -262,7 +262,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
 
     public boolean addRegion() {
         try {
-            if (StringUtils.isNotBlank(casoRegion.getIdDepartamento()) && !StringUtils.equals(casoRegion.getIdDepartamento(),"0")) {
+            if (StringUtils.isNotBlank(casoRegion.getIdDepartamento()) && !StringUtils.equals(casoRegion.getIdDepartamento(), "0")) {
                 casoRegion.setEstado("ACT");
                 casoRegion.setIdCaso(caso.getId());
                 casoRegionService.casoRegionInsertar(casoRegion);
@@ -270,18 +270,18 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 msg.messageAlert("Debe de ingresar como minimo un departamento", null);
                 return false;
             }
-            if (StringUtils.isNotBlank(casoRegion.getIdDepartamento()) && !StringUtils.equals(casoRegion.getIdDepartamento(),"0")) {
+            if (StringUtils.isNotBlank(casoRegion.getIdDepartamento()) && !StringUtils.equals(casoRegion.getIdDepartamento(), "0")) {
                 String depar = ubigeoService.departamentoOne(casoRegion.getIdDepartamento()).getDescripcion();
                 casoRegion.setNombreDepartamento(depar);
             }
-            if (StringUtils.isNotBlank(casoRegion.getIdProvincia()) && !StringUtils.equals(casoRegion.getIdProvincia(),"0")) {
+            if (StringUtils.isNotBlank(casoRegion.getIdProvincia()) && !StringUtils.equals(casoRegion.getIdProvincia(), "0")) {
                 Provincia p = new Provincia();
                 p.setIdDepartamento(casoRegion.getIdDepartamento());
                 p.setIdProvincia(casoRegion.getIdProvincia());
                 String prov = ubigeoService.provinciaOne(p).getDescripcion();
                 casoRegion.setNombreProvincia(prov);
             }
-            if (StringUtils.isNotBlank(casoRegion.getIdDistrito()) && !StringUtils.equals(casoRegion.getIdDistrito(),"0")) {
+            if (StringUtils.isNotBlank(casoRegion.getIdDistrito()) && !StringUtils.equals(casoRegion.getIdDistrito(), "0")) {
                 Distrito d = new Distrito();
                 d.setIdDepartamento(casoRegion.getIdDepartamento());
                 d.setIdProvincia(casoRegion.getIdProvincia());
@@ -305,23 +305,25 @@ public class CasoController extends AbstractManagedBean implements Serializable 
     }
 
     private void updateListasActividades() {
-        if(listaActividadesCasoAD != null)
-        for (Actividad a : listaActividadesCasoAD) {
-            ActividadCaso ac = new ActividadCaso();
-            ac.setActividad(a);
-            ac.setCaso(caso);
-            ac.setEstado("ACT");
-            updateRelacionActividadCaso(a);
-            actividadCasoService.actividadCasoInsertar(ac);
+        if (listaActividadesCasoAD != null) {
+            for (Actividad a : listaActividadesCasoAD) {
+                ActividadCaso ac = new ActividadCaso();
+                ac.setActividad(a);
+                ac.setCaso(caso);
+                ac.setEstado("ACT");
+                updateRelacionActividadCaso(a);
+                actividadCasoService.actividadCasoInsertar(ac);
+            }
         }
-        if(listaActividadesCasoAC != null)
-        for (Actividad a : listaActividadesCasoAC) {
-            ActividadCaso ac = new ActividadCaso();
-            ac.setActividad(a);
-            ac.setCaso(caso);
-            ac.setEstado("ACT");
-            updateRelacionActividadCaso(a);
-            actividadCasoService.actividadCasoInsertar(ac);
+        if (listaActividadesCasoAC != null) {
+            for (Actividad a : listaActividadesCasoAC) {
+                ActividadCaso ac = new ActividadCaso();
+                ac.setActividad(a);
+                ac.setCaso(caso);
+                ac.setEstado("ACT");
+                updateRelacionActividadCaso(a);
+                actividadCasoService.actividadCasoInsertar(ac);
+            }
         }
     }
 
@@ -363,11 +365,11 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             listaCasoRegion = new ArrayList<>();
             List<CasoRegion> list = casoRegionService.casoRegionBuscar(caso.getId());
             for (CasoRegion cr : list) {
-                if (StringUtils.isNotBlank(cr.getIdDepartamento()) && !StringUtils.equals(cr.getIdDepartamento(),"0")) {
+                if (StringUtils.isNotBlank(cr.getIdDepartamento()) && !StringUtils.equals(cr.getIdDepartamento(), "0")) {
                     String depar = ubigeoService.departamentoOne(cr.getIdDepartamento()).getDescripcion();
                     cr.setNombreDepartamento(depar);
                 }
-                if (StringUtils.isNotBlank(cr.getIdProvincia()) && !StringUtils.equals(cr.getIdProvincia(),"0")) {
+                if (StringUtils.isNotBlank(cr.getIdProvincia()) && !StringUtils.equals(cr.getIdProvincia(), "0")) {
                     Provincia p = new Provincia();
                     p.setIdDepartamento(cr.getIdDepartamento());
                     p.setIdProvincia(cr.getIdProvincia());
@@ -376,7 +378,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 } else {
                     cr.setNombreProvincia("");
                 }
-                if (StringUtils.isNotBlank(cr.getIdDistrito()) && !StringUtils.equals(cr.getIdDistrito(),"0")) {
+                if (StringUtils.isNotBlank(cr.getIdDistrito()) && !StringUtils.equals(cr.getIdDistrito(), "0")) {
                     Distrito d = new Distrito();
                     d.setIdDepartamento(cr.getIdDepartamento());
                     d.setIdProvincia(cr.getIdProvincia());
@@ -704,10 +706,10 @@ public class CasoController extends AbstractManagedBean implements Serializable 
         }
         lista.add(vo);
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista);
-        
-        jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/documentoCaso.jasper"),new HashMap(), beanCollectionDataSource);
+
+        jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/documentoCaso.jasper"), new HashMap(), beanCollectionDataSource);
     }
-    
+
     public void pdf() throws JRException, IOException {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -756,15 +758,15 @@ public class CasoController extends AbstractManagedBean implements Serializable 
     }
 
     public boolean registrarCaso() {
-        if(StringUtils.equals(caso.getTipoEstado(), "0")){
+        if (StringUtils.equals(caso.getTipoEstado(), "0")) {
             msg.messageAlert("Debe ingresar el estado del caso", null);
             return false;
         }
-        if(StringUtils.equals(caso.getTipo(), "0")){
+        if (StringUtils.equals(caso.getTipo(), "0")) {
             msg.messageAlert("Debe ingresar la tipología del caso", null);
             return false;
         }
-        if(caso.getFechaInicio() == null){
+        if (caso.getFechaInicio() == null) {
             msg.messageAlert("Debe ingresar la fecha de inicio del caso", null);
             return false;
         }
@@ -805,37 +807,34 @@ public class CasoController extends AbstractManagedBean implements Serializable 
         }
         return true;
     }
+
     /*public void enviarSolicitudAprobacion(){
         Mail mail = new Mail();	
 		//tblEmailDetalle.setNIdDestinatarioPersona(tblEmailPersona.getNIdEmail());
 		mail.send("careli_2710@hotmail.com","asunto","cuerpo");
 
     }*/
-    
-    public String aprobarSolicitudAprobacion(){
-        if(caso.getIndAprobado() == null){
-            if(StringUtils.isBlank(caso.getCodigo())){
+
+    public String aprobarSolicitudAprobacion() {
+        if (caso.getIndAprobado() == null) {
+            if (StringUtils.isBlank(caso.getCodigo())) {
                 caso.setCodigo(generarCodigoCaso());
                 caso.setTipoEstado("04");
                 Caso c = new Caso();
-        c.setIndAprobado("A");
-        c.setUsuAprobado(usuarioSession.getCodigo());
-        c.setFechaAprobado(new Date());
-        c.setCodigo(caso.getCodigo());
-        c.setTipoEstado(caso.getTipoEstado());
-        c.setId(caso.getId());
-        c.setFechaPublicacion(new Date());
-        casoService.casoUpdateAprobar(c);
-        Mail mail = new Mail();	
-		//tblEmailDetalle.setNIdDestinatarioPersona(tblEmailPersona.getNIdEmail());
-		mail.send("careli_2710@hotmail.com","asunto","cuerpo");
-                msg.messageInfo("Se aprobo el caso", null);
-            }            
+                c.setIndAprobado("A");
+                c.setUsuAprobado(usuarioSession.getCodigo());
+                c.setFechaAprobado(new Date());
+                c.setCodigo(caso.getCodigo());
+                c.setTipoEstado(caso.getTipoEstado());
+                c.setId(caso.getId());
+                c.setFechaPublicacion(new Date());
+                casoService.casoUpdateAprobar(c);
+            }
         }
-        
+
         return cargarPaginaCasosSigues();
     }
-    
+
     private void ordenarParametros() {
         if (!caso.getTipoEstado().equals("04")) {
             caso.setTipoDialogo("0");
@@ -927,13 +926,13 @@ public class CasoController extends AbstractManagedBean implements Serializable 
         String tipo = TipologiaCasoType.tipoClasificacionNombre(caso.getTipo());
         return anho + mesDescripcion + numero + "-" + tipo;
     }
-    
+
     public void cargarListaActividadesSinCaso(int tipo) {
         verTitulo = tipo == 1;
         List<Actividad> lista = new ArrayList<>();
         listaActividadesSinCaso = actividadService.actividadBusquedaSinCaso(tipo);
-        for(Actividad a : listaActividadesSinCaso){
-            if(StringUtils.equals(a.getUsuarioRegistro(), usuarioSession.getCodigo())){
+        for (Actividad a : listaActividadesSinCaso) {
+            if (StringUtils.equals(a.getUsuarioRegistro(), usuarioSession.getCodigo())) {
                 lista.add(a);
             }
         }
@@ -1212,6 +1211,5 @@ public class CasoController extends AbstractManagedBean implements Serializable 
     public void setEsComisionadoRegistro(Boolean esComisionadoRegistro) {
         this.esComisionadoRegistro = esComisionadoRegistro;
     }
-    
-    
+
 }

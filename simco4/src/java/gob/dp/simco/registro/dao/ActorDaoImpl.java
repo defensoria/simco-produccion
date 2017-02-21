@@ -8,6 +8,7 @@ package gob.dp.simco.registro.dao;
 
 import gob.dp.simco.registro.bean.FiltroActor;
 import gob.dp.simco.registro.entity.Actor;
+import gob.dp.simco.reporte.entity.FiltroReporte;
 import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -145,8 +146,8 @@ public class ActorDaoImpl extends SqlSessionDaoSupport implements ActorDao {
     }
 
     @Override
-    public List<Actor> actoresPorCodigoCaso(String codigoUsuario) {
-        return getSqlSession().selectList("gob.dp.simco.registro.dao.ActorDao.actoresPorCodigoCaso",codigoUsuario);
+    public List<Actor> actoresPorCodigoCaso(FiltroReporte filtroReporte) {
+        return getSqlSession().selectList("gob.dp.simco.registro.dao.ActorDao.actoresPorCodigoCaso",filtroReporte);
     }
     
 }

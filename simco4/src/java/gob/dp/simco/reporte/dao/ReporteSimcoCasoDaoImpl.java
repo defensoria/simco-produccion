@@ -74,8 +74,8 @@ public class ReporteSimcoCasoDaoImpl extends SqlSessionDaoSupport implements Rep
     }
 
     @Override
-    public List<ReporteSimcoCaso> listaCasosActivosTotales() {
-        return getSqlSession().selectList("gob.dp.simco.reporte.dao.ReporteSimcoCasoDao.listaCasosActivosTotales");
+    public List<ReporteSimcoCaso> listaCasosActivosTotales(FiltroReporte filtroReporte) {
+        return getSqlSession().selectList("gob.dp.simco.reporte.dao.ReporteSimcoCasoDao.listaCasosActivosTotales", filtroReporte);
     }
     
     

@@ -8,6 +8,7 @@ package gob.dp.simco.registro.dao;
 
 import gob.dp.simco.registro.bean.FiltroActor;
 import gob.dp.simco.registro.entity.Actor;
+import gob.dp.simco.reporte.entity.FiltroReporte;
 import java.util.List;
 
 
@@ -67,6 +68,6 @@ public interface ActorDao {
     
     public List<Actor> actorBuscarNombrePaginado(FiltroActor filtroActor);
     
-    public List<Actor> actoresPorCodigoCaso(String codigoUsuario);
+    public List<Actor> actoresPorCodigoCaso(FiltroReporte filtroReporte);
     
 }

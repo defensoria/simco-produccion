@@ -96,8 +96,8 @@ public class CasoDaoImpl extends SqlSessionDaoSupport implements CasoDao{
     }
 
     @Override
-    public List<Caso> listaCasosAntesDeAprobado(String codigoCaso) {
-        return getSqlSession().selectList("gob.dp.simco.registro.dao.CasoDao.listaCasosAntesDeAprobado",codigoCaso);
+    public List<Caso> listaCasosAntesDeAprobado(FiltroReporte filtroReporte) {
+        return getSqlSession().selectList("gob.dp.simco.registro.dao.CasoDao.listaCasosAntesDeAprobado",filtroReporte);
     }
 
 }

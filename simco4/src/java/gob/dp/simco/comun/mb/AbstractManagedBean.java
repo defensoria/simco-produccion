@@ -48,8 +48,6 @@ public abstract class AbstractManagedBean implements Serializable {
         return retornapath(retornapath(path));
     }
 
-    public FacesContext context = FacesContext.getCurrentInstance();
-
     public AbstractManagedBean() {
         msg = new MessagesUtil();
     }

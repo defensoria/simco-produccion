@@ -842,12 +842,16 @@ INNER JOIN SIMCO_REG_CASO E ON D.N_ID_CASO = E.N_ID_CASO
 WHERE A.C_USUREGISTRO = #{value}
     </select>
     
-    <select id="actoresPorCodigoCaso" resultMap="actorMap" parameterType="String">
-        SELECT A.*, B.C_TIPO TIPO_ACTOR_CASO FROM SIMCO_REG_ACTOR A
-INNER JOIN SIMCO_REG_CASO_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
-INNER JOIN SIMCO_REG_CASO C ON C.N_ID_CASO = B.N_ID_CASO
+    <select id="actoresPorCodigoCaso" resultMap="actorMap" parameterType="FiltroReporte">
+        SELECT A.*, B.C_TIPO TIPO_ACTOR_CASO FROM SIMCO_REPORTE_ACTOR A
+INNER JOIN SIMCO_REPORTE_CASO_ACTOR B ON A.N_ID_ACTOR = B.N_ID_ACTOR
+INNER JOIN SIMCO_REPORTE_CASO C ON C.N_ID_CASO = B.N_ID_CASO
 WHERE C.C_INDAPROBADO = 'A' AND C.C_INDVIGENTE = 'A'
-AND C.C_CODIGOCASO = #{value}
+AND A.N_ID_CODIGOCARGA = #{codigoReporte}
+AND B.N_ID_CODIGOCARGA = #{codigoReporte}
+AND C.N_ID_CODIGOCARGA = #{codigoReporte}
+AND TO_NUMBER(TO_CHAR(C.D_FECHAINICIO, 'YYMM')) &lt; TO_NUMBER(#{anhoMesString}) + 1 
+AND C.C_CODIGOCASO = #{codigoCaso}
     </select>
 
     

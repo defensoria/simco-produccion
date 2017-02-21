@@ -47,6 +47,12 @@ public class FiltroReporte {
     
     private String tipoTipologiaCaso;
     
+    private String usuarioRegistro;
+    
+    private String anhoMesString;
+    
+    private Integer codigoReporte;
+    
     public Integer getTipoReporte() {
         return tipoReporte;
     }
@@ -181,6 +187,30 @@ public class FiltroReporte {
 
     public void setTipoTipologiaCaso(String tipoTipologiaCaso) {
         this.tipoTipologiaCaso = tipoTipologiaCaso;
+    }
+
+    public String getUsuarioRegistro() {
+        return usuarioRegistro;
+    }
+
+    public void setUsuarioRegistro(String usuarioRegistro) {
+        this.usuarioRegistro = usuarioRegistro;
+    }
+
+    public String getAnhoMesString() {
+        return anhoMesString;
+    }
+
+    public void setAnhoMesString(String anhoMesString) {
+        this.anhoMesString = anhoMesString;
+    }
+
+    public Integer getCodigoReporte() {
+        return codigoReporte;
+    }
+
+    public void setCodigoReporte(Integer codigoReporte) {
+        this.codigoReporte = codigoReporte;
     }
     
 }
