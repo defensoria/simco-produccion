@@ -56,6 +56,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1087,14 +1088,12 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
     public void initJasperReporteEjecutivo() throws JRException {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
-		ec.responseReset();
-		HttpServletRequest  request = (HttpServletRequest)ec.getRequest();
-		String path = request.getPathTranslated();
+        ec.responseReset();
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listaResumenEjecutivo);
         jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/reportePublicResumenEjecutivo.jasper"),new HashMap(), beanCollectionDataSource);
      }
     
-    public void generarReportePublicoMensual() throws JRException, IOException {
+    /*public void generarReportePublicoMensual() throws JRException, IOException {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String fecha = simpleDateFormat.format(date);
@@ -1106,6 +1105,25 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         httpServletResponse.addHeader("Content-disposition", "attachment; filename=" + fecha + "_reporte.pdf");
         ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream);
+        facesContext.responseComplete();
+        facesContext.renderResponse();
+    }*/
+    
+    @SuppressWarnings("static-access")
+    public void generarReportePublicoMensual() throws JRException, IOException {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = simpleDateFormat.format(date);
+        initJasperReporteEjecutivo();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpServletResponse httpServletResponse = (HttpServletResponse) facesContext.getCurrentInstance().getExternalContext().getResponse();
+        httpServletResponse.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        httpServletResponse.addHeader("Content-disposition", "attachment; filename=" + fecha + "_reporte.doc");
+        ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
+        JRDocxExporter docxExporter = new JRDocxExporter();
+        docxExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+        docxExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, servletOutputStream);
+        docxExporter.exportReport();
         facesContext.responseComplete();
         facesContext.renderResponse();
     }

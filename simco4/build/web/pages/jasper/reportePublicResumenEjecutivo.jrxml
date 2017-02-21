@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="23200"/>
+	<property name="ireport.y" value="13552"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -4281,53 +4281,7 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="58" y="357" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="44c9e401-5dd5-43eb-ad6b-04b58d61a14b"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Gráfico N° 4
-PERÚ: CASOS ACTIVOS POR MES
-(Número de casos)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="2" y="34" width="392" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="4ed7b5ab-d6f0-40b2-b3c6-7021be1b47eb"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[1. FRECUENCIA DE LOS CONFLICTOS ACTIVOS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="1" y="0" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="bf62b989-4593-41b4-8632-58eb825acbda"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[ESTADO DE LOS CONFLICTOS ACTIVOS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="60" y="100" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="d54a1521-a801-4acb-aa87-39f1884e4a90"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Cuadro N.° 8:
-PERÚ: CONFLICTOS ACTIVOS POR MES
-(Número de casos)
-]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="3" y="56" width="425" height="20" uuid="2fe2e848-0105-4823-889f-780631bd4d71"/>
-				<textElement>
-					<font fontName="Arial Black"/>
-				</textElement>
-				<text><![CDATA[A continuación se presenta la frecuencia mensual del último año:]]></text>
-			</staticText>
-		</band>
-		<band height="770">
-			<staticText>
-				<reportElement mode="Transparent" x="76" y="48" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
+				<reportElement mode="Transparent" x="76" y="97" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -4338,26 +4292,26 @@ PERÚ: CONFLICTOS ACTIVOS SEGÚN FASE
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="1" width="441" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="f5484b90-31ae-4006-b508-8734a3c0ad9a"/>
+				<reportElement mode="Transparent" x="0" y="45" width="441" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="f5484b90-31ae-4006-b508-8734a3c0ad9a"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[2. FASES DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
+				<text><![CDATA[FASES DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="4" y="26" width="468" height="20" uuid="ec33dffa-afbf-4781-970d-29c650ce8a03"/>
+				<reportElement x="1" y="72" width="468" height="20" uuid="ec33dffa-afbf-4781-970d-29c650ce8a03"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[Al cierre del presente reporte, los conflictos activos registrados se encuentran en las siguientes fases:]]></text>
 			</staticText>
 			<image>
-				<reportElement x="35" y="94" width="452" height="226" uuid="5782dcfe-959c-4074-a897-39cd13ffa124"/>
+				<reportElement x="37" y="149" width="452" height="226" uuid="5782dcfe-959c-4074-a897-39cd13ffa124"/>
 				<imageExpression><![CDATA[$F{imagePath001} +"cuadro007.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="3" y="331" width="441" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="bcdf0a94-d119-4e22-9bae-931ec54f39f6"/>
+				<reportElement mode="Transparent" x="2" y="386" width="441" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="bcdf0a94-d119-4e22-9bae-931ec54f39f6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -4365,7 +4319,7 @@ PERÚ: CONFLICTOS ACTIVOS SEGÚN FASE
 				<text><![CDATA[3. PROCESOS DE DIÁLOGO EN CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="83" y="355" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="d5ba496b-fd24-41f8-b6d7-992b5673d2e5"/>
+				<reportElement mode="Transparent" x="85" y="411" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="d5ba496b-fd24-41f8-b6d7-992b5673d2e5"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -4375,7 +4329,7 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 (Número de casos)]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="87" y="425" width="350" height="100" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
+				<reportElement key="table 11" style="table 18" x="87" y="460" width="350" height="100" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="b657a412-de36-4831-ad46-6fbc4c82c332">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoDialogo})]]></dataSourceExpression>
@@ -4446,6 +4400,14 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="3" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="5bcabe35-6083-447d-bf85-71a4b4583576"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial Black" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ESTADO DE LOS CONFLICTOS ACTIVOS]]></text>
+			</staticText>
 		</band>
 		<band height="770">
 			<staticText>
@@ -4481,7 +4443,7 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 				</piePlot>
 			</pieChart>
 			<staticText>
-				<reportElement mode="Transparent" x="-1" y="328" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="be976473-0ff9-40d3-85fa-b34e90aea2ab"/>
+				<reportElement mode="Transparent" x="-1" y="340" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="be976473-0ff9-40d3-85fa-b34e90aea2ab"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="Arial Black" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
