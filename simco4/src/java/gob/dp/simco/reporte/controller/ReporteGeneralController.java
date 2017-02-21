@@ -13,21 +13,17 @@ import gob.dp.simco.comun.entity.Departamento;
 import gob.dp.simco.comun.entity.Resumen;
 import gob.dp.simco.comun.service.ReporteService;
 import gob.dp.simco.comun.service.UbigeoService;
-import gob.dp.simco.comun.type.MesesEnum;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
+import gob.dp.simco.comun.type.MesesEnum;
 import gob.dp.simco.registro.entity.Caso;
 import gob.dp.simco.registro.service.ActividadService;
-import gob.dp.simco.registro.service.CasoService;
 import gob.dp.simco.registro.type.EstadoCasoType;
 import gob.dp.simco.registro.type.MesType;
-import gob.dp.simco.reporte.entity.ChartTotal;
 import gob.dp.simco.reporte.entity.CuadroGenericoMes;
 import gob.dp.simco.reporte.entity.ElementoNombreValor;
 import gob.dp.simco.reporte.entity.ElementoReporte;
 import gob.dp.simco.reporte.entity.ElementoResumenEjecutivo;
-import gob.dp.simco.reporte.entity.EstadoConflicto;
 import gob.dp.simco.reporte.entity.FiltroReporte;
-import gob.dp.simco.reporte.entity.NuevoCaso;
 import gob.dp.simco.reporte.entity.ReporteSimcoCaso;
 import gob.dp.simco.reporte.service.ReporteEjecutivoService;
 import gob.dp.simco.reporte.service.ReporteSimcoCasoService;
@@ -196,6 +192,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
     }
     
     public boolean resumenEjecutivo() throws JRException, IOException{
+        listaResumenEjecutivo = new ArrayList<>();
         if(StringUtils.equals(filtroReporte.getAnhos(), "0") || StringUtils.equals(filtroReporte.getMes(), "0")){
             msg.messageAlert("Debe ingresar el año y mes del reporte", null);
             return false;
@@ -215,7 +212,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         ElementoResumenEjecutivo ejecutivo = new ElementoResumenEjecutivo();
         /****MES PUBLICACION*****/
         String mesPublicacion;
-        mesPublicacion = filtroReporte.getMes();
+        mesPublicacion = MesesEnum.get(filtroReporte.getMes()).getValue();
         ejecutivo.setMesPublicacion(mesPublicacion);
         /****MES PUBLICACION*****/
         
@@ -234,13 +231,15 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         /****TOTAL ACTIVOS*****/
         Integer totalCasosActivos;
         totalCasosActivos = reporteEjecutivoService.totalCasosActivos(filtroReporte);
-        ejecutivo.setTotalCasosActivos(totalCasosActivos); 
+        ejecutivo.setTotalCasosActivos(totalCasosActivos);
+        ejecutivo.setPorcentajeTotalCasosActivos(cambiarPorcentaje(totalCasosRegistrados, totalCasosActivos));
         /****TOTAL ACTIVOS*****/
         
         /****TOTAL LATENTES*****/
         Integer totalCasosLatentes;
         totalCasosLatentes = reporteEjecutivoService.totalCasosLatentes(filtroReporte);
         ejecutivo.setTotalCasosLatentes(totalCasosLatentes); 
+        ejecutivo.setPorcentajeTotalCasosLatentes(cambiarPorcentaje(totalCasosRegistrados, totalCasosLatentes));
         /****TOTAL LATENTES*****/
        
         /****TOTAL CASOS REGISTRADOS EN EL MES*****/
@@ -304,6 +303,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         Integer totalCasosDialogoEspacioDialogo;
         totalCasosDialogoEspacioDialogo = reporteEjecutivoService.totalCasosDialogoEspacioDialogo(filtroReporte);
         ejecutivo.setTotalCasosDialogoEspacioDialogo(totalCasosDialogoEspacioDialogo);
+        ejecutivo.setPorcentajeCasosFaseDialogoEspacionDialogo("("+cambiarPorcentaje(totalCasosFaseDialogo,totalCasosDialogoEspacioDialogo)+")");
         /****TOTAL CASOS EN PROCESO DE DIALOGO CON PRESENCIA DE LA DEFENSORIA****/
         
         /****TOTAL CASOS CON HECHOS DE VIOLENCIA****/
@@ -540,6 +540,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             contad++;
             rsc.setContador(contad);
         }
+        ejecutivo.setListaCasosNuevosPorMes(listaCasosNuevosPorMes);
         /****Cuadro N.° 4:****/
         
         /****Cuadro N.° 5:****/
@@ -550,6 +551,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             contad++;
             rsc.setContador(contad);
         }
+        ejecutivo.setListaCasosResueltosPorMes(listaCasosResueltosPorMes);
         /****Cuadro N.° 5:****/
         
         
@@ -590,128 +592,103 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             if(StringUtils.equals("AMAZONAS", er.getTipoConflicto())){
                 ejecutivo.setAmazonasAct(er.getActivo());
                 ejecutivo.setAmazonasLat(er.getLatente()) ;
-                //ejecutivo.setAmazonasNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("ANCASH", er.getTipoConflicto())){
                 ejecutivo.setAncashAct(er.getActivo());
                 ejecutivo.setAncashLat(er.getLatente());
-                //ejecutivo.setAncashNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("APURIMAC", er.getTipoConflicto())){
                 ejecutivo.setApurimacAct(er.getActivo());
                 ejecutivo.setApurimacLat(er.getLatente());
-                //ejecutivo.setApurimacNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("AREQUIPA", er.getTipoConflicto())){
                 ejecutivo.setArequipaAct(er.getActivo());
                 ejecutivo.setArequipaLat(er.getLatente());
-                //ejecutivo.setArequipaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("AYACUCHO", er.getTipoConflicto())){
                 ejecutivo.setAyacuchoAct(er.getActivo());
                 ejecutivo.setAyacuchoLat(er.getLatente());
-                //ejecutivo.setAyacuchoNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("CAJAMARCA", er.getTipoConflicto())){
                 ejecutivo.setCajamarcaAct(er.getActivo());
                 ejecutivo.setCajamarcaLat(er.getLatente());
-                //ejecutivo.setCajamarcaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("CUSCO", er.getTipoConflicto())){
                 ejecutivo.setCuscoAct(er.getActivo());
                 ejecutivo.setCuscoLat(er.getLatente());
-                //ejecutivo.setCuscoNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("HUANCAVELICA", er.getTipoConflicto())){
                 ejecutivo.setHuancavelicaAct(er.getActivo());
                 ejecutivo.setHuancavelicaLat(er.getLatente());
-                //ejecutivo.setHuancavelicaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("HUANUCO", er.getTipoConflicto())){
                 ejecutivo.setHuanucoAct(er.getActivo());
                 ejecutivo.setHuanucoLat(er.getLatente());
-                //ejecutivo.setHuanucoNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("ICA", er.getTipoConflicto())){
                 ejecutivo.setIcaAct(er.getActivo());
                 ejecutivo.setIcaLat(er.getLatente());
-                //ejecutivo.setIcaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("JUNIN", er.getTipoConflicto())){
                 ejecutivo.setJuninAct(er.getActivo());
                 ejecutivo.setJuninLat(er.getLatente());
-                //ejecutivo.setJuninNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("LA LIBERTAD", er.getTipoConflicto())){
                 ejecutivo.setLaLibertadAct(er.getActivo());
                 ejecutivo.setLaLibertadLat(er.getLatente());
-                //ejecutivo.setLaLibertadNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("LAMBAYEQUE", er.getTipoConflicto())){
                 ejecutivo.setLambayequeAct(er.getActivo());
                 ejecutivo.setLambayequeLat(er.getLatente());
-                ejecutivo.setLambayequeNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("LIMA", er.getTipoConflicto())){
                 ejecutivo.setLimaAct(er.getActivo());
                 ejecutivo.setLimaLat(er.getLatente());
-                //ejecutivo.setLimaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("LORETO", er.getTipoConflicto())){
                 ejecutivo.setLoretoAct(er.getActivo());
                 ejecutivo.setLoretoLat(er.getLatente());
-                //ejecutivo.setLoretoNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("MADRE DE DIOS", er.getTipoConflicto())){
                 ejecutivo.setMadreDeDiosAct(er.getActivo());
                 ejecutivo.setMadreDeDiosLat(er.getLatente());
-                //ejecutivo.setMadreDeDiosNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("MOQUEGUA", er.getTipoConflicto())){
                 ejecutivo.setMoqueguaAct(er.getActivo());
                 ejecutivo.setMoqueguaLat(er.getLatente());
-                //ejecutivo.setMoqueguaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("PASCO", er.getTipoConflicto())){
                 ejecutivo.setPascoAct(er.getActivo());
                 ejecutivo.setPascoLat(er.getLatente());
-                //ejecutivo.setPascoNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("PIURA", er.getTipoConflicto())){
                 ejecutivo.setPiuraAct(er.getActivo());
                 ejecutivo.setPiuraLat(er.getLatente());
-                //ejecutivo.setPiuraNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("PUNO", er.getTipoConflicto())){
                 ejecutivo.setPunoAct(er.getActivo());
                 ejecutivo.setPunoLat(er.getLatente());
-                //ejecutivo.setPunoNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("SAN MARTIN", er.getTipoConflicto())){
                 ejecutivo.setSanMartinAct(er.getActivo());
                 ejecutivo.setSanMartinLat(er.getLatente());
-                //ejecutivo.setSanMartinNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("TACNA", er.getTipoConflicto())){
                 ejecutivo.setTacnaAct(er.getActivo());
                 ejecutivo.setTacnaLat(er.getLatente());
-                //ejecutivo.setTacnaNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("TUMBES", er.getTipoConflicto())){
                 ejecutivo.setTumbesAct(er.getActivo());
                 ejecutivo.setTumbesLat(er.getLatente());
-                //ejecutivo.setTumbesNom(er.getTipoConflicto());
             }
             if(StringUtils.equals("CALLAO", er.getTipoConflicto())){
                 ejecutivo.setCallaoAct(er.getActivo());
                 ejecutivo.setCallaoLat(er.getLatente());
-                //ejecutivo.setCallaoNom(er.getTipoConflicto());
             }
             
             if(StringUtils.equals("UCAYALI", er.getTipoConflicto())){
                 ejecutivo.setUcayaliAct(er.getActivo());
                 ejecutivo.setUcayaliLat(er.getLatente());
-                //ejecutivo.setUcayaliNom(er.getTipoConflicto());
             }
         }
         /****Gráfico N° 6:****/
@@ -824,297 +801,9 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             
             rsc.setActividades(actividadService.actividadxCodigoCasoBuscarTotal(rsc.getCodigoCaso()));
         }
-        /****Casos activos detalle****/
-        
-        
-        
-        
-        listaResumenEjecutivo = new ArrayList<>();
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-  
-        
-                
-        
-        
-        
-        Integer totalActivosLatentes;
-        Integer totalLatentesObservacion;
-        Integer totalGeneralDialogo;
-        Integer totalGeneralActivo;
-        Integer totalGeneralDialogoProceso;
-        Integer totalGeneraReunionesPreparatorias;
-        Integer totalGeneraParticipacionDefensoria;
-        Integer totalGeneraCasosViolencia;
-        Integer totalGeneraCasosAccionesProtesta;
-        Integer totalGeneralActuacion;
-        Integer totalGeneralActuacionSupervisionPreventiva;
-        Integer totalGeneralActuacionIntermediaciones;
-        Integer totalGeneralActuacionAccionHumanitaria;
-        Integer totalGeneralActuacionDefensaLegal;
-        
-        
-        
-  
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        totalActivosLatentes = reporteEjecutivoService.totalCasosActivosLatentes(filtroReporte);
-        totalLatentesObservacion = reporteEjecutivoService.totalCasosLatentesObservacion(filtroReporte);
-        totalGeneralDialogo = reporteEjecutivoService.totalGeneralCasosDialogo(filtroReporte);
-        totalGeneralActivo = reporteEjecutivoService.totalGeneralCasosActivo(filtroReporte);
-        
-        totalGeneraReunionesPreparatorias = reporteEjecutivoService.totalGeneralCasosReunionesPreparatorias(filtroReporte);
-        totalGeneraParticipacionDefensoria = reporteEjecutivoService.totalGeneralCasosParticipacionDefensoria(filtroReporte);
-        //totalGeneraCasosViolencia = reporteEjecutivoService.totalGeneralCasosEchoViolencia(filtroReporte);
-//        totalGeneraCasosAccionesProtesta = reporteEjecutivoService.totalGeneralCasosAccionesProtesta(filtroReporte);
-        totalGeneralActuacion = reporteEjecutivoService.totalGeneralCasosActuacionDefensorial(filtroReporte);
-        totalGeneralActuacionSupervisionPreventiva = reporteEjecutivoService.totalGeneralCasosActuacionDefensorialSupervisionPreventiva(filtroReporte);
-        totalGeneralActuacionIntermediaciones = reporteEjecutivoService.totalGeneralCasosActuacionDefensorialIntermediaciones(filtroReporte);
-        totalGeneralActuacionAccionHumanitaria = reporteEjecutivoService.totalGeneralCasosActuacionDefensorialAccionHumanitaria(filtroReporte);
-        totalGeneralActuacionDefensaLegal = reporteEjecutivoService.totalGeneralCasosActuacionDefensorialDefensaLegal(filtroReporte);
-        
-        /**********SET**************/
-        ejecutivo.setRutaReporte(retornaRutaPath().concat("/jasper/"));
-        ejecutivo.setTitulo1("ESTADO DE LOS CONFLICTOS SOCIALES: "+MesesEnum.get(filtroReporte.getMes()).getValue()+" - 20"+filtroReporte.getAnhos());
-        ejecutivo.setTotalCasosActivosLatentes(totalActivosLatentes);
-        ejecutivo.setPorcentajeTotalCasosActivos(cambiarPorcentaje(totalCasosRegistrados, totalCasosActivos));
-        ejecutivo.setPorcentajeTotalCasosLatentes(cambiarPorcentaje(totalCasosRegistrados, totalCasosLatentes));
-        
-        
-        
-        
-        
-        
-        
-        ejecutivo.setPorcentajeCasosFaseDialogoEspacionDialogo("("+cambiarPorcentaje(totalCasosFaseDialogo,totalCasosDialogoEspacioDialogo)+")");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        ejecutivo.setListaCasosNuevosPorMes(listaCasosNuevosPorMes);
-        
         ejecutivo.setListaCasosActivosTotales(listaCasosActivosTotales);
-        ejecutivo.setListaCasosResueltosPorMes(listaCasosResueltosPorMes);
-        
-        
-        ejecutivo.setTotalGeneralActuacionDefensorial(totalGeneralActuacion);
-        ejecutivo.setPorcentajeActuacionDefensorial(cambiarPorcentaje(totalCasosRegistrados,totalGeneralActuacion, "DEL TOTAL DE CASOS"));
-        ejecutivo.setTotalGeneralActuacionDefensorialSupervisionPreventiva(totalGeneralActuacionSupervisionPreventiva);
-        ejecutivo.setTotalGeneralActuacionDefensorialIntermediaciones(totalGeneralActuacionIntermediaciones);
-        ejecutivo.setTotalGeneralActuacionDefensorialAccionHumanitaria(totalGeneralActuacionAccionHumanitaria);
-        ejecutivo.setTotalGeneralActuacionDefensorialDefensaLegal(totalGeneralActuacionDefensaLegal);
-//        ejecutivo.setAccionesProtestaTexto1(totalGeneraCasosAccionesProtesta+" ACCIONES DE PROTESTA COLECTIVA DURANTE EL MES "+cambiarPorcentaje(totalCasosMes,totalGeneraCasosAccionesProtesta, "RELACIONADOS CON CONFLICTOS"));
-        //ejecutivo.setHechoViolenciaTexto1(totalGeneraCasosViolencia+" CASOS PRESENTARON AL MENOS UN HECHO DE VIOLENCIA DESDE QUE INICIARON "+cambiarPorcentaje(totalCasos,totalGeneraCasosViolencia , "DEL TOTAL DE CASOS"));
-        ejecutivo.setProcedoDialogoTexto1(totalGeneraReunionesPreparatorias+" CASOS SE ENCUENTRAN EN REUNIONES PREPARATORIAS PARA EL DIÁLOGO "+cambiarPorcentaje(totalGeneralDialogo,totalGeneraReunionesPreparatorias , "DE LOS CASOS EN DIALOGO")); 
-        ejecutivo.setProcedoDialogoTexto2(totalGeneraParticipacionDefensoria+" CASOS TUVIERON PRESENCIA DE LA DEFENSORÍA EN LOS ESPACIOS DE DIÁLOGO  "+cambiarPorcentaje(totalGeneralDialogo,totalGeneraParticipacionDefensoria , "DE LOS CASOS EN DIALOGO")); 
-        
-        
-        ejecutivo.setTotalCasosGeneralDiagolo(totalGeneralDialogo);
-        ejecutivo.setPorcentajeGeneralDiagolo(cambiarPorcentaje(totalGeneralActivo,totalGeneralDialogo , "DE LOS CASOS ACTIVOS"));
-        ejecutivo.setTotalCasosActivoMes(totalCasosActivos);
-        
-        ejecutivo.setTotalCasosLatenteMes(totalCasosLatentes);
-        ejecutivo.setTotalCasosActivosLatentes(totalActivosLatentes);
-        
-        
-        Integer totalCasosGeneralEscalamiento = reporteEjecutivoService.totalGeneralCasosFaceEscalamiento(filtroReporte);
-        String porcentajeGeneralEscalamiento = cambiarPorcentaje(totalCasosRegistrados,totalCasosGeneralEscalamiento);
-        Integer totalCasosGeneralTemprana  = reporteEjecutivoService.totalGeneralCasosFaceTemprana(filtroReporte);
-        String porcentajeGeneralTemprana = cambiarPorcentaje(totalCasosRegistrados,totalCasosGeneralTemprana);
-        Integer totalCasosGeneralDesescalamiento  = reporteEjecutivoService.totalGeneralCasosFaceDesescalamiento(filtroReporte);
-        String porcentajeGeneralDesescalamiento = cambiarPorcentaje(totalCasosRegistrados,totalCasosGeneralDesescalamiento);
-        Integer totalCasosGeneralCrisis = reporteEjecutivoService.totalGeneralCasosFaceCrisis(filtroReporte);
-        String porcentajeGeneralCrisis = cambiarPorcentaje(totalCasosRegistrados,totalCasosGeneralCrisis);
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append("En el presente mes se registraron "+totalCasosRegistradosMes+" conflictos: "+ejecutivo.getTotalCasosActivoMes()+" casos activos y "+ejecutivo.getTotalCasosLatenteMes()+" latentes (ver Gráfico N° 1). Del");
-        sb.append("total de casos activos, "+ejecutivo.getTotalCasosGeneralDiagolo()+" se encuentran en fase de diálogo lo que representa el "+cambiarPorcentaje(totalCasosRegistrados,ejecutivo.getTotalCasosGeneralDiagolo())+" del total de los ");
-        sb.append("casos registrados (ver Gráfico N° 2), "+totalCasosGeneralEscalamiento+" casos están en fase de escalamiento ("+porcentajeGeneralEscalamiento+" de los casos), "+totalCasosGeneralDesescalamiento+"  ");
-        sb.append("en fase desescalamiento ("+porcentajeGeneralDesescalamiento+" de los casos) y "+totalCasosGeneralTemprana+" en fase temprana ("+porcentajeGeneralTemprana+" de los casos). Cabe ");
-        sb.append("señalar que hay "+totalCasosGeneralCrisis+" casos registrados en fase de crisis ("+porcentajeGeneralCrisis+" de los casos) (ver Anexo III). ");
-        ejecutivo.setEstadoConflictoTexto(sb.toString());
-        
-        List<EstadoConflicto> ecs = new ArrayList<>();
-        Integer filtroMes = Integer.parseInt(filtroReporte.getMes()); 
-        Integer filtroAnho = Integer.parseInt(filtroReporte.getAnhos()); 
-        
-        for(int i = 0; i< 13; i++){
-            String filtroMesString = String.format("%2s",filtroMes).replace(' ', '0');
-            String filtroAnhoString = String.format("%2s",filtroAnho).replace(' ', '0');
-            FiltroReporte fr = new FiltroReporte();
-            fr.setAnhos(filtroAnhoString);
-            fr.setMes(filtroMesString);
-            Integer latentes = reporteEjecutivoService.totalCasosLatentes(filtroReporte);
-            Integer activos = reporteEjecutivoService.totalCasosActivos(filtroReporte);
-            Integer total = reporteEjecutivoService.totalCasosRegistrados(filtroReporte);
-            
-            filtroMes--;
-            if(filtroMes ==  0){
-                filtroAnho--;
-                filtroMes = 12;
-            }
-            EstadoConflicto ec = new EstadoConflicto(MesesEnum.get(filtroMesString).getValue(), activos, latentes, total, "20"+filtroAnhoString);
-            ecs.add(ec);
-        }
-        ejecutivo.setEstadoConflictos(ecs);
-        
-        Integer totalResueltos = reporteEjecutivoService.totalCasosResueltos(filtroReporte);
-        
-        Integer totalPropuestos = reporteEjecutivoService.totalCasosPropuestos(filtroReporte);
-        String totalResueltosString = "";
-        if(totalResueltos > 0){
-            totalResueltosString = reporteEjecutivoService.cadenaNombreCasosResueltos(filtroReporte);
-        }
-        //String totalPropuestosString = reporteEjecutivoService.cadenaNombreCasosResueltos(filtroReporte);
-        StringBuilder sb1 = new StringBuilder();
-        sb1.append("Durante el mes se resolvieron "+totalResueltos+" casos y se incorporó "+totalPropuestos+" (ver Anexo I y Anexo II). Los casos resueltos ");
-        sb1.append("son: "+totalResueltosString);
-        //sb1.append("Los casos resueltos son: "+totalPropuestosString+"\n\n");
-        
-        List<NuevoCaso> ncs = new ArrayList<>();
-        Integer filtroMes2 = Integer.parseInt(filtroReporte.getMes()); 
-        Integer filtroAnho2 = Integer.parseInt(filtroReporte.getAnhos());
-        Integer sumaResuelto = 0;
-        Integer sumaNuevo = 0;
-        for(int i = 0; i< 13; i++){
-            String filtroMesString = String.format("%2s",filtroMes2).replace(' ', '0');
-            String filtroAnhoString = String.format("%2s",filtroAnho2).replace(' ', '0');
-            FiltroReporte fr = new FiltroReporte();
-            fr.setAnhos(filtroAnhoString);
-            fr.setMes(filtroMesString);
-            Integer resue = reporteEjecutivoService.totalCasosResueltos(fr);
-            Integer nuevo = reporteEjecutivoService.totalCasosPropuestos(fr);
-            sumaResuelto = sumaResuelto + resue;
-            sumaNuevo = sumaNuevo + nuevo;
-            filtroMes2--;
-            if(filtroMes2 ==  0){
-                filtroAnho2--;
-                filtroMes2 = 12;
-            }
-            NuevoCaso nc = new NuevoCaso(MesesEnum.get(filtroMesString).getValue(), resue, nuevo, "20"+filtroAnhoString);
-            ncs.add(nc);
-        }
-        sb1.append("Desde "+MesesEnum.get(filtroReporte.getMes()).getValue()+" del 20"+(Integer.parseInt(filtroReporte.getAnhos())-1)+" hasta "+MesesEnum.get(filtroReporte.getMes()).getValue()+" del 20"+(Integer.parseInt(filtroReporte.getAnhos()))+" se han resuelto "+sumaResuelto+" casos y se han incorporado "+sumaNuevo+" (ver Gráfico N° 3).");
-        ejecutivo.setCasosNuevosTexto(sb1.toString());
-        
-        /*grafic 004 005**/
-        List<ElementoResumenEjecutivo> ejecutivos1 = reporteEjecutivoService.totalMensualCasosRegistrados(filtroReporte);
-        List<ElementoResumenEjecutivo> ejecutivos2 = reporteEjecutivoService.totalMensualCasosActivos(filtroReporte);
-        List<ElementoNombreValor> elementoNombreValors1 = new ArrayList<>();
-        List<ElementoNombreValor> elementoNombreValors2 = new ArrayList<>();
-        for(ElementoResumenEjecutivo ere1:ejecutivos1){
-            ElementoNombreValor env = new ElementoNombreValor(ere1.getNombre(), ere1.getValor());
-            elementoNombreValors1.add(env);
-        }
-        for(ElementoResumenEjecutivo ere1:ejecutivos2){
-            ElementoNombreValor env = new ElementoNombreValor(ere1.getNombre(), ere1.getValor());
-            elementoNombreValors2.add(env);
-        }
-        /*grafic 004 005**/
-        
-        /*grafic 006**/
-        
-        /*grafic 006**/
-        
-        
-        
-        
-        
-        
-        
-        
-        /*grafic 007**/
-        
-        /*grafic 007**/
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*grafic 008**/
-        
-        /*grafic 008**/
-        
-        
-        
-        
-        /*grafic 006**/
-        ejecutivo.setListaMensualCasosTotales(elementoNombreValors1);
-        ejecutivo.setListaMensualCasosActivos(elementoNombreValors2);
-        
-        
-        /**grafic 007*/
-        
-        /**grafic 007*/
-        /**grafic 008*/
-        
-        
-        /**grafic 008*/
-        ejecutivo.setNuevoCasos(ncs);
-        
-        
-        
-        List<ChartTotal> fts = new ArrayList<>();
-        
-        fts.add(new ChartTotal("Temprana", totalCasosGeneralTemprana));
-        fts.add(new ChartTotal("Escalamiento", totalCasosGeneralEscalamiento));
-        fts.add(new ChartTotal("Crisis", totalCasosGeneralCrisis));
-        fts.add(new ChartTotal("Desescalamiento", totalCasosGeneralDesescalamiento));
-        fts.add(new ChartTotal("Dialogo", totalGeneralDialogo));
-        ejecutivo.setFaceTotals(fts);
+        /****Casos activos detalle****/
+         
         ejecutivo.setImagePath001(retornaRutaPath().concat("/images/"));
         listaResumenEjecutivo.add(ejecutivo);
         generarReportePublicoMensual();

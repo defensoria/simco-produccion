@@ -16,8 +16,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private String imagePath001;
     
-    private String rutaReporte;
-    
     private String mesPublicacion;
     
     private String anhoPublicacion;
@@ -82,15 +80,11 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private Integer totalActividadSupervisionPreventivaMes; 
     
-    private List<EstadoConflicto> estadoConflictos;
-    
     private List<CuadroGenericoMes> listaCasosRegistradosMES;
     
     private List<CuadroGenericoMes> listaCasosResueltosMES;
     
     private List<ElementoNombreValor> registradoTotals;
-    
-    private List<ChartTotal> faceTotals;
     
     private List<ReporteSimcoCaso> listaCasosNuevosPorMes;
     
@@ -114,24 +108,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<ElementoNombreValor> listaNivelTipoDialogoGrafico;
     
-    
-    
-    
-    
-    
-    
-    
-    
-    private ReporteMapa mapa;
-    
-    private String titulo1;
-    
-    
-    
-    private List<ElementoNombreValor> listaMensualCasosTotales;
-    
-    private List<ElementoNombreValor> listaMensualCasosActivos;
-    
     private List<ElementoReporte> elementoReportesAutoridad;
     
     private List<ElementoReporte> elementoReportesDepartamentoEstado;
@@ -146,20 +122,7 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private String cadenaNombreCaso;
     
-    
-    
-    
-    
-    private Integer totalCasosActivoMes;
-    
-    
     private Integer totalCasosTotalMes;
-    
-    private Integer totalCasosLatenteMes;
-    
-    
-    
-    private Integer totalCasosActivosLatentes;
     
     private Integer totalCasosLatentesObservacion;
     
@@ -205,31 +168,9 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private String porcentajeAccionesProtesta;
     
-    private Integer totalGeneralActuacionDefensorial;
-    
-    private String porcentajeActuacionDefensorial;
-    
-    private Integer totalGeneralActuacionDefensorialSupervisionPreventiva;
-    
-    private Integer totalGeneralActuacionDefensorialIntermediaciones;
-            
-    private Integer totalGeneralActuacionDefensorialAccionHumanitaria;
-    
-    private Integer totalGeneralActuacionDefensorialDefensaLegal;
-    
     private String estadoConflictoTexto;
     
-    private String nivelGobiernoTexto;
-    
-    private String casosNuevosTexto;
-    
-    private String procedoDialogoTexto1;
-    
-    private String procedoDialogoTexto2;
-    
-    private String hechoViolenciaTexto1;
-    
-    private String accionesProtestaTexto1;
+    private String nivelGobiernoTexto;    
     
     /***departamentos**/
     private	Integer amazonasAct;
@@ -282,31 +223,7 @@ public class ElementoResumenEjecutivo implements Serializable{
         private Integer tumbesLat;
         private Integer callaoLat;
         private Integer ucayaliLat;
-        private String amazonasNom;
-        private String ancashNom;
-        private String apurimacNom;
-        private String arequipaNom;
-        private String ayacuchoNom;
-        private String cajamarcaNom;
-        private String cuscoNom;
-        private String huancavelicaNom;
-        private String huanucoNom;
-        private String icaNom;
-        private String juninNom;
-        private String laLibertadNom;
-        private String lambayequeNom;
-        private String limaNom;
-        private String loretoNom;
-        private String madreDeDiosNom;
-        private String moqueguaNom;
-        private String pascoNom;
-        private String piuraNom;
-        private String punoNom;
-        private String sanMartinNom;
-        private String tacnaNom;
-        private String tumbesNom;
-        private String callaoNom;
-        private String ucayaliNom;
+       
 
     public Integer getAmazonasAct() {
         return amazonasAct;
@@ -708,212 +625,6 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.ucayaliLat = ucayaliLat;
     }
 
-    public String getAmazonasNom() {
-        return amazonasNom;
-    }
-
-    public void setAmazonasNom(String amazonasNom) {
-        this.amazonasNom = amazonasNom;
-    }
-
-    public String getAncashNom() {
-        return ancashNom;
-    }
-
-    public void setAncashNom(String ancashNom) {
-        this.ancashNom = ancashNom;
-    }
-
-    public String getApurimacNom() {
-        return apurimacNom;
-    }
-
-    public void setApurimacNom(String apurimacNom) {
-        this.apurimacNom = apurimacNom;
-    }
-
-    public String getArequipaNom() {
-        return arequipaNom;
-    }
-
-    public void setArequipaNom(String arequipaNom) {
-        this.arequipaNom = arequipaNom;
-    }
-
-    public String getAyacuchoNom() {
-        return ayacuchoNom;
-    }
-
-    public void setAyacuchoNom(String ayacuchoNom) {
-        this.ayacuchoNom = ayacuchoNom;
-    }
-
-    public String getCajamarcaNom() {
-        return cajamarcaNom;
-    }
-
-    public void setCajamarcaNom(String cajamarcaNom) {
-        this.cajamarcaNom = cajamarcaNom;
-    }
-
-    public String getCuscoNom() {
-        return cuscoNom;
-    }
-
-    public void setCuscoNom(String cuscoNom) {
-        this.cuscoNom = cuscoNom;
-    }
-
-    public String getHuancavelicaNom() {
-        return huancavelicaNom;
-    }
-
-    public void setHuancavelicaNom(String huancavelicaNom) {
-        this.huancavelicaNom = huancavelicaNom;
-    }
-
-    public String getHuanucoNom() {
-        return huanucoNom;
-    }
-
-    public void setHuanucoNom(String huanucoNom) {
-        this.huanucoNom = huanucoNom;
-    }
-
-    public String getIcaNom() {
-        return icaNom;
-    }
-
-    public void setIcaNom(String icaNom) {
-        this.icaNom = icaNom;
-    }
-
-    public String getJuninNom() {
-        return juninNom;
-    }
-
-    public void setJuninNom(String juninNom) {
-        this.juninNom = juninNom;
-    }
-
-    public String getLaLibertadNom() {
-        return laLibertadNom;
-    }
-
-    public void setLaLibertadNom(String laLibertadNom) {
-        this.laLibertadNom = laLibertadNom;
-    }
-
-    public String getLambayequeNom() {
-        return lambayequeNom;
-    }
-
-    public void setLambayequeNom(String lambayequeNom) {
-        this.lambayequeNom = lambayequeNom;
-    }
-
-    public String getLimaNom() {
-        return limaNom;
-    }
-
-    public void setLimaNom(String limaNom) {
-        this.limaNom = limaNom;
-    }
-
-    public String getLoretoNom() {
-        return loretoNom;
-    }
-
-    public void setLoretoNom(String loretoNom) {
-        this.loretoNom = loretoNom;
-    }
-
-    public String getMadreDeDiosNom() {
-        return madreDeDiosNom;
-    }
-
-    public void setMadreDeDiosNom(String madreDeDiosNom) {
-        this.madreDeDiosNom = madreDeDiosNom;
-    }
-
-    public String getMoqueguaNom() {
-        return moqueguaNom;
-    }
-
-    public void setMoqueguaNom(String moqueguaNom) {
-        this.moqueguaNom = moqueguaNom;
-    }
-
-    public String getPascoNom() {
-        return pascoNom;
-    }
-
-    public void setPascoNom(String pascoNom) {
-        this.pascoNom = pascoNom;
-    }
-
-    public String getPiuraNom() {
-        return piuraNom;
-    }
-
-    public void setPiuraNom(String piuraNom) {
-        this.piuraNom = piuraNom;
-    }
-
-    public String getPunoNom() {
-        return punoNom;
-    }
-
-    public void setPunoNom(String punoNom) {
-        this.punoNom = punoNom;
-    }
-
-    public String getSanMartinNom() {
-        return sanMartinNom;
-    }
-
-    public void setSanMartinNom(String sanMartinNom) {
-        this.sanMartinNom = sanMartinNom;
-    }
-
-    public String getTacnaNom() {
-        return tacnaNom;
-    }
-
-    public void setTacnaNom(String tacnaNom) {
-        this.tacnaNom = tacnaNom;
-    }
-
-    public String getTumbesNom() {
-        return tumbesNom;
-    }
-
-    public void setTumbesNom(String tumbesNom) {
-        this.tumbesNom = tumbesNom;
-    }
-
-    public String getCallaoNom() {
-        return callaoNom;
-    }
-
-    public void setCallaoNom(String callaoNom) {
-        this.callaoNom = callaoNom;
-    }
-
-    public String getUcayaliNom() {
-        return ucayaliNom;
-    }
-
-    public void setUcayaliNom(String ucayaliNom) {
-        this.ucayaliNom = ucayaliNom;
-    }
-        
-        
-        
-        
-        /***departamentos**/
-    
-
     public String getMesPublicacion() {
         return mesPublicacion;
     }
@@ -930,24 +641,6 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.totalCasosRegistradosMes = totalCasosRegistradosMes;
     }
 
-    
-
-    public Integer getTotalCasosActivoMes() {
-        return totalCasosActivoMes;
-    }
-
-    public void setTotalCasosActivoMes(Integer totalCasosActivoMes) {
-        this.totalCasosActivoMes = totalCasosActivoMes;
-    }
-
-    public Integer getTotalCasosLatenteMes() {
-        return totalCasosLatenteMes;
-    }
-
-    public void setTotalCasosLatenteMes(Integer totalCasosLatenteMes) {
-        this.totalCasosLatenteMes = totalCasosLatenteMes;
-    }
-
     public String getPorcentajeTotalCasosActivos() {
         return porcentajeTotalCasosActivos;
     }
@@ -962,14 +655,6 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setPorcentajeTotalCasosLatentes(String porcentajeTotalCasosLatentes) {
         this.porcentajeTotalCasosLatentes = porcentajeTotalCasosLatentes;
-    }
-
-    public Integer getTotalCasosActivosLatentes() {
-        return totalCasosActivosLatentes;
-    }
-
-    public void setTotalCasosActivosLatentes(Integer totalCasosActivosLatentes) {
-        this.totalCasosActivosLatentes = totalCasosActivosLatentes;
     }
 
     public Integer getTotalCasosLatentesObservacion() {
@@ -1076,54 +761,6 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.porcentajeAccionesProtesta = porcentajeAccionesProtesta;
     }
 
-    public Integer getTotalGeneralActuacionDefensorial() {
-        return totalGeneralActuacionDefensorial;
-    }
-
-    public void setTotalGeneralActuacionDefensorial(Integer totalGeneralActuacionDefensorial) {
-        this.totalGeneralActuacionDefensorial = totalGeneralActuacionDefensorial;
-    }
-
-    public Integer getTotalGeneralActuacionDefensorialSupervisionPreventiva() {
-        return totalGeneralActuacionDefensorialSupervisionPreventiva;
-    }
-
-    public void setTotalGeneralActuacionDefensorialSupervisionPreventiva(Integer totalGeneralActuacionDefensorialSupervisionPreventiva) {
-        this.totalGeneralActuacionDefensorialSupervisionPreventiva = totalGeneralActuacionDefensorialSupervisionPreventiva;
-    }
-
-    public Integer getTotalGeneralActuacionDefensorialIntermediaciones() {
-        return totalGeneralActuacionDefensorialIntermediaciones;
-    }
-
-    public void setTotalGeneralActuacionDefensorialIntermediaciones(Integer totalGeneralActuacionDefensorialIntermediaciones) {
-        this.totalGeneralActuacionDefensorialIntermediaciones = totalGeneralActuacionDefensorialIntermediaciones;
-    }
-
-    public Integer getTotalGeneralActuacionDefensorialAccionHumanitaria() {
-        return totalGeneralActuacionDefensorialAccionHumanitaria;
-    }
-
-    public void setTotalGeneralActuacionDefensorialAccionHumanitaria(Integer totalGeneralActuacionDefensorialAccionHumanitaria) {
-        this.totalGeneralActuacionDefensorialAccionHumanitaria = totalGeneralActuacionDefensorialAccionHumanitaria;
-    }
-
-    public Integer getTotalGeneralActuacionDefensorialDefensaLegal() {
-        return totalGeneralActuacionDefensorialDefensaLegal;
-    }
-
-    public void setTotalGeneralActuacionDefensorialDefensaLegal(Integer totalGeneralActuacionDefensorialDefensaLegal) {
-        this.totalGeneralActuacionDefensorialDefensaLegal = totalGeneralActuacionDefensorialDefensaLegal;
-    }
-
-    public String getPorcentajeActuacionDefensorial() {
-        return porcentajeActuacionDefensorial;
-    }
-
-    public void setPorcentajeActuacionDefensorial(String porcentajeActuacionDefensorial) {
-        this.porcentajeActuacionDefensorial = porcentajeActuacionDefensorial;
-    }
-
     public String getEstadoConflictoTexto() {
         return estadoConflictoTexto;
     }
@@ -1196,30 +833,6 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.porcentajeGeneralCrisis = porcentajeGeneralCrisis;
     }
 
-    public List<EstadoConflicto> getEstadoConflictos() {
-        return estadoConflictos;
-    }
-
-    public void setEstadoConflictos(List<EstadoConflicto> estadoConflictos) {
-        this.estadoConflictos = estadoConflictos;
-    }
-
-    public List<ChartTotal> getFaceTotals() {
-        return faceTotals;
-    }
-
-    public void setFaceTotals(List<ChartTotal> faceTotals) {
-        this.faceTotals = faceTotals;
-    }
-
-    public String getCasosNuevosTexto() {
-        return casosNuevosTexto;
-    }
-
-    public void setCasosNuevosTexto(String casosNuevosTexto) {
-        this.casosNuevosTexto = casosNuevosTexto;
-    }
-
     public String getCadenaNombreCaso() {
         return cadenaNombreCaso;
     }
@@ -1250,22 +863,6 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setValor(Integer valor) {
         this.valor = valor;
-    }
-
-    public List<ElementoNombreValor> getListaMensualCasosTotales() {
-        return listaMensualCasosTotales;
-    }
-
-    public void setListaMensualCasosTotales(List<ElementoNombreValor> listaMensualCasosTotales) {
-        this.listaMensualCasosTotales = listaMensualCasosTotales;
-    }
-
-    public List<ElementoNombreValor> getListaMensualCasosActivos() {
-        return listaMensualCasosActivos;
-    }
-
-    public void setListaMensualCasosActivos(List<ElementoNombreValor> listaMensualCasosActivos) {
-        this.listaMensualCasosActivos = listaMensualCasosActivos;
     }
 
     public Integer getTotalCasosTotalMes() {
@@ -1324,14 +921,6 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.elementoReportesDepartamentoEstado = elementoReportesDepartamentoEstado;
     }
 
-    public ReporteMapa getMapa() {
-        return mapa;
-    }
-
-    public void setMapa(ReporteMapa mapa) {
-        this.mapa = mapa;
-    }
-
     public Integer getTotalCasosResueltoMes() {
         return totalCasosResueltoMes;
     }
@@ -1340,52 +929,12 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.totalCasosResueltoMes = totalCasosResueltoMes;
     }
 
-    public String getProcedoDialogoTexto1() {
-        return procedoDialogoTexto1;
-    }
-
-    public void setProcedoDialogoTexto1(String procedoDialogoTexto1) {
-        this.procedoDialogoTexto1 = procedoDialogoTexto1;
-    }
-
-    public String getProcedoDialogoTexto2() {
-        return procedoDialogoTexto2;
-    }
-
-    public void setProcedoDialogoTexto2(String procedoDialogoTexto2) {
-        this.procedoDialogoTexto2 = procedoDialogoTexto2;
-    }
-
-    public String getHechoViolenciaTexto1() {
-        return hechoViolenciaTexto1;
-    }
-
-    public void setHechoViolenciaTexto1(String hechoViolenciaTexto1) {
-        this.hechoViolenciaTexto1 = hechoViolenciaTexto1;
-    }
-
-    public String getAccionesProtestaTexto1() {
-        return accionesProtestaTexto1;
-    }
-
-    public void setAccionesProtestaTexto1(String accionesProtestaTexto1) {
-        this.accionesProtestaTexto1 = accionesProtestaTexto1;
-    }
-
     public String getImagePath001() {
         return imagePath001;
     }
 
     public void setImagePath001(String imagePath001) {
         this.imagePath001 = imagePath001;
-    }
-
-    public String getTitulo1() {
-        return titulo1;
-    }
-
-    public void setTitulo1(String titulo1) {
-        this.titulo1 = titulo1;
     }
 
     public Integer getTotalCasosRegistrados() {
@@ -1588,14 +1137,6 @@ public class ElementoResumenEjecutivo implements Serializable{
         this.totalActividadAccionesDefensaLegalMes = totalActividadAccionesDefensaLegalMes;
     }
 
-    public String getRutaReporte() {
-        return rutaReporte;
-    }
-
-    public void setRutaReporte(String rutaReporte) {
-        this.rutaReporte = rutaReporte;
-    }
-
     public List<CuadroGenericoMes> getListaCasosRegistradosMES() {
         return listaCasosRegistradosMES;
     }
@@ -1603,7 +1144,6 @@ public class ElementoResumenEjecutivo implements Serializable{
     public void setListaCasosRegistradosMES(List<CuadroGenericoMes> listaCasosRegistradosMES) {
         this.listaCasosRegistradosMES = listaCasosRegistradosMES;
     }
-
     
     public List<ElementoNombreValor> getRegistradoTotals() {
         return registradoTotals;
