@@ -35,7 +35,7 @@ public class ReporteSimcoActor implements Serializable {
 
     private Long idActor;
 
-    private String esComunidadNativa;
+    private Integer esComunidadNativa;
 
     private String nombreDepartamento;
     
@@ -187,11 +187,11 @@ public class ReporteSimcoActor implements Serializable {
         this.idActor = idActor;
     }
 
-    public String getEsComunidadNativa() {
+    public Integer getEsComunidadNativa() {
         return esComunidadNativa;
     }
 
-    public void setEsComunidadNativa(String esComunidadNativa) {
+    public void setEsComunidadNativa(Integer esComunidadNativa) {
         this.esComunidadNativa = esComunidadNativa;
     }
 

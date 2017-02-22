@@ -101,8 +101,8 @@
                                                         <b>Que incluyan como actor a comunidades nativas</b>
                                                     </td>
                                                     <td>
-                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoCaso.esComunidadNativaInt}">
-                                                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                                        <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoCaso.esComunidadNativa}">
+                                                            <f:selectItem itemLabel="Seleccione"/>
                                                             <f:selectItem itemLabel="Si" itemValue="1"/>
                                                             <f:selectItem itemLabel="No" itemValue="0"/>
                                                         </h:selectOneMenu>
@@ -139,7 +139,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Inversión involucrada</b></td>
+                                                    <td><b>Inversión involucrada mayor a</b></td>
                                                     <td>
                                                         <input type="text" jsf:value="#{reporteSimcoController.reporteSimcoCaso.inversionInvolucrada}" style="width: 50%" onkeypress="return validarNumeros(event)"/>
                                                     </td>
@@ -214,7 +214,7 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Indicador de participación comunidades nativas</f:facet>
-                                        <h:outputText value="#{item.esComunidadNativa}" />
+                                        <h:outputText value="#{item.esComunidadNativa == 0? 'No' : 'Si'}" />
                                     </h:column>
                                 </h:dataTable>
                             </div>

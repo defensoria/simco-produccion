@@ -31,9 +31,6 @@ public class ReporteSimcoVictima {
                                             
     private String tipoActor;
     
-    private Integer esComunidadNativaInt;
-    
-    
     private String nombreCompletoVictima;
     
     private String edadVictima;
@@ -152,14 +149,6 @@ public class ReporteSimcoVictima {
 
     public void setTipoActor(String tipoActor) {
         this.tipoActor = tipoActor;
-    }
-
-    public Integer getEsComunidadNativaInt() {
-        return esComunidadNativaInt;
-    }
-
-    public void setEsComunidadNativaInt(Integer esComunidadNativaInt) {
-        this.esComunidadNativaInt = esComunidadNativaInt;
     }
 
     public String getNombreCompletoVictima() {

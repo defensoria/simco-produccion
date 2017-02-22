@@ -465,10 +465,10 @@
         ROWNUM numfila
         FROM (
         SELECT  D.*
-        FROM SIMCO_REG_CASO D WHERE  D.C_INDVIGENTE = 'A'
+        FROM SIMCO_REG_CASO D WHERE  D.C_INDVIGENTE = 'A' AND UPPER(D.C_CODIGOCASO||D.C_NOMCASO) LIKE '%'||UPPER(#{nombre})||'%'
         ) B
         ) A WHERE a.numfila BETWEEN #{ini} AND #{fin}
-        AND UPPER(A.C_CODIGOCASO||A.C_NOMCASO) LIKE '%'||UPPER(#{nombre})||'%'
+        
        
     </select>
     

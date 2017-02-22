@@ -58,26 +58,6 @@
                             </a>
                         </div>
                         <br/>
-                        <div class="form-group has-feedback" style="width:40%;margin:auto">
-                            <input type="text" id="caso" autocomplete="false" placeholder="Buscar por caso"/>
-                            <input type="hidden" id="caso-id" name="caso-id"/>
-                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.buscarActorXCaso()}" jsf:onclick="loadingModal()">
-                                <span class="glyphicon glyphicon-search form-control-feedback">
-                                    <f:ajax render="@form" execute="@form" onevent="closeModal"/>
-                                </span>
-                            </a>
-                        </div>
-                        <br/>
-                        <div class="form-group has-feedback" style="width:40%;margin:auto">
-                            <input type="text" id="actividad" autocomplete="false" placeholder="Buscar por registro"/>
-                            <input type="hidden" id="actividad-id" name="actividad-id"/>
-                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.buscarActorXRegistro()}" jsf:onclick="loadingModal()">
-                                <span class="glyphicon glyphicon-search form-control-feedback">
-                                    <f:ajax render="@form" execute="@form" onevent="closeModal"/>
-                                </span>
-                            </a>
-                        </div>
-                        <br/>
                         <br/>
                         <h:dataTable value="#{actorController.listaActorBusquedaGeneral}" rendered="#{actorController.listaActorBusquedaGeneral.size() > 0}" var="item" class="table table-striped" style="font-size:small" binding="#{row}">
                             <h:column>

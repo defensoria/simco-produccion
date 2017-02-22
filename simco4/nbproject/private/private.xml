@@ -3,12 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/controller/ReporteSimcoController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/controller/ActorController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/xml/Actividad.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/ActividadDao.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/registroGeneral/registro.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/seguridad/controller/MenuController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/service/ActividadService.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reportePublic.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/parametro/dao/xml/Catalogo.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoActor.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoActor.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/ActividadDaoImpl.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteEjecutivo.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/xml/Caso.xml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/registroGeneral/registro.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/actor/actorBuscar.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/service/ActividadServiceImpl.java</file>
         </group>
     </open-files>
 </project-private>

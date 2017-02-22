@@ -43,9 +43,7 @@ public class ReporteSimcoCaso implements Serializable{
     
     private String tercerNivel;
     
-    private String esComunidadNativa;
-    
-    private Integer esComunidadNativaInt;
+    private Integer esComunidadNativa;
     
     private String esEmpresaMinera;
     
@@ -186,11 +184,11 @@ public class ReporteSimcoCaso implements Serializable{
         this.tipoAcontecimiento = tipoAcontecimiento;
     }
 
-    public String getEsComunidadNativa() {
+    public Integer getEsComunidadNativa() {
         return esComunidadNativa;
     }
 
-    public void setEsComunidadNativa(String esComunidadNativa) {
+    public void setEsComunidadNativa(Integer esComunidadNativa) {
         this.esComunidadNativa = esComunidadNativa;
     }
 
@@ -456,14 +454,6 @@ public class ReporteSimcoCaso implements Serializable{
 
     public void setCantidadHeridoFFAA(Integer cantidadHeridoFFAA) {
         this.cantidadHeridoFFAA = cantidadHeridoFFAA;
-    }
-
-    public Integer getEsComunidadNativaInt() {
-        return esComunidadNativaInt;
-    }
-
-    public void setEsComunidadNativaInt(Integer esComunidadNativaInt) {
-        this.esComunidadNativaInt = esComunidadNativaInt;
     }
 
     public Double getInversionInvolucrada() {

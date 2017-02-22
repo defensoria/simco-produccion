@@ -131,12 +131,15 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
 
     private Long nroPagina = 1L;
     
+    private String nombreCasoForm;
+    
 
     public String cargarReporteCaso() {
         listaAnhos = AnhosEnum.getList();
         reporteSimcoCaso = new ReporteSimcoCaso();
         listReporteCasos = null;
         limpiarReporteCaso();
+        nombreCasoForm = null;
         return "reporteSimcoCaso";
     }
 
@@ -144,6 +147,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
         listaAnhos = AnhosEnum.getList();
         reporteSimcoActor = new ReporteSimcoActor();
         limpiarReporteActor();
+        nombreCasoForm = null;
         return "reporteSimcoActor";
     }
 
@@ -151,6 +155,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
         listaAnhos = AnhosEnum.getList();
         reporteSimcoActividad = new ReporteSimcoActividad();
         limpiarReporteActividad();
+        nombreCasoForm = null;
         return "reporteSimcoActividad";
     }
     
@@ -158,6 +163,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
         listaAnhos = AnhosEnum.getList();
         reporteSimcoVictima = new ReporteSimcoVictima();
         limpiarReporteVictima();
+        nombreCasoForm = null;
         return "reporteSimcoVictima";
     }
 
@@ -167,7 +173,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
         for (ReporteSimcoCaso rs : listReporteCasos) {
             rs.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             String esEmpresaMinera = "No";
-            String esComunidadNativa = "No";
+            Integer esComunidadNativa = 0;
             List<Actor> listaActor = listaActoresCaso(rs.getIdCaso());
             int minera = 0;
             int nativa = 0;
@@ -175,7 +181,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
                 if (StringUtils.equals(a.getSubTipo2Empresa(), "01")) {
                     minera++;
                 }
-                if (StringUtils.equals(a.getTipoOrganizacion(), "10")) {
+                if (StringUtils.equals(a.getSubTipo1Organizacion(), "36")) {
                     nativa++;
                 }
             }
@@ -183,7 +189,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
                 esEmpresaMinera = "Si";
             }
             if (nativa > 0) {
-                esComunidadNativa = "Si";
+                esComunidadNativa = 1;
             }
             rs.setEsEmpresaMinera(esEmpresaMinera);
             rs.setEsComunidadNativa(esComunidadNativa);
@@ -593,7 +599,6 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
 
     public void listaCasos(Long pagina) {
         int paginado = ConstantesUtil.PAGINADO_10;
-        String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nombreCaso");
         Long ini = paginado * (pagina - 1) + 1;
         Long fin = paginado * pagina;
         if (pagina == 0) {
@@ -604,7 +609,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
         FiltroCaso filtroCaso = new FiltroCaso();
         filtroCaso.setIni(ini);
         filtroCaso.setFin(fin);
-        filtroCaso.setNombre(value);
+        filtroCaso.setNombre(nombreCasoForm);
         try {
             List<Caso> lista = casoService.buscarCasoXnombreCodigo(filtroCaso);
             if (lista.size() > 0) {
@@ -679,21 +684,28 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
     public void limpiarReporteCaso() {
         reporteSimcoCaso = new ReporteSimcoCaso();
         listReporteCasos = null;
+        listadoCasos = null;
+        nombreCasoForm = null;
     }
 
     public void limpiarReporteActor() {
         reporteSimcoActor = new ReporteSimcoActor();
         listReporteActor = null;
+        nombreCasoForm = null;
     }
 
     public void limpiarReporteActividad() {
         reporteSimcoActividad = new ReporteSimcoActividad();
         listReporteActividad = null;
+        listadoCasos = null;
+        nombreCasoForm = null;
     }
     
     public void limpiarReporteVictima() {
         reporteSimcoVictima = new ReporteSimcoVictima();
         listReporteVictima = null;
+        listadoCasos = null;
+        nombreCasoForm = null;
     }
 
     public void setearActor(Actor actor) {
@@ -942,6 +954,14 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
 
     public void setListReporteVictima(List<ReporteSimcoVictima> listReporteVictima) {
         this.listReporteVictima = listReporteVictima;
+    }
+
+    public String getNombreCasoForm() {
+        return nombreCasoForm;
+    }
+
+    public void setNombreCasoForm(String nombreCasoForm) {
+        this.nombreCasoForm = nombreCasoForm;
     }
 
 }

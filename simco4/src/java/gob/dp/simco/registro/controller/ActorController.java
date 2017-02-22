@@ -387,7 +387,8 @@ public class ActorController extends AbstractManagedBean implements Serializable
         try {
             listaSubTipo3Empresa = null;
             Integer padre = maestroService.padreParametro(new Maestro(empresa.getSubTipo2Empresa(), 12));
-            listaSubTipo3Empresa = cargarListaCompuesta(13, padre);
+            if(padre != null)
+                listaSubTipo3Empresa = cargarListaCompuesta(13, padre);
         } catch (Exception e) {
             log.error("ERROR - cargarAjaxListaSubTipo3Empresa()" + e);
         }
@@ -406,11 +407,11 @@ public class ActorController extends AbstractManagedBean implements Serializable
     public String cargarPaginaBusqueda() {
         try {
             usuarioSession();
-            Caso cas = new Caso();
+            /*Caso cas = new Caso();
             cas.setUsuarioRegistro(usuarioSession.getCodigo());
             cadenaAutocomplete3 = casoService.casoBuscarAutocomplete(cas);
             cadenaAutocomplete4 = actividadService.actividadBusquedaPaginadoAutocompletar();
-            listaActorBusquedaGeneral = null;
+            listaActorBusquedaGeneral = null;*/
         } catch (Exception ex) {
             log.error("ERROR - cargarPaginaBusqueda()" + ex);
         }

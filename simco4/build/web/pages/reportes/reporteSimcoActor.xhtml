@@ -62,7 +62,7 @@
                                                                     <h:inputHidden value="#{reporteSimcoController.reporteSimcoActor.codigoCaso}" />
                                                                 </td>
                                                                 <td>
-                                                                    <a class="btn btn-info" jsf:action="#{reporteSimcoController.limpiarReporteActor()}">
+                                                                    <a class="btn btn-info" jsf:action="#{reporteSimcoController.limpiarReporteCaso()}">
                                                                         <span class="glyphicon glyphicon-search" />Buscar
                                                                         <f:ajax render="idPanelModalCaso" onevent="openModalBusquedaCaso()" />
                                                                     </a>
@@ -121,9 +121,9 @@
                                                     </td>
                                                     <td>
                                                         <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActor.esComunidadNativa}">
-                                                            <f:selectItem itemLabel="Seleccione" itemValue="0"/>
-                                                            <f:selectItem itemLabel="Si" itemValue="S"/>
-                                                            <f:selectItem itemLabel="No" itemValue="N"/>
+                                                            <f:selectItem itemLabel="Seleccione" />
+                                                            <f:selectItem itemLabel="Si" itemValue="1"/>
+                                                            <f:selectItem itemLabel="No" itemValue="2"/>
                                                         </h:selectOneMenu>
                                                     </td>
                                                 </tr>
@@ -158,7 +158,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Inversión involucrada</b></td>
+                                                    <td><b>Inversión involucrada mayor a</b></td>
                                                     <td>
                                                         <input type="text" jsf:value="#{reporteSimcoController.reporteSimcoActor.inversionInvolucrada}" style="width: 50%" onkeypress="return validarNumeros(event)"/>
                                                     </td>
@@ -255,7 +255,7 @@
                                     <div class="modal-body">
                                         <h:panelGroup id="idPanelModalCaso">
                                             <div class="form-group has-feedback" style="width:100%;margin:auto">
-                                                <input type="text" name="nombreCaso" placeholder="Buscar por nombre o código del caso"/>
+                                                <input type="text" jsf:value="#{reporteSimcoController.nombreCasoForm}" placeholder="Buscar por nombre o código del caso"/>
                                                 <a style="float:right;font-size:large;margin:auto" jsf:action="#{reporteSimcoController.listaCasos(1)}" jsf:onclick="loadingModal()">
                                                     <span class="glyphicon glyphicon-search form-control-feedback"/>
                                                     <f:ajax render="idPanelModalCaso" execute="@form" onevent="closeModal"/>

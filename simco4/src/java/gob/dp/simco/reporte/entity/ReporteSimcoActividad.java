@@ -35,7 +35,7 @@ public class ReporteSimcoActividad {
     
     private String tipoActuacionDefensorial;
                             
-    private String esComunidadNativa;
+    private Integer esComunidadNativa;
                                     
     private String nombreActor;
                                     
@@ -84,8 +84,6 @@ public class ReporteSimcoActividad {
     private String nombreProvincia;
     
     private String nombreDistrito;
-    
-    private Integer esComunidadNativaInt;
     
     private String tipoViolenciaItem1;
     
@@ -183,11 +181,11 @@ public class ReporteSimcoActividad {
         this.tipoAcontecimiento = tipoAcontecimiento;
     }
 
-    public String getEsComunidadNativa() {
+    public Integer getEsComunidadNativa() {
         return esComunidadNativa;
     }
 
-    public void setEsComunidadNativa(String esComunidadNativa) {
+    public void setEsComunidadNativa(Integer esComunidadNativa) {
         this.esComunidadNativa = esComunidadNativa;
     }
 
@@ -517,14 +515,6 @@ public class ReporteSimcoActividad {
 
     public void setCantidadActores(Integer cantidadActores) {
         this.cantidadActores = cantidadActores;
-    }
-
-    public Integer getEsComunidadNativaInt() {
-        return esComunidadNativaInt;
-    }
-
-    public void setEsComunidadNativaInt(Integer esComunidadNativaInt) {
-        this.esComunidadNativaInt = esComunidadNativaInt;
     }
 
     public Double getInversionInvolucrada() {

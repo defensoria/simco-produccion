@@ -226,6 +226,7 @@
                                             <label class="col-sm-2 control-label">Clasificación</label>
                                             <div class="col-sm-7">
                                                 <h:selectOneMenu class="selectRadio" id="cmbTipoActividad" value="#{registroController.actividad.tipoActividad}" rendered="#{registroController.actividad.tipo == 'AD'}">
+                                                    <f:selectItem itemLabel="Seleccione" />
                                                     <f:selectItems value="#{listasComunesController.buscarTipoActividad(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
                                                 </h:selectOneMenu>
                                             </div>
@@ -236,6 +237,7 @@
                                             <label class="col-sm-2 control-label">Clasificación</label>
                                             <div class="col-sm-7">
                                                 <h:selectOneMenu class="selectRadio" id="cmbTipoAcontecimiento" value="#{registroController.actividad.tipoAcontecimiento}" rendered="#{registroController.actividad.tipo == 'AC'}">
+                                                    <f:selectItem itemLabel="Seleccione" />
                                                     <f:selectItems value="#{listasComunesController.buscarTipoAcontecimiento(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
                                                 </h:selectOneMenu>
                                             </div>
