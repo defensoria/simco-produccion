@@ -24,8 +24,12 @@
                             </h:selectOneMenu>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" jsf:action="#{reporteGeneralController.resumenEjecutivo()}">
-                                        <span class="glyphicon glyphicon-print" /> Generar Reporte
+                                    <a class="btn btn-danger" jsf:action="#{reporteGeneralController.resumenEjecutivo(1)}">
+                                        <span class="glyphicon glyphicon-print" /> Generar Reporte PDF
+                                    </a>
+                                    &#160;&#160;&#160;&#160;&#160;&#160;
+                                    <a class="btn btn-primary" jsf:action="#{reporteGeneralController.resumenEjecutivo(2)}">
+                                        <span class="glyphicon glyphicon-print" /> Generar Reporte WORD
                                     </a>
                                 </td>
                             </tr>

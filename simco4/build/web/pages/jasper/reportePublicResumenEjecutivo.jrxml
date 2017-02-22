@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="22597"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -4851,7 +4851,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<text><![CDATA[Descripción]]></text>
 							</staticText>
 							<componentElement>
-								<reportElement key="table 26" style="table 26" x="0" y="40" width="265" height="33" uuid="369597d0-cbfd-4bed-9a34-415527ae5724"/>
+								<reportElement key="table 26" style="table 26" x="0" y="40" width="265" height="20" uuid="369597d0-cbfd-4bed-9a34-415527ae5724"/>
 								<jr:table>
 									<datasetRun subDataset="dataset10" uuid="77a8ad31-8cd8-438a-a85c-c9f7fd5efe23">
 										<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{datosCasos})]]></dataSourceExpression>
@@ -5082,7 +5082,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="0" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="afe09d53-3938-4cdb-afb3-dc7e6ef3cb9e"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
@@ -5091,7 +5091,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="15" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d2c61e27-79c7-4caf-b690-d86df9f6da15"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{provinciaPrincial}]]></textFieldExpression>
@@ -5100,7 +5100,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="30" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="094ea40d-bd08-4565-b137-6b25402e3dcb"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{distritoPrincial}]]></textFieldExpression>
@@ -5193,7 +5193,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="0" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="70874094-5d0e-47ee-a7ca-e18556315b3e"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
@@ -5202,7 +5202,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="15" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8d711a58-61f9-4326-8258-43df448f58d4"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{provinciaPrincial}]]></textFieldExpression>
@@ -5211,7 +5211,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="30" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="13c7bf05-2214-42d8-9f37-a8ef868c21ef"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{distritoPrincial}]]></textFieldExpression>

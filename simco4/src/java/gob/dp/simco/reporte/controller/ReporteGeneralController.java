@@ -192,7 +192,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         return i;
     }
     
-    public boolean resumenEjecutivo() throws JRException, IOException{
+    public boolean resumenEjecutivo(int tipo) throws JRException, IOException{
         listaResumenEjecutivo = new ArrayList<>();
         if(StringUtils.equals(filtroReporte.getAnhos(), "0") || StringUtils.equals(filtroReporte.getMes(), "0")){
             msg.messageAlert("Debe ingresar el año y mes del reporte", null);
@@ -872,15 +872,12 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         }
         ejecutivo.setListaCasosActivoALatentes(listaCasosActivoALatentes);
         /****lista casos de activo a latente****/
-        
-        
-        
-        
-        
-        
         ejecutivo.setImagePath001(retornaRutaPath().concat("/images/"));
         listaResumenEjecutivo.add(ejecutivo);
-        generarReportePublicoMensual();
+        if(tipo == 1)
+            generarReportePublicoMensual();
+        if(tipo == 2)
+            generarReportePublicoMensualWord();
         return true;
     }
     
@@ -898,7 +895,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         int latenteSum = 0;
         for (Catalogo cata : catalogos) {
             List<Caso> listaCasosFl = null;
-            listaCasosFl = filtrarCasosPorRegion(listaCasosReporte1, cata.getValorParametro());    
+            listaCasosFl = filtrarCasosPorRegion    (listaCasosReporte1, cata.getValorParametro());    
             int activo = 0;
             int latente = 0;
             for (Caso cs : listaCasosFl) {
@@ -1085,19 +1082,22 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         //reporteService.cargaCasoMes(registroCarga.getId());
     }
     
-    public void initJasperReporteEjecutivo() throws JRException {
+    public void initJasperReporteEjecutivo(int tipo) throws JRException {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         ec.responseReset();
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listaResumenEjecutivo);
-        jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/reportePublicResumenEjecutivo.jasper"),new HashMap(), beanCollectionDataSource);
+        if(tipo == 1)
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/reportePublicResumenEjecutivo.jasper"),new HashMap(), beanCollectionDataSource);
+        if(tipo == 2)
+            jasperPrint = JasperFillManager.fillReport(retornaRutaPath().concat("/jasper/reportePublicResumenEjecutivoWord.jasper"),new HashMap(), beanCollectionDataSource);
      }
     
-    /*public void generarReportePublicoMensual() throws JRException, IOException {
+    public void generarReportePublicoMensual() throws JRException, IOException {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String fecha = simpleDateFormat.format(date);
-        initJasperReporteEjecutivo();
+        initJasperReporteEjecutivo(1);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpServletResponse httpServletResponse;
         httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -1107,14 +1107,14 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream);
         facesContext.responseComplete();
         facesContext.renderResponse();
-    }*/
+    }
     
     @SuppressWarnings("static-access")
-    public void generarReportePublicoMensual() throws JRException, IOException {
+    public void generarReportePublicoMensualWord() throws JRException, IOException {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = simpleDateFormat.format(date);
-        initJasperReporteEjecutivo();
+        initJasperReporteEjecutivo(2);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpServletResponse httpServletResponse = (HttpServletResponse) facesContext.getCurrentInstance().getExternalContext().getResponse();
         httpServletResponse.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
