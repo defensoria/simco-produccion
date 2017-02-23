@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="22597"/>
+	<property name="ireport.y" value="5616"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -833,9 +833,7 @@
 	<subDataset name="dataset10" uuid="9dada3da-bac7-4abf-ac67-54cee30bc134">
 		<field name="nombre" class="java.lang.String"/>
 	</subDataset>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
-	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
@@ -1851,7 +1849,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			</staticText>
 			<image>
 				<reportElement x="15" y="457" width="283" height="258" uuid="c75b5a1e-865b-4691-a73c-571c9d64df4b"/>
-				<imageExpression><![CDATA["C:\\Users\\carlos\\Desktop\\cuadro001.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro001.png"]]></imageExpression>
 			</image>
 			<rectangle radius="10">
 				<reportElement x="6" y="724" width="509" height="45" forecolor="#A2F700" backcolor="#A2F700" uuid="cf0bb00f-dba5-44e4-8642-0768cf3627c4"/>
@@ -1962,7 +1960,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			</staticText>
 			<image>
 				<reportElement x="30" y="409" width="468" height="171" uuid="7b77ada9-6dc8-4bf8-8dd9-88f0762406f3"/>
-				<imageExpression><![CDATA["C:\\Users\\carlos\\Desktop\\cuadro005.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro005.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="5" y="595" width="514" height="36" uuid="83add485-0225-4571-a5f5-f629a5b2011f"/>
@@ -1973,7 +1971,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			</staticText>
 			<image>
 				<reportElement x="89" y="631" width="385" height="133" uuid="8b243a3e-926b-41fd-bdae-f45f3d254f41"/>
-				<imageExpression><![CDATA["C:\\Users\\carlos\\Desktop\\cuadro006.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro006.png"]]></imageExpression>
 			</image>
 		</band>
 		<band height="770">
