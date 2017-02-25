@@ -440,7 +440,7 @@ public class RegistroController extends AbstractManagedBean implements Serializa
         }
     }
 
-    public boolean vinculaNoticia(Noticia noticia) {
+    public boolean vinculaNoticia(Noticia noticia){
         try {
             NoticiaRegistro noticiaRegistro = new NoticiaRegistro();
             noticiaRegistro.setDescripcion(noticia.getDescripcion());
