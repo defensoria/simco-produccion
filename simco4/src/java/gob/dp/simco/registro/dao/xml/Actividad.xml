@@ -493,43 +493,16 @@
     
     <select id="actividadxCasoBuscarTotal" resultMap="actividadMap" parameterType="long">
         SELECT 
-        A.N_ID_ACTIVIDAD,
-        A.C_NOMACTIVIDAD,
-        A.C_DESCRIPACTIVIDAD,
-        A.C_COMENTARIOACTIVIDAD,
-        A.C_LUGARREALIZACION,
-        A.D_FECHAREALIZACIONINI,
-        A.D_FECHAREALIZACIONFIN,
-        A.T_HORAREALIZACIONINI,
-        A.T_HORAREALIZACIONFIN,
-        A.D_FECREGISTRO,
-        A.D_FECMODIFICACION,
-        A.N_INDCURSO,
+        A.*,
         D.VALOR_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_VAL, 
         D.NOMBRE_PARAMETRO AS PARAM_TIPO_ACTIVIDAD_NOM,
         C.C_NOMCASO,
         C.N_ID_CASO,
-        A.CIDDEPART,
-        A.CIDPROV,
-        A.CIDDISTR,
-        A.N_COORDENADAX,
-        A.N_COORDENADAY,
-        A.N_ZOOM,
-        A.C_TIPO,
-        A.C_RUTA,
-        A.C_USUREGISTRO,
-        A.C_CODIGOACTIVIDAD,
         D.NOM_USUARIO,
         D.APE_PATERNO,
         D.APE_MATERNO,
         D.C_CARGO,
-        D.C_RUTA as RUTA_IMAGEN,
-        A.C_TIPOACONTECIMIENTO,
-        A.C_TIPOVIOLENCIA,
-        A.C_RESULTADOVIOLENCIA,
-        A.N_ID_ACONTECIMIENTO,
-        A.N_INDICEVINCULADO,
-        A.N_INDICEACTIVO
+        D.C_RUTA as RUTA_IMAGEN
         FROM
         SIMCO_REG_ACTIVIDAD A 
         LEFT JOIN

@@ -23,9 +23,12 @@ public abstract class AbstractManagedBean implements Serializable {
     //protected static String FILE_SYSTEM = "C:/server/glassfish-4.0/glassfish4/glassfish/domains/domain1/docroot/filesystem/";//windows
 
     public String hostAddress() {
-        try {
-            return "http://" + InetAddress.getLocalHost().getHostAddress().concat(":8080/filesystem/");
+        try {//windows
+            //return "http://" + InetAddress.getLocalHost().getHostAddress().concat(":8080/filesystem/");
+            //linux
+            return "http://" + InetAddress.getLocalHost().getHostAddress().concat("/filesystem/");
         } catch (UnknownHostException e) {
+            e.printStackTrace();
         }
         return null;
     }

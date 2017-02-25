@@ -27,7 +27,6 @@ import gob.dp.simco.registro.service.ActividadActorService;
 import gob.dp.simco.registro.service.ActividadService;
 import gob.dp.simco.registro.service.ActorMiembroService;
 import gob.dp.simco.registro.service.ActorService;
-import gob.dp.simco.registro.service.CasoService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -167,9 +166,6 @@ public class ActorController extends AbstractManagedBean implements Serializable
 
     @Autowired
     private ActorService actorService;
-
-    @Autowired
-    private CasoService casoService;
 
     @Autowired
     private ActividadActorService actividadActorService;
@@ -411,7 +407,8 @@ public class ActorController extends AbstractManagedBean implements Serializable
             cas.setUsuarioRegistro(usuarioSession.getCodigo());
             cadenaAutocomplete3 = casoService.casoBuscarAutocomplete(cas);
             cadenaAutocomplete4 = actividadService.actividadBusquedaPaginadoAutocompletar();
-            listaActorBusquedaGeneral = null;*/
+            */
+            listaActorBusquedaGeneral = null;
         } catch (Exception ex) {
             log.error("ERROR - cargarPaginaBusqueda()" + ex);
         }
@@ -1419,7 +1416,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
                     actorService.actorModificar(entidad);
                     msg.messageInfo("Se ha actualizado correctamente la Entidad", null);
                 } else {
-                    entidad.setTipoGeneral("EM");
+                    entidad.setTipoGeneral("EN");
                     actorService.actorNuevo(entidad);
                     msg.messageInfo("Se ha registrado correctamente la Entidad ahora puede agregar sus miembros", null);
                 }

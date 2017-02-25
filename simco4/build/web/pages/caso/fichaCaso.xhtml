@@ -496,10 +496,10 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="5">
-                                                                <h:dataTable rendered="#{casoController.listaCasoRegion.size() > 0}" class="table table-striped" value="#{casoController.listaCasoRegion}" var="region" binding="#{nroRegion}">
+                                                                <h:dataTable rendered="#{casoController.listaCasoRegion.size() > 0}" class="table table-striped" value="#{casoController.listaCasoRegion}" var="region" binding="#{nroRegio}">
                                                                     <h:column>
                                                                         <f:facet name="header">N.°</f:facet>
-                                                                        <h:outputText value="#{nroRegion.rowIndex+1}" />
+                                                                        <h:outputText value="#{nroRegio.rowIndex+1}" />
                                                                     </h:column>
                                                                     <h:column>
                                                                         <f:facet name="header">Departamento</f:facet>
@@ -845,9 +845,9 @@
                                         </table>
                                     </div>
                                     <div class="panel-body" id="idPanelBodyActuacion4">
-                                        <h:dataTable value="#{casoController.listaActividadesCasoAD}" var="AD" class="table table-hover" binding="#{ro}" rendered="#{not empty casoController.listaActividadesCasoAD}">
+                                        <h:dataTable value="#{casoController.listaActividadesCasoAD}" var="AD" class="table table-hover" binding="#{roe}" rendered="#{not empty casoController.listaActividadesCasoAD}">
                                             <h:column>
-                                                <h:outputText value="#{ro.rowIndex+1}. " />
+                                                <h:outputText value="#{roe.rowIndex+1}. " />
                                                 <h:outputText value="#{AD.nombre} " />
                                                 <h:outputText value=" (registrado el " />
                                                 <h:outputText value="#{AD.fechaRegistro}">
@@ -921,9 +921,9 @@
                                         </table>
                                     </div>
                                     <div class="panel-body" id="idPanelBodyActuacion5">
-                                        <h:dataTable value="#{casoController.listaActividadesCasoAC}" var="AC" class="table table-hover" binding="#{row}" rendered="#{not empty casoController.listaActividadesCasoAC}">
+                                        <h:dataTable value="#{casoController.listaActividadesCasoAC}" var="AC" class="table table-hover" binding="#{rowi}" rendered="#{not empty casoController.listaActividadesCasoAC}">
                                             <h:column>
-                                                <h:outputText value="#{row.rowIndex+1}. " />
+                                                <h:outputText value="#{rowi.rowIndex+1}. " />
                                                 <h:outputText value="#{AC.nombre} " />
                                                 <h:outputText value=" (registrado el " />
                                                 <h:outputText value="#{AC.fechaRegistro}">
@@ -1284,10 +1284,10 @@
                                     <h:outputText class="text-primary" style="font-weight:bold;font-size:1.4em" value="Buscar Acontecimientos" rendered="#{casoController.verTitulo}"/>
                                 </div>
                                 <div class="modal-body">
-                                    <h:dataTable style="width:100%" value="#{casoController.listaActividadesSinCaso}" var="act" class="table table-striped" binding="#{row1}">
+                                    <h:dataTable style="width:100%" value="#{casoController.listaActividadesSinCaso}" var="act" class="table table-striped" binding="#{row1e}">
                                         <h:column>
                                             <f:facet name="header">N.°</f:facet>
-                                            <h:outputText value="#{row1.rowIndex+1}" />
+                                            <h:outputText value="#{row1e.rowIndex+1}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">Nombre</f:facet>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivoWord" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="480"/>
+	<property name="ireport.y" value="21718"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -965,7 +965,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA["Reporte mensual de Conflictos Sociales " +$F{mesPublicacion}+" "+$F{anhoPublicacion}+"     "]]></textFieldExpression>
 			</textField>
-			
 		</band>
 	</pageHeader>
 	<detail>
@@ -1156,7 +1155,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			</staticText>
 			<image>
 				<reportElement x="15" y="457" width="283" height="258" uuid="c75b5a1e-865b-4691-a73c-571c9d64df4b"/>
-				<imageExpression><![CDATA["C:\\Users\\carlos\\Desktop\\cuadro001.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro001.png"]]></imageExpression>
 			</image>
 			<rectangle radius="10">
 				<reportElement x="6" y="724" width="509" height="45" forecolor="#A2F700" backcolor="#A2F700" uuid="cf0bb00f-dba5-44e4-8642-0768cf3627c4"/>
@@ -1267,7 +1266,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			</staticText>
 			<image>
 				<reportElement x="30" y="409" width="468" height="171" uuid="7b77ada9-6dc8-4bf8-8dd9-88f0762406f3"/>
-				<imageExpression><![CDATA["C:\\Users\\carlos\\Desktop\\cuadro005.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro005.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="5" y="595" width="514" height="36" uuid="83add485-0225-4571-a5f5-f629a5b2011f"/>
@@ -1278,7 +1277,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			</staticText>
 			<image>
 				<reportElement x="89" y="631" width="385" height="133" uuid="8b243a3e-926b-41fd-bdae-f45f3d254f41"/>
-				<imageExpression><![CDATA["C:\\Users\\carlos\\Desktop\\cuadro006.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro006.png"]]></imageExpression>
 			</image>
 		</band>
 		<band height="770">
@@ -1553,7 +1552,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			<staticText>
 				<reportElement mode="Transparent" x="79" y="58" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ea6e37bb-4976-4303-86d0-7cd01e8ccea9"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 1:
@@ -1633,7 +1632,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 			<staticText>
 				<reportElement mode="Transparent" x="60" y="474" width="390" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="32a9673e-5db9-4de9-b534-2504689fed01"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 2:
@@ -1807,7 +1806,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN PRINCIPAL COMPETENCIA DEL GOBIERNO  (Número 
 			<staticText>
 				<reportElement mode="Transparent" x="62" y="189" width="390" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="4014fd75-7d1e-4f61-b02f-5080736a4000"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 1
@@ -1907,7 +1906,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 			<staticText>
 				<reportElement mode="Transparent" x="64" y="3" width="390" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="23ff26ff-f908-429e-b14d-8b950aa58237"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 2
@@ -1925,7 +1924,7 @@ PERÚ: COMPETENCIAS POR NIVEL DE GOBIERNO
 			<staticText>
 				<reportElement mode="Transparent" x="32" y="347" width="447" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="fcba514b-bc04-41cc-acb5-bc3a51476f2f"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 3:
@@ -2143,7 +2142,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO, POR PRINCIPAL AUTORIDAD COMPETENTE
 			<staticText>
 				<reportElement mode="Transparent" x="63" y="59" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ace92c6d-c880-4787-9959-5c24fa94bc04"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 4:
@@ -2601,7 +2600,7 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 			<staticText>
 				<reportElement mode="Transparent" x="70" y="53" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="06c9c25b-9973-4b34-bc6b-f223efb3316e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 5:
@@ -2737,7 +2736,7 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 			<staticText>
 				<reportElement mode="Transparent" x="76" y="65" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="5ca61ffc-4353-458f-9932-dfa999df4760"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 6:
@@ -2918,7 +2917,7 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 			<staticText>
 				<reportElement mode="Transparent" x="76" y="97" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 5
@@ -2956,7 +2955,7 @@ PERÚ: CONFLICTOS ACTIVOS SEGÚN FASE
 			<staticText>
 				<reportElement mode="Transparent" x="85" y="411" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="d5ba496b-fd24-41f8-b6d7-992b5673d2e5"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 9:
@@ -3048,7 +3047,7 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 			<staticText>
 				<reportElement mode="Transparent" x="78" y="0" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f347af8f-ecf4-40a8-9d48-2b1d03d4e28a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 6
@@ -3088,7 +3087,7 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 			<staticText>
 				<reportElement mode="Transparent" x="79" y="378" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="b86f9abc-b9da-4159-9be1-4e2e6b4e6a4e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 10:
@@ -3181,7 +3180,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO
 			<staticText>
 				<reportElement mode="Transparent" x="76" y="16" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="b0687206-fb7a-4f48-bb93-c3dfa51b7572"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 8
@@ -3192,7 +3191,7 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN TIPO
 			<staticText>
 				<reportElement mode="Transparent" x="76" y="381" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="a3af2316-3ed9-4bdc-a3fb-1c47d16d8263"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 11:
@@ -3299,7 +3298,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
 			<staticText>
 				<reportElement mode="Transparent" x="71" y="13" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="fe36e0a0-2427-44ec-9f87-e01dade2f65b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 9
@@ -3412,7 +3411,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS POR TIPO
 			<staticText>
 				<reportElement mode="Transparent" x="78" y="375" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ea863ef3-d55f-4848-82b4-8193372746bd"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 12:
@@ -3447,7 +3446,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES, SEGÚN ACTIVIDAD
 			<staticText>
 				<reportElement mode="Transparent" x="74" y="4" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="51f320bd-5699-4373-bbcb-64b7a93c961c"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Calibri" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gráfico N° 10
