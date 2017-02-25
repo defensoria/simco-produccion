@@ -19,7 +19,7 @@ public class NoticiaDAOImpl extends SqlSessionDaoSupport implements NoticiaDAO{
 
     @Override
     public List<Noticia> listaNoticias(Noticia noticia) {
-        return getSqlSession().selectList("gob.dp.simco.noticia.dao.NoticiaDao.noticiaBuscar",noticia);
+        return getSqlSession().selectList("gob.dp.simco.registro.dao.NoticiaDao.noticiaBuscar",noticia);
     }
     
 }

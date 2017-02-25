@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="gob.dp.simco.noticia.dao.NoticiaDao">
+<mapper namespace="gob.dp.simco.registro.dao.NoticiaDao">
 
     <resultMap id="noticiaMap" type="noticia">
         <id property="id" column="N_ID_NOTICIAS" />

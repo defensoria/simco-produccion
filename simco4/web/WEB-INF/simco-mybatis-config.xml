@@ -53,6 +53,7 @@
         <typeAlias type="gob.dp.simco.registro.entity.SegundoNivel" alias="segundoNivel"/>
         <typeAlias type="gob.dp.simco.registro.entity.TercerNivel" alias="tercerNivel"/>
         <typeAlias type="gob.dp.simco.registro.entity.CasoRegion" alias="casoRegion"/>
+        <typeAlias type="gob.dp.simco.registro.entity.Noticia" alias="Noticia"/>
         
         <typeAlias type="gob.dp.simco.seguimiento.entity.SeguimientoAcuerdo" alias="seguimientoAcuerdo"/>
         <typeAlias type="gob.dp.simco.seguimiento.entity.Alerta" alias="alerta"/>
@@ -74,8 +75,6 @@
         <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionEtapaActuacion" alias="intervencionEtapaActuacion"/>
         <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionMiembro" alias="intervencionMiembro"/>
         <typeAlias type="gob.dp.simco.intervencion.entity.IntervencionHistorialAct" alias="intervencionHistorialAct"/>
-        
-        <typeAlias type="gob.dp.simco.noticia.entity.Noticia" alias="Noticia"/>
         
         <typeAlias type="gob.dp.simco.investigacion.entity.Investigacion" alias="investigacion"/>
         <typeAlias type="gob.dp.simco.investigacion.entity.Participacion" alias="participacion"/>
@@ -125,6 +124,7 @@
         <mapper resource="gob/dp/simco/registro/dao/xml/ActividadHistorial.xml" />
         <mapper resource="gob/dp/simco/registro/dao/xml/Parametro.xml" />
         <mapper resource="gob/dp/simco/registro/dao/xml/NoticiaRegistro.xml" />
+        <mapper resource="gob/dp/simco/registro/dao/xml/Noticia.xml" />
         <mapper resource="gob/dp/simco/registro/dao/xml/CasoActor.xml" />
         <mapper resource="gob/dp/simco/registro/dao/xml/ActaAcuerdoDetalleMiembro.xml" />
         <mapper resource="gob/dp/simco/registro/dao/xml/ActorMiembro.xml" />
@@ -155,8 +155,6 @@
         <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionEtapaActuacion.xml" />
         <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionMiembro.xml" />
         <mapper resource="gob/dp/simco/intervencion/dao/xml/IntervencionHistorialAct.xml" />
-        
-        <mapper resource="gob/dp/simco/noticia/dao/xml/Noticia.xml" />
         
         <mapper resource="gob/dp/simco/investigacion/dao/xml/Investigacion.xml" />
         <mapper resource="gob/dp/simco/investigacion/dao/xml/Participacion.xml" />
