@@ -209,7 +209,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipoAcontecimientoDetalle}]]></textFieldExpression>
 			</textField>
@@ -221,7 +221,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{subTipoAcontecimientoDetalle}]]></textFieldExpression>
 			</textField>
@@ -233,7 +233,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
 			</textField>
@@ -245,7 +245,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipoVictima}]]></textFieldExpression>
 			</textField>
@@ -257,7 +257,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreCompletoVictima}]]></textFieldExpression>
 			</textField>
@@ -269,7 +269,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{edadVictima}]]></textFieldExpression>
 			</textField>
@@ -281,7 +281,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sexoVictima}]]></textFieldExpression>
 			</textField>
@@ -293,7 +293,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipoEstadoVictima}]]></textFieldExpression>
 			</textField>
@@ -306,7 +306,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreActividad}]]></textFieldExpression>

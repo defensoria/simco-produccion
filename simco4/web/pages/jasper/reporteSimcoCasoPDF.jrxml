@@ -255,7 +255,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font fontName="Arial" size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigoCaso}]]></textFieldExpression>
 			</textField>
@@ -268,7 +268,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement>
-					<font fontName="Arial" size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreCaso}]]></textFieldExpression>
 			</textField>
@@ -281,7 +281,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement>
-					<font fontName="Arial" size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaInicioCaso}]]></textFieldExpression>
 			</textField>
@@ -294,7 +294,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement>
-					<font fontName="Arial" size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipologia}]]></textFieldExpression>
 			</textField>
@@ -307,7 +307,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement>
-					<font fontName="Arial" size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
 			</textField>
@@ -320,7 +320,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement>
-					<font size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
@@ -333,7 +333,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement>
-					<font size="8"/>
+					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fase}]]></textFieldExpression>
 			</textField>
@@ -358,7 +358,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
@@ -372,7 +372,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidadAcuerdos}]]></textFieldExpression>
@@ -386,7 +386,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{esEmpresaMinera}]]></textFieldExpression>
@@ -400,7 +400,7 @@
 					<rightPen lineWidth="0.1" lineColor="#666666"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{esComunidadNativa} > 0? "Si" : "No")]]></textFieldExpression>
