@@ -83,16 +83,16 @@
         <if test="tipoActor != 'NN'">
             AND L.C_TIPOGENERAL = #{tipoActor} 
         </if> 
-        <if test="esComunidadNativa == 1">
-            AND NVL(L.C_SUBTIPO1ORGANIZACION, 0) = 36
+        <!--<if test="esComunidadNativa == 1">
+            AND NVL(L.C_TIPOORGANIZACION, 0) = 10
             AND L.C_CLASIFICACION = 'OR'
         </if>
         <if test="esComunidadNativa ==  0">
-            AND NVL(L.C_SUBTIPO1ORGANIZACION, 0) NOT IN (36)
-        </if>
+            AND NVL(L.C_TIPOORGANIZACION, 0) NOT IN (10)
+        </if>-->
         <if test="inversionInvolucrada != null">
             AND A.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
-        </if> 
+        </if>
         
         ORDER BY A.D_FECHACREACION
     </select>

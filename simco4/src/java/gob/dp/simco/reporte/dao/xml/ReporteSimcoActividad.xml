@@ -71,11 +71,11 @@ LEFT JOIN SIMCO_PARAMETRO G ON G.VALOR_PARAMETRO = F.C_TIPOCASO AND G.PADRE_PARA
             AND M.C_TIPOGENERAL = #{tipoActor} 
         </if> 
         <if test="esComunidadNativa == 1">
-            AND NVL(M.C_SUBTIPO1ORGANIZACION, 0) = 36
+            AND NVL(M.C_TIPOORGANIZACION, 0) = 10
             AND M.C_CLASIFICACION = 'OR'
         </if>
         <if test="esComunidadNativa ==  0">
-            AND NVL(A.C_SUBTIPO1ORGANIZACION, 0) NOT IN (36)
+            AND NVL(M.C_TIPOORGANIZACION, 0) NOT IN (10)
         </if>
         <if test="inversionInvolucrada != null">
             AND F.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 

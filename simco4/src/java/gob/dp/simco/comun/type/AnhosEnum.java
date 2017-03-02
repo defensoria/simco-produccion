@@ -17,12 +17,36 @@ import java.util.Map;
 import javax.faces.model.SelectItem;
 
 public enum AnhosEnum {
-
-	ANHO_2015("2015", "2015"),
-
-	ANHO_2016("2016", "2016"),
+    
+    ANHO_2017("2017", "2017"),
 	
-	ANHO_2017("2017", "2017");
+    ANHO_2016("2016", "2016"),
+    
+    ANHO_2015("2015", "2016"),
+    
+    ANHO_2014("2014", "2014"),
+    
+    ANHO_2013("2013", "2013"),
+    
+    ANHO_2012("2012", "2012"),
+    
+    ANHO_2011("2011", "2011"),
+    
+    ANHO_2010("2010", "2010"),
+    
+    ANHO_2009("2009", "2009"),
+    
+    ANHO_2008("2008", "2008"),
+    
+    ANHO_2007("2007", "2007"),
+    
+    ANHO_2006("2006", "2006"),
+    
+    ANHO_2005("2005", "2005"),
+    
+    ANHO_2004("2004", "2004");
+	
+	
 	
 	/** La Constante list. */
 	private static final List<AnhosEnum> list = new ArrayList<>();

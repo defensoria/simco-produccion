@@ -95,10 +95,6 @@
                                                                                     <td colspan="2">
                                                                                         <div class="form-group has-feedback" style="width:40%;margin:auto;float:left">
                                                                                             <input autocomplete="off" type="text" maxlength="8" jsf:value="#{actorController.actor.dni}" placeholder="DNI" id="idDniActor" onkeypress="return soloNumbero(event)"/>
-                                                                                            <a style="float:right;font-size:large;margin:auto" jsf:action="#{actorController.habilitaFormDNI()}" jsf:onclick="return validaLengDNI()">
-                                                                                                <span class="glyphicon glyphicon-search form-control-feedback"/>
-                                                                                                <f:ajax render="@form" execute="@form" onevent="openRegistroPersona"/>
-                                                                                            </a>
                                                                                             <br/>
                                                                                         </div>
                                                                                     </td>

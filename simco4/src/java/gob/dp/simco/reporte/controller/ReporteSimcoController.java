@@ -168,9 +168,11 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
     }
 
     public void reporteCasos() {
-        listReporteCasos = reporteSimcoCasoService.reporteCasos(reporteSimcoCaso);
+        List<ReporteSimcoCaso> listaTemp = new ArrayList<>();
+        List<ReporteSimcoCaso> listaTemp2 = new ArrayList<>();
+        listaTemp = reporteSimcoCasoService.reporteCasos(reporteSimcoCaso);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        for (ReporteSimcoCaso rs : listReporteCasos) {
+        for (ReporteSimcoCaso rs : listaTemp) {
             rs.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             String esEmpresaMinera = "No";
             Integer esComunidadNativa = 0;
@@ -181,7 +183,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
                 if (StringUtils.equals(a.getSubTipo2Empresa(), "01")) {
                     minera++;
                 }
-                if (StringUtils.equals(a.getSubTipo1Organizacion(), "36")) {
+                if (StringUtils.equals(a.getTipoOrganizacion(), "10")) {
                     nativa++;
                 }
             }
@@ -229,6 +231,25 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
             rs.setCantidadHeridoCiviles(reporteSimcoCasoService.cantidadMuertosHeridos(rs.getCodigoCaso(), "02", "01"));
             rs.setCantidadHeridoPNP(reporteSimcoCasoService.cantidadMuertosHeridos(rs.getCodigoCaso(), "02", "02"));
             rs.setCantidadHeridoFFAA(reporteSimcoCasoService.cantidadMuertosHeridos(rs.getCodigoCaso(), "02", "03"));
+        }
+        if(reporteSimcoCaso.getEsComunidadNativa() == null)
+            listReporteCasos = listaTemp;
+        else{
+            if(reporteSimcoCaso.getEsComunidadNativa() == 1){
+                for (ReporteSimcoCaso rs : listaTemp) {
+                    if(rs.getEsComunidadNativa() == 1){
+                        listaTemp2.add(rs);
+                    }
+                }
+            }
+            if(reporteSimcoCaso.getEsComunidadNativa() == 0){
+                for (ReporteSimcoCaso rs : listaTemp) {
+                    if(rs.getEsComunidadNativa() == 0){
+                        listaTemp2.add(rs);
+                    }
+                }
+            }
+            listReporteCasos = listaTemp2;
         }
     }
 
@@ -392,10 +413,10 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
             if(StringUtils.isNotBlank(rsv.getTipoAcontecimiento())){
                 rsv.setSubTipoAcontecimientoDetalle(obtenerSubTipoAcontecimiento(rsv.getTipoAcontecimiento()));
                 rsv.setTipoAcontecimientoDetalle(obtenerTipoAcontecimiento(rsv.getTipoAcontecimiento()));
-                rsv.setGrupoAcontecimientoDetalle(obtenerGrupoAcontecimiento(rsv.getTipoAcontecimiento()));
-                if(rsv.getIndicadorNN() != null && rsv.getIndicadorNN() == 1)
-                    rsv.setTipoVictima("NN");    
+                rsv.setGrupoAcontecimientoDetalle(obtenerGrupoAcontecimiento(rsv.getTipoAcontecimiento()));   
             }
+            if(rsv.getIndicadorNN() != null && rsv.getIndicadorNN() == 1)
+                    rsv.setTipoVictima("NN"); 
             rsv.setCantidadActores(actorService.actorXactividadSimpleBuscarCount(rsv.getIdActividad()));
         }
     }

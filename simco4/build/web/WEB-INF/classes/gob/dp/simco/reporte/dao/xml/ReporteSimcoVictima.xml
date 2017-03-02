@@ -60,6 +60,7 @@ LEFT JOIN SIMCO_PARAMETRO I ON I.VALOR_PARAMETRO = G.C_SUBTIPOCASO AND I.PADRE_P
         <if test="inversionInvolucrada != null">
             AND G.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
         </if>
+            ORDER BY D.N_ID_ACTIVIDAD
     </select>
     
     

@@ -98,7 +98,7 @@
                                     <div class="form-group has-feedback" style="margin:auto">
                                         <input type="text" id="adjuntia" jsf:value="#{casoController.caso.nombreAdjuntiaDefensorial}" placeholder="Oficina Defensorial"/>
                                         <input type="hidden" id="idAdjuntia" jsf:value="#{casoController.caso.adjuntiaDefensorial}" />
-                                        <a jsf:action="#{casoController.generarListaAdjuntias()}">
+                                        <a jsf:action="#{casoController.generarListaAdjuntias()}" jsf:rendered="#{(casoController.esComisionadoRegistro)}" >
                                             <span class="glyphicon glyphicon-plus form-control-feedback"/>
                                         </a>
                                     </div>
@@ -118,7 +118,6 @@
                                             <h:panelGroup rendered="#{(casoController.esComisionadoRegistro)}">
                                                 <a jsf:action="#{casoController.removeListaAdjuntias(ad)}" style="text-decoration: none">
                                                     <span style="color:red;font-size:large" class="glyphicon glyphicon-remove"></span>
-                                                    <f:ajax render="@form"/>
                                                 </a>
                                             </h:panelGroup>
                                         </h:column>
@@ -554,7 +553,9 @@
                                                                 <b>Monto involucrado:&#160;&#160;&#160;&#160;</b>
                                                             </td>
                                                             <td style="vertical-align: bottom">
-                                                                <input type="text" style="width: 50%" jsf:value="#{casoController.caso.inversionInvolucrada}" />
+                                                                <h:inputText style="width: 70%" maxlength="10"  onkeypress="return soloNumbero(event)" value="#{casoController.caso.inversionInvolucrada}" >
+                                                                    <f:convertNumber pattern="#0.00" />
+                                                                </h:inputText>
                                                             </td>
                                                         </tr>
                                                     </table>

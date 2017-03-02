@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoCasoExcel" pageWidth="4819" pageHeight="600" orientation="Landscape" columnWidth="4819" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="3649"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -112,7 +112,7 @@
 	<field name="cantidadIntervencion" class="java.lang.Integer"/>
 	<field name="cantidadAcuerdos" class="java.lang.Integer"/>
 	<field name="esEmpresaMinera" class="java.lang.String"/>
-	<field name="esComunidadNativa" class="java.lang.String"/>
+	<field name="esComunidadNativa" class="java.lang.Integer"/>
 	<field name="cantidadMuertoCiviles" class="java.lang.Integer"/>
 	<field name="cantidadMuertoPNP" class="java.lang.Integer"/>
 	<field name="cantidadMuertoFFAA" class="java.lang.Integer"/>
@@ -570,7 +570,7 @@ Tercer nivel]]></text>
 			</textField>
 			<textField>
 				<reportElement x="4040" y="0" width="157" height="20" uuid="7fff7626-2a5a-49b9-8881-f2479ae4db54"/>
-				<textFieldExpression><![CDATA[$F{esComunidadNativa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{esComunidadNativa} > 0? "Si" : "No")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="4197" y="0" width="100" height="20" uuid="3d65c5cf-89cf-46c5-8a47-0e03979d112f"/>

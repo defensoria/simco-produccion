@@ -91,11 +91,11 @@
             AND E.N_INVERSIONINVOLUCRADA &gt; #{inversionInvolucrada} 
         </if>
         <if test="esComunidadNativa == 1">
-            AND NVL(A.C_SUBTIPO1ORGANIZACION, 0) = 36
+            AND NVL(A.C_TIPOORGANIZACION, 0) = 10
             AND A.C_CLASIFICACION = 'OR'
         </if>
         <if test="esComunidadNativa ==  0">
-            AND NVL(A.C_SUBTIPO1ORGANIZACION, 0) NOT IN (36)
+            AND NVL(A.C_TIPOORGANIZACION, 0) NOT IN (10)
         </if>
         
     </select>
