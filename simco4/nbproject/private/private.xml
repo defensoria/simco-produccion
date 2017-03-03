@@ -9,14 +9,19 @@
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/comun/type/AnhosEnum.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/actor/actorNuevoPersona.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoCaso.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/xml/Actividad.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/entity/Actividad.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoVictima.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/registroGeneral/registro.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/controller/CasoController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoActividad.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoActividad.xhtml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoActor.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoCaso.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/caso/fichaCaso.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteEjecutivo.xml</file>
         </group>
     </open-files>
 </project-private>

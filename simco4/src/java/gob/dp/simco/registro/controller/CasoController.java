@@ -19,7 +19,6 @@ import gob.dp.simco.comun.entity.Provincia;
 import gob.dp.simco.comun.service.UbigeoService;
 import gob.dp.simco.registro.bean.AdjuntiaDefensorialVO;
 import gob.dp.simco.registro.bean.FiltroParametro;
-import gob.dp.simco.comun.util.Mail;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import gob.dp.simco.registro.entity.Actividad;
 import gob.dp.simco.registro.entity.ActividadCaso;

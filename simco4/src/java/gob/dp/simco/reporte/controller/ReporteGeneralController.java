@@ -47,7 +47,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -59,6 +58,7 @@ import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import org.apache.commons.lang3.StringUtils;
+import org.codehaus.groovy.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
@@ -2324,7 +2324,16 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
     }
     
     private List<Caso> filtrarCasosPorRegion(List<Caso> casos, String tipo) {
-        Filter<Caso, String> filter = new Filter<Caso, String>() {
+        List<Caso> list = new ArrayList<>();
+        String codigoDepartamento = String.format("%2s", tipo).replace(' ', '0');
+        for(Caso c : casos){
+            if(c.getIdDepartamento() != null){
+                if(StringUtils.equals(c.getIdDepartamento(), codigoDepartamento)){
+                    list.add(c);
+                }
+            }      
+        }
+        /*Filter<Caso, String> filter = new Filter<Caso, String>() {
             public boolean isMatched(Caso object, String text) {
                 if(object.getIdDepartamento() != null){
                     String entero = object.getIdDepartamento();
@@ -2333,8 +2342,8 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
                 return false;
             }
         };
-        List<Caso> sortCasos = new FilterList().filterList(casos, filter, tipo);
-        return sortCasos;
+        List<Caso> sortCasos = new FilterList().filterList(casos, filter, tipo);*/
+        return list;
     }
 
     private List<Caso> filtrarCasosPorAnhos(List<Caso> casos, String tipo) {

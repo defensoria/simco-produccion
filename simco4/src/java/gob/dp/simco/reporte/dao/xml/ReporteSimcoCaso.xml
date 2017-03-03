@@ -210,7 +210,7 @@
         WHERE A.C_INDAPROBADO = 'A' AND A.C_INDVIGENTE = 'A'
         AND A.C_TIPOESTADO = '04'
         AND TO_NUMBER(TO_CHAR(A.D_FECHAINICIO, 'YYMM')) &lt; TO_NUMBER(#{anhoMesString}) + 1 AND A.N_ID_CODIGOCARGA = #{codigoReporte}
-        ORDER BY B.C_DESCDPTO DESC
+        ORDER BY B.C_DESCDPTO ASC
     </select>
     
     
