@@ -10,7 +10,7 @@
         <ui:define name="content">
             <h:form id="idForm3" class="form-horizontal" enctype="multipart/form-data">
                 <gc:confirmSubmit bean="#{registroController.registrarActividad()}"/>
-                <gc:confirmSubmit bean="#{registroController.inactivarActividad()}" classGC="confirmacion2" mensaje="Esta seguro inactivar el registro?"/>
+                <gc:confirmSubmit bean="#{registroController.inactivarActividad()}" classGC="confirmacion2" mensaje="¿Está seguro de que desea inactivar este registro?"/>
                 <input type="hidden" jsf:value="#{registroController.actividad.coordenadaX}" id="idCoordenadaX"/>
                 <input type="hidden" jsf:value="#{registroController.actividad.coordenadaY}" id="idCoordenadaY"/>
                 <input type="hidden" jsf:value="#{registroController.actividad.zoom}" id="idZoom"/>
@@ -41,7 +41,7 @@
                     <table style="width:100%">
                         <tr>
                             <td style="width:70%">
-                                <span class="text-titulo-primary-simco" style="color:#878787" id="idTextoRegistro">Nuevo Registro</span><h:outputText value="&#160;&#160;&#160;" />
+                                <span class="text-titulo-primary-simco" style="color:#878787" id="idTextoRegistro">Nuevo registro</span><h:outputText value="&#160;&#160;&#160;" />
                                 <a href="#" class="trigger">
                                     <span style="color:#3183b9;font-size:large;vertical-align:bottom" class="glyphicon glyphicon-chevron-down trigger"></span>
                                 </a>
@@ -76,7 +76,7 @@
                                         $("#idTipoRegistro").val(tipo);
                                         $("#idTextoRegistro").css("color", "#3071A9");
                                         if (tipo === "AD") {
-                                            $("#idTextoRegistro").text("Actuacion Defensorial");
+                                            $("#idTextoRegistro").text("Actuación defensorial");
                                             $("#idPanelViolencia").css("display", "none");
                                         }
                                         if (tipo === "AC") {
@@ -86,7 +86,7 @@
                                     }
                                     if ($("#idTipoRegistro").val() !== "") {
                                         if ($("#idTipoRegistro").val() === 'AD') {
-                                            $("#idTextoRegistro").text("Actuacion Defensorial");
+                                            $("#idTextoRegistro").text("Actuación defensorial");
                                             $("#idPanelViolencia").css("display", "none");
                                         }
                                         if ($("#idTipoRegistro").val() === 'AC') {
@@ -98,7 +98,7 @@
                                     $(document).ready(function () {
                                         if ($("#idTipoRegistro").val() !== "") {
                                             if ($("#idTipoRegistro").val() === 'AD') {
-                                                $("#idTextoRegistro").text("Actuacion Defensorial");
+                                                $("#idTextoRegistro").text("Actuación defensorial");
                                                 $("#idPanelViolencia").css("display", "none");
                                             }
                                             if ($("#idTipoRegistro").val() === 'AC') {
@@ -117,7 +117,7 @@
                                     </a>
                                 </h:panelGroup>
                                 <br/>
-                                <input type="text" id="nombreCaso" jsf:value="#{registroController.caso.nombre}" style="width:80%" placeholder="vincular a caso" />
+                                <input type="text" id="nombreCaso" jsf:value="#{registroController.caso.nombre}" style="width:80%" placeholder="Vincular a caso" />
                                 <input type="hidden" id="idCaso" jsf:value="#{registroController.caso.id}"/>
                             </td>
                         </tr>
@@ -547,12 +547,12 @@
                         }
                         if ($('#idTipoRegistro').val() === "") {
                             $('#idTextoRegistro').css("color", "red");
-                            alertar("Debe de ingresar el tipo de Actividad");
+                            alertar("Debe de ingresar el tipo de actividad");
                             return false;
                         }
                         if ($('#txtNombre').val() === "") {
                             $('#txtNombre').addClass('error');
-                            alertar("Debe de ingresar el nombre de la Actividad");
+                            alertar("Debe de ingresar el nombre de la actividad");
                             return false;
                         }
                         else {

@@ -150,7 +150,7 @@ public class BusquedaUsuarioController extends AbstractManagedBean implements Se
                 }
                 if(listaUsuario.isEmpty()){
                     usuario = new Usuario();
-                    msg.messageAlert("No se han encontrado Resultados para la busqueda", null);
+                    msg.messageAlert("No se han encontrado resultados para la búsqueda", null);
                 }
             } catch (Exception e) {
                 log.error("ERROR : BusquedaUsuarioController.listarPaginado: " + e.getMessage());

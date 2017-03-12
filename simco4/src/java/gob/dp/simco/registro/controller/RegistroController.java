@@ -268,7 +268,7 @@ public class RegistroController extends AbstractManagedBean implements Serializa
             actividadService.actividadUpdateAcontecimiento(actividad);
             actividadService.actividadUpdateVincular(acontecimiento.getId());
             cargarAcontecimientoVinculado();
-            msg.messageInfo("Se vinculo el acontecimiento", null);
+            msg.messageInfo("Se vinculó el acontecimiento", null);
         } catch (Exception e) {
             log.error("ERROR - vincularAcontecimientoActuacion()" + e);
         }
@@ -375,7 +375,7 @@ public class RegistroController extends AbstractManagedBean implements Serializa
             acontecimientoVinculado = new ArrayList<>();
         actividadService.actividadUpdateDesVincular(actividad.getIdAcontecimiento());
         actividadService.actividadUpdateAcontecimientoQuitar(actividad.getId());
-        msg.messageInfo("Se desvinculo el acontecimiento", null);
+        msg.messageInfo("Se desvinculó el acontecimiento", null);
         } catch (Exception e) {
             log.error("ERROR - removeAcontecimientoVinculado()" + e);
         }

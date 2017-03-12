@@ -87,7 +87,7 @@
                             <tr>
                                 <td style="width:70%; padding-bottom: 15px">
                                     
-                                    <h:outputText rendered="#{casoController.caso.id != null and casoController.caso.indicador == 'A'}" class="text-resalt-comun" value="código: #{casoController.caso.codigo}" />
+                                    <h:outputText rendered="#{casoController.caso.id != null and casoController.caso.indicador == 'A'}" class="text-resalt-comun" value="Código: #{casoController.caso.codigo}" />
                                     <br/>
                                     <span style="color: red; font-size: 1.5em; vertical-align: bottom">* </span><span class="text-resalt-comun">Nombre del caso:</span>
                                     <span class="text-resalt-comun" >#{casoController.caso.nombre} </span>
@@ -96,7 +96,7 @@
                                 <td>
                                     <h:inputHidden value="#{casoController.caso.sintesisAnalisis}" />
                                     <div class="form-group has-feedback" style="margin:auto">
-                                        <input type="text" id="adjuntia" jsf:value="#{casoController.caso.nombreAdjuntiaDefensorial}" placeholder="Oficina Defensorial"/>
+                                        <input type="text" id="adjuntia" jsf:value="#{casoController.caso.nombreAdjuntiaDefensorial}" placeholder="Oficina defensorial"/>
                                         <input type="hidden" id="idAdjuntia" jsf:value="#{casoController.caso.adjuntiaDefensorial}" />
                                         <a jsf:action="#{casoController.generarListaAdjuntias()}" jsf:rendered="#{(casoController.esComisionadoRegistro)}" >
                                             <span class="glyphicon glyphicon-plus form-control-feedback"/>
@@ -575,11 +575,11 @@
                                             <table>
                                                     <tr>
                                                         <td style="padding-right: 10px">
-                                                <span style="color: red; font-size: 1.5em; vertical-align: bottom">* </span><label>Fecha Inicio</label>
+                                                <span style="color: red; font-size: 1.5em; vertical-align: bottom">* </span><label>Fecha de inicio</label>
                                                 <gc:calendar value="#{casoController.caso.fechaInicio}"/>
                                         </td> 
                                                         <td style="padding-left: 10px">
-                                                <label>Fecha Fin</label><gc:calendar value="#{casoController.caso.fechaFin}" />
+                                                <label>Fecha de fin</label><gc:calendar value="#{casoController.caso.fechaFin}" />
                                         </td> 
                                         <td colspan="2"></td> 
                                                 </tr>
@@ -635,9 +635,9 @@
                                                     </td>
                                                     <td style="width:20%"></td>
                                                     <td style="width:50%">
-                                                        <span style="font-size:1.3em" class="text-comun">#{casoController.nroAcontecimiento} Acontecimientos</span>
+                                                        <span style="font-size:1.3em" class="text-comun">#{casoController.nroAcontecimiento} acontecimientos</span>
                                                         <br/>
-                                                        <span style="font-size:1.3em" class="text-comun">#{casoController.nroActuacionesDefensoriales} Actuaciones defensoriales</span>
+                                                        <span style="font-size:1.3em" class="text-comun">#{casoController.nroActuacionesDefensoriales} actuaciones defensoriales</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -692,13 +692,13 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                         </div>
-                                                                                        <h:outputText style="color:grey" value="Registro del Acontecimiento: " rendered="#{time.tipo == 'AC'}"/>
-                                                                                        <h:outputText style="color:grey" value="Registro de la Actuación defensorial:  " rendered="#{time.tipo == 'AD'}"/>
+                                                                                        <h:outputText style="color:grey" value="Registro del acontecimiento: " rendered="#{time.tipo == 'AC'}"/>
+                                                                                        <h:outputText style="color:grey" value="Registro de la actuación defensorial:  " rendered="#{time.tipo == 'AD'}"/>
                                                                                         <h:outputText style="color:grey" value="#{time.fechaRegistro}">
                                                                                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
                                                                                         </h:outputText>
                                                                                         <br/>
-                                                                                        <h:outputText style="color:grey" value="Ultima modificación: " rendered="#{time.fechaModificacion != null}"/>
+                                                                                        <h:outputText style="color:grey" value="Última modificación: " rendered="#{time.fechaModificacion != null}"/>
                                                                                         <h:outputText style="color:grey" value="#{time.fechaModificacion}">
                                                                                             <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
                                                                                         </h:outputText>
@@ -769,7 +769,7 @@
                                 <table style="width:100%">
                                     <tr>
                                         <td>
-                                            <span class="text-resalt-primary">Información General</span>
+                                            <span class="text-resalt-primary">Información general</span>
                                         </td>
                                         <td style="float:right">
                                             <a id="addActuacion2" style="cursor:pointer">
@@ -1281,8 +1281,8 @@
                                     <a type="button" class="close" data-dismiss="modal">
                                         <span style="color:red" class="glyphicon glyphicon-remove"></span>
                                     </a>
-                                    <h:outputText class="text-primary" style="font-weight:bold;font-size:1.4em" value="Buscar Actuaciones defensoriales" rendered="#{!casoController.verTitulo}"/>
-                                    <h:outputText class="text-primary" style="font-weight:bold;font-size:1.4em" value="Buscar Acontecimientos" rendered="#{casoController.verTitulo}"/>
+                                    <h:outputText class="text-primary" style="font-weight:bold;font-size:1.4em" value="Buscar actuaciones defensoriales" rendered="#{!casoController.verTitulo}"/>
+                                    <h:outputText class="text-primary" style="font-weight:bold;font-size:1.4em" value="Buscar acontecimientos" rendered="#{casoController.verTitulo}"/>
                                 </div>
                                 <div class="modal-body">
                                     <h:dataTable style="width:100%" value="#{casoController.listaActividadesSinCaso}" var="act" class="table table-striped" binding="#{row1e}">

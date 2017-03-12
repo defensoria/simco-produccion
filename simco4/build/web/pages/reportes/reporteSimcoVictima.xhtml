@@ -27,7 +27,7 @@
                             </li>
                             <li role="presentation" class="active">
                                 <a jsf:action="#{reporteSimcoController.cargarReporteVictima()}" aria-controls="messages" role="tab" data-toggle="tab">
-                                    <span class="text-resalt-comun"/>Reporte de victimas
+                                    <span class="text-resalt-comun"/>Reporte de víctimas
                                 </a>
                             </li>
                         </ul>
@@ -44,7 +44,7 @@
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <b>Año de Registro:</b>
+                                                        <b>Año de registro:</b>
                                                     </td>
                                                     <td>
                                                         <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoVictima.anho}">
@@ -137,7 +137,8 @@
                                 </table>
                                 <br/>
                                 <div>
-                                    <a jsf:rendered="#{reporteSimcoController.listReporteVictima.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoVictimaExcel()}">
+                                    <a data-toggle="tooltip" data-placement="left" title="Columnas del reporte: Nro, Código del caso, Nombre del caso, Tipología del caso, Tipo de actividad, Código del acontecimiento / actuación, Nombre del acontecimiento, Grupo, Tipo, Subtipo, Región, Provincia, Distrito, Número de actores involucrados en el acontecimiento,	Tipo de víctima de la violencia, DNI, Apellidos y nombres, Edad, Sexo, Civil/PNP/FFAA"
+                                        jsf:rendered="#{reporteSimcoController.listReporteVictima.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoVictimaExcel()}">
                                         <img src="../../bootstrap/img/excel.png" height="45" width="45"/>
                                     </a>
                                     <a jsf:rendered="#{reporteSimcoController.listReporteVictima.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoVictimaPdf()}">
@@ -167,7 +168,7 @@
                                         <h:outputText value="#{victima.departamento}" />
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header">Tipo de victima de la violencia</f:facet>
+                                        <f:facet name="header">Tipo de víctima de la violencia</f:facet>
                                         <h:outputText value="#{victima.tipoVictima}" />
                                     </h:column>
                                     <h:column>
@@ -183,7 +184,7 @@
                                         <h:outputText value="#{victima.sexoVictima}" />
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header">Civil/PNP/FFAA</f:facet>
+                                        <f:facet name="header">Condición</f:facet>
                                         <h:outputText value="#{victima.tipoEstadoVictima}" />
                                     </h:column>
                                 </h:dataTable>

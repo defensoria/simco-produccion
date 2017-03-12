@@ -26,7 +26,7 @@
                             </li>
                             <li role="presentation">
                                 <a jsf:action="#{reporteSimcoController.cargarReporteVictima()}" aria-controls="messages" role="tab" data-toggle="tab">
-                                    <span class="text-resalt-comun"/>Reporte de victimas
+                                    <span class="text-resalt-comun"/>Reporte de víctimas
                                 </a>
                             </li>
                         </ul>
@@ -98,7 +98,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <b>Que incluyan como actor a comunidades nativas</b>
+                                                        <b>Que incluyan como actor a pueblos indígenas</b>
                                                     </td>
                                                     <td>
                                                         <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoCaso.esComunidadNativa}">
@@ -159,12 +159,14 @@
                                 </table>
                                 <br/>
                                 <div>
-                                    <a jsf:rendered="#{reporteSimcoController.listReporteCasos.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoCasoExcel()}">
+                                    <a data-toggle="tooltip" data-placement="left" title="Columnas del reporte: Nro, Código del caso, Nombre del caso, Fecha de inicio de caso, Región, Provincia, Distrito, Tipología, Actividad, Tipo de actividad primer nivel, Tipo de actividad segundo nivel, Tipo de actividad tercer nivel, Estado, Fecha modificación, Fase, momento de diálogo, Mecanismo de diálogo, Participación DP en diálogo, Fecha de resolución, Inversón Involucrada, Meses tomados para la resolución del caso, Cantidad de Acontecimientos, Cantidad de Actuaciones Defensoriales, Cantidad de Análisis,	Cantidad de Intervenciòn, Cantidad de acuerdos registrados, Indicador de participación de empresas mineras,	Indicador de participación de pueblos indígenas, Nro de muertos PNP, Nro de Civiles, Nro de muertos FFAA, Nro de heridos PNP, Nro de heridos	Civiles, Nro de muertos FFAA" 
+                                       jsf:rendered="#{reporteSimcoController.listReporteCasos.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoCasoExcel()}">
                                         <img src="../../bootstrap/img/excel.png" height="45" width="45"/>
                                     </a>
                                     <a jsf:rendered="#{reporteSimcoController.listReporteCasos.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoCasoPdf()}">
                                         <img src="../../bootstrap/img/pdf.png" height="45" width="45"/>
                                     </a>
+                                    
                                 </div>
                                 <h:dataTable value="#{reporteSimcoController.listReporteCasos}" var="item" class="table table-bordered table-striped table-hover" rendered="#{reporteSimcoController.listReporteCasos.size() > 0}" 
                                              headerClass="header_data_table" binding="#{itemC}">
@@ -213,7 +215,7 @@
                                         <h:outputText value="#{item.esEmpresaMinera}" />
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header">Indicador de participación comunidades nativas</f:facet>
+                                        <f:facet name="header">Indicador de participación pueblos indígenas</f:facet>
                                         <h:outputText value="#{item.esComunidadNativa == 0? 'No' : 'Si'}" />
                                     </h:column>
                                 </h:dataTable>

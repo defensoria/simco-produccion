@@ -57,7 +57,7 @@
                         $("#idBotonGuardar").on('click', function () {
                             if ($('#idTitulo').val() === "") {
                                 $('#idTitulo').addClass('error');
-                                alertar("Debe de ingresar el titulo de la investigacion");
+                                alertar("Debe de ingresar el título de la investigación");
                                 return false;
                             }
                             else {
@@ -194,7 +194,7 @@
                                                             <span class="text-primary" style="font-weight: bold">Título:</span>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="idTitulo" jsf:value="#{investigacionController.investigacion.titulo}" placeholder="Titulo"/>
+                                                            <input type="text" id="idTitulo" jsf:value="#{investigacionController.investigacion.titulo}" placeholder="Título"/>
                                                         </td>
                                                     </tr>
                                                 </table>

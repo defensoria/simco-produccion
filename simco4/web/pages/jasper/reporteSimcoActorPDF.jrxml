@@ -206,9 +206,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="30">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="105" height="20" uuid="3df37755-39ac-41cb-baf3-2487e884ca3b"/>
+				<reportElement x="0" y="0" width="105" height="30" uuid="3df37755-39ac-41cb-baf3-2487e884ca3b"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.1"/>
@@ -221,7 +221,7 @@
 				<textFieldExpression><![CDATA[$F{nombreActor}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="0" width="68" height="20" uuid="03d2e9fc-ce66-4df2-b255-aa22e1d54998"/>
+				<reportElement x="105" y="0" width="68" height="30" uuid="03d2e9fc-ce66-4df2-b255-aa22e1d54998"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -233,7 +233,7 @@
 				<textFieldExpression><![CDATA[$F{descripcionTipoActor}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="173" y="0" width="76" height="20" uuid="a899bd8c-c5f3-4731-9b40-c8bb7af3d8ce"/>
+				<reportElement x="173" y="0" width="76" height="30" uuid="a899bd8c-c5f3-4731-9b40-c8bb7af3d8ce"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -245,7 +245,7 @@
 				<textFieldExpression><![CDATA[$F{subtipo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="249" y="0" width="96" height="20" uuid="256d5b9a-8ee2-418e-84e7-52020c58daf2"/>
+				<reportElement x="249" y="0" width="96" height="30" uuid="256d5b9a-8ee2-418e-84e7-52020c58daf2"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -257,7 +257,7 @@
 				<textFieldExpression><![CDATA[$F{subtipo1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="345" y="0" width="72" height="20" uuid="b673d314-393e-4b8e-b6af-095295f52eb2"/>
+				<reportElement x="345" y="0" width="72" height="30" uuid="b673d314-393e-4b8e-b6af-095295f52eb2"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -269,7 +269,7 @@
 				<textFieldExpression><![CDATA[$F{subtipo2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="417" y="0" width="60" height="20" uuid="19a21991-01e9-4641-a215-302812f01658"/>
+				<reportElement x="417" y="0" width="60" height="30" uuid="19a21991-01e9-4641-a215-302812f01658"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -281,7 +281,7 @@
 				<textFieldExpression><![CDATA[$F{subtipo3}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="477" y="0" width="78" height="20" uuid="8de787a0-85a2-4a02-97cb-ee2ad8891cf1"/>
+				<reportElement x="477" y="0" width="78" height="30" uuid="8de787a0-85a2-4a02-97cb-ee2ad8891cf1"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -293,7 +293,7 @@
 				<textFieldExpression><![CDATA[$F{nombreDepartamento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="555" y="0" width="66" height="20" uuid="2a2ad1ec-4e6d-48a3-9c38-8e496256a172"/>
+				<reportElement x="555" y="0" width="66" height="30" uuid="2a2ad1ec-4e6d-48a3-9c38-8e496256a172"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -305,7 +305,7 @@
 				<textFieldExpression><![CDATA[$F{contadorActorCaso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="621" y="0" width="74" height="20" uuid="6fe6bb63-4362-4da8-abd4-27fa13754b25"/>
+				<reportElement x="621" y="0" width="74" height="30" uuid="6fe6bb63-4362-4da8-abd4-27fa13754b25"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -317,7 +317,7 @@
 				<textFieldExpression><![CDATA[$F{contadorActorAcuerdoComprometido}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="695" y="0" width="62" height="20" uuid="7e59a7f5-4322-4971-bac3-7cbecfbc7fbf"/>
+				<reportElement x="695" y="0" width="62" height="30" uuid="7e59a7f5-4322-4971-bac3-7cbecfbc7fbf"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>
@@ -329,7 +329,7 @@
 				<textFieldExpression><![CDATA[$F{contadorActorAcuerdoBeneficiario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="757" y="0" width="49" height="20" uuid="1c9eb760-0fe7-4af2-b782-543a346f7de0"/>
+				<reportElement x="757" y="0" width="49" height="30" uuid="1c9eb760-0fe7-4af2-b782-543a346f7de0"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<bottomPen lineWidth="0.1" lineColor="#666666"/>

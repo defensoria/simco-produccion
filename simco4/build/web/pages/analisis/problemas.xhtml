@@ -84,7 +84,7 @@
                                         <tr>
                                             <td style="width:50%">
                                                 <span class="text-resalt-green">Resumen de las demandas y posiciones</span>&#160;&#160;
-                                                <a jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" jsf:action="#{analisisController.desarchivarTodas()}" jsf:onclick="loadingModal()" title="hábilitar resumenes de demandas">
+                                                <a jsf:rendered="#{(casoController.esComisionadoRegistro) and casoController.caso.indAprobado != null}" jsf:action="#{analisisController.desarchivarTodas()}" jsf:onclick="loadingModal()" title="Habilitar resúmenes de demandas">
                                                     <span class="glyphicon glyphicon-ok-circle" style="font-size:large;color:blue"/>
                                                     <f:ajax render="@form" onevent="closeModal"/>
                                                 </a>
@@ -315,7 +315,7 @@
                                                             <input type="text" jsf:value="#{det.nombre}" placeholder="Nombre"/>
                                                             <br/>
                                                             <label><b>Síntesis del problema:</b></label>
-                                                            <textarea jsf:value="#{det.detalle}" rows="5" style="width:100%" placeholder="Sintesis Problema"/>
+                                                            <textarea jsf:value="#{det.detalle}" rows="5" style="width:100%" placeholder="Síntesis del problema"/>
                                                         </td>
                                                         <td>
                                                             <table style="width:5%">

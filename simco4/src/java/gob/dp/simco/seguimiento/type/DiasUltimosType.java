@@ -15,19 +15,19 @@ import javax.faces.model.SelectItem;
 
 public enum DiasUltimosType {
 
-	ULTIMOS_7(7, "Ultimos 7 dias"),
+	ULTIMOS_7(7, "Últimos 7 días"),
 
-	ULTIMOS_6(6, "Ultimos 6 dias"),
+	ULTIMOS_6(6, "Últimos 6 días"),
         
-        ULTIMOS_5(5, "Ultimos 5 dias"),
+        ULTIMOS_5(5, "Últimos 5 días"),
         
-        ULTIMOS_4(4, "Ultimos 4 dias"),
+        ULTIMOS_4(4, "Últimos 4 días"),
         
-        ULTIMOS_3(3, "Ultimos 3 dias"),
+        ULTIMOS_3(3, "Últimos 3 días"),
         
-        ULTIMOS_2(2, "Ultimos 2 dias"),
+        ULTIMOS_2(2, "Últimos 2 días"),
         
-        ULTIMOS_1(1, "Ultimos 1 dias");
+        ULTIMOS_1(1, "Últimos 1 días");
         
         
 	

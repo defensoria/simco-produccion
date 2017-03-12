@@ -684,7 +684,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
             listaMiembrosRegistrados = actorMiembroService.actorMiembroBuscarxActor(empresa.getId());
             for (ActorMiembro miembro : listaMiembrosRegistrados) {
                 if (Objects.equals(miembro.getIdMiembro(), am.getIdMiembro())) {
-                    msg.messageAlert("Esta Persona ya ha sido registrada", null);
+                    msg.messageAlert("Esta persona ya ha sido registrada", null);
                     removeTempMiembro(am);
                     return false;
                 }
@@ -737,7 +737,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
             listaMiembrosRegistradosPersona = actorMiembroService.actorMiembroBuscarxMiembro(actor.getId());
             for (ActorMiembro miembro : listaMiembrosRegistradosPersona) {
                 if (Objects.equals(miembro.getIdActor(), am.getIdActor())) {
-                    msg.messageAlert("La Persona ya se encuentra vinculada a la empresa", null);
+                    msg.messageAlert("La persona ya se encuentra vínculada a la empresa", null);
                     removeTempMiembroPersona(am);
                     return false;
                 }
@@ -1323,7 +1323,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
                     actor.setUsuarioRegistro(usuarioSession.getCodigo());
                     actorService.actorNuevo(actor);
                 }
-                msg.messageInfo("El actor se ha registrado correctamente ahora puede añadirlo a alguna Empresa o Entidad", null);
+                msg.messageInfo("El actor se ha registrado correctamente ahora puede añadirlo a alguna empresa o entidad", null);
             } else {
                 if (actor.getId() != null) {
                     actorService.actorModificar(actor);
@@ -1340,7 +1340,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
     public void actualizarActor() {
         try {
             actorService.actorModificar(actor);
-            msg.messageInfo("Se ha actualizado la informacion de la persona", null);
+            msg.messageInfo("Se ha actualizado la información de la persona", null);
         } catch (Exception ex) {
             log.error("ERROR - actualizarActor()" + ex);
         }
@@ -1348,7 +1348,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
 
     public boolean registrarActorEmpresa() {
         if(StringUtils.isBlank(empresa.getClasificacion())){
-            msg.messageAlert("Debe señalar si es Organización o Empresa", null);
+            msg.messageAlert("Debe señalar si es organización o empresa", null);
             return false;
         }
         try {
@@ -1357,7 +1357,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
                 if (cont > 0) {
                     if (empresa.getId() != null) {
                         actorService.actorModificar(empresa);
-                        msg.messageInfo("Se ha actualizado correctamente la Empresa", null);
+                        msg.messageInfo("Se ha actualizado correctamente la empresa", null);
                     } else {
                         msg.messageAlert("El RUC " + empresa.getRuc() + " ya se encuentra registrado", null);
                         empresa = new Actor();
@@ -1368,7 +1368,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
                         empresa.setUsuarioRegistro(usuarioSession.getCodigo());
                         empresa.setFechaRegistro(new Date());
                         actorService.actorNuevo(empresa);
-                        msg.messageInfo("Se ha registrado correctamente la Empresa ahora puede agregar sus miembros", null);
+                        msg.messageInfo("Se ha registrado correctamente la empresa ahora puede agregar sus miembros", null);
                     } else {
                         msg.messageAlert("El RUC " + empresa.getRuc() + " ya se encuentra registrado", null);
                         empresa = new Actor();
@@ -1377,11 +1377,11 @@ public class ActorController extends AbstractManagedBean implements Serializable
             } else {
                 if (empresa.getId() != null) {
                     actorService.actorModificar(empresa);
-                    msg.messageInfo("Se ha actualizado correctamente la Empresa", null);
+                    msg.messageInfo("Se ha actualizado correctamente la empresa", null);
                 } else {
                     empresa.setTipoGeneral("EM");
                     actorService.actorNuevo(empresa);
-                    msg.messageInfo("Se ha registrado correctamente la Empresa ahora puede agregar sus miembros", null);
+                    msg.messageInfo("Se ha registrado correctamente la empresa ahora puede agregar sus miembros", null);
                 }
             }
         } catch (Exception ex) {
@@ -1399,7 +1399,7 @@ public class ActorController extends AbstractManagedBean implements Serializable
                     if (entidad.getId() != null) {
                         entidad.setTipoGeneral("EN");
                         actorService.actorModificar(entidad);
-                        msg.messageInfo("Se ha actualizado correctamente la Entidad", null);
+                        msg.messageInfo("Se ha actualizado correctamente la entidad", null);
                     } else {
                         msg.messageAlert("El RUC " + entidad.getRuc() + " ya se encuentra registrado", null);
                         entidad = new Actor();
@@ -1409,16 +1409,16 @@ public class ActorController extends AbstractManagedBean implements Serializable
                     entidad.setUsuarioRegistro(usuarioSession.getCodigo());
                     entidad.setFechaRegistro(new Date());
                     actorService.actorNuevo(entidad);
-                    msg.messageInfo("Se ha registrado correctamente la Entidad ahora puede agregar sus miembros", null);
+                    msg.messageInfo("Se ha registrado correctamente la entidad ahora puede agregar sus miembros", null);
                 }
             } else {
                 if (entidad.getId() != null) {
                     actorService.actorModificar(entidad);
-                    msg.messageInfo("Se ha actualizado correctamente la Entidad", null);
+                    msg.messageInfo("Se ha actualizado correctamente la entidad", null);
                 } else {
                     entidad.setTipoGeneral("EN");
                     actorService.actorNuevo(entidad);
-                    msg.messageInfo("Se ha registrado correctamente la Entidad ahora puede agregar sus miembros", null);
+                    msg.messageInfo("Se ha registrado correctamente la entidad ahora puede agregar sus miembros", null);
                 }
             }
         } catch (Exception ex) {

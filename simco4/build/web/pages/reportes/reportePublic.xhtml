@@ -10,14 +10,14 @@
                         <table style="width: 50%">
                             <tr>
                                 <td>
-                                    <label>Seleccione Año</label>
+                                    <label>Seleccione año</label>
                                     <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.anhos}" class="selectRadio">
                                 <f:selectItem itemLabel="Seleccione" itemValue="0" />
                                 <f:selectItems value="#{listasComunesController.buscarAnhos(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
                             </h:selectOneMenu>
                                 </td>
                                 <td>
-                                    <label>Seleccione Mes</label>
+                                    <label>Seleccione mes</label>
                                     <h:selectOneMenu value="#{reporteGeneralController.filtroReporte.mes}" class="selectRadio">
                                 <f:selectItem itemLabel="Seleccione" itemValue="0" />
                                 <f:selectItems value="#{reporteGeneralController.listasMeses}" var="x" />
@@ -25,11 +25,11 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" jsf:action="#{reporteGeneralController.resumenEjecutivo(1)}">
-                                        <span class="glyphicon glyphicon-print" /> Generar Reporte PDF
+                                        <span class="glyphicon glyphicon-print" /> Descarga reporte PDF
                                     </a>
                                     &#160;&#160;&#160;&#160;&#160;&#160;
                                     <a class="btn btn-primary" jsf:action="#{reporteGeneralController.resumenEjecutivo(2)}">
-                                        <span class="glyphicon glyphicon-print" /> Generar Reporte WORD
+                                        <span class="glyphicon glyphicon-print" /> Descarga reporte WORD
                                     </a>
                                 </td>
                             </tr>
@@ -45,14 +45,14 @@
                         <table style="width: 50%">
                             <tr>
                                 <td>
-                                    <label>Seleccione Año</label>
+                                    <label>Seleccione año</label>
                                     <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.anhos}" class="selectRadio">
                                 <f:selectItem itemLabel="Seleccione" itemValue="0" />
                                 <f:selectItems value="#{listasComunesController.buscarAnhos(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
                             </h:selectOneMenu>
                                 </td>
                                 <td>
-                                    <label>Seleccione Mes</label>
+                                    <label>Seleccione mes</label>
                                     <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.mes}" class="selectRadio">
                                 <f:selectItem itemLabel="Seleccione" itemValue="0" />
                                 <f:selectItems value="#{reporteGeneralController.listasMeses}"/>

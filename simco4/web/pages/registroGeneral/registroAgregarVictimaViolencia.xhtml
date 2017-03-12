@@ -62,14 +62,14 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <label>Apellido Paterno</label>
+                                                    <label>Apellido paterno</label>
                                                     <input type="text" id="idActorPersonaAP" jsf:value="#{victimaViolenciaController.actividadVictima.apellidoPaterno}" placeholder="Apellido paterno" maxlength="150"/>
                                                     <br/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <label>Apellido Materno</label>
+                                                    <label>Apellido materno</label>
                                                     <input type="text" id="idActorPersonaAM" jsf:value="#{victimaViolenciaController.actividadVictima.apellidoMaterno}" placeholder="Apellido materno" maxlength="150"/>
                                                     <br/>
                                                 </td>
@@ -108,7 +108,7 @@
                                                     <br/>
                                                 </td>
                                                 <td>
-                                                    <label>Civil/PNP/FFAA</label>
+                                                    <label>Condición</label>
                                                     <h:selectOneMenu value="#{victimaViolenciaController.actividadVictima.tipoEstado}">
                                                         <f:selectItem itemLabel="Seleccione" itemValue="0"/>
                                                         <f:selectItems value="#{listasComunesController.buscarTipoCivilPNPFFAA(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
@@ -131,7 +131,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <label>Adjuntar</label>
+                                                    <label>Adjuntar medio de verificación</label>
                                                     <h:inputFile class="cMedio" value="#{victimaViolenciaController.file1}"/>
                                                 </td>
                                             </tr>
@@ -166,13 +166,20 @@
                                                 }
                                                 if ($("#idForm1\\:idVictimaTipo").val() === "0") {
                                                     $("#idForm1\\:idVictimaTipo").addClass("error");
-                                                    alertar("Debe de ingresar el tipo de victima");
+                                                    alertar("Debe de ingresar el tipo de víctima");
                                                     return false;
                                                 } else {
                                                     $("#idForm1\\:idVictimaTipo").removeClass("error");
                                                 }
                                                 confirmar();
                                             } else {
+                                                if ($("#idForm1\\:idVictimaTipo").val() === "0") {
+                                                    $("#idForm1\\:idVictimaTipo").addClass("error");
+                                                    alertar("Debe de ingresar el tipo de víctima");
+                                                    return false;
+                                                } else {
+                                                    $("#idForm1\\:idVictimaTipo").removeClass("error");
+                                                }
                                                 confirmar();
                                             }
                                         });
@@ -194,9 +201,9 @@
                                         <table style="width:90%">
                                             <tr>
                                                 <td>
-                                                    <h:outputText class="text-resalt-primary" value="Registro de fallecido" rendered="#{victimaViolenciaController.actividadVictima.tipo == '01'}" style="font-size:2em"/>
-                                                    <h:outputText class="text-resalt-primary" value="Registro de herido" rendered="#{victimaViolenciaController.actividadVictima.tipo == '02'}" style="font-size:2em"/>
-                                                    <h:outputText class="text-resalt-primary" value="Registro de secuestrado" rendered="#{victimaViolenciaController.actividadVictima.tipo == '03'}" style="font-size:2em"/>
+                                                    <h:outputText class="text-resalt-primary" value="Registro del/la fallecido/a" rendered="#{victimaViolenciaController.actividadVictima.tipo == '01'}" style="font-size:2em"/>
+                                                    <h:outputText class="text-resalt-primary" value="Registro del/la herido/a" rendered="#{victimaViolenciaController.actividadVictima.tipo == '02'}" style="font-size:2em"/>
+                                                    <h:outputText class="text-resalt-primary" value="Registro del/la secuestrado/a" rendered="#{victimaViolenciaController.actividadVictima.tipo == '03'}" style="font-size:2em"/>
                                                     <h:outputText class="text-resalt-primary" value="Registro de Otros tipos de víctima" rendered="#{victimaViolenciaController.actividadVictima.tipo == '04'}" style="font-size:2em"/>
                                                     <br/><br/>
                                                 </td>
@@ -260,7 +267,7 @@
                         <td>
                             <div class="panel panel-featured-top-primary">
                                 <div class="panel-body">
-                                    <span class="text-resalt-primary" style="font-size:2em">Lista de Victimas</span>
+                                    <span class="text-resalt-primary" style="font-size:2em">Lista de víctimas</span>
                                     <br/>
                                     <h:dataTable value="#{victimaViolenciaController.listaVictimas}" var="victimas" class="table table-striped" binding="#{row}" rendered="#{not empty victimaViolenciaController.listaVictimas}">
                                         <h:column>
@@ -268,11 +275,11 @@
                                             <h:outputText value="#{row.rowIndex+1}" />
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header">Nombre Completo</f:facet>
+                                            <f:facet name="header">Nombre completo</f:facet>
                                             <h:outputText value="#{victimas.nombre} #{victimas.apellidoPaterno} #{victimas.apellidoMaterno}" />
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header">Documento</f:facet>
+                                            <f:facet name="header">Documento de identidad</f:facet>
                                             <h:outputText value="#{victimas.dni}" />
                                         </h:column>
                                         <h:column>
@@ -284,7 +291,7 @@
                                             <h:outputText value="#{victimas.nombreTipo}" />
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header">Archivo</f:facet>
+                                            <f:facet name="header">Medio de verificación</f:facet>
                                             <a target="_blank" href="/filesystem/#{victimas.ruta}">
                                                 #{victimas.ruta}
                                             </a>

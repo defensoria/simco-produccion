@@ -23,6 +23,24 @@
                                 <span class="glyphicon glyphicon-pencil" style="font-size:large"></span>
                             </a>
                             </span>
+                            <span class="descripcionSpan" >
+                                #{intervencionController.intervencion.descripcion}
+                            </span>   
+                            <script>
+                                function delimitar(elemento, max_chars)
+{
+limite_text = $(elemento).text();
+if (limite_text.length > max_chars)
+{
+limite = limite_text.substr(0, max_chars)+" ...";
+$(elemento).text(limite);
+}
+}
+$(function()
+{
+delimitar(".descripcionSpan", 500);
+});
+                            </script>
                         </td>
                         <td style="width:25%; vertical-align: top">
                             <div class="panel panel-warning">
@@ -573,8 +591,8 @@
                                                                         <td>
                                                                             <h:panelGroup id="addAcciones">
                                                                                 <div class="form-group has-success has-feedback">
-                                                                                    <label class="control-label" for="inputSuccess2">Nombre de la Actividad</label>
-                                                                                    <input type="text" jsf:value="#{intervencionController.descripcionActuacion}" class="form-control" placeholder="Nueva Actuación" aria-describedby="inputSuccess2Status"/>
+                                                                                    <label class="control-label" for="inputSuccess2">Nombre de la actividad</label>
+                                                                                    <input type="text" jsf:value="#{intervencionController.descripcionActuacion}" class="form-control" placeholder="Nueva actuación" aria-describedby="inputSuccess2Status"/>
                                                                                     <a jsf:rendered="#{casoController.esComisionadoRegistro}" jsf:action="#{intervencionController.addListaIntervencionEtapaActuacion()}">
                                                                                         <span class="glyphicon glyphicon-share-alt form-control-feedback" aria-hidden="true"></span>
                                                                                         <f:ajax render="idDatatableAcciones @form" execute="@form"/>

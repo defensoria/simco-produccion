@@ -22,7 +22,7 @@
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Actuacion Defensorial:]]></text>
+				<text><![CDATA[Actuacion defensorial:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="141" y="25" width="273" height="20" forecolor="#666666" uuid="d13fcb0b-9819-42db-a4ee-60877b9c6ca6"/>

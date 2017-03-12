@@ -57,7 +57,7 @@
                 <div class="modal-content" style="background:#FCF8E3">
                     <div class="modal-header" style="padding:5px">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color:black;font-size:large"></span></button>
-                        <h4 style="color:#8A6D3B"><b>Alerta!</b></h4>
+                        <h4 style="color:#8A6D3B"><b>!Alerta!</b></h4>
                     </div>
                     <div style="background:white;box-sizing:border-box">
                         <div class="modal-body" style="padding:7px">
@@ -160,7 +160,7 @@
                                             <span class="badge">#{menuController.listaAlertaEjecutadas.size()}</span>
                                         </a>
                                         <div class="dropdown-menu notification-menu">
-                                            <div class="notification-title">
+                                            <div class="notification-title"  style="text-transform: none">
                                                 <span class="pull-right label label-default">#{menuController.listaAlertaEjecutadas.size()}</span>
                                                 Alertas
                                             </div>
@@ -191,7 +191,7 @@
                                                 </ul>
                                                 <hr />
                                                 <div class="text-right">
-                                                    <a jsf:action="#{seguimientoAcuerdoController.cargarPagina()}" class="view-more"><i class="glyphicon glyphicon-arrow-right"></i> Ver todas</a>
+                                                    <a style="text-transform: none" jsf:action="#{seguimientoAcuerdoController.cargarPagina()}" class="view-more"><i class="glyphicon glyphicon-arrow-right"></i> Ver todas</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +216,7 @@
                                                 <a role="menuitem" tabindex="-1" jsf:action="#{usuarioDetalleController.verDetallePerfil()}"><i class="glyphicon glyphicon-user"></i> Mi perfil</a>
                                             </li>
                                             <li>
-                                                <a href="/simco/cerrarSesion" role="menuitem" tabindex="-1"><i class="glyphicon glyphicon-off"></i> Cerrar sesion</a>
+                                                <a href="/simco/cerrarSesion" role="menuitem" tabindex="-1"><i class="glyphicon glyphicon-off"></i> Cerrar sesión</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -229,7 +229,7 @@
             <aside id="sidebar-left" class="sidebar-left" style="max-width:20%">
                 <div class="sidebar-header">
                     <div class="sidebar-title">
-                        MENU
+                        Menú
                     </div>
                     <div class="sidebar-toggle" id="idDivOcultarMenu">
                         <i class="glyphicon glyphicon-align-justify" aria-label="Toggle sidebar"></i>

@@ -554,7 +554,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                 verModalResumenDemandasxActor = false;
                 analisisActors = analisisActorService.analisisActorxcasoBuscar(caso.getId());
             } else {
-                msg.messageAlert("Debe de Seleccionar por lo menos un tema", null);
+                msg.messageAlert("Debe de seleccionar por lo menos un tema", null);
             }
         }
     }
@@ -673,7 +673,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         temaService.temaInsertar(tema);
         listarTemas(caso.getId());
         tema = new Tema();
-        msg.messageInfo("Se registro un nuevo tema para el analisis", null);
+        msg.messageInfo("Se registró un nuevo tema para el análisis", null);
         return true;
     }
 
@@ -1007,7 +1007,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                 cargarListasConflicto(actor);
                 break;
             case 0:
-                msg.messageAlert("Debe de seleccionar un tipo de relacion", null);
+                msg.messageAlert("Debe de seleccionar un tipo de relación", null);
                 break;
         }
     }
@@ -1024,7 +1024,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         for (RelacionActorVO o : listaActorAlianza) {
             if (Objects.equals(o.getActor1().getId(), vo.getActor1().getId())) {
                 if (Objects.equals(o.getActor2().getId(), act.getId())) {
-                    msg.messageAlert("Esta relacion ya existe en el tipo Alianza", null);
+                    msg.messageAlert("Esta relación ya existe en el tipo alianza", null);
                     return false;
                 }
             }
@@ -1032,7 +1032,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         for (RelacionActorVO o : listaActorConflicto) {
             if (Objects.equals(o.getActor1().getId(), vo.getActor1().getId())) {
                 if (Objects.equals(o.getActor2().getId(), act.getId())) {
-                    msg.messageAlert("Esta relacion ya existe en el tipo Conflicto", null);
+                    msg.messageAlert("Esta relación ya existe en el tipo conflicto", null);
                     return false;
                 }
             }
@@ -1040,7 +1040,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         for (RelacionActorVO o : listaActorTension) {
             if (Objects.equals(o.getActor1().getId(), vo.getActor1().getId())) {
                 if (Objects.equals(o.getActor2().getId(), act.getId())) {
-                    msg.messageAlert("Esta relacion ya existe en el tipo Tension", null);
+                    msg.messageAlert("Esta relación ya existe en el tipo vínculo tensión", null);
                     return false;
                 }
             }
@@ -1048,7 +1048,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         for (RelacionActorVO o : listaActorVinculoCercano) {
             if (Objects.equals(o.getActor1().getId(), vo.getActor1().getId())) {
                 if (Objects.equals(o.getActor2().getId(), act.getId())) {
-                    msg.messageAlert("Esta relacion ya existe en el tipo Vinculo Cercano", null);
+                    msg.messageAlert("Esta relación ya existe en el tipo vínculo cercano", null);
                     return false;
                 }
             }
@@ -1056,7 +1056,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
         for (RelacionActorVO o : listaActorVinculoDebil) {
             if (Objects.equals(o.getActor1().getId(), vo.getActor1().getId())) {
                 if (Objects.equals(o.getActor2().getId(), act.getId())) {
-                    msg.messageAlert("Esta relacion ya existe en el tipo Vinculo Debil", null);
+                    msg.messageAlert("Esta relación ya existe en el tipo vínculo debil", null);
                     return false;
                 }
             }
@@ -1076,7 +1076,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                     return false;
                 }
                 relacionActorVOAlianza.setActor2(actor);
-                msg.messageInfo("Se ha agregado la relacion de alianzas", null);
+                msg.messageInfo("Se ha agregado la relación de alianzas", null);
                 indicador++;
             }
         }
@@ -1099,7 +1099,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                     return false;
                 }
                 relacionActorVOVinculoCercano.setActor2(actor);
-                msg.messageInfo("Se ha agregado la relacion de vínculo cercano", null);
+                msg.messageInfo("Se ha agregado la relación de vínculo cercano", null);
                 indicador++;
             }
         }
@@ -1122,7 +1122,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                     return false;
                 }
                 relacionActorVOVinculoDebil.setActor2(actor);
-                msg.messageInfo("Se ha agregado la relacion de vínculo Debil", null);
+                msg.messageInfo("Se ha agregado la relación de vínculo débil", null);
                 indicador++;
             }
         }
@@ -1145,7 +1145,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                     return false;
                 }
                 relacionActorVOTension.setActor2(actor);
-                msg.messageInfo("Se ha agregado la relacion de tensión", null);
+                msg.messageInfo("Se ha agregado la relación vínculo de tensión", null);
                 indicador++;
             }
         }
@@ -1168,7 +1168,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
                     return false;
                 }
                 relacionActorVOConflicto.setActor2(actor);
-                msg.messageInfo("Se ha agregado la relacion de conflicto", null);
+                msg.messageInfo("Se ha agregado la relación de conflicto", null);
                 indicador++;
             }
         }

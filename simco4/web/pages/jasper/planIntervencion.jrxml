@@ -28,7 +28,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PLAN DE INTERVENCION]]></text>
+				<text><![CDATA[PLAN DE INTERVENCIÓN]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="0" y="99" width="523" height="33" uuid="b24fd3cb-7ccd-4a4c-b11c-6cbe006e4a6b"/>

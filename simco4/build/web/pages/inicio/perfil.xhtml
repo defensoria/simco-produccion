@@ -14,7 +14,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" jsf:onclick="return guardarImagen()" jsf:action="#{usuarioDetalleController.agregarImagen()}">
-                                        <span class="glyphicon glyphicon-floppy-disk">Guardar</span>
+                                        <span class="glyphicon glyphicon-floppy-disk" />Guardar
                                     </a>
                                     <script>function refrescar(a){if (a.status === "complete"){info("Se realizaron los cambios")}}</script>
                                 </td>
@@ -35,15 +35,15 @@
                             <label class="col-sm-2 control-label" style="text-align:left">#{usuarioDetalleController.usuario.nombre}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Apellido Paterno</label>
+                            <label class="col-sm-2 control-label">Apellido paterno</label>
                             <label class="col-sm-2 control-label" style="text-align:left">#{usuarioDetalleController.usuario.apellidoPaterno}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Apellido Materno</label>
+                            <label class="col-sm-2 control-label">Apellido materno</label>
                             <label class="col-sm-2 control-label" style="text-align:left">#{usuarioDetalleController.usuario.apellidoMaterno}</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Email</label>
+                            <label class="col-sm-2 control-label">Correo electrónico</label>
                             <label class="col-sm-2 control-label" style="text-align:left">#{usuarioDetalleController.usuario.email}</label>
                         </div>
                         <div class="form-group">
@@ -56,7 +56,7 @@
                             <table class="table table-striped">
                                 <tr>
                                     <td>Imagen</td>
-                                    <td>ver</td>
+                                    <td>Ver</td>
                                 </tr>
                                 <tr>
                                     <td>#{usuarioDetalleController.usuario.ruta}</td>

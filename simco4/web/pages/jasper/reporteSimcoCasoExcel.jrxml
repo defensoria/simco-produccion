@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoCasoExcel" pageWidth="4819" pageHeight="600" orientation="Landscape" columnWidth="4819" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="3649"/>
+	<property name="ireport.x" value="3385"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -306,42 +306,42 @@ Tercer nivel]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Meses tomados para la Resolucion del caso]]></text>
+				<text><![CDATA[Meses tomados para la resolución del caso]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3454" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="26ae9ea3-2f10-4d98-819a-c18da0409a94"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad de Actuaciones Defensoriales]]></text>
+				<text><![CDATA[Cantidad de actuaciones defensoriales]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3354" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="c8e2117f-3c13-4e8d-91d1-ea02a0bb3ec8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad de Acontecimientos]]></text>
+				<text><![CDATA[Cantidad de acontecimientos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3554" y="38" width="121" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="0889c271-9541-48f8-b65e-ac68bd7226e1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad de Análisis]]></text>
+				<text><![CDATA[Cantidad de documentos de análisis]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3675" y="38" width="100" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b13d7046-1bcb-4b9d-bb7c-a8772796bc41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad de Intervenciòn]]></text>
+				<text><![CDATA[Cantidad de planes de intervención]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3775" y="38" width="129" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="788a7319-d712-409c-bd56-68858f277b93"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad de Acuertos registrados]]></text>
+				<text><![CDATA[Cantidad de acuerdos registrados]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3904" y="38" width="136" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="9e25cc3b-f993-41c9-889d-707490d9fcfa"/>
@@ -355,7 +355,7 @@ Tercer nivel]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Indicador de participación de comunidades nativas]]></text>
+				<text><![CDATA[Indicador de participación de pueblos indígenas]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="4297" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="4f5df4d8-4f59-48e2-94a9-1f940c8666e6"/>

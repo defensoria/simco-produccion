@@ -47,7 +47,7 @@
                                         if ($('#idNombreEntidad').val() === "") {
                                             $('#idNombreEntidad').addClass('df_input_error');
                                             $('#idNombreEntidad').focus();
-                                            alertar("Debe de ingresar el nombre de la Entidad");
+                                            alertar("Debe de ingresar el nombre de la entidad");
                                             return false;
                                         }
                                         else {
@@ -110,7 +110,7 @@
                                                                                             </h:selectOneMenu>
                                                                                         </td>
                                                                                         <td style="width: 34%">
-                                                                                            <label>Sub-tipo1:</label>
+                                                                                            <label>Subtipo1:</label>
                                                                                             <h:selectOneMenu value="#{actorController.entidad.subTipo1Estado}" onchange="loadingModal()">
                                                                                                 <f:selectItem itemValue="0" itemLabel="Seleccione" />
                                                                                                 <f:selectItems value="#{actorController.listaSubTipo1Estado}" />
@@ -118,7 +118,7 @@
                                                                                             </h:selectOneMenu>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <label>Sub-tipo2:</label>
+                                                                                            <label>Subtipo2:</label>
                                                                                             <h:selectOneMenu value="#{actorController.entidad.subTipo2Estado}">
                                                                                                 <f:selectItem itemValue="0" itemLabel="Seleccione" />
                                                                                                 <f:selectItems value="#{actorController.listaSubTipo2Estado}" />

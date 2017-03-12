@@ -95,7 +95,6 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
         int nroDetenidos = 0;
         int nroOtros = 0;
         int nroDesaparecidos = 0;
-        int nN = 0;
         if (listaVictimas != null) {
             for (ActividadVictima av : listaVictimas) {
                 if (StringUtils.equals(av.getTipo(), "01")) {
@@ -116,9 +115,6 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
                 if (StringUtils.equals(av.getTipo(), "06")) {
                     nroOtros++;
                 }
-                if (StringUtils.equals(av.getTipo(), "0")) {
-                    nN++;
-                }
             }
         }
         tiposVictima.put("Muertos", nroMuertos);
@@ -127,7 +123,6 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
         tiposVictima.put("Detenidos", nroDetenidos);
         tiposVictima.put("Desaparecidos", nroDesaparecidos);
         tiposVictima.put("Otros", nroOtros);
-        tiposVictima.put("NN", nN);
     }
     
     public Map<String, String> mapearTipos(List<ActividadVictima> listaV) {
@@ -138,7 +133,6 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
         int nroDetenidos = 0;
         int nroOtros = 0;
         int nroDesaparecidos = 0;
-        int nN = 0;
         if (listaV != null) {
             for (ActividadVictima av : listaV) {
                 if (StringUtils.equals(av.getTipo(), "01")) {
@@ -159,9 +153,6 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
                 if (StringUtils.equals(av.getTipo(), "06")) {
                     nroOtros++;
                 }
-                if (StringUtils.equals(av.getTipo(), "0")) {
-                    nN++;
-                }
             }
         }
         tipoVictima.put("Muertos", nroMuertos);
@@ -170,7 +161,6 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
         tipoVictima.put("Detenidos", nroDetenidos);
         tipoVictima.put("Desaparecidos", nroDesaparecidos);
         tipoVictima.put("Otros", nroOtros);
-        tipoVictima.put("NN", nN);
         return tipoVictima;
     }
 
@@ -196,11 +186,11 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
             if (actividadVictima.getId() == null) {
                 actividadVictima.setFechaRegistro(new Date());
                 actividadVictimaService.actividadVictimaInsertar(actividadVictima);
-                msg.messageInfo("Se registro la victima", null);
+                msg.messageInfo("Se registro la víctima", null);
             } else {
                 actividadVictima.setFechaModificacion(new Date());
                 actividadVictimaService.actividadVictimaUpdate(actividadVictima);
-                msg.messageInfo("Se actualizo la victima", null);
+                msg.messageInfo("Se actualizo la víctima", null);
             }
         } catch (Exception e) {
             log.error(e);

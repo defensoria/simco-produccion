@@ -28,7 +28,7 @@
                             if ($('#idActorNombre').val() === "") {
                                 $('#idActorNombre').addClass('df_input_error');
                                 $('#idActorNombre').focus();
-                                alertar("Debe de ingresar el nombre del Actor");
+                                alertar("Debe de ingresar el nombre del actor");
                                 return false;
                             }
                             else {
@@ -112,7 +112,7 @@
                                                                                             </h:selectOneMenu>
                                                                                         </td>
                                                                                         <td style="width: 34%">
-                                                                                            <label>Sub-tipo1:</label>
+                                                                                            <label>Subtipo1:</label>
                                                                                             <h:selectOneMenu value="#{actorController.actor.subTipo1Poblacion}" onchange="loadingModal()">
                                                                                                 <f:selectItem itemValue="0" itemLabel="Seleccione" />
                                                                                                 <f:selectItems value="#{actorController.listaSubTipo1Poblacion}" />
@@ -120,7 +120,7 @@
                                                                                             </h:selectOneMenu>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <label>Sub-tipo2:</label>
+                                                                                            <label>Subtipo2:</label>
                                                                                             <h:selectOneMenu value="#{actorController.actor.subTipo2Poblacion}">
                                                                                                 <f:selectItem itemValue="0" itemLabel="Seleccione" />
                                                                                                 <f:selectItems value="#{actorController.listaSubTipo2Poblacion}" />

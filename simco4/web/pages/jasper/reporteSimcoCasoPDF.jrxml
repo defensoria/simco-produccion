@@ -208,7 +208,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Indicador de participación de comunidades nativas]]></text>
+				<text><![CDATA[Indicador de participación de pueblos indígenas]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="288" y="38" width="73" height="50" forecolor="#FFFFFF" backcolor="#0066CC" uuid="b7e8e55e-487e-4b52-ad6d-d07151131531"/>
@@ -240,14 +240,14 @@
 					<font fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Indicador de participación comunidades nativas]]></text>
+				<text><![CDATA[Indicador de participación pueblos indígenas]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="30">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="21326ea6-c762-4cbd-9a3b-6e1a30216b95"/>
+				<reportElement x="0" y="0" width="100" height="30" uuid="21326ea6-c762-4cbd-9a3b-6e1a30216b95"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.1" lineColor="#666666"/>
@@ -260,7 +260,7 @@
 				<textFieldExpression><![CDATA[$F{codigoCaso}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="100" y="0" width="142" height="20" uuid="1d3ae86b-4ac6-41bc-88db-3d956029a781"/>
+				<reportElement x="100" y="0" width="142" height="30" uuid="1d3ae86b-4ac6-41bc-88db-3d956029a781"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -273,7 +273,7 @@
 				<textFieldExpression><![CDATA[$F{nombreCaso}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="242" y="0" width="46" height="20" uuid="57ec5fd3-1230-428a-8511-2cb253dfe2bd"/>
+				<reportElement x="242" y="0" width="46" height="30" uuid="57ec5fd3-1230-428a-8511-2cb253dfe2bd"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -286,7 +286,7 @@
 				<textFieldExpression><![CDATA[$F{fechaInicioCaso}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="361" y="0" width="97" height="20" uuid="e88d04c6-d4b8-4eac-814e-c5114e65e4e8"/>
+				<reportElement x="361" y="0" width="97" height="30" uuid="e88d04c6-d4b8-4eac-814e-c5114e65e4e8"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -299,7 +299,7 @@
 				<textFieldExpression><![CDATA[$F{tipologia}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="458" y="0" width="60" height="20" uuid="9f756b55-237e-4136-b158-e178819d28cd"/>
+				<reportElement x="458" y="0" width="60" height="30" uuid="9f756b55-237e-4136-b158-e178819d28cd"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -312,7 +312,7 @@
 				<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="518" y="0" width="52" height="20" uuid="5c73c746-0412-4fbe-b889-f7207cfe1b2c"/>
+				<reportElement x="518" y="0" width="52" height="30" uuid="5c73c746-0412-4fbe-b889-f7207cfe1b2c"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -325,7 +325,7 @@
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="570" y="0" width="65" height="20" uuid="40cd85e6-9be2-43c9-8477-2889517d8d1d"/>
+				<reportElement x="570" y="0" width="65" height="30" uuid="40cd85e6-9be2-43c9-8477-2889517d8d1d"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -350,7 +350,7 @@
 				<textFieldExpression><![CDATA[$F{esComunidadNativa}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="288" y="0" width="73" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2faf786c-78f1-403f-b1c6-bd1acf8e628f"/>
+				<reportElement mode="Transparent" x="288" y="0" width="73" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="2faf786c-78f1-403f-b1c6-bd1acf8e628f"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -364,7 +364,7 @@
 				<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="635" y="0" width="57" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8ab37cde-a8a6-4626-a7a6-95ff09651861"/>
+				<reportElement mode="Transparent" x="635" y="0" width="57" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="8ab37cde-a8a6-4626-a7a6-95ff09651861"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -378,7 +378,7 @@
 				<textFieldExpression><![CDATA[$F{cantidadAcuerdos}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="692" y="0" width="57" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0e5a6ec4-d2f8-461e-a3e7-3f4263d09a97"/>
+				<reportElement mode="Transparent" x="692" y="0" width="57" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="0e5a6ec4-d2f8-461e-a3e7-3f4263d09a97"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>
@@ -392,7 +392,7 @@
 				<textFieldExpression><![CDATA[$F{esEmpresaMinera}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="749" y="0" width="57" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="dbfa6293-cb40-4605-b6bc-a2ae9d27341b"/>
+				<reportElement mode="Transparent" x="749" y="0" width="57" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="dbfa6293-cb40-4605-b6bc-a2ae9d27341b"/>
 				<box leftPadding="1">
 					<topPen lineWidth="0.1" lineColor="#666666"/>
 					<leftPen lineWidth="0.0"/>

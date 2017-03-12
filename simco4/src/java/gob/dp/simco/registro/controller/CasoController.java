@@ -266,7 +266,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 casoRegion.setIdCaso(caso.getId());
                 casoRegionService.casoRegionInsertar(casoRegion);
             } else {
-                msg.messageAlert("Debe de ingresar como minimo un departamento", null);
+                msg.messageAlert("Debe de ingresar como mínimo un departamento", null);
                 return false;
             }
             if (StringUtils.isNotBlank(casoRegion.getIdDepartamento()) && !StringUtils.equals(casoRegion.getIdDepartamento(), "0")) {
@@ -424,10 +424,10 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             contarActividades();
             if (tipo.equals("AD")) {
                 registroController.removeAcontecimientoVinculadoFichaAD(a);
-                msg.messageInfo("Se elimino la Actuacion Defensorial", null);
+                msg.messageInfo("Se eliminó la actuación defensorial", null);
             } else {
                 registroController.removeAcontecimientoVinculadoFichaAC(a);
-                msg.messageInfo("Se elimino el Acontecimiento", null);
+                msg.messageInfo("Se eliminó el acontecimiento", null);
             }
         } catch (Exception ex) {
             log.error(ex.getMessage());
@@ -793,7 +793,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             casoService.casoNuevo(caso);
             /*if(StringUtils.equals(caso.getTipoEstado(), "02"))
                 enviarSolicitudAprobacion();*/
-            msg.messageInfo("Se registró Correctamente el Caso.", null);
+            msg.messageInfo("Se registró correctamente el caso.", null);
             if (listaCasoRegion.size() > 0) {
                 updateListaRegion();
             }
@@ -948,9 +948,9 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             actividadCasoService.actividadCasoInsertar(ac);
             contarActividades();
             if (tipo.equals("AD")) {
-                msg.messageInfo("Se ha vinculado la Actuacion Defensorial", null);
+                msg.messageInfo("Se ha vinculado la actuación defensorial", null);
             } else {
-                msg.messageInfo("Se ha vinculado el Acontecimiento", null);
+                msg.messageInfo("Se ha vinculado el acontecimiento", null);
             }
         } catch (Exception ex) {
             log.error(ex.getCause());

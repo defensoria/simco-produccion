@@ -83,7 +83,7 @@
                         <table style="width:100%">
                             <tr>
                                 <td style="width:50%">
-                                    <span class="text-resalt-green">Anális de poder/influencia</span>
+                                    <span class="text-resalt-green">Análisis de poder/influencia</span>
                                 </td>
                                 <td style="width:50%;text-align:right">
                                     <h:panelGroup rendered="#{(casoController.esComisionadoRegistro) and (casoController.caso.indAprobado != null)}">
@@ -267,7 +267,7 @@
                                                 <td style="width:30%">
                                                     <div class="panel #{analisisController.activarVinculoDebil}">
                                                         <div class="panel-heading">
-                                                            <span class="text-resalt-primary">Vínculo Debil</span>
+                                                            <span class="text-resalt-primary">Vínculo débil</span>
                                                             <a style="font-size:medium;text-decoration:none" jsf:action="#{analisisController.cargarSeccionVinculoDebil()}" jsf:immediate="true">
                                                                 <span class="glyphicon glyphicon-plus"></span>
                                                                 <f:ajax render=":idForm:idPanelVinculacion" execute="@form" />
@@ -398,141 +398,6 @@
                     });
                 </script>
             </h:form>
-   <!--         
-    <h:form class="form-horizontal">
-        <link href="/simco/faces/vis/css/vis.css" rel="stylesheet"/>
-    <script src="/simco/faces/vis/js/vis.js"></script>
-        <a class="btn btn-info" jsf:action="#{graficController.cargarPaginaRelacionCasoI()}">
-            sa
-            
-        </a>
-        
-    <h:panelGroup id="idPanelGroupAcontecimientoBusqueda" rendered="#{graficController.verModalActor}">
-                <script type="text/javascript">
-                    
-                        $("#modalGraphic").modal('close');
-            
-        </script>
-        <style>
-            .modal.in {
-   display:block;
-}
-        </style>
-                <div class="modal fade in show" data-backdrop="static" data-keyboard="false" id="modalGraphic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            
-                                <div class="modal-header">
-                                    <a type="button" class="close" data-dismiss="modal">
-                                        <span style="color:red" class="glyphicon glyphicon-remove"></span>
-                                    </a>
-                                     </div>
-                                <div class="modal-body">
-                                    
-            <style type="text/css">
-            #mynetwork{
-                width:50%;
-                height:50%;
-                border:2px solid grey
-            }
-            
-            #mynetwork2{
-                width:50%;
-                height:50%;
-                border:2px solid grey
-            }
-            
-            .legend{
-                width:30%;
-                height:30%
-            }
-            </style>
-        <script>
-            /*<![CDATA[*/
-            sessionStorage.setItem('menuHijoSession', 'Diagrama Actores');
-            sessionStorage.setItem('menuNietoSession', 'Diagrama Actores');
-            $(function () {#{graficController.cadenaAutocomplete}
-                $("#nombreCaso").autocomplete({minLength: 3, source: projects, focus: function (event, ui) {
-                $("#nombreCaso").val(ui.item.label);
-                return false;
-            }, select: function (event, ui) {
-                $("#nombreCaso").val(ui.item.label);
-                $("#idCaso").val(ui.item.value);
-                return false;
-            }}).data("ui-autocomplete")._renderItem = function (ul, item) {
-            return $("<li/>").append("<a>" + item.label + "<br/>" + item.desc + "</a>").appendTo(ul);
-        };
-    });
-    /*]]>*/
-        </script>
-        <table style="width:100%">
-            <tr>
-                <td>
-                    <span class="text-resalt-primary" style="font-size:2em;font-weight:bold">Cuadro de relación de actores</span>
-                </td>
-                <td>
-                    <div class="form-group has-feedback" style="width:100%;margin:auto;display:#{analisisController.verAutoCompleteCaso == true? '':'none'}">
-                        <input type="text" id="nombreCaso" jsf:value="#{graficController.caso.nombre}" placeholder="Buscar"/>
-                        <input type="hidden" id="idCaso" jsf:value="#{graficController.caso.id}"/>
-                        <a style="float:right;margin:auto" jsf:action="#{graficController.generarGraficosActores(graficController.caso)}" jsf:onclick="loadingModal()">
-                            <span style="font-size:medium" class="glyphicon glyphicon-search form-control-feedback"/>
-                            <f:ajax render="@form" execute="@form" onevent="closeModal" />
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <br/><br/><br/>
-        <div class="panel panel-featured-top-silver" style="width:50%">
-            <div class="panel-body">
-                <table style="width:100%">
-                    <tr>
-                        <td>
-                            <span style="font-size:large" class="text-resalt-primary glyphicon glyphicon-th-list">
-                                <span class="text-resalt-primary">Vinculos</span>
-                            </span>
-                        </td>
-                        <td style="text-align:right">
-                            <a class="btn btn-info" jsf:action="relationActorEstatic">
-                                <span class="glyphicon glyphicon-share"/>version Estatica
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-                <br/>
-                <br/>
-                <div style="background:yellow;height:5px;width:80%">Alianzas</div>
-                <br/>
-                <div style="background:green;height:5px;width:80%">Vínculo cercano</div>
-                <br/>
-                <div style="background:blue;height:5px;width:80%">Vínculo debil</div>
-                <br/>
-                <div style="background:red;height:5px;width:80%">Tensión</div>
-                <br/>
-                <div style="background:black;height:5px;width:80%">Conflicto</div>
-                <br/>
-            </div>
-        </div>
-        <div id="mynetwork" style="width:80%;height:500px" class="panel">
-        </div>
-        <script type="text/javascript">#{graficController.nodes}#{graficController.edges}
-    var container = document.getElementById('mynetwork');
-    var data = {nodes: nodes, edges: edges};
-    var options = {};
-    var network = new vis.Network(container, data, options);
-    var container2 = document.getElementById('mynetwork2');
-    var network2 = new vis.Network(container2, data, options);</script>
-    
-        
-                                </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-            </h:panelGroup>
-            </h:form>
-   -->
         </ui:define>
     </ui:composition>
 </html>

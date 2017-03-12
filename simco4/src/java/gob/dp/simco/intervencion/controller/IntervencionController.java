@@ -472,7 +472,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
                 actuacion.setEstado("INA");
             }
             intervencionEtapaActuacionService.intervencionEtapaActuacionInsertar(actuacion);
-            saveHistorial("agrego la actuacion:" + actuacion.getDescripcion(), usuarioSession.getNombre() + " " + usuarioSession.getApellidoPaterno() + " " + usuarioSession.getApellidoMaterno(), actuacion.getIntervencionEtapa().getId());
+            saveHistorial("Agregó la intervención:" + actuacion.getDescripcion(), usuarioSession.getNombre() + " " + usuarioSession.getApellidoPaterno() + " " + usuarioSession.getApellidoMaterno(), actuacion.getIntervencionEtapa().getId());
             verHistorial(actuacion.getIntervencionEtapa().getId());
         } else {
             if (!actuacion.getIndCheck()) {
@@ -577,7 +577,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
         intervencionEtapa.setIntervencionAccion(intervencionAc);
         intervencionEtapaService.intervencionEtapaUpdate(intervencionEtapa);
         registrarListasTipo();
-        saveHistorial("actualizo la intervencion:" + intervencionEtapa.getDescripcion(), usuarioSession.getNombre() + " " + usuarioSession.getApellidoPaterno() + " " + usuarioSession.getApellidoMaterno(), intervencionEtapa.getId());
+        saveHistorial("Actualizó la intervención:" + intervencionEtapa.getDescripcion(), usuarioSession.getNombre() + " " + usuarioSession.getApellidoPaterno() + " " + usuarioSession.getApellidoMaterno(), intervencionEtapa.getId());
         verHistorial(intervencionEtapa.getId());
     }
 
@@ -605,7 +605,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
         } else {
             intervencionEtapa.setTipo("PLA");
         }
-        msg.messageInfo("Se actualizo el Plan de Intervencion", null);
+        msg.messageInfo("Se actualizó el plan de intervención", null);
     }
 
     public boolean addMiembro(Usuario usuario) {
@@ -650,13 +650,13 @@ public class IntervencionController extends AbstractManagedBean implements Seria
         intervencion.setEstado("ARC");
         updateIntervencion();
         listarIntervenciones();
-        msg.messageAlert("Se archivo el plan de intervención", null);
+        msg.messageAlert("Se archivó el plan de intervención", null);
         return "intervencion";
     }
 
     public void updateDetalle() {
         updateIntervencion();
-        msg.messageInfo("Se registro la descripción correctamente", null);
+        msg.messageInfo("Se registró la descripción correctamente", null);
     }
 
     public void updateIntervencion() {
@@ -750,7 +750,7 @@ public class IntervencionController extends AbstractManagedBean implements Seria
         intervencionAccion.setIntervencion(inte);
         intervencionAccionService.intervencionAccionInsertar(intervencionAccion);
         listarAcciones(intervencion.getId());
-        msg.messageInfo("Se ha agregado un Campo de Accion", null);
+        msg.messageInfo("Se ha agregado un campo de Acción", null);
     }
 
     private void listarAcciones(Long idIntervencion) {

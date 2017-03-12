@@ -58,7 +58,6 @@ import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.groovy.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
@@ -1077,7 +1076,7 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         usuarioSession();
         filtroReporteCarga.setUsuarioRegistro(usuarioSession.getCodigo());
         reporteEjecutivoService.cargaCasoMes(filtroReporteCarga);
-        msg.messageInfo("Se ejecuto la carga de datos", null);
+        msg.messageInfo("Se ejecutó la carga de datos", null);
         return true;
         //reporteService.cargaCasoMes(registroCarga.getId());
     }

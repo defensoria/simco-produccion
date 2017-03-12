@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoVictimaExcel" pageWidth="3811" pageHeight="600" orientation="Landscape" columnWidth="3811" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="2673"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -296,7 +296,7 @@
 	</columnHeader>
 	<detail>
 		<band height="20">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="43" height="20" uuid="9b5de7eb-69d7-4578-9050-f4c1097dabc0"/>
 				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
 			</textField>
@@ -328,7 +328,7 @@
 				<reportElement x="1355" y="0" width="256" height="20" uuid="bc22761b-71e6-4cc0-8d7e-469cb8cb88ce"/>
 				<textFieldExpression><![CDATA[$F{grupoAcontecimientoDetalle}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="1611" y="0" width="271" height="20" uuid="3c749257-7177-4b93-b2b6-f27e1af21e50"/>
 				<textFieldExpression><![CDATA[$F{tipoAcontecimientoDetalle}]]></textFieldExpression>
 			</textField>
@@ -366,7 +366,7 @@
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="3521" y="0" width="140" height="20" uuid="0e3a928b-f945-40c2-8018-799e5072c5a0"/>
-				<textFieldExpression><![CDATA[$F{sexoVictima}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{sexoVictima}.equals("0")? "" : $F{sexoVictima}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="3661" y="0" width="150" height="20" uuid="bab6fff8-ae69-45d3-97e8-5d673a8356d0"/>

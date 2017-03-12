@@ -27,7 +27,7 @@
                             </li>
                             <li role="presentation">
                                 <a jsf:action="#{reporteSimcoController.cargarReporteVictima()}" aria-controls="messages" role="tab" data-toggle="tab">
-                                    <span class="text-resalt-comun"/>Reporte de victimas
+                                    <span class="text-resalt-comun"/>Reporte de víctimas
                                 </a>
                             </li>
                         </ul>
@@ -44,7 +44,7 @@
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <b>Año de Registro:</b>
+                                                        <b>Año de registro:</b>
                                                     </td>
                                                     <td>
                                                         <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActividad.anho}">
@@ -118,7 +118,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <b>Que incluyan como actor a comunidades nativas:</b>
+                                                        <b>Que incluyan como actor a pueblos indígenas:</b>
                                                     </td>
                                                     <td>
                                                         <h:selectOneMenu value="#{reporteSimcoController.reporteSimcoActividad.esComunidadNativa}">
@@ -179,7 +179,8 @@
                                 </table>
                                 <br/>
                                 <div>
-                                    <a jsf:rendered="#{reporteSimcoController.listReporteActividad.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoActividadExcel()}">
+                                    <a data-toggle="tooltip" data-placement="left" title="Columnas del reporte: Nro, Código del caso, Nombre del caso, Tipología del caso, Tipo de actividad, Código del acontecimiento / actuación, Nombre del acontecimiento / actuación, Acontecimiento / Actuación, Fecha, Acontecimiento vincuado código, Acontecimiento vincuado nombre, Grupo, Tipo, Subtipo, Atentados contra la integridad física, Atentados contra la vida, Acciones contra la tranquilidad social, Destrucción o daño de la propiedad, Enfrentamiento entre sectores de la sociedad, Enfrentamiento con la PNP, Atentados contra la libertad personal, Muertos, Heridos, Secuestrados, Detenidos, Desaparecidos, Otros, Región, Provincia, Distrito, Número de acuerdos, Número de actores"
+                                        jsf:rendered="#{reporteSimcoController.listReporteActividad.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoActividadExcel()}">
                                         <img src="../../bootstrap/img/excel.png" height="45" width="45"/>
                                     </a>
                                     <a jsf:rendered="#{reporteSimcoController.listReporteActividad.size() > 0}" jsf:action="#{reporteSimcoController.reporteSimcoActividadPdf()}">

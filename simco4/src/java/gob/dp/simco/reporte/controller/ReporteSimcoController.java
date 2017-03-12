@@ -318,7 +318,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
             ac.setImagePath(retornaRutaPath().concat("/images/logoPlanIntervencion.png"));
             ac.setCantidadActores(actorService.actorXactividadSimpleBuscarCount(ac.getIdActividad()));
             if (StringUtils.equals(ac.getClaseActividad(), "AD")) {
-                ac.setClaseActividad("Actuacion defensorial");
+                ac.setClaseActividad("Actuación defensorial");
                 ac.setTipoActividadDetalle(ac.getTipoActuacionDefensorialDetalle());
                 if(StringUtils.isNotBlank(ac.getTipoActuacionDefensorial()))
                     ac.setGrupoActividadDetalle(obtenerGrupoActuacionDefensorial(ac.getTipoActuacionDefensorial()));
@@ -398,8 +398,6 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
                         ac.setResultadoViolenciaItem5(Integer.parseInt(entry.getValue().toString()));
                     if(StringUtils.equals(entry.getKey().toString(), "Otros"))
                         ac.setResultadoViolenciaItem6(Integer.parseInt(entry.getValue().toString()));
-                    if(StringUtils.equals(entry.getKey().toString(), "NN"))
-                        ac.setResultadoViolenciaItem7(Integer.parseInt(entry.getValue().toString()));
                 }
                 ac.setListaResultadoViolencia(itemsResultadoViolencia);
             }
@@ -415,8 +413,6 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
                 rsv.setTipoAcontecimientoDetalle(obtenerTipoAcontecimiento(rsv.getTipoAcontecimiento()));
                 rsv.setGrupoAcontecimientoDetalle(obtenerGrupoAcontecimiento(rsv.getTipoAcontecimiento()));   
             }
-            if(rsv.getIndicadorNN() != null && rsv.getIndicadorNN() == 1)
-                    rsv.setTipoVictima("NN"); 
             rsv.setCantidadActores(actorService.actorXactividadSimpleBuscarCount(rsv.getIdActividad()));
         }
     }
@@ -833,7 +829,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
             return "Actos Administrativos";
         }
         if (StringUtils.equals(subTipo, "27") || StringUtils.equals(subTipo, "28")) {
-            return "Resolución judicial";
+            return "Resolución judicial"; 
         }
 
         return null;
@@ -860,7 +856,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
             return "Acciones en general";
         }
         if (StringUtils.equals(subTipo, "21")) {
-            return subTipo;
+            return "Noticias";
         }
         if (StringUtils.equals(subTipo, "22") || StringUtils.equals(subTipo, "23") || StringUtils.equals(subTipo, "24")
                 || StringUtils.equals(subTipo, "25") || StringUtils.equals(subTipo, "26")) {

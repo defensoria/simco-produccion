@@ -16,7 +16,7 @@ public class MessagesUtil {
     
     public void messageAlert(String details, String title){
         if(title == null){
-            title = "Alerta!";
+            title = "¡Alerta!";
         }
         FacesContext context = FacesContext.getCurrentInstance();
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, details, title);
