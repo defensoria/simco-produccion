@@ -5,9 +5,6 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="../template/template.xhtml">
         <ui:define name="content">
-            <script>
-                sessionStorage.setItem("menuHijoSession", "Seguimiento de acuerdos");            
-            </script>
             <h:form id="idForm" class="form-horizontal">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -24,10 +21,10 @@
                         </table>
                     </div>
                     <div class="panel-body">
-                        <h:dataTable value="#{seguimientoAcuerdoController.acuerdoDetalles}" var="item" class="table table-striped" binding="#{row5}">
+                        <h:dataTable value="#{seguimientoAcuerdoController.acuerdoDetalles}" var="item" class="table table-striped" binding="#{rawx5}">
                             <h:column>
                                 <f:facet name="header">N.°</f:facet>
-                                <h:outputText value="#{row5.rowIndex+1}" />
+                                <h:outputText value="#{raw5x.rowIndex+1}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Cumplido</f:facet>
@@ -53,11 +50,11 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Actores</f:facet>
-                                <h:dataTable value="#{item.listaActor}" var="act" style="font-size:small">
+                                <h:dataTable value="#{item.listaActor}" var="actores" style="font-size:small">
                                     <ul>
                                         <h:column>
                                             <li>
-                                                <h:outputText value="#{act.nombre} #{act.apellidoPat} " />
+                                                <h:outputText value="#{actores.nombre} #{actores.apellidoPat} " />
                                             </li>
                                         </h:column>
                                     </ul>

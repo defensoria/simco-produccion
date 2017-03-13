@@ -317,10 +317,10 @@
                                 <ul class="notifications">
                                     <li>
                                         <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
-                                            <i class="glyphicon glyphicon-time"></i>
+                                            <i class="fa fa-bell"></i>
                                             <span class="badge">#{menuController.listaAlertaEjecutadas.size()}</span>
                                         </a>
-                                        <div class="dropdown-menu notification-menu">
+                                        <div class="dropdown-menu notification-menu" style="width: 300px">
                                             <div class="notification-title" style="text-transform: none">
                                                 <span class="pull-right label label-default">#{menuController.listaAlertaEjecutadas.size()}</span>
                                                 Alertas
@@ -330,11 +330,11 @@
                                                     <c:forEach var="x" items="#{menuController.listaAlertaEjecutadas}" begin="0" end="4">
                                                         <li>
                                                             <div class="panel panel-warning">
-                                                                <div class="panel-heading">
+                                                                <div class="panel-heading" style="padding: 5px">
                                                                     <table style="width:100%">
                                                                         <tr>
-                                                                            <td style="padding-right:8px">
-                                                                                <img style="width:30px" src="/simco/faces/bootstrap/img/warning.png" />
+                                                                            <td style="padding-right:2px">
+                                                                                <img style="width:25px" src="/simco/faces/bootstrap/img/warning.png" />
                                                                             </td>
                                                                             <td>
                                                                                 <span class="message">#{x.descripcion}</span>

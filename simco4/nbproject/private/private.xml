@@ -3,24 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/controller/ReporteSimcoController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteSimcoCaso.xml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/controller/ActorController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoVictima.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/intervencion/intervencionDetalle.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/registroGeneral/registroAgregarActor.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoCaso.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/analisis/controller/AnalisisController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/analisis/problemas.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/registroGeneral/registroAgregarVictimaViolencia.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoActividad.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoActor.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/seguridad/controller/MenuController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/template/template1.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/seguimiento/controller/SeguimientoAcuerdoController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/seguimiento/service/AlertaServiceImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/jasper/reportePublicResumenEjecutivo.jrxml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/registroGeneral/registroEdit.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/controller/VictimaViolenciaController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/entity/ActaAcuerdoDetalle.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/seguimientoAcuerdo/seguimientoAcuerdo.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/seguimiento/dao/xml/Alerta.xml</file>
             <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteEjecutivo.xml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/comun/util/Mail.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/template/template.xhtml</file>
         </group>
     </open-files>
 </project-private>

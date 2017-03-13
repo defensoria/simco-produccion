@@ -43,7 +43,7 @@
     </insert>
  
     <select id="alertaBuscar" resultMap="alertaMap" parameterType="long">
-        SELECT 
+        SELECT DISTINCT
             A.N_ID_ALERTA,
             A.D_FECHAENVIOALERTA,
             A.C_DESCRIPALERTA,
@@ -68,7 +68,7 @@
     </select>
     
     <select id="alertaBuscarUsuario" resultMap="alertaMap" parameterType="long">
-        SELECT 
+        SELECT DISTINCT
             A.N_ID_ALERTA,
             A.C_DESCRIPALERTA,
             A.D_FECHAENVIOALERTA,
