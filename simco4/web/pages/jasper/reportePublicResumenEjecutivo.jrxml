@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="22597"/>
+	<property name="ireport.y" value="3501"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -1939,10 +1939,6 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				</textElement>
 				<text><![CDATA[Son los momentos por los que puede pasar un conflicto social activo, en función al incremento o disminución de la violencia, y las posibilidades de diálogo y entendimiento.]]></text>
 			</staticText>
-			<image>
-				<reportElement x="11" y="89" width="492" height="222" uuid="09bd44b6-6b97-400f-9779-8b28de75b08b"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"cuadro004.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Transparent" x="3" y="331" width="309" height="27" forecolor="#BC0500" backcolor="#FFFFFF" uuid="26d4e0f2-7f9d-4dec-ba53-6b0d57cf5657"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
@@ -4819,15 +4815,15 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="0" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="5b3d776e-7085-4b83-bb67-3f0b80937ce1"/>
+				<reportElement mode="Transparent" x="0" y="0" width="521" height="62" forecolor="#9A0400" backcolor="#FFFFFF" uuid="5b3d776e-7085-4b83-bb67-3f0b80937ce1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="Arial Black" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[CONFLICTOS SOCIALES DE ACUERDO A TIPO]]></text>
+				<text><![CDATA[DETALLE DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 25" style="table 18" x="1" y="88" width="515" height="53" uuid="c8d2bb6c-68bf-486c-8653-75b1a6738df3"/>
+				<reportElement key="table 25" style="table 18" x="1" y="115" width="521" height="53" uuid="c8d2bb6c-68bf-486c-8653-75b1a6738df3"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset8" uuid="cc8f9173-9bbe-4256-b7e5-e8131e6f306f">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasosActivosTotales})]]></dataSourceExpression>
@@ -4909,7 +4905,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="42" width="517" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="62d5fd96-0446-4285-a4a2-fbd0ec0089a3"/>
+				<reportElement mode="Transparent" x="2" y="74" width="519" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="62d5fd96-0446-4285-a4a2-fbd0ec0089a3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
