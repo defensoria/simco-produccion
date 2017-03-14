@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.0245201830476058"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="3501"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -957,7 +957,7 @@
 	<pageHeader>
 		<band height="42">
 			<textField>
-				<reportElement mode="Opaque" x="-38" y="14" width="598" height="20" forecolor="#FFFFFF" backcolor="#FF0700" uuid="e1392cc5-c7ea-4272-ad05-00a519bc666e"/>
+				<reportElement mode="Opaque" x="-38" y="14" width="598" height="20" forecolor="#FFFFFF" backcolor="#0066CC" uuid="e1392cc5-c7ea-4272-ad05-00a519bc666e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Black" size="13" isBold="true" isItalic="false"/>
 				</textElement>
@@ -970,802 +970,17 @@
 	</pageHeader>
 	<detail>
 		<band height="770" splitType="Stretch">
-			<image scaleImage="FillFrame">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="16" y="69" width="484" height="698" uuid="57dc9dbd-dfe7-440d-8da4-18ac44a9b546"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"peru.png"]]></imageExpression>
-			</image>
-			<rectangle radius="10">
-				<reportElement x="368" y="282" width="132" height="73" forecolor="#9A0400" uuid="7611b072-e4c6-4459-8cf2-b28569a234c6"/>
-				<graphicElement>
-					<pen lineWidth="1.0"/>
-				</graphicElement>
-			</rectangle>
-			<textField>
-				<reportElement x="399" y="288" width="98" height="20" forecolor="#666666" uuid="6a7273d5-f51f-41c6-87df-3494157f079f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Black" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosRegistrados}+ " conflictos registrados"]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="400" y="310" width="97" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="f77f58bc-a6bc-4622-8779-3ac445d250a7"/>
-				<box leftPadding="3"/>
-				<textElement verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosActivos}+ " conflictos activos"]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="400" y="333" width="97" height="20" forecolor="#73AF00" backcolor="#FFFFFF" uuid="4f94f37e-6c4d-41fa-a73d-5ea2340a7115"/>
-				<box leftPadding="3"/>
-				<textElement verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosLatentes}+ " conflictos latentes"]]></textFieldExpression>
-			</textField>
-			<rectangle radius="10">
-				<reportElement x="0" y="85" width="123" height="80" forecolor="#9A0400" uuid="4c6fcd8e-9ec2-4bf6-970d-4d47c05fc762"/>
-				<graphicElement>
-					<pen lineWidth="1.0"/>
-				</graphicElement>
-			</rectangle>
-			<ellipse>
-				<reportElement x="7" y="97" width="25" height="25" forecolor="#FF0700" backcolor="#FF0700" uuid="55786fc8-f6d4-40d5-a8a8-27c177ff01c3"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="7" y="125" width="25" height="25" forecolor="#73AF00" backcolor="#73AF00" uuid="3004d135-9b50-46dd-8241-79b0abb3f95c"/>
-			</ellipse>
-			<staticText>
-				<reportElement mode="Transparent" x="39" y="104" width="69" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="d34c7145-5f41-4967-9edd-42dc6f9c21cb"/>
-				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Activos]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="40" y="130" width="69" height="20" forecolor="#73AF00" backcolor="#FFFFFF" uuid="5383d1f5-cb77-4b2b-82d4-4c95f2a19de2"/>
-				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Latentes]]></text>
-			</staticText>
-			<ellipse>
-				<reportElement x="243" y="187" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="b9a81825-e557-4ec4-8450-7a8a28d94c43"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="261" y="206" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="1ad21bad-c906-4e09-b499-411acde035fe"/>
-			</ellipse>
-			<textField>
-				<reportElement x="246" y="189" width="15" height="15" forecolor="#FFFFFF" uuid="36ed54b7-0310-4469-b791-a27e829d449e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{loretoLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="263" y="207" width="15" height="15" forecolor="#FFFFFF" uuid="9004d530-2170-48b0-b65b-cde663b649e0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{loretoAct}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="258" y="165" width="42" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="e12be73d-ffc5-4ece-8e98-2725fccff1b5"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Loreto]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="115" y="213" width="48" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="5653fac3-240b-4fbb-83d4-11e4d57dc3bc"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Amazonas]]></text>
-			</staticText>
-			<ellipse>
-				<reportElement x="126" y="229" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="7026f6fb-2fb7-4148-9cc0-d0416867057d"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="126" y="253" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="4d1bbbf4-e6f5-468f-bac4-f16ea651c296"/>
-			</ellipse>
-			<textField>
-				<reportElement x="128" y="230" width="15" height="15" forecolor="#FFFFFF" uuid="cc5ccf55-777d-4228-9b3b-26c7cf326e8f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{amazonasAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="129" y="254" width="15" height="15" forecolor="#FFFFFF" uuid="e110f9b3-dd75-4431-a1a4-d73ab354f7ae"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{amazonasLat}]]></textFieldExpression>
-			</textField>
-			<barChart>
-				<chart isShowLegend="true" evaluationTime="Band">
-					<reportElement mode="Opaque" x="2" y="527" width="167" height="228" forecolor="#0099FF" uuid="94a1d4ed-62a7-49bc-ab00-e59c6ca44e9c"/>
-					<chartTitle color="#9A0400">
-						<font size="5"/>
-					</chartTitle>
-					<chartSubtitle color="#9A0400">
-						<font fontName="Arial" size="5"/>
-					</chartSubtitle>
-					<chartLegend textColor="#9A0400" position="Top">
-						<font fontName="SansSerif" size="7" isBold="true"/>
-					</chartLegend>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="7edad2d0-c54c-46ae-aaae-96cd85d6c75d">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoGrafico})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Tipos de Conflictos"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{nombre}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
-					<plot backgroundAlpha="1.0" foregroundAlpha="1.0" labelRotation="60.0">
-						<seriesColor seriesOrder="0" color="#00CAD3"/>
-					</plot>
-					<itemLabel>
-						<font fontName="SansSerif" size="7" isBold="true"/>
-					</itemLabel>
-					<categoryAxisFormat labelRotation="60.0">
-						<axisFormat labelColor="#9A0400" tickLabelColor="#9A0400" verticalTickLabels="false" axisLineColor="#9A0400">
-							<labelFont>
-								<font fontName="SansSerif" size="6" isBold="true" isUnderline="false" isStrikeThrough="false"/>
-							</labelFont>
-							<tickLabelFont>
-								<font fontName="SansSerif" size="6" isBold="true"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat labelColor="#FFFFFF" tickLabelColor="#FFFFFF" verticalTickLabels="false" axisLineColor="#FFFFFF">
-							<labelFont>
-								<font size="3"/>
-							</labelFont>
-							<tickLabelFont>
-								<font size="3"/>
-							</tickLabelFont>
-						</axisFormat>
-					</valueAxisFormat>
-				</barPlot>
-			</barChart>
-			<staticText>
-				<reportElement mode="Transparent" x="48" y="173" width="48" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="22eebafe-e0ce-4c45-98ab-e2092abc71c6"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Tumbes]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="41" y="239" width="48" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="49e8845a-2ae1-4945-9bba-734ce521d0de"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Piura]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="48" y="297" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="d57ae038-a9fb-4482-a37a-54523232af6a"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Lambayeque]]></text>
-			</staticText>
-			<ellipse>
-				<reportElement x="56" y="211" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="5c46cf02-1bf4-4116-a7fc-ba2e3a9ff0f0"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="56" y="188" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="74663988-67fe-49b3-8145-c08918584e33"/>
-			</ellipse>
-			<textField>
-				<reportElement x="58" y="189" width="15" height="15" forecolor="#FFFFFF" uuid="0cae6861-42b5-4984-ad9c-85d767cc09dd"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tumbesAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="59" y="211" width="14" height="16" forecolor="#FFFFFF" uuid="333edeeb-15f6-4e87-b1a4-87b33bc5c131"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tumbesLat}]]></textFieldExpression>
-			</textField>
-			<ellipse>
-				<reportElement x="42" y="252" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="c7864996-02b2-4620-9396-184f079f014f"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="41" y="274" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="ea85c740-5f54-4ec3-a0d3-7ec0a7786829"/>
-			</ellipse>
-			<textField>
-				<reportElement x="44" y="255" width="15" height="15" forecolor="#FFFFFF" uuid="a90eed2c-a215-401d-8936-fe7a65b1b4c2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{piuraAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="43" y="276" width="15" height="15" forecolor="#FFFFFF" uuid="0110cf67-5a80-4df3-9a1b-86b269e5e6ef"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{piuraLat}]]></textFieldExpression>
-			</textField>
-			<ellipse>
-				<reportElement x="60" y="333" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="babbeaea-2203-4a71-9e36-bfbac21b5856"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="60" y="312" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="12fd0d92-e1e2-4c6d-8c60-bd54495357b1"/>
-			</ellipse>
-			<textField>
-				<reportElement x="63" y="313" width="15" height="15" forecolor="#FFFFFF" uuid="9c1527a2-2cab-4145-8c11-b17f8e749f78"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{lambayequeAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="63" y="334" width="15" height="15" forecolor="#FFFFFF" uuid="17466de1-94ab-4a3d-87db-07c1fda15508"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{lambayequeLat}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="106" y="283" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="e4fe28c6-0265-4d8e-b022-2bb24613c427"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Cajamarca]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="183" y="316" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="97364f0a-a534-43a8-9425-714176ff5163"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[San Martin]]></text>
-			</staticText>
-			<ellipse>
-				<reportElement x="115" y="317" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="189ba0fb-e876-447a-860c-569111d6e88e"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="112" y="295" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="0d80db6b-f17e-402d-a6a6-9bfe7f0ccaa5"/>
-			</ellipse>
-			<textField>
-				<reportElement x="115" y="297" width="15" height="15" forecolor="#FFFFFF" uuid="bb8a474c-60b0-4aff-bed4-33223b59036a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cajamarcaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="117" y="320" width="15" height="15" forecolor="#FFFFFF" uuid="f7fc2b8f-5298-46f4-b337-ea7d39907aed"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cajamarcaLat}]]></textFieldExpression>
-			</textField>
-			<ellipse>
-				<reportElement x="187" y="330" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="eb3340d8-ea88-4806-9442-bdd64219120c"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="188" y="353" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="24790e7a-c820-413d-9708-98144ee53785"/>
-			</ellipse>
-			<textField>
-				<reportElement x="189" y="332" width="15" height="15" forecolor="#FFFFFF" uuid="13358ac8-dc25-4a79-bfa2-f789f2e02704"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{sanMartinAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="191" y="355" width="15" height="15" forecolor="#FFFFFF" uuid="f188a652-509a-4c8c-9350-d5a66329c834"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{sanMartinLat}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="291" y="385" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="6493b2b5-20b5-4a1a-8723-ff7360d1beba"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Ucayali]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="380" y="480" width="69" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="cb073d6a-3322-4a83-af04-6801dca31f3c"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Madre de Dios]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="407" y="575" width="40" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="54f74abf-794a-4174-9739-a25be8f6f8b8"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Puno]]></text>
-			</staticText>
-			<ellipse>
-				<reportElement x="299" y="400" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="38bbe73c-4da8-400b-97f3-f042cd6ae7ab"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="394" y="493" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="be9da105-a607-4c7a-b367-5be373f84228"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="408" y="598" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="804e7454-8a69-47d4-bb9a-8cc0398712f4"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="299" y="423" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="0d16aab1-47b7-45c1-b04f-9c7247d116a0"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="394" y="518" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="a1472cf8-e9bd-4c17-b7e4-467af02bbb7b"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="408" y="619" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="3a83283c-371e-4fc3-b09c-8476e40e3d83"/>
-			</ellipse>
-			<textField>
-				<reportElement x="302" y="402" width="15" height="15" forecolor="#FFFFFF" uuid="e05d607b-4d54-44af-9bcb-57d39d4d056e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ucayaliAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="301" y="426" width="15" height="15" forecolor="#FFFFFF" uuid="5c4fe22d-8992-463a-bc39-a896c8b047c6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ucayaliLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="396" y="520" width="15" height="15" forecolor="#FFFFFF" uuid="4926653e-15e0-433b-b632-96caebddc19e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{madreDeDiosLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="396" y="495" width="15" height="15" forecolor="#FFFFFF" uuid="85c5f297-fa6b-4ed7-b4dc-aea01de31aed"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{madreDeDiosAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="410" y="599" width="15" height="15" forecolor="#FFFFFF" uuid="943c44e0-0411-41fa-b758-68c132067170"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{punoAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="410" y="621" width="15" height="15" forecolor="#FFFFFF" uuid="18c68051-a79a-4fe6-97a3-28eba402435a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{punoLat}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="439" y="726" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="b67a9026-9d36-4182-910e-dd4c93ad46d7"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Tacna]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="363" y="670" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="afac0fbf-3cc7-4509-9f10-df790f3e9da0"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Moquegua]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="320" y="628" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="d72f4249-27f5-421d-8b99-9db888dd4ff9"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Arequipa]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="258" y="587" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="91e8f477-1dd7-4ae5-94ee-d98ecc68c779"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Ayacucho]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="208" y="579" width="38" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="f2937b72-17f6-48b6-be7a-a6fc672bed32"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Ica]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="293" y="563" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="7209ef8c-a223-4e2a-b3d8-baf5cf7bbf02"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Apurimac]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="319" y="500" width="37" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="b684d251-e21c-4e8a-b229-586233419331"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Cuzco]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="229" y="480" width="59" height="13" forecolor="#0066CC" uuid="a44a3e62-33c3-4a80-99b4-dc3ae45c62a8"/>
-				<textElement>
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Junin]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="234" y="521" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="b8e0f477-2d47-4de7-b723-6760f0e71f49"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Huancavelica]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="159" y="501" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="65ab7779-0f3e-4ab1-8d7e-f4e984c692d2"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Lima]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="83" y="352" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="28ff3e27-c1ed-4e8c-ab02-876e1df650bd"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[La Libertad]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="141" y="395" width="38" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="796721c3-7553-4d30-83d9-c83b63f234bb"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Ancash]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="195" y="394" width="59" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="33312c16-c9da-443b-a9c9-229d8a43678a"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Huanuco]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="202" y="457" width="31" height="13" forecolor="#00595D" backcolor="#FFFFFF" uuid="f89880e5-85ac-4c8b-8e46-5559664dfbe8"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Pasco]]></text>
-			</staticText>
-			<ellipse>
-				<reportElement x="413" y="712" width="20" height="20" forecolor="#FF0000" backcolor="#FF0000" uuid="273f6686-c60e-44a3-ba51-618eccafe547"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="380" y="692" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="3edce90f-2d3b-45e4-aa5e-88d2d3d7f206"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="328" y="647" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="64987683-df81-4151-bd00-a9f2077a9f2a"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="262" y="606" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="d8c737d9-39db-4be5-8b7e-7c3921b046de"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="206" y="600" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="e36af3ca-ca48-4554-9f75-5f8dfac5c190"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="320" y="582" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="c0fa439f-2238-4082-9c91-aefe46fdb1af"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="325" y="524" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="6f5b43ad-a2ee-4981-b3e9-18876aae23be"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="239" y="542" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="1763cc1b-7fd5-4093-9a6f-6486b4fe4167"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="232" y="493" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="dfd9f8de-482f-458d-9afc-da249cce7d44"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="233" y="448" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="a0bcf594-0e5a-489f-ab1a-08adce75dce0"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="201" y="408" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="623ca900-ddb8-4dfd-a29b-9a0b9d2babbc"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="137" y="498" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="810300a9-11d0-450f-b8ab-5807baa323d8"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="143" y="411" width="20" height="20" forecolor="#FF0700" backcolor="#FF0700" uuid="35fb6556-5b1d-454d-b3b5-365b118b631d"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="96" y="365" width="20" height="20" forecolor="#FF0000" backcolor="#FF0000" uuid="b3d74600-3e29-41db-b11e-11af19331993"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="413" y="732" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="d6abf2e6-2ba7-44eb-936d-bab7142d178d"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="381" y="714" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="1c763524-ab47-4a0a-a599-b388584b97ae"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="328" y="664" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="36b9187c-aa71-45b9-8195-05bd6d450d38"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="318" y="603" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="334c465b-6f8e-4dc9-8a27-6d34b10eeae1"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="325" y="544" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="0a3ae7b6-ed8b-4287-8376-3f5074f74319"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="239" y="562" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="7f7c8f5c-99d5-444a-8a5b-14fa0f8b40d8"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="260" y="625" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="3a4ef7ce-2ec3-40cf-9534-178cc44e9914"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="207" y="617" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="7a3f1324-7613-48df-ab79-67cdf960f08d"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="254" y="493" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="6a87ad04-0065-4483-a31e-1982d4020802"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="116" y="497" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="bef0ceca-3ca4-482e-b62b-4687f4c51139"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="256" y="447" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="f35e4c18-ee98-4f12-b412-ae2345db9a79"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="205" y="430" width="20" height="20" forecolor="#FF9900" backcolor="#FF9900" uuid="00dbf9fc-799f-4000-9005-7d6ef502fcb8"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="142" y="434" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="a6d34abe-7e6a-4b0d-8e19-c9678fa5c7f2"/>
-			</ellipse>
-			<ellipse>
-				<reportElement x="95" y="388" width="20" height="20" forecolor="#73AF00" backcolor="#73AF00" uuid="a75563db-1e2f-4996-8c4d-793d14c37dcd"/>
-			</ellipse>
-			<textField>
-				<reportElement x="415" y="713" width="15" height="15" forecolor="#FFFFFF" uuid="c09a7193-d80c-4520-a51a-31a803924dfe"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tacnaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="415" y="734" width="15" height="15" forecolor="#FFFFFF" uuid="207a74c2-154f-459c-98cd-404d8f949e5d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tacnaLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="384" y="715" width="15" height="15" forecolor="#FFFFFF" uuid="ac1ea986-5470-4c49-9409-033d9aefbbe8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{moqueguaLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="382" y="693" width="15" height="15" forecolor="#FFFFFF" uuid="8a6f5fd1-ed13-4232-8534-1d8bcdbf70db"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{moqueguaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="331" y="665" width="15" height="15" forecolor="#FFFFFF" uuid="262a1485-e874-4e9d-8a00-a7459cf28ca4"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{arequipaLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="331" y="648" width="15" height="15" forecolor="#FFFFFF" uuid="f34dee83-9adc-4090-8d7d-bca636f91c42"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{arequipaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="321" y="604" width="15" height="15" forecolor="#FFFFFF" uuid="238451a8-5d7b-4545-9a7f-9bf920e9b8f8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{apurimacLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="323" y="583" width="15" height="15" forecolor="#FFFFFF" uuid="75691236-9a24-4ae3-8f58-ba39d0984ede"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{apurimacAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="263" y="627" width="15" height="15" forecolor="#FFFFFF" uuid="678ae3c0-05ae-4f34-aeb8-2ff6601aa602"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ayacuchoLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="264" y="606" width="15" height="15" forecolor="#FFFFFF" uuid="7a3b0986-d73b-44f6-97b6-ef8a01868779"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ayacuchoAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="208" y="618" width="15" height="15" forecolor="#FFFFFF" uuid="a5105f17-1727-480a-a6b4-2d32fae49d19"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{icaLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="209" y="601" width="15" height="15" forecolor="#FFFFFF" uuid="c9cd4ee5-59be-46b5-8636-86e9661425c7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{icaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="328" y="546" width="15" height="15" forecolor="#FFFFFF" uuid="69bc4f13-fc4f-4a8f-a6e7-8e213dadc511"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cuscoLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="328" y="525" width="15" height="15" forecolor="#FFFFFF" uuid="25769b3f-377d-4f2b-95b7-72d214c44ada"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cuscoAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="258" y="449" width="15" height="15" forecolor="#FFFFFF" uuid="96bfcce9-ed16-4829-917a-6a962a0d5b2d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{pascoLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="236" y="450" width="15" height="15" forecolor="#FFFFFF" uuid="c9407b67-c65a-4483-8fd5-6f60af5a11a0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{pascoAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="242" y="563" width="15" height="15" forecolor="#FFFFFF" uuid="aae5911e-ab15-4b18-97f2-c024a2cf1387"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{huancavelicaLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="241" y="544" width="15" height="15" forecolor="#FFFFFF" uuid="22d87f54-c9ff-4cd1-bcee-92d41a6e17f4"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{huancavelicaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="234" y="495" width="15" height="15" forecolor="#FFFFFF" uuid="c1ee1677-d815-4279-bcc0-b5452f7cfcf1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{juninAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="256" y="495" width="15" height="15" forecolor="#FFFFFF" uuid="879a6b36-da55-48cb-bf59-f083ec5c10a6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{juninLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="204" y="410" width="15" height="15" forecolor="#FFFFFF" uuid="465e8113-3c72-4277-a4db-303f5c60e687"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{huanucoAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="208" y="432" width="15" height="15" forecolor="#FFFFFF" uuid="e6adebfa-7c0e-4ccd-8d84-2e0906b423b0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{huanucoLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="118" y="499" width="15" height="15" forecolor="#FFFFFF" uuid="fca4aeff-a0f5-4965-ac4f-2e0769b64d78"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{limaLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="139" y="500" width="15" height="15" forecolor="#FFFFFF" uuid="d6063ba7-0af7-4516-94f5-9352876db58c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{limaAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="145" y="414" width="15" height="15" forecolor="#FFFFFF" uuid="c4c1f2fc-35c0-4586-8503-370f1afc59d4"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ancashAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="145" y="436" width="15" height="15" forecolor="#FFFFFF" uuid="47298af6-711f-44e2-8de7-83c4d9ded4f2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ancashLat}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="97" y="390" width="15" height="15" forecolor="#FFFFFF" uuid="48075d40-090c-4ca7-aee4-d1078bb61ca8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{punoAct}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="98" y="367" width="15" height="15" forecolor="#FFFFFF" uuid="70643bf1-2a68-49ce-85eb-4608a95cfe12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{punoAct}]]></textFieldExpression>
-			</textField>
 			<image>
-				<reportElement x="356" y="5" width="167" height="50" uuid="a841af9c-6828-44f2-8b0d-b4090c13f90f"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"logoPlanIntervencion.png"]]></imageExpression>
+				<reportElement x="-38" y="-42" width="598" height="812" uuid="7eba1612-57c3-4942-b60c-18eb535525ef"/>
+				<imageExpression><![CDATA[$F{imagePath001}+"PortadaReporteMensual.png"]]></imageExpression>
 			</image>
-			<image>
-				<reportElement x="375" y="286" width="23" height="22" uuid="252bdc60-7fd7-4324-aa65-19df221acec0"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"alertaReporte.png"]]></imageExpression>
-			</image>
+			<textField>
+				<reportElement mode="Opaque" x="-38" y="351" width="598" height="94" forecolor="#FFFFFF" backcolor="#0066CC" uuid="9ba7e8be-dea7-49ae-a1d3-0bd52890b852"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial Black" size="32" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Reporte mensual de Conflictos Sociales " +$F{mesPublicacion}+" "+$F{anhoPublicacion}+"     "]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="770">
 			<staticText>
@@ -1809,7 +1024,7 @@ Se desestimula una cultura de diálogo y paz.
 				<text><![CDATA[¿QUÉ ES EL REPORTE DE CONFLICTOS SOCIALES?]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="258" width="310" height="146" uuid="844ba5aa-78e8-426e-a0e5-ef7e10d3c668"/>
+				<reportElement x="1" y="252" width="310" height="192" uuid="844ba5aa-78e8-426e-a0e5-ef7e10d3c668"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black"/>
 				</textElement>
@@ -1818,29 +1033,30 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="321" y="176" width="200" height="73" uuid="d9bb6626-d0d5-43ab-89a8-285e908ec64c"/>
+				<reportElement x="321" y="176" width="200" height="120" uuid="d9bb6626-d0d5-43ab-89a8-285e908ec64c"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Es un instrumento de monitoreo cuyo objetivo es informar mensualmente acerca de los actores, los problemas y el desarrollo de los conflictos sociales registrados por la Defensoría del Pueblo a nivel nacional. ]]></text>
+				<text><![CDATA[Es un instrumento de monitoreo cuyo objetivo es informar mensualmente acerca de los actores, los problemas y el desarrollo de los conflictos sociales registrados por la Defensoría del Pueblo a nivel nacional.
+]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="271" width="200" height="103" uuid="a564c6e4-e55f-463e-8e69-c2fa1c81c12f"/>
+				<reportElement x="321" y="307" width="200" height="163" uuid="a564c6e4-e55f-463e-8e69-c2fa1c81c12f"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[La información divulgada constituye una señal de alerta dirigida al Estado, las empresas, las dirigencias de las organizaciones sociales, los medios de comunicación y la sociedad en general a fin de que se tomen decisiones orientadas a conducir el conflicto por la vía de la ley y el diálogo, y se eviten los desenlaces violentos. ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="320" y="401" width="200" height="73" forecolor="#000000" backcolor="#FFFFFF" uuid="8485edb8-0c2d-4d59-ae51-80813ae47f84"/>
+				<reportElement mode="Transparent" x="322" y="486" width="200" height="142" forecolor="#000000" backcolor="#FFFFFF" uuid="8485edb8-0c2d-4d59-ae51-80813ae47f84"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[El documento recoge la información proporcionada por los actores intervinientes en los conflictos sociales, a través de las 28 oficinas defensoriales y los 10 módulos de atención al público que tiene la institución, complementada y contrastada con otras fuentes]]></text>
+				<text><![CDATA[El documento recoge la información proporcionada por los actores intervinientes en los conflictos sociales, a través de las 28 oficinas defensoriales y los 10 módulos de atención al público que tiene la institución, complementada y contrastada con otras fuentes.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="410" width="311" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="1d32f3c5-9694-4598-a412-be2bae597e89"/>
+				<reportElement mode="Transparent" x="0" y="454" width="311" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="1d32f3c5-9694-4598-a412-be2bae597e89"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1848,14 +1064,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[INTERVENCIONES DEFENSORIALES SEGÚN MODALIDAD]]></text>
 			</staticText>
 			<image>
-				<reportElement x="15" y="457" width="283" height="258" uuid="c75b5a1e-865b-4691-a73c-571c9d64df4b"/>
+				<reportElement x="16" y="496" width="283" height="203" uuid="c75b5a1e-865b-4691-a73c-571c9d64df4b"/>
 				<imageExpression><![CDATA[$F{imagePath001}+"cuadro001.png"]]></imageExpression>
 			</image>
 			<rectangle radius="10">
-				<reportElement x="6" y="724" width="509" height="45" forecolor="#A2F700" backcolor="#A2F700" uuid="cf0bb00f-dba5-44e4-8642-0768cf3627c4"/>
+				<reportElement x="8" y="710" width="509" height="59" forecolor="#00CCFF" backcolor="#00CCFF" uuid="cf0bb00f-dba5-44e4-8642-0768cf3627c4"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="16" y="727" width="492" height="40" forecolor="#FFFFFF" uuid="ae84c685-5dfe-4a57-8afa-27a616227dad"/>
+				<reportElement x="17" y="715" width="492" height="54" forecolor="#FFFFFF" uuid="ae84c685-5dfe-4a57-8afa-27a616227dad"/>
 				<textElement textAlignment="Center">
 					<font isBold="true" isItalic="true"/>
 				</textElement>
@@ -1879,7 +1095,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[El conflicto social debe ser entendido como un proceso complejo en el cual sectores de la sociedad, el Estado y las empresas perciben que sus objetivos, intereses, valores o necesidades son contradictorios y esa contradicción puede derivar en violencia.]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="319" y="10" width="200" height="67" forecolor="#A2F700" backcolor="#A2F700" uuid="828c3ce5-04df-4289-828c-7d421641a117"/>
+				<reportElement x="319" y="10" width="200" height="67" forecolor="#00CCFF" backcolor="#00CCFF" uuid="828c3ce5-04df-4289-828c-7d421641a117"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="325" y="16" width="187" height="53" forecolor="#FFFFFF" uuid="13738920-7135-4ee0-a782-07ecb4defae3"/>
@@ -1889,7 +1105,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[El conflicto es inherente a la vida. Es una característica natural e inevitable de la existencia humana y de la interacción social.]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="38" y="150" width="416" height="45" forecolor="#A2F700" backcolor="#A2F700" uuid="65d7e86b-21f1-4306-9b65-3245d70296a0"/>
+				<reportElement x="38" y="150" width="416" height="45" forecolor="#00CCFF" backcolor="#00CCFF" uuid="65d7e86b-21f1-4306-9b65-3245d70296a0"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="50" y="157" width="392" height="27" forecolor="#FFFFFF" uuid="ed3275c2-6d8d-4f83-b957-32188348fd92"/>
@@ -1968,6 +1184,10 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 			<image>
 				<reportElement x="89" y="631" width="385" height="133" uuid="8b243a3e-926b-41fd-bdae-f45f3d254f41"/>
 				<imageExpression><![CDATA[$F{imagePath001}+"cuadro006.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="5" y="86" width="507" height="225" uuid="baf5071a-f30b-47f1-9d00-a6183e65e3e6"/>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro004.png"]]></imageExpression>
 			</image>
 		</band>
 		<band height="770">
@@ -2313,14 +1533,14 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 				<text><![CDATA[2. COMPETENCIAS EN LA ATENCIÓN DE CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="411" width="520" height="58" uuid="0df1a1f0-a6b0-4d00-8ff4-aed2975f6924"/>
+				<reportElement x="2" y="411" width="520" height="77" uuid="0df1a1f0-a6b0-4d00-8ff4-aed2975f6924"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[La identificación de las competencias en la atención de un conflicto social se hace a partir del reconocimiento del papel que desempeñan los sectores en los que se organiza el Estado para la atención de las múltiples demandas que son planteadas durante el desarrollo de un conflicto social, de acuerdo a la normatividad, objetivos y funciones vigentes en cada una de la entidades estatales analizadas.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="60" y="474" width="390" height="49" forecolor="#73AF00" backcolor="#FFFFFF" uuid="32a9673e-5db9-4de9-b534-2504689fed01"/>
+				<reportElement mode="Transparent" x="60" y="492" width="390" height="49" forecolor="#73AF00" backcolor="#FFFFFF" uuid="32a9673e-5db9-4de9-b534-2504689fed01"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -2505,7 +1725,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 ]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 31" style="table 18" mode="Transparent" x="54" y="533" width="410" height="50" backcolor="#00CAD3" uuid="e297a124-641a-4a9b-b104-6962c628e2f6"/>
+				<reportElement key="table 31" style="table 18" mode="Transparent" x="54" y="542" width="410" height="50" backcolor="#00CAD3" uuid="e297a124-641a-4a9b-b104-6962c628e2f6"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="726991da-5e09-4f62-b5d3-cfd042636fd2">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
@@ -3576,14 +2796,14 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 			<textField>
 				<reportElement x="382" y="254" width="135" height="20" forecolor="#666666" uuid="2955a1da-b493-4cd0-a866-097b3a3be65b"/>
 				<textElement textAlignment="Center">
-					<font size="12" isBold="false"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalCasosRegistrados}+ " conflictos registrados"]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="382" y="280" width="135" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="d677ce71-1720-4d56-84a4-c55ab32066f8"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalCasosActivos}+ " conflictos activos"]]></textFieldExpression>
@@ -3591,7 +2811,7 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement mode="Transparent" x="382" y="307" width="135" height="20" forecolor="#FF9900" backcolor="#FFFFFF" uuid="d8de11ae-4698-4b15-b1de-06784eae27d7"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalCasosLatentes}+ " conflictos latentes"]]></textFieldExpression>
@@ -3934,21 +3154,21 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Apurimac]]></text>
+				<text><![CDATA[Apurímac]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="328" y="466" width="37" height="13" forecolor="#0066CC" uuid="5b1dec1d-0288-4c34-8124-5db23e23bd66"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cuzco]]></text>
+				<text><![CDATA[Cusco]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="238" y="446" width="59" height="13" forecolor="#0066CC" uuid="30b15315-6617-4acd-a33d-4a1302d79cd9"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Junin]]></text>
+				<text><![CDATA[Junín]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="243" y="487" width="59" height="13" forecolor="#0066CC" uuid="29f9ef26-d7b0-4c31-a8b9-7f8d679b17e2"/>
@@ -3976,14 +3196,14 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ancash]]></text>
+				<text><![CDATA[Áncash]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="204" y="360" width="59" height="13" forecolor="#0066CC" uuid="d06adb43-0cfe-423c-9720-de3989bd850e"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Huanuco]]></text>
+				<text><![CDATA[Huánuco]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="211" y="423" width="31" height="13" forecolor="#0066CC" uuid="04d38b2a-7440-4a8e-9104-11536a956f5d"/>
@@ -4275,7 +3495,7 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="76" y="92" width="361" height="51" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
+				<reportElement mode="Transparent" x="73" y="116" width="361" height="51" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -4294,16 +3514,12 @@ PERÚ: CONFLICTOS ACTIVOS SEGÚN FASE
 				<text><![CDATA[FASES DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="72" width="468" height="20" uuid="ec33dffa-afbf-4781-970d-29c650ce8a03"/>
+				<reportElement x="1" y="72" width="523" height="32" uuid="ec33dffa-afbf-4781-970d-29c650ce8a03"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[Al cierre del presente reporte, los conflictos activos registrados se encuentran en las siguientes fases:]]></text>
 			</staticText>
-			<image>
-				<reportElement x="37" y="149" width="452" height="226" uuid="5782dcfe-959c-4074-a897-39cd13ffa124"/>
-				<imageExpression><![CDATA[$F{imagePath001} +"cuadro007.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Transparent" x="2" y="386" width="441" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="bcdf0a94-d119-4e22-9bae-931ec54f39f6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
@@ -4323,7 +3539,7 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 (Número de casos)]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="87" y="460" width="350" height="100" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
+				<reportElement key="table 11" style="table 18" x="87" y="460" width="350" height="60" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="b657a412-de36-4831-ad46-6fbc4c82c332">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoDialogo})]]></dataSourceExpression>
@@ -4456,7 +3672,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO
 ]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="84" y="431" width="350" height="100" uuid="f531afee-17ec-4920-adef-05db45304ea6"/>
+				<reportElement key="table 11" style="table 18" x="84" y="431" width="350" height="60" uuid="f531afee-17ec-4920-adef-05db45304ea6"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="98efc738-faa5-4e05-b7e2-b9405e0ddcf5">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo})]]></dataSourceExpression>
@@ -4582,7 +3798,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
 				</piePlot>
 			</pieChart>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="82" y="434" width="350" height="100" uuid="13cbe454-3abb-4530-9ed5-f532431ec10f"/>
+				<reportElement key="table 11" style="table 18" x="82" y="434" width="350" height="60" uuid="13cbe454-3abb-4530-9ed5-f532431ec10f"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="9a6a439d-e942-40a0-b81f-e74f82cab97e">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo})]]></dataSourceExpression>
@@ -4697,7 +3913,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS POR TIPO
 				</piePlot>
 			</pieChart>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="82" y="446" width="350" height="100" uuid="24c83beb-e8cc-488d-be18-969d8c749e57"/>
+				<reportElement key="table 11" style="table 18" x="82" y="446" width="350" height="60" uuid="24c83beb-e8cc-488d-be18-969d8c749e57"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="582c793f-b951-4ffc-8546-9b570b4c4516">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelSubTipo})]]></dataSourceExpression>
@@ -4876,15 +4092,8 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								</textElement>
 								<text><![CDATA[Estado Actual]]></text>
 							</staticText>
-							<textField isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="40" width="250" height="20" forecolor="#5E9000" backcolor="#A2F700" uuid="59652f1e-37f9-45cd-98e2-e088ad02e976"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{fase}]]></textFieldExpression>
-							</textField>
 							<componentElement>
-								<reportElement key="table 27" x="0" y="60" width="250" height="14" isPrintWhenDetailOverflows="true" uuid="7e8d48a4-b455-4c02-813e-6ed278778d11"/>
+								<reportElement key="table 27" x="0" y="40" width="250" height="34" isPrintWhenDetailOverflows="true" uuid="7e8d48a4-b455-4c02-813e-6ed278778d11"/>
 								<jr:table>
 									<datasetRun subDataset="dataset9" uuid="9d913fb9-e055-4c04-855c-cafbc58ebb23">
 										<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{actividades})]]></dataSourceExpression>

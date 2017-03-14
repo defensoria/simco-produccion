@@ -178,7 +178,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Civil / PNP / FFAA]]></text>
+				<text><![CDATA[Condición]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="98" y="38" width="308" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="ec2b2806-12a1-442e-a0dc-d9cc07eaf3aa"/>

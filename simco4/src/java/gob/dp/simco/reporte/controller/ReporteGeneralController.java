@@ -773,6 +773,9 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
             env.setNombre(rsc.getTipologia() == null? "Tipo:" : "Tipo: "+rsc.getTipologia());
             envs.add(env);
             env = new ElementoNombreValor();
+            env.setNombre(rsc.getFase() == null? "Fase:" : "Fase: "+rsc.getFase());
+            envs.add(env);
+            env = new ElementoNombreValor();
             env.setNombre(rsc.getNombreCaso() == null? "Nombre:" : "Nombre: "+rsc.getNombreCaso());
             envs.add(env);
             env = new ElementoNombreValor();

@@ -289,21 +289,39 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
         for(Actor a : list){
             if(StringUtils.equals(a.getTipoActoCaso(), "01")){
                 if(StringUtils.equals(a.getTipoGeneral(), "PE")){
-                    primario.append(" "+a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat()+",");
+                    if(StringUtils.isNotBlank(a.getNombre()))
+                        primario.append(" "+a.getNombre());
+                    if(StringUtils.isNotBlank(a.getApellidoPat()))
+                        primario.append(" "+a.getApellidoPat());
+                    if(StringUtils.isNotBlank(a.getApellidoMat()))
+                        primario.append(" "+a.getApellidoMat());
+                    primario.append(", ");
                 }else{
                     primario.append(" "+a.getNombre()+",");
                 }
             }
             if(StringUtils.equals(a.getTipoActoCaso(), "02")){
                 if(StringUtils.equals(a.getTipoGeneral(), "PE")){
-                    secundario.append(" "+a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat()+",");
+                    if(StringUtils.isNotBlank(a.getNombre()))
+                        primario.append(" "+a.getNombre());
+                    if(StringUtils.isNotBlank(a.getApellidoPat()))
+                        primario.append(" "+a.getApellidoPat());
+                    if(StringUtils.isNotBlank(a.getApellidoMat()))
+                        primario.append(" "+a.getApellidoMat());
+                    primario.append(", ");
                 }else{
                     secundario.append(" "+a.getNombre()+",");
                 }
             }
             if(StringUtils.equals(a.getTipoActoCaso(), "03")){
                 if(StringUtils.equals(a.getTipoGeneral(), "PE")){
-                    terciario.append(" "+a.getNombre()+" "+a.getApellidoPat()+" "+a.getApellidoMat()+",");
+                    if(StringUtils.isNotBlank(a.getNombre()))
+                        primario.append(" "+a.getNombre());
+                    if(StringUtils.isNotBlank(a.getApellidoPat()))
+                        primario.append(" "+a.getApellidoPat());
+                    if(StringUtils.isNotBlank(a.getApellidoMat()))
+                        primario.append(" "+a.getApellidoMat());
+                    primario.append(", ");
                 }else{
                     terciario.append(" "+a.getNombre()+",");
                 }
