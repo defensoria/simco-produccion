@@ -2,6 +2,38 @@
     <ui:composition template="../template/template.xhtml">
         <ui:define name="content">
             <h:form>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Generar datos del reporte mensual
+                    </div>
+                    <div class="panel-body">
+                        <table style="width: 50%">
+                            <tr>
+                                <td>
+                                    <label>Seleccione año</label>
+                                    <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.anhos}" class="selectRadio">
+                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
+                                <f:selectItems value="#{listasComunesController.buscarAnhos(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
+                            </h:selectOneMenu>
+                                </td>
+                                <td>
+                                    <label>Seleccione mes</label>
+                                    <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.mes}" class="selectRadio">
+                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
+                                <f:selectItems value="#{reporteGeneralController.listasMeses}"/>
+                            </h:selectOneMenu>
+                                </td>
+                                <td>
+                                    <a jsf:action="#{reporteGeneralController.cargarReporteMensual()}" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-print" />Generar datos
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                <br/>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         Descargar reporte mensual
@@ -30,37 +62,6 @@
                                     &#160;&#160;&#160;&#160;&#160;&#160;
                                     <a class="btn btn-primary" jsf:action="#{reporteGeneralController.resumenEjecutivo(2)}">
                                         <span class="glyphicon glyphicon-print" /> Descarga reporte WORD
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <br/>
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        Generar datos del reporte mensual
-                    </div>
-                    <div class="panel-body">
-                        <table style="width: 50%">
-                            <tr>
-                                <td>
-                                    <label>Seleccione año</label>
-                                    <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.anhos}" class="selectRadio">
-                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
-                                <f:selectItems value="#{listasComunesController.buscarAnhos(false,false,false)}" var="y" itemLabel="#{y.nombreParametro}" itemValue="#{y.valorParametro}" />
-                            </h:selectOneMenu>
-                                </td>
-                                <td>
-                                    <label>Seleccione mes</label>
-                                    <h:selectOneMenu value="#{reporteGeneralController.filtroReporteCarga.mes}" class="selectRadio">
-                                <f:selectItem itemLabel="Seleccione" itemValue="0" />
-                                <f:selectItems value="#{reporteGeneralController.listasMeses}"/>
-                            </h:selectOneMenu>
-                                </td>
-                                <td>
-                                    <a jsf:action="#{reporteGeneralController.cargarReporteMensual()}" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-print" />Generar datos
                                     </a>
                                 </td>
                             </tr>

@@ -531,7 +531,7 @@
 				<textFieldExpression><![CDATA[$F{cantidadAcuerdos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="4911" y="0" width="95" height="20" uuid="3296c9d5-9edf-444a-87be-099e734254c9"/>
+				<reportElement x="4911" y="0" width="96" height="20" uuid="3296c9d5-9edf-444a-87be-099e734254c9"/>
 				<textFieldExpression><![CDATA[$F{cantidadActores}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
