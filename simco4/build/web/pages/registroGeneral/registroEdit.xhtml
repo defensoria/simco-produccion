@@ -39,7 +39,7 @@
                                         }
                                     }
                                 </script>
-                                <h:outputText rendered="#{registroController.caso.id != null and registroController.actividad.tipo == 'AD'}" class="text-resalt-primary" value="Vincular acontecimiento a:" />
+                                <h:outputText rendered="#{registroController.caso.id != null and registroController.actividad.tipo == 'AD'}" class="text-resalt-primary" value="Vincular a acontecimiento:" />
                                 <a jsf:action="#{registroController.cargarActontecimientoPorCaso()}" jsf:rendered="#{registroController.caso.id != null and registroController.actividad.tipo == 'AD'}" jsf:onclick="loadingModal()">
                                     <span style="font-size:large" class="glyphicon glyphicon-search"></span>
                                     <f:ajax render="idPanelGroupAcontecimientoBusqueda" onevent="openModalBusquedaSinCaso" />
