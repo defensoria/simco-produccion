@@ -117,6 +117,8 @@ public class ReporteSimcoCaso implements Serializable{
     
     private Integer contador;
     
+    private String justificacion;
+    
     private List<ElementoNombreValor> datosCasos;
     
 
@@ -534,6 +536,14 @@ public class ReporteSimcoCaso implements Serializable{
 
     public void setDatosCasos(List<ElementoNombreValor> datosCasos) {
         this.datosCasos = datosCasos;
+    }
+
+    public String getJustificacion() {
+        return justificacion;
+    }
+
+    public void setJustificacion(String justificacion) {
+        this.justificacion = justificacion;
     }
     
 }

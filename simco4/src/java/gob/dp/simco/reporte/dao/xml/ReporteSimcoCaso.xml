@@ -25,6 +25,7 @@
         <result property="participacion" column="PARTICIPACION"/>
         <result property="inversionInvolucrada" column="N_INVERSIONINVOLUCRADA"/>
         <result property="descripcionCaso" column="C_DESCPRELIMCASO"/>
+        <result property="justificacion" column="C_JUSTIFICACION"/>
         
     </resultMap>      
 

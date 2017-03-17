@@ -391,7 +391,16 @@ AND C.C_TIPO_ACTIVIDAD IN ('08','09','10','11','12','13','14')
             AND B.PADRE_PARAMETRO = #{tipoTipologiaCaso}
       WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
       AND TO_NUMBER(TO_CHAR(A.D_FECHAINICIO, 'YYMM')) &lt; TO_NUMBER(#{anhoMesString}) + 1 AND A.N_ID_CODIGOCARGA = #{codigoReporte}
-      AND A.C_TIPOESTADO IN ('04')
+      <if test="tipoReporte == 1">
+                AND A.C_TIPOESTADO IN ('04','05')
+            </if>
+            <if test="tipoReporte == 2">
+                AND A.C_TIPOESTADO IN  ('04','05')
+            </if>
+            <if test="tipoReporte == 3">
+                AND A.C_TIPOESTADO IN ('04')
+            </if>
+      
         GROUP BY B.NOMBRE_PARAMETRO, B.VALOR_PARAMETRO
     </select>
     
