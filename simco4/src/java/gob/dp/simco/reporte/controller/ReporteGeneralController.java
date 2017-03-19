@@ -362,6 +362,12 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         ejecutivo.setTotalActividadAccionesDefensaLegalMes(totalActividadAccionesDefensaLegalMes);
         /****CASOS CON PARTICIPACION DE LA DEFENSORIA MES CON DEFENSA LEGAL****/
         
+        /****CASOS CON PARTICIPACION DE LA DEFENSORIA MES CON ACCIONES DE DIFUSION ****/ 
+        Integer totalActividadAccionesDifusionMes;
+        totalActividadAccionesDifusionMes = reporteEjecutivoService.totalActividadAccionesDifusionMes(filtroReporte);
+        ejecutivo.setTotalActividadAccionesDifusionMes(totalActividadAccionesDifusionMes);
+        /****CASOS CON PARTICIPACION DE LA DEFENSORIA MES CON ACCIONES DE DIFUSION ****/ 
+        
         /****Cuadro N.° 1:****/ 
         Integer numeroMes = Integer.parseInt(filtroReporte.getMes());
         String anhoe = filtroReporte.getAnhos();

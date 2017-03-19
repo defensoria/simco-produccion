@@ -49,6 +49,7 @@
         <result property="idAcontecimiento" column="N_ID_ACONTECIMIENTO"/>
         <result property="indiceVinculado" column="N_INDICEVINCULADO"/>
         <result property="indiceActivo" column="N_INDICEACTIVO"/>
+        <result property="fechaRealizacionIniString" column="FECHAINICIOSTRING"/>
     </resultMap> 
 
     <sql id="sqlBuscarActividad">
@@ -523,6 +524,7 @@
         A.C_COMENTARIOACTIVIDAD,
         A.C_LUGARREALIZACION,
         A.D_FECHAREALIZACIONINI,
+        TO_CHAR(A.D_FECHAREALIZACIONINI,'DD/MM/YYYY') FECHAINICIOSTRING,
         A.D_FECHAREALIZACIONFIN,
         A.T_HORAREALIZACIONINI,
         A.T_HORAREALIZACIONFIN,

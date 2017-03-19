@@ -80,6 +80,8 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private Integer totalActividadSupervisionPreventivaMes; 
     
+    private Integer totalActividadAccionesDifusionMes; 
+    
     private List<CuadroGenericoMes> listaCasosRegistradosMES;
     
     private List<CuadroGenericoMes> listaCasosResueltosMES;
@@ -1265,6 +1267,14 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setListaCasosActivoALatentes(List<ReporteSimcoCaso> listaCasosActivoALatentes) {
         this.listaCasosActivoALatentes = listaCasosActivoALatentes;
+    }
+
+    public Integer getTotalActividadAccionesDifusionMes() {
+        return totalActividadAccionesDifusionMes;
+    }
+
+    public void setTotalActividadAccionesDifusionMes(Integer totalActividadAccionesDifusionMes) {
+        this.totalActividadAccionesDifusionMes = totalActividadAccionesDifusionMes;
     }
 
 }

@@ -106,6 +106,8 @@ public interface ReporteEjecutivoService {
     
     public Integer totalActividadSupervisionPreventivaMes(FiltroReporte filtroReporte);
     
+    public Integer totalActividadAccionesDifusionMes(FiltroReporte filtroReporte);
+    
     public Integer totalActividadAccionesDefensaLegalMes(FiltroReporte filtroReporte);
     
     public HashMap<Integer,String> actoresPorCodigoCasoString(FiltroReporte filtroReporte);

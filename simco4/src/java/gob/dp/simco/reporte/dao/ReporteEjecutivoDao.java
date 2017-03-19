@@ -109,6 +109,8 @@ public interface ReporteEjecutivoDao {
     
     public Integer totalActividadSupervisionPreventivaMes(FiltroReporte filtroReporte);
     
+    public Integer totalActividadAccionesDifusionMes(FiltroReporte filtroReporte);
+    
     public Integer totalCasosSegunTipologiaCasoDialogo(FiltroReporte filtroReporte);
     
     

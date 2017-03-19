@@ -97,6 +97,8 @@ public class Actividad implements Serializable{
     private Long idAcontecimiento;
     
     private Integer indiceVinculado;
+    
+    private String fechaRealizacionIniString;
 
     public Long getId() {
         return id;
@@ -416,6 +418,14 @@ public class Actividad implements Serializable{
 
     public void setIndiceActivo(Integer indiceActivo) {
         this.indiceActivo = indiceActivo;
+    }
+
+    public String getFechaRealizacionIniString() {
+        return fechaRealizacionIniString;
+    }
+
+    public void setFechaRealizacionIniString(String fechaRealizacionIniString) {
+        this.fechaRealizacionIniString = fechaRealizacionIniString;
     }
     
 }

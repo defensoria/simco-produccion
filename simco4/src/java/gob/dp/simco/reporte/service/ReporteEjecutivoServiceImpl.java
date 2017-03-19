@@ -408,4 +408,9 @@ public class ReporteEjecutivoServiceImpl implements ReporteEjecutivoService{
         return reporteSimcoCasoDao.casoaLatentesLista(filtroReporte);
     }
 
+    @Override
+    public Integer totalActividadAccionesDifusionMes(FiltroReporte filtroReporte) {
+        return reporteEjecutivoDao.totalActividadAccionesDifusionMes(filtroReporte);
+    }
+
 }
