@@ -314,6 +314,7 @@
                         </td>
                         <td style="width:54%">
                             <div class="header-right">
+                                <h:panelGroup rendered="#{!seguridadUtilController.tieneRol('ROL0000003')}">
                                 <ul class="notifications">
                                     <li>
                                         <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
@@ -361,6 +362,7 @@
 
                                     </li>
                                 </ul>
+                                    </h:panelGroup>
                                 <span class="separator" style="margin-left:0;margin-right:0"></span>
                                 <div id="userbox" class="userbox">
                                     <figure class="profile-picture">
