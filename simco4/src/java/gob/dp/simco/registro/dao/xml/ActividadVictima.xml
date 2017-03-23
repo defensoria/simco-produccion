@@ -26,6 +26,7 @@
         <result property="noIdentificado" column="N_NOIDENTIFICADO"/>
         <result property="sexo" column="C_SEXO"/>
         <result property="establecimientoAtencion" column="C_ESTABLECIMIENTO_ATENCION"/>
+        <result property="condicion" column="CONDICION"/>
     </resultMap>  
 
     <insert id="actividadVictimaInsertar" parameterType="actividadVictima">
@@ -242,12 +243,15 @@
         A.C_RUTA,
         A.N_NOIDENTIFICADO,
         B.NOMBRE_PARAMETRO,
+        C.NOMBRE_PARAMETRO CONDICION,
         A.C_SEXO,
         A.C_ESTABLECIMIENTO_ATENCION
         FROM
         SIMCO_REG_ACTIVIDAD_VICTIMA A 
         LEFT JOIN SIMCO_PARAMETRO B ON TRIM(A.C_TIPO) = TRIM(B.VALOR_PARAMETRO)
         AND B.PADRE_PARAMETRO = 200
+        LEFT JOIN SIMCO_PARAMETRO C ON TRIM(A.C_TIPOESTADO) = TRIM(C.VALOR_PARAMETRO)
+        AND C.PADRE_PARAMETRO = 190
         WHERE A.N_ID_ACTIVIDAD = #{id}
     </select>
     

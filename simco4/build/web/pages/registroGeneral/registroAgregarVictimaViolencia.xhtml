@@ -291,6 +291,10 @@
                                             <h:outputText value="#{victimas.nombreTipo}" />
                                         </h:column>
                                         <h:column>
+                                            <f:facet name="header">Condición</f:facet>
+                                            <h:outputText value="#{victimas.condicion}" />
+                                        </h:column>
+                                        <h:column>
                                             <f:facet name="header">Medio de verificación</f:facet>
                                             <a target="_blank" href="/filesystem/#{victimas.ruta}">
                                                 #{victimas.ruta}

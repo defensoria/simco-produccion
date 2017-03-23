@@ -16,17 +16,17 @@ public abstract class AbstractManagedBean implements Serializable {
 
     protected MessagesUtil msg;
 
-    //protected String separador = "/"; //linux
-    protected String separador = "\\"; //windows
+    protected String separador = "/"; //linux
+    //protected String separador = "\\"; //windows
 
-    //protected static String FILE_SYSTEM="/home/glassfish/glassfish4/glassfish/domains/domain1/docroot/filesystem/";//linux
-    protected static String FILE_SYSTEM = "C:/server/glassfish-4.0/glassfish4/glassfish/domains/domain1/docroot/filesystem/";//windows
+    protected static String FILE_SYSTEM="/home/glassfish/glassfish4/glassfish/domains/domain1/docroot/filesystem/";//linux
+    //protected static String FILE_SYSTEM = "C:/server/glassfish-4.0/glassfish4/glassfish/domains/domain1/docroot/filesystem/";//windows
 
     public String hostAddress() {
         try {//windows
-            return "http://" + InetAddress.getLocalHost().getHostAddress().concat(":8080/filesystem/");
+            //return "http://" + InetAddress.getLocalHost().getHostAddress().concat(":8080/filesystem/");
             //linux
-            //return "http://" + InetAddress.getLocalHost().getHostAddress().concat("/filesystem/");
+            return "http://" + InetAddress.getLocalHost().getHostAddress().concat("/filesystem/");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

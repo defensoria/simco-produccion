@@ -406,7 +406,7 @@ AND C.C_TIPO_ACTIVIDAD IN ('15','16','17','18','19')
                 AND A.C_TIPOESTADO IN ('04','05')
             </if>
             <if test="tipoReporte == 2">
-                AND A.C_TIPOESTADO IN  ('04','05')
+                AND A.C_TIPOESTADO IN  ('04')
             </if>
             <if test="tipoReporte == 3">
                 AND A.C_TIPOESTADO IN ('04')

@@ -59,6 +59,8 @@ public class ActividadVictima implements Serializable{
     private String sexo;
     
     private String establecimientoAtencion;
+    
+    private String condicion;
 
     public Long getId() {
         return id;
@@ -242,6 +244,14 @@ public class ActividadVictima implements Serializable{
 
     public void setEstablecimientoAtencion(String establecimientoAtencion) {
         this.establecimientoAtencion = establecimientoAtencion;
+    }
+
+    public String getCondicion() {
+        return condicion;
+    }
+
+    public void setCondicion(String condicion) {
+        this.condicion = condicion;
     }
     
 }

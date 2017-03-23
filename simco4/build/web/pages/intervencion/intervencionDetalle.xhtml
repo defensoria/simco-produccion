@@ -629,14 +629,18 @@ delimitar(".descripcionSpan", 500);
                                                                                     </a>
                                                                                 </td>
                                                                                 <td style="text-align: center">
-                                                                                    <label>G.C.A.</label><br/>
-                                                                                    <h:selectBooleanCheckbox value="#{actuacion.indGSA}" />
+                                                                                    <label data-toggle="tooltip" data-placement="right" title="Gestión para el cumplimiento de acuerdos" >G.C.A.</label><br/>
+                                                                                    <h:selectBooleanCheckbox value="#{actuacion.indGSA}" title="Gestión para el cumplimiento de acuerdos"/>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
                                                                     </h:column>
                                                                 </h:dataTable>
-                                                                <script>$("#idPanelBodyActuacion").hide();
+                                                                <script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});                                                                
+    $("#idPanelBodyActuacion").hide();
                                                                     $("#spanAddActuacion").removeClass("glyphicon-minus").addClass("glyphicon-plus");
                                                                     var i = 1;
                                                                     $("#addActuacion").click(function () {
