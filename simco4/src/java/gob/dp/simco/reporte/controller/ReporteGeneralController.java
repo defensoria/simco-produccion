@@ -731,6 +731,38 @@ public class ReporteGeneralController extends AbstractManagedBean implements Ser
         /****Gráfico N° 8****/
         /****Cuadro N.° 10:****/
         
+        /****Cuadro N.° 11:****/
+        /****Gráfico N° 9****/
+        filtroReporte.setTipoTipologiaCaso("90");
+        filtroReporte.setTipoReporte(4);
+        List<ElementoResumenEjecutivo> nivelesParametros8 = reporteEjecutivoService.totalMensualSegunTipologiaCaso(filtroReporte);
+        
+        int totalTipo4= 0;
+        
+        for(ElementoResumenEjecutivo ere : nivelesParametros8){
+            totalTipo4 += ere.getValor();
+        }
+        List<ElementoNombreValor> listNivelTipo2 = new ArrayList<>();
+        List<ElementoNombreValor> listNivelTipoGrafic2 = new ArrayList<>();
+        ElementoNombreValor env8 = new ElementoNombreValor();
+        env8.setNombre("Total");
+        env8.setValor(totalTipo4);
+        env8.setPorcentaje("100.0%");
+        listNivelTipo2.add(env8);
+        
+        for(ElementoResumenEjecutivo ere : nivelesParametros8){
+            ElementoNombreValor env = new ElementoNombreValor();
+            env.setNombre(ere.getNombre());
+            env.setValor(ere.getValor());
+            env.setPorcentaje(cambiarPorcentaje(totalTipo4, ere.getValor()));
+            listNivelTipo2.add(env);
+            listNivelTipoGrafic2.add(env);
+        }
+        ejecutivo.setListaNivelTipo2(listNivelTipo2);
+        ejecutivo.setListaNivelTipoGrafico2(listNivelTipoGrafic2);
+        /****Gráfico N° 9****/
+        /****Cuadro N.° 11:****/
+        
         /****SOCIOAMBIENTALES****/
         filtroReporte.setTipoTipologiaCaso("130");
         filtroReporte.setTipoReporte(3);

@@ -389,8 +389,10 @@ AND C.C_TIPO_ACTIVIDAD IN ('15','16','17','18','19')
     <select id="totalMensualSegunTipologiaCaso"  resultMap="elementoResumenEjecutivoMap" parameterType="filtroReporte">
         SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE, B.VALOR_PARAMETRO VALORPARAMETRO  FROM SIMCO_REPORTE_CASO A
       INNER JOIN SIMCO_PARAMETRO B 
-        
-        <if test="tipoReporte == 1">
+            <if test="tipoReporte == 4">
+                ON A.C_TIPOASUNTO = B.VALOR_PARAMETRO
+            </if>
+            <if test="tipoReporte == 1">
                 ON A.C_TIPOASUNTO = B.VALOR_PARAMETRO
             </if>
             <if test="tipoReporte == 2">
@@ -402,11 +404,14 @@ AND C.C_TIPO_ACTIVIDAD IN ('15','16','17','18','19')
             AND B.PADRE_PARAMETRO = #{tipoTipologiaCaso}
       WHERE A.C_INDVIGENTE = 'A' AND A.C_INDAPROBADO = 'A'
       AND TO_NUMBER(TO_CHAR(A.D_FECHAINICIO, 'YYMM')) &lt; TO_NUMBER(#{anhoMesString}) + 1 AND A.N_ID_CODIGOCARGA = #{codigoReporte}
-      <if test="tipoReporte == 1">
+            <if test="tipoReporte == 4">
+                AND A.C_TIPOESTADO IN ('04')
+            </if>
+            <if test="tipoReporte == 1">
                 AND A.C_TIPOESTADO IN ('04','05')
             </if>
             <if test="tipoReporte == 2">
-                AND A.C_TIPOESTADO IN  ('04')
+                AND A.C_TIPOESTADO IN ('04','05')
             </if>
             <if test="tipoReporte == 3">
                 AND A.C_TIPOESTADO IN ('04')

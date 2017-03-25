@@ -105,7 +105,8 @@ public class SeguimientoAcuerdoController implements Serializable {
     }
 
     public String cargarPagina() {
-        usuarioSession();
+        try {
+            usuarioSession();
         listaAlertaEjecutadas = new ArrayList<>();
         listaAlertaProgramadas = new ArrayList<>();
         actaAcuerdoDetalle = new ActaAcuerdoDetalle();
@@ -113,18 +114,27 @@ public class SeguimientoAcuerdoController implements Serializable {
         ad.setUsuarioRegistro(usuarioSession.getCodigo());
         acuerdoDetalles = actaAcuerdoDetalleService.actaAcuerdoDetalleSeguimiento(ad);
         for(ActaAcuerdoDetalle aad : acuerdoDetalles){
-            if(aad.getFechaCumplimiento().after(new Date())){
-                aad.setColor("yelow");
+            try {
+                if(aad.getFechaCumplimiento() != null){
+                if(aad.getFechaCumplimiento().after(new Date())){
+                    aad.setColor("yelow");
+                }
+                if(aad.getFechaCumplimiento().before(new Date())){
+                    aad.setColor("red");
+                }
+                if(aad.isIndCumplido())
+                    aad.setColor("green");
+                verAlertas(aad);
             }
-            if(aad.getFechaCumplimiento().before(new Date())){
-                aad.setColor("red");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            if(aad.isIndCumplido())
-                aad.setColor("green");
             
-            verAlertas(aad);
         }
         seteaValoresInicio();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "seguimientoAcuerdo";
     }
     

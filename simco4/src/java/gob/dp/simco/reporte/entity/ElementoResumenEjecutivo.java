@@ -102,6 +102,10 @@ public class ElementoResumenEjecutivo implements Serializable{
     
     private List<ElementoNombreValor> listaNivelTipoGrafico;
     
+    private List<ElementoNombreValor> listaNivelTipo2;
+    
+    private List<ElementoNombreValor> listaNivelTipoGrafico2;
+    
     private List<ElementoNombreValor> listaNivelSubTipo;
     
     private List<ElementoNombreValor> listaNivelSubTipoGrafico;
@@ -175,6 +179,8 @@ public class ElementoResumenEjecutivo implements Serializable{
     private List<ReporteSimcoCaso> listaCasosLatentesPorMes;
     
     private List<ReporteSimcoCaso> listaCasosActivoALatentes;
+    
+    
     
     /***departamentos**/
     private	Integer amazonasAct;
@@ -1275,6 +1281,22 @@ public class ElementoResumenEjecutivo implements Serializable{
 
     public void setTotalActividadAccionesDifusionMes(Integer totalActividadAccionesDifusionMes) {
         this.totalActividadAccionesDifusionMes = totalActividadAccionesDifusionMes;
+    }
+
+    public List<ElementoNombreValor> getListaNivelTipo2() {
+        return listaNivelTipo2;
+    }
+
+    public void setListaNivelTipo2(List<ElementoNombreValor> listaNivelTipo2) {
+        this.listaNivelTipo2 = listaNivelTipo2;
+    }
+
+    public List<ElementoNombreValor> getListaNivelTipoGrafico2() {
+        return listaNivelTipoGrafico2;
+    }
+
+    public void setListaNivelTipoGrafico2(List<ElementoNombreValor> listaNivelTipoGrafico2) {
+        this.listaNivelTipoGrafico2 = listaNivelTipoGrafico2;
     }
 
 }
