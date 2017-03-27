@@ -13,6 +13,7 @@
         <result property="actor.apellidoPat" column="C_APELLIDOPATACTOR"/>
         <result property="actor.apellidoMat" column="C_APELLIDOMATACTOR"/>
         <result property="archivado" column="C_ARCHIVADO"/>
+        <result property="fechaRegistro" column="D_FECHAREGISTROANALISIS"/>
     </resultMap>  
     
     <insert id="analisisActorInsertar" parameterType="analisisActor">
@@ -45,7 +46,8 @@
     </insert>
     
     <select id="analisisActorxcasoBuscar" resultMap="analisisActorMap" parameterType="long">
-        SELECT 
+        SELECT
+            A.D_FECHAREGISTROANALISIS,
             A.C_RESUMENDEMANDA, 
             B.C_NOMACTOR, 
             B.C_APELLIDOPATACTOR,

@@ -11,6 +11,7 @@
         <result property="actor.nombre" column="C_NOMACTOR"/>
         <result property="actor.apellidoPat" column="C_APELLIDOPATACTOR"/>
         <result property="actor.apellidoMat" column="C_APELLIDOMATACTOR"/>
+        <result property="tema.detalle" column="C_DETALLE"/>
     </resultMap>  
     
     <insert id="analisisActorTemaInsertar" parameterType="analisisActorTema">
@@ -18,12 +19,24 @@
         (
         N_ID_ACTOR,
         N_ID_CASO,
+        <if test="nivel != null">
+            N_NIVELACTORTEMA,
+        </if>
+        <if test="fechaRegistro != null">
+            D_FECHAREGISTROACTORTEMA,
+        </if>
         N_ID_TEMA
         )
         VALUES 
         (
         #{actor.id},
         #{caso.id},
+        <if test="nivel != null">
+            #{nivel},
+        </if>
+        <if test="fechaRegistro != null">
+            #{fechaRegistro},
+        </if>
         #{tema.id}
         )
     </insert>
@@ -57,6 +70,12 @@
         select count(*) from SIMCO_ANALISIS_TEMA_ACTOR
         where N_ID_CASO =#{caso.id}
         and N_ID_ACTOR = #{actor.id}
+    </select>
+    
+    <select id="analisisActorTemaPorCasoActor" parameterType="long" resultMap="analisisActorTemaMap" >
+        select A.*, B.C_DETALLE from SIMCO_ANALISIS_TEMA_ACTOR A
+        INNER JOIN SIMCO_ANALISIS_TEMA B ON A.N_ID_TEMA = B.N_ID_TEMA
+        where A.N_ID_CASO = #{id}
     </select>
     
     <select id="analisisActorCasoTemaValida" parameterType="analisisActorTema" resultType="java.lang.Integer" >

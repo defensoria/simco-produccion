@@ -28,4 +28,6 @@ public interface AnalisisActorTemaService {
     
     public void analisisActorTemaDeletexActor(AnalisisActorTema analisisActorTema);
     
+    public List<AnalisisActorTema> analisisActorTemaPorCasoActor(Long idCaso);
+    
 }

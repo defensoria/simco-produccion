@@ -182,6 +182,9 @@
         <if test="fechaAprobado != null">
             D_FECHAAPROBACION,
         </if>
+        <if test="sintesisAnalisis != null">
+            C_SISTESISANALISIS,
+        </if>
          C_NOMCASO
         )
         VALUES 
@@ -285,6 +288,9 @@
         </if>
         <if test="fechaAprobado != null">
             #{fechaAprobado},
+        </if>
+        <if test="sintesisAnalisis != null">
+            #{sintesisAnalisis},
         </if>
         #{nombre}
         )
@@ -456,6 +462,10 @@
         INNER JOIN SIMCO_REG_CASO_ACTIVIDAD D ON C.N_ID_ACTIVIDAD = D.N_ID_ACTIVIDAD AND D.C_ESTADOACTCASO = 'ACT'
         INNER JOIN SIMCO_REG_CASO E ON D.N_ID_CASO = E.N_ID_CASO AND E.C_INDVIGENTE = 'A'
         WHERE A.N_ID_ACUERDO = #{id}
+    </select>
+    
+    <select id="casoxVersion" resultMap="casoMap" parameterType="caso">
+        SELECT * FROM SIMCO_REG_CASO WHERE C_CODIGOCASO = #{codigo} AND N_VERSION = (#{version}-1)
     </select>
     
     <select id="buscarCasoXnombreCodigo" resultMap="casoMap" parameterType="filtroCaso">

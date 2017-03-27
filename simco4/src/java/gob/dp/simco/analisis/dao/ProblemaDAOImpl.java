@@ -17,8 +17,9 @@ import org.springframework.stereotype.Repository;
 public class ProblemaDAOImpl extends SqlSessionDaoSupport implements ProblemaDAO {
 
     @Override
-    public void problemaInsertar(Problema problema) {
+    public Problema problemaInsertar(Problema problema) {
         getSqlSession().insert("gob.dp.simco.analisis.dao.ProblemaDAO.problemaInsertar", problema);
+        return problema;
     }
 
     @Override

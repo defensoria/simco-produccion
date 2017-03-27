@@ -37,7 +37,8 @@
         SELECT 
             N_ID_CASO,
             N_ID_ACTOR,
-            N_NIVELINTENSIDAD
+            N_NIVELINTENSIDAD,
+            D_FECHAREGISTRO
         FROM SIMCO_ANALISIS_ACT_INTENSIDAD
         WHERE N_ID_CASO = #{id}
     </select>

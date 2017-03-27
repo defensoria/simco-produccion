@@ -41,5 +41,10 @@ public class AnalisisRelacionDaoImpl extends SqlSessionDaoSupport implements Ana
     public void analisisRelacioEliminar(AnalisisRelacion analisisRelacion) {
         getSqlSession().delete("gob.dp.simco.analisis.dao.AnalisisRelacionDao.analisisRelacioEliminar", analisisRelacion);
     }
+
+    @Override
+    public List<AnalisisRelacion> analisisRelacionBuscarTodos(Long idCaso) {
+        return getSqlSession().selectList("gob.dp.simco.analisis.dao.AnalisisRelacionDao.analisisRelacionBuscarTodos", idCaso);
+    }
     
 }

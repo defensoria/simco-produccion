@@ -51,5 +51,10 @@ public class AnalisisActorTemaDaoImpl extends SqlSessionDaoSupport implements An
     public void analisisActorTemaDeletexActor(AnalisisActorTema analisisActorTema) {
         getSqlSession().insert("gob.dp.simco.analisis.dao.AnalisisActorTemaDao.analisisActorTemaDeletexActor", analisisActorTema);
     }
+
+    @Override
+    public List<AnalisisActorTema> analisisActorTemaPorCasoActor(Long idCaso) {
+        return getSqlSession().selectList("gob.dp.simco.analisis.dao.AnalisisActorTemaDao.analisisActorTemaPorCasoActor", idCaso);
+    }
     
 }

@@ -5,6 +5,7 @@
  */
 package gob.dp.simco.registro.controller;
 
+import gob.dp.simco.analisis.controller.AnalisisController;
 import gob.dp.simco.registro.vo.ReporteCasoVO;
 import gob.dp.simco.parametro.constantes.InforVO;
 import gob.dp.simco.parametro.service.CatalogoService;
@@ -757,6 +758,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
     }
 
     public boolean registrarCaso() {
+        Long idCasoOld = caso.getId();
         if (StringUtils.equals(caso.getTipoEstado(), "0")) {
             msg.messageAlert("Debe ingresar el estado del caso", null);
             return false;
@@ -801,18 +803,20 @@ public class CasoController extends AbstractManagedBean implements Serializable 
             actualizarActoresFicha();
             validaListasActoresCasos(caso.getId());
             setearEsComosionadoRegistro();
+            if(idCasoOld != null)
+                generarVersionAnalisis(idCasoOld, caso.getId());
         } catch (Exception ex) {
             log.error(ex);
         }
         return true;
     }
 
-    /*public void enviarSolicitudAprobacion(){
-        Mail mail = new Mail();	
-		//tblEmailDetalle.setNIdDestinatarioPersona(tblEmailPersona.getNIdEmail());
-		mail.send("careli_2710@hotmail.com","asunto","cuerpo");
-
-    }*/
+    private void generarVersionAnalisis(Long idCasoOld, Long idCasoNew){
+        FacesContext context = FacesContext.getCurrentInstance();
+        AnalisisController analisisController = (AnalisisController) context.getELContext().getELResolver().getValue(context.getELContext(), null, "analisisController");
+        analisisController.replicarAnalisis(idCasoOld, idCasoNew);
+    }
+    
 
     public String aprobarSolicitudAprobacion() {
         if (caso.getIndAprobado() == null) {
@@ -830,7 +834,6 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 casoService.casoUpdateAprobar(c);
             }
         }
-
         return cargarPaginaCasosSigues();
     }
 

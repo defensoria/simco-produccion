@@ -55,4 +55,9 @@ public class AnalisisActorTemaServiceImpl implements AnalisisActorTemaService{
     public void analisisActorTemaDeletexActor(AnalisisActorTema analisisActorTema) {
         analisisActorTemaDao.analisisActorTemaDeletexActor(analisisActorTema);
     }
+
+    @Override
+    public List<AnalisisActorTema> analisisActorTemaPorCasoActor(Long idCaso) {
+        return analisisActorTemaDao.analisisActorTemaPorCasoActor(idCaso);
+    }
 }

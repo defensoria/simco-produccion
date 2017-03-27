@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/entity/ElementoResumenEjecutivo.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/reportes/reporteSimcoCaso.xhtml</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/controller/ReporteGeneralController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/comun/mb/AbstractManagedBean.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/entity/ReporteSimcoVictima.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/controller/VictimaViolenciaController.java</file>
-            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/reporte/dao/xml/ReporteEjecutivo.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/service/CasoActorServiceImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/analisis/controller/AnalisisController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/xml/Actor.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/analisis/dao/xml/AnalisisActorIntensidad.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/analisis/analisis.xhtml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/seguridad/controller/MenuController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/CasoDaoImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/controller/CasoController.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/CasoDao.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/service/CasoServiceImpl.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/service/CasoService.java</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/src/java/gob/dp/simco/registro/dao/xml/Caso.xml</file>
+            <file>file:/C:/Users/carlos/Documents/NetBeansProjects/simco-produccion1/simco4/web/pages/caso/fichaCaso.xhtml</file>
         </group>
     </open-files>
 </project-private>

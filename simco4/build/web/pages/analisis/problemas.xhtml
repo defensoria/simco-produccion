@@ -39,7 +39,7 @@
                                 <div class="panel-body">
                                     <span class="text-resalt-green">Demandas y posiciones de los actores</span>
                                     <br/><br/>
-                                    
+
                                     <h:selectOneMenu value="#{analisisController.idActor}" class="selectActor" style="width:50%" onchange="loadingModal()">
                                         <f:selectItem itemLabel="Seleccionar" itemValue="0"/>
                                         <f:selectItems value="#{analisisController.listaActoresXCaso}" var="y" itemLabel="#{y.nombre} #{y.apellidoPat} #{y.apellidoMat}" itemValue="#{y.id}" />
@@ -332,7 +332,7 @@
                                                                         <script>
                                                                             function confirm#{rowdet.rowIndex+1}() {
                                                                                 $(".confirm#{rowdet.rowIndex+1}").modal("show");
-                                                                            }                                                                                
+                                                                            }
                                                                         </script>
                                                                         <h:panelGroup rendered="#{casoController.esComisionadoRegistro}">
                                                                             <a onclick="confirm#{rowdet.rowIndex+1}()" style="cursor:pointer">
@@ -429,13 +429,14 @@
                                                         <h:panelGroup id="addAcciones">
                                                             <div class="form-group has-success has-feedback">
                                                                 <label class="control-label" for="inputSuccess2">Título del tema</label>
-                                                                <input type="text" jsf:value="#{analisisController.tema.detalle}" class="txtTema" placeholder="Nuevo tema" aria-describedby="inputSuccess2Status"/>
+                                                                <input type="text" jsf:value="#{analisisController.tema.detalle}" onkeypress="return soloLetras(event)" class="txtTema" placeholder="Nuevo tema" aria-describedby="inputSuccess2Status"/>
                                                                 <a jsf:onclick="return validaCampoTema()" jsf:action="#{analisisController.saveTema()}">
                                                                     <span class="glyphicon glyphicon-share-alt form-control-feedback" aria-hidden="true"></span>
                                                                     <f:ajax render="@form" execute="@form"/>
                                                                 </a>
                                                             </div>
                                                             <script>
+                                                                //<![CDATA[
                                                                 function validaCampoTema() {
                                                                     if ($(".txtTema").val() === '') {
                                                                         $(".txtTema").addClass("error");
@@ -448,6 +449,26 @@
                                                                     }
                                                                     return true;
                                                                 }
+                                                                
+                                                                function soloLetras(e) {
+                                                                    key = e.keyCode || e.which;
+                                                                    tecla = String.fromCharCode(key).toLowerCase();
+                                                                    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+                                                                    especiales = "8-37-39-46";
+                                                                    tecla_especial = false
+                                                                    for (var i in especiales) {
+                                                                        if (key === especiales[i]) {
+                                                                            tecla_especial = true;
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    if (letras.indexOf(tecla) === -1) {
+                                                                        if(!tecla_especial){
+                                                                            return false;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                //]]>
                                                             </script>
                                                         </h:panelGroup>
                                                     </td>
@@ -464,8 +485,7 @@
                                                     $("#idPanelBodyActuacion").slideDown(400).delay(800);
                                                     $("#spanAddActuacion").removeClass("glyphicon-plus").addClass("glyphicon-minus");
                                                     i = 2;
-                                                }
-                                                else
+                                                } else
                                                 {
                                                     $("#idPanelBodyActuacion").slideUp(300).delay(800);
                                                     $("#spanAddActuacion").removeClass("glyphicon-minus").addClass("glyphicon-plus");

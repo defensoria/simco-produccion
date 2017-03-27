@@ -45,5 +45,10 @@ public class AnalisisRelacionServiceImpl implements AnalisisRelacionService{
     public void analisisRelacioEliminar(AnalisisRelacion analisisRelacion) {
         analisisRelacionDao.analisisRelacioEliminar(analisisRelacion);
     }
+
+    @Override
+    public List<AnalisisRelacion> analisisRelacionBuscarTodos(Long idCaso) {
+        return analisisRelacionDao.analisisRelacionBuscarTodos(idCaso);
+    }
     
 }

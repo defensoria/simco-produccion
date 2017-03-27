@@ -22,6 +22,8 @@ public interface AnalisisRelacionDao {
     
     public AnalisisRelacion analisisRelacionBuscarOne(AnalisisRelacion analisisRelacion);
     
+    public List<AnalisisRelacion> analisisRelacionBuscarTodos(Long idCaso);
+    
     public void analisisRelacioEliminar(AnalisisRelacion analisisRelacion);
     
 }

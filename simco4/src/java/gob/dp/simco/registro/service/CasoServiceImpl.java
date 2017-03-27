@@ -128,4 +128,9 @@ public class CasoServiceImpl implements CasoService {
         casoDao.casoUpdateAprobar(caso);
     }
 
+    @Override
+    public Caso casoxVersion(Caso caso) {
+        return casoDao.casoxVersion(caso);
+    }
+
 }

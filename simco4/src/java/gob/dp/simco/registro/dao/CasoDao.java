@@ -49,6 +49,6 @@ public interface CasoDao {
    
    public List<Caso> listaCasosAntesDeAprobado(FiltroReporte filtroReporte);
    
-   
+   public Caso casoxVersion(Caso caso);
    
 }

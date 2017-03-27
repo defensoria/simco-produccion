@@ -13,7 +13,7 @@ import gob.dp.simco.analisis.entity.Problema;
  */
 public interface ProblemaDAO {
     
-    public void problemaInsertar(Problema problema);
+    public Problema problemaInsertar(Problema problema);
             
     public void problemaUpdate(Problema problema);
             

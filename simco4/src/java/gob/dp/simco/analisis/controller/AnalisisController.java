@@ -199,6 +199,52 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
     public AnalisisController() {
         limpiarListas();
     }
+    
+    public void replicarAnalisis(Long idCasoOld, Long idCasoNew){
+        List<AnalisisActorIntensidad> aais = analisisActorIntensidadService.analisisActorIntensidadBuscar(idCasoOld);
+        Caso c = new Caso();
+        c.setId(idCasoNew);
+        for(AnalisisActorIntensidad aai : aais){    
+            aai.setCaso(c);
+            analisisActorIntensidadService.analisisActorIntensidadInsertar(aai);
+        }
+        List<AnalisisRelacion> ars = analisisRelacionService.analisisRelacionBuscarTodos(idCasoOld);
+        for(AnalisisRelacion ar : ars){
+            ar.setCaso(c);
+            analisisRelacionService.analisisRelacionInsertar(ar);
+        }
+        List<Tema> temas = temaService.temaBuscar(idCasoOld);
+        for(Tema t : temas){
+            t.setCaso(c);
+            temaService.temaInsertar(t);
+        }
+        List<AnalisisActor> aas = analisisActorService.analisisActorxcasoBuscar(idCasoOld);
+        for(AnalisisActor aa : aas){
+            aa.setCaso(c);
+            analisisActorService.analisisActorInsertar(aa);
+        }
+        List<AnalisisActorTema> aats = analisisActorTemaService.analisisActorTemaPorCasoActor(idCasoOld);
+        for(AnalisisActorTema aat : aats){
+            aat.setCaso(c);
+            for(Tema t : temas){
+                if(StringUtils.equals(aat.getTema().getDetalle(), t.getDetalle())){
+                    aat.setTema(t);
+                }
+            }
+            analisisActorTemaService.analisisActorTemaInsertar(aat);
+        }
+        Problema ps = problemaService.problemaBuscar(idCasoOld);
+        if(ps != null){
+            ps.setIdCaso(idCasoNew);
+            Long idProblemaOld = ps.getId();
+            problemaService.problemaInsertar(ps);
+            List<ProblemaDetalle> detalles = problemaDetalleService.problemaDetalleBuscar(idProblemaOld);
+            for(ProblemaDetalle pd : detalles){
+                pd.setIdProblema(ps.getId());
+                problemaDetalleService.problemaDetalleInsertar(pd);
+            }
+        }
+    }
 
     public String cargarContexto(Caso caso) {
         setCaso(caso);

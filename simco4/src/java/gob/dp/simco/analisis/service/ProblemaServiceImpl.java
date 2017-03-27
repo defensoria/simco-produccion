@@ -21,8 +21,9 @@ public class ProblemaServiceImpl implements ProblemaService{
     private ProblemaDAO problemaDAO;
 
     @Override
-    public void problemaInsertar(Problema problema) {
+    public Problema problemaInsertar(Problema problema) {
         problemaDAO.problemaInsertar(problema);
+        return problema;
     }
 
     @Override

@@ -62,7 +62,14 @@
         WHERE A.N_ID_CASO = #{caso.id}
         AND A.N_ID_ACTOR1 = #{actor1.id}
         AND A.N_ID_ACTOR2 = #{actor2.id}
-        
+    </select>
+    
+    <select id="analisisRelacionBuscarTodos" resultMap="analisisRelacionMap" parameterType="analisisRelacion">
+        SELECT A.*
+        FROM SIMCO_ANALISIS_RELACION A
+        INNER JOIN SIMCO_REG_ACTOR B ON A.N_ID_ACTOR1 = B.N_ID_ACTOR
+        INNER JOIN SIMCO_REG_ACTOR C ON A.N_ID_ACTOR2 = C.N_ID_ACTOR
+        WHERE A.N_ID_CASO = #{caso.id}
     </select>
     
     <update id="analisisRelacioUpdate" parameterType="analisisRelacion">

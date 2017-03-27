@@ -8,7 +8,6 @@ package gob.dp.simco.registro.service;
 
 import gob.dp.simco.registro.bean.FiltroCaso;
 import gob.dp.simco.registro.entity.Caso;
-import gob.dp.simco.reporte.entity.FiltroReporte;
 import java.util.List;
 
 /**
@@ -46,5 +45,7 @@ public interface CasoService {
    public List<Caso> buscarCasoXnombreCodigo(FiltroCaso filtroCaso);
    
    public void casoUpdateAprobar(Caso caso);
+   
+   public Caso casoxVersion(Caso caso);
    
 }
