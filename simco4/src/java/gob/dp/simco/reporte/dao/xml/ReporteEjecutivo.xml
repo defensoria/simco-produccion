@@ -390,7 +390,7 @@ AND C.C_TIPO_ACTIVIDAD IN ('15','16','17','18','19')
         SELECT COUNT(A.N_ID_CASO) VALOR, B.NOMBRE_PARAMETRO NOMBRE, B.VALOR_PARAMETRO VALORPARAMETRO  FROM SIMCO_REPORTE_CASO A
       INNER JOIN SIMCO_PARAMETRO B 
             <if test="tipoReporte == 4">
-                ON A.C_TIPOASUNTO = B.VALOR_PARAMETRO
+                ON A.C_TIPOCASO = B.VALOR_PARAMETRO
             </if>
             <if test="tipoReporte == 1">
                 ON A.C_TIPOASUNTO = B.VALOR_PARAMETRO

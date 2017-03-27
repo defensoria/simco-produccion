@@ -288,6 +288,9 @@ public class ActaAcuerdoController extends AbstractManagedBean implements Serial
         actaAcuerdoDetalle.setListaActor(vincularActaAcuerdoListaActoresView());
         actaAcuerdoDetalle.setListaActorFin(vincularActaAcuerdoListaActoresViewFin());
         actaAcuerdoDetalle.setCodigo(generarCodigoActaAcuerdoDetalle());
+        if(actaAcuerdoDetalle.isIndCumplimiento()){
+            actaAcuerdoDetalle.setFechaCumplimiento(new Date());
+        }
         actaAcuerdoDetalleService.actaAcuerdoDetalleInsertar(actaAcuerdoDetalle);
         registrarListaActores();
         registrarListaMiembros();

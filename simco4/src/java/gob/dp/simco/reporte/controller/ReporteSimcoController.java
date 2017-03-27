@@ -390,7 +390,7 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
                         ac.setResultadoViolenciaItem1(Integer.parseInt(entry.getValue().toString()));
                     if(StringUtils.equals(entry.getKey().toString(), "Heridos"))
                         ac.setResultadoViolenciaItem2(Integer.parseInt(entry.getValue().toString()));
-                    if(StringUtils.equals(entry.getKey().toString(), "Secuestrados"))
+                    if(StringUtils.equals(entry.getKey().toString(), "Retenidos"))
                         ac.setResultadoViolenciaItem3(Integer.parseInt(entry.getValue().toString()));
                     if(StringUtils.equals(entry.getKey().toString(), "Detenidos"))
                         ac.setResultadoViolenciaItem4(Integer.parseInt(entry.getValue().toString()));
@@ -881,6 +881,10 @@ public class ReporteSimcoController extends AbstractManagedBean implements Seria
         if (StringUtils.equals(tipo, "08") || StringUtils.equals(tipo, "09") || StringUtils.equals(tipo, "10") || StringUtils.equals(tipo, "11")
                 || StringUtils.equals(tipo, "12") || StringUtils.equals(tipo, "13") || StringUtils.equals(tipo, "14")){
             return "Supervisión preventiva";
+        }
+        if (StringUtils.equals(tipo, "15") || StringUtils.equals(tipo, "16") || StringUtils.equals(tipo, "17") || StringUtils.equals(tipo, "18")
+                || StringUtils.equals(tipo, "19")){
+            return "Acciones de difusión en medios de comunicación";
         }
         return null;
     }

@@ -90,7 +90,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
     public void mapearTipos() {
         tiposVictima = new HashMap();
         int nroMuertos = 0;
-        int nroSecuestrados = 0;
+        int nroRetenido = 0;
         int nroHerido = 0;
         int nroDetenidos = 0;
         int nroOtros = 0;
@@ -104,7 +104,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
                     nroHerido++;
                 }
                 if (StringUtils.equals(av.getTipo(), "03")) {
-                    nroSecuestrados++;
+                    nroRetenido++;
                 }
                 if (StringUtils.equals(av.getTipo(), "04")) {
                     nroDetenidos++;
@@ -119,7 +119,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
         }
         tiposVictima.put("Muertos", nroMuertos);
         tiposVictima.put("Heridos", nroHerido);
-        tiposVictima.put("Secuestrados", nroSecuestrados);
+        tiposVictima.put("Retenidos", nroRetenido);
         tiposVictima.put("Detenidos", nroDetenidos);
         tiposVictima.put("Desaparecidos", nroDesaparecidos);
         tiposVictima.put("Otros", nroOtros);
@@ -128,7 +128,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
     public Map<String, String> mapearTipos(List<ActividadVictima> listaV) {
         Map tipoVictima = new HashMap();
         int nroMuertos = 0;
-        int nroSecuestrados = 0;
+        int nroRetenido = 0;
         int nroHerido = 0;
         int nroDetenidos = 0;
         int nroOtros = 0;
@@ -142,7 +142,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
                     nroHerido++;
                 }
                 if (StringUtils.equals(av.getTipo(), "03")) {
-                    nroSecuestrados++;
+                    nroRetenido++;
                 }
                 if (StringUtils.equals(av.getTipo(), "04")) {
                     nroDetenidos++;
@@ -157,7 +157,7 @@ public class VictimaViolenciaController extends AbstractManagedBean implements S
         }
         tipoVictima.put("Muertos", nroMuertos);
         tipoVictima.put("Heridos", nroHerido);
-        tipoVictima.put("Secuestrados", nroSecuestrados);
+        tipoVictima.put("Retenidos", nroRetenido);
         tipoVictima.put("Detenidos", nroDetenidos);
         tipoVictima.put("Desaparecidos", nroDesaparecidos);
         tipoVictima.put("Otros", nroOtros);

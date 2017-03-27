@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.2396694214876032"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="12674"/>
+	<property name="ireport.y" value="13058"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -883,6 +883,8 @@
 	<field name="listaCasosResueltosMES" class="java.util.List"/>
 	<field name="listaNivelTipo" class="java.util.List"/>
 	<field name="listaNivelTipoGrafico" class="java.util.List"/>
+	<field name="listaNivelTipoGrafico2" class="java.util.List"/>
+	<field name="listaNivelTipo2" class="java.util.List"/>
 	<field name="listaNivelSubTipo" class="java.util.List"/>
 	<field name="listaNivelSubTipoGrafico" class="java.util.List"/>
 	<field name="listaNivelTipoDialogo" class="java.util.List"/>
@@ -954,8 +956,6 @@
 	<field name="listaCasosReactivadosPorMes" class="java.util.List"/>
 	<field name="listaCasosLatentesPorMes" class="java.util.List"/>
 	<field name="listaCasosActivoALatentes" class="java.util.List"/>
-	<field name="listaNivelTipoGrafico2" class="java.util.List"/>
-	<field name="listaNivelTipo2" class="java.util.List"/>
 	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -3845,7 +3845,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
 			<componentElement>
 				<reportElement key="table 11" style="table 18" x="82" y="434" width="350" height="60" uuid="13cbe454-3abb-4530-9ed5-f532431ec10f"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="dataset3" uuid="0a70d916-7664-43ec-ac7f-01495692117e">
+					<datasetRun subDataset="dataset3" uuid="47dd3536-dd0b-4b6f-b3a8-2a22662ac26d">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo2})]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="170" uuid="9f039f03-0b3b-46f2-9b20-7a6c5b716f8d">

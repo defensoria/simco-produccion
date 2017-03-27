@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteSimcoActividadExcel" pageWidth="5035" pageHeight="600" orientation="Landscape" columnWidth="5035" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="5577"/>
+	<property name="ireport.x" value="4589"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -335,7 +335,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Secuestrados]]></text>
+				<text><![CDATA[Retenidos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="3962" y="63" width="100" height="25" forecolor="#FFFFFF" backcolor="#0066CC" uuid="a3be89ae-d930-47e1-be98-19d2445dc409"/>
