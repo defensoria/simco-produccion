@@ -389,7 +389,7 @@
                                     <div class="panel-body">
                                         <span class="text-primary" style="font-size:1.2em;font-weight:bold">Alertas</span>
                                         <br/>
-                                        <h:selectBooleanCheckbox id="checkIndAlertar" value="#{actaAcuerdoController.actaAcuerdoDetalle.indAlertar}" />No alertar
+                                        <h:selectBooleanCheckbox id="checkIndAlertar" class="checkIndAlertar" value="#{actaAcuerdoController.actaAcuerdoDetalle.indAlertar}" />No alertar
                                         <div id="idDivAlert">
                                             <table style="width:100%">
                                                 <tr>
@@ -448,6 +448,7 @@
                         function confirmar2() {
                             $(".confirmacion2").modal('show');
                         }
+                        
                     </script>
                     <table style="width:100%">
                         <tr>
@@ -563,9 +564,20 @@
                                 }*/
                             }
                         }
-                        if ($('#idFormAgregarAcuerdo\\:checkIndAlertar').is(':checked')) {
-                        } else {
+                        if (!$('.checkIndAlertar').is(':checked')){
                             var i = 0;
+                            if ($('#txtInicioDefinitivo').val() === "") {
+                                alertar('Debe ingresar la fecha de inicio de la programación de alertas');
+                                $('#txtInicioDefinitivo').addClass('error');
+                                return false;
+                            }
+                            if ($('#txtFinDefinitivo').val() === "") {
+                                alertar('Debe ingresar la fecha de fin de la programación de alertas');
+                                $('#txtFinDefinitivo').addClass('error');
+                                return false;
+                            }
+                            $('#txtInicioDefinitivo').removeClass('error');
+                            $('#txtFinDefinitivo').removeClass('error');
                             if ($('#txtInicioDefinitivo').val() !== "") {
                                 if ($('#txtFinDefinitivo').val() !== "") {
                                     var fec1 = converterFecha($('#txtInicioDefinitivo').val());
@@ -583,7 +595,7 @@
                             }
                             if (i === 0) {
                             } else {
-                                alertar("Debe completar todos los campos resaltados de la programacion de las alertas");
+                                alertar("Debe completar todos los campos resaltados de la programación de las alertas");
                                 return false;
                             }
                         }

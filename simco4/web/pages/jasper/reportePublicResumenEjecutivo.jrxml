@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivo" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
 	<property name="ireport.zoom" value="1.2396694214876032"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="13058"/>
+	<property name="ireport.y" value="189"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -980,13 +980,32 @@
 				<reportElement x="-38" y="-42" width="598" height="812" uuid="7eba1612-57c3-4942-b60c-18eb535525ef"/>
 				<imageExpression><![CDATA[$F{imagePath001}+"PortadaReporteMensual.png"]]></imageExpression>
 			</image>
+			<rectangle>
+				<reportElement x="-38" y="351" width="598" height="94" forecolor="#0066CC" backcolor="#0066FF" uuid="f1167fcc-c358-4ce7-9c10-0ad8391edefc"/>
+			</rectangle>
 			<textField>
-				<reportElement mode="Opaque" x="-38" y="351" width="598" height="94" forecolor="#FFFFFF" backcolor="#0066CC" uuid="9ba7e8be-dea7-49ae-a1d3-0bd52890b852"/>
+				<reportElement mode="Transparent" x="-38" y="412" width="598" height="30" forecolor="#FFFFFF" backcolor="#0066CC" uuid="20bf2d0d-4e9c-452d-9611-3ec3d722bbe3"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Arial Black" size="32" isBold="true" isItalic="false"/>
+					<font fontName="Arial Black" size="20" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Reporte mensual de Conflictos Sociales " +$F{mesPublicacion}+" "+$F{anhoPublicacion}+"     "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mesPublicacion}+" "+$F{anhoPublicacion}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="-1" y="383" width="561" height="30" forecolor="#FFFFFF" backcolor="#0066CC" uuid="e16f1279-6742-47ec-b5ee-004bd0e7be5b"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial Black" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reporte mensual de conflictos sociales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="-1" y="354" width="561" height="30" forecolor="#FFFFFF" backcolor="#0066CC" uuid="41ae20c2-6034-4ae4-a6ba-432cfec569d7"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial Black" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Defensoría del Pueblo]]></text>
+			</staticText>
 		</band>
 		<band height="770">
 			<staticText>

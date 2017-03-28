@@ -207,50 +207,56 @@
                     </tr>
                 </table>
                 <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog  modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <span class="text-titulo-primary-simco">Detalle de la Alertas</span>
+                                <span class="text-primary" style="font-size: 1.5em">Detalle de la alerta</span>
                             </div>
                             <div class="modal-body">
                                 <h:panelGroup id="idPanelModal">
-                                    <table>
+                                    <table style="width: 100%">
                                         <tr>
-                                            <td colspan="2">
-                                                <span class="text-titulo-primary-simco">Enviada:</span>
-                                                <br/>
-                                                <span class="text-titulo-primary-simco" style="color:#696969;padding-left:20px">El</span>
-                                                <h:outputText class="text-titulo-primary-simco" style="color:#696969" value="#{seguimientoAcuerdoController.alerta.fecha}">
+                                            <td style="width: 40%">
+                                                <span class="text-primary">Fecha de envio:</span>
+                                            </td>
+                                            <td>
+                                                 <h:outputText value="#{seguimientoAcuerdoController.alerta.fecha}">
                                                     <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Lima" />
                                                 </h:outputText>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td style="width: 40%">
+                                                <span class="text-primary">Caso:</span>
+                                            </td>
                                             <td>
-                                                <span class="text-titulo-primary-simco">Registro:</span>
-                                                <br/>
-                                                <span class="text-titulo-primary-simco" style="color:#696969;padding-left:20px">#{seguimientoAcuerdoController.alerta.caso.nombre} (#{seguimientoAcuerdoController.alerta.caso.codigo})</span>
-                                                <br/>
-                                                <span class="text-titulo-primary-simco" style="color:#696969;padding-left:20px">#{seguimientoAcuerdoController.alerta.actividad.nombre} (#{seguimientoAcuerdoController.alerta.actividad.codigoActividad})</span>
+                                                 <span> #{seguimientoAcuerdoController.alerta.caso.nombre} (#{seguimientoAcuerdoController.alerta.caso.codigo})</span>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td style="width: 40%">
+                                                <span class="text-primary">Acontecimiento:</span>
+                                            </td>
                                             <td>
+                                                 <span> #{seguimientoAcuerdoController.alerta.actividad.nombre} (#{seguimientoAcuerdoController.alerta.actividad.codigoActividad})</span>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td style="width: 40%">
+                                                <span class="text-primary">Acuerdo:</span>
+                                            </td>
                                             <td>
-                                                <span class="text-titulo-primary-simco">Acuerdo</span>
-                                                <br/>
-                                                <span class="text-titulo-primary-simco" style="color:#696969;padding-left:20px">#{seguimientoAcuerdoController.alerta.actaAcuerdoDetalle.descripcion}</span>
+                                                 <span>#{seguimientoAcuerdoController.alerta.actaAcuerdoDetalle.descripcion}</span>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td style="vertical-align: top">
+                                                <span class="text-primary">Actores:</span>
+                                            </td>
                                             <td>
-                                                <span class="text-titulo-primary-simco">Actores</span>
-                                                <h:dataTable value="#{seguimientoAcuerdoController.listaActorAlerta}" var="act" class="table table-hover">
+                                                <h:dataTable value="#{seguimientoAcuerdoController.listaActorAlerta}" var="act" >
                                                     <h:column>
-                                                        <span class="text-titulo-primary-simco" style="color:#696969;padding-left:20px">
+                                                        <span>
                                                             #{act.nombre} #{act.apellidoPat} #{act.apellidoMat}
                                                         </span>
                                                     </h:column>
@@ -260,9 +266,10 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <span class="text-titulo-primary-simco">Destinatarios Internos</span>
-                                                <br/>
-                                                <span class="text-titulo-primary-simco" style="color:#696969;padding-left:20px">#{seguimientoAcuerdoController.alerta.actaAcuerdoDetalle.usuarioRegistro}</span>
+                                                <span class="text-primary">Comisionado:</span>
+                                            </td>
+                                            <td>
+                                                <span>#{seguimientoAcuerdoController.alerta.actaAcuerdoDetalle.usuarioRegistro}</span>
                                             </td>
                                         </tr>
                                     </table>

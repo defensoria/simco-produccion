@@ -31,6 +31,7 @@ import java.util.List;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -208,10 +209,11 @@ public class SeguimientoAcuerdoController implements Serializable {
         }
         Integer nro = diasAlertaProgramada;
         if(nro != 0){
+            System.out.println(DateUtils.round(new Date(), Calendar.DATE));
             Date fin = sumarRestarDiasFecha(new Date(), nro);
             List<Alerta> as = new ArrayList<>();
             for(Alerta aler : listaAlertaProgramadas){
-                if(aler.getFecha().before(fin)){
+                if(DateUtils.round(aler.getFecha(), Calendar.DATE).before(fin)){
                     as.add(aler);
                 }
             }
@@ -273,12 +275,12 @@ public class SeguimientoAcuerdoController implements Serializable {
 
     public void verAlertasProgramadas(Long idAcuerdo) {
         Caso cas = casoService.casoxActaAcuerdoDetalle(idAcuerdo);
-        Date fechaFinAlerta = new Date();
+        //Date fechaFinAlerta = new Date();
         if(cas != null){
             SeguimientoAcuerdo seguimientoAcu = seguimientoAcuerdoService.seguimientoAcuerdoBuscarAcuerdo(idAcuerdo);
             if(seguimientoAcu != null){
-                if(fechaFinAlerta != null){
-                    long dias = diferenciaFechas(new Date(), fechaFinAlerta)+1L;
+                if(seguimientoAcu.getFinDefinitivo() != null){
+                    long dias = diferenciaFechas(new Date(), seguimientoAcu.getFinDefinitivo())+1L;
                     if(dias > 0){
                         for ( int i = 1; i <= dias; i ++ ) {
                             Date fec = sumarRestarDiasFecha(new Date(), i);
