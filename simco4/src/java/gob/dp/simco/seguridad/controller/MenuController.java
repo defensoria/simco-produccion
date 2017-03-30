@@ -111,7 +111,7 @@ public class MenuController implements Serializable {
         for (ActaAcuerdoDetalle aad : acuerdoDetalles) {
             verAlertas(aad);
         }
-        return "seguimientoAcuerdo";
+        return null;
     }
 
     public void verAlertas(ActaAcuerdoDetalle acuerdoDetalle) {
