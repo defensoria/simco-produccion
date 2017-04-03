@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportePublicResumenEjecutivoWord" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="523" leftMargin="36" rightMargin="36" topMargin="0" bottomMargin="0" uuid="e8e17cc8-2bb2-4615-af5f-f83f4d9817ad">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.2396694214876032"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="21718"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -284,7 +284,7 @@
 	</style>
 	<style name="table 12_TD" mode="Opaque" backcolor="#FFFFFF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#00CAD3"/>
 		</box>
 	</style>
 	<style name="table 13">
@@ -803,6 +803,7 @@
 		<field name="descripcionCaso" class="java.lang.String"/>
 		<field name="tipologia" class="java.lang.String"/>
 		<field name="contador" class="java.lang.Integer"/>
+		<field name="justificacion" class="java.lang.String"/>
 	</subDataset>
 	<subDataset name="dataset7" uuid="0d358926-5cf3-4854-9361-ded6cd66c0cb">
 		<field name="tipoConflicto" class="java.lang.String"/>
@@ -829,13 +830,13 @@
 	<subDataset name="dataset1" uuid="5411f31b-b8a5-4d50-bebd-f881512830a3"/>
 	<subDataset name="dataset9" uuid="93e7ec8f-470a-4673-b366-d7da6bcf4bdb">
 		<field name="descripcion" class="java.lang.String"/>
+		<field name="fechaRealizacionIni" class="java.util.Date"/>
+		<field name="fechaRealizacionIniString" class="java.lang.String"/>
 	</subDataset>
 	<subDataset name="dataset10" uuid="9dada3da-bac7-4abf-ac67-54cee30bc134">
 		<field name="nombre" class="java.lang.String"/>
 	</subDataset>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\recursos\\reportes\\"]]></defaultValueExpression>
-	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
@@ -871,6 +872,7 @@
 	<field name="totalActividadIntermediacionMes" class="java.lang.Integer"/>
 	<field name="totalActividadAccionesHumanitariasMes" class="java.lang.Integer"/>
 	<field name="totalActividadAccionesDefensaLegalMes" class="java.lang.Integer"/>
+	<field name="totalActividadAccionesDifusionMes" class="java.lang.Integer"/>
 	<field name="listaCasosRegistradosMES" class="java.util.List"/>
 	<field name="registradoTotals" class="java.util.List"/>
 	<field name="listaNivelGobierno" class="java.util.List"/>
@@ -881,6 +883,8 @@
 	<field name="listaCasosResueltosMES" class="java.util.List"/>
 	<field name="listaNivelTipo" class="java.util.List"/>
 	<field name="listaNivelTipoGrafico" class="java.util.List"/>
+	<field name="listaNivelTipoGrafico2" class="java.util.List"/>
+	<field name="listaNivelTipo2" class="java.util.List"/>
 	<field name="listaNivelSubTipo" class="java.util.List"/>
 	<field name="listaNivelSubTipoGrafico" class="java.util.List"/>
 	<field name="listaNivelTipoDialogo" class="java.util.List"/>
@@ -959,119 +963,42 @@
 	<pageHeader>
 		<band height="42">
 			<textField>
-				<reportElement mode="Opaque" x="-38" y="14" width="598" height="20" forecolor="#FFFFFF" backcolor="#FF0700" uuid="e1392cc5-c7ea-4272-ad05-00a519bc666e"/>
+				<reportElement mode="Opaque" x="-38" y="20" width="598" height="20" forecolor="#FFFFFF" backcolor="#0066CC" uuid="e1392cc5-c7ea-4272-ad05-00a519bc666e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Black" size="13" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Reporte mensual de Conflictos Sociales " +$F{mesPublicacion}+" "+$F{anhoPublicacion}+"     "]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Reporte mensual de conflictos sociales - " +$F{mesPublicacion}+" "+$F{anhoPublicacion}+"   "]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<detail>
 		<band height="770" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-38" y="314" width="598" height="94" forecolor="#0066CC" backcolor="#0066FF" uuid="f1167fcc-c358-4ce7-9c10-0ad8391edefc"/>
+			</rectangle>
 			<textField>
-				<reportElement x="399" y="288" width="98" height="20" forecolor="#666666" uuid="6a7273d5-f51f-41c6-87df-3494157f079f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Black" size="12" isBold="false"/>
+				<reportElement mode="Transparent" x="-38" y="375" width="598" height="30" forecolor="#FFFFFF" backcolor="#0066CC" uuid="20bf2d0d-4e9c-452d-9611-3ec3d722bbe3"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial Black" size="20" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosRegistrados}+ " conflictos registrados"]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="400" y="310" width="97" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="f77f58bc-a6bc-4622-8779-3ac445d250a7"/>
-				<box leftPadding="3"/>
-				<textElement verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosActivos}+ " conflictos activos"]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="400" y="333" width="97" height="20" forecolor="#73AF00" backcolor="#FFFFFF" uuid="4f94f37e-6c4d-41fa-a73d-5ea2340a7115"/>
-				<box leftPadding="3"/>
-				<textElement verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosLatentes}+ " conflictos latentes"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mesPublicacion}+" "+$F{anhoPublicacion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="39" y="104" width="69" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="d34c7145-5f41-4967-9edd-42dc6f9c21cb"/>
-				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				<reportElement mode="Transparent" x="-1" y="346" width="561" height="30" forecolor="#FFFFFF" backcolor="#0066CC" uuid="e16f1279-6742-47ec-b5ee-004bd0e7be5b"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial Black" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Activos]]></text>
+				<text><![CDATA[Reporte mensual de conflictos sociales]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="40" y="130" width="69" height="20" forecolor="#73AF00" backcolor="#FFFFFF" uuid="5383d1f5-cb77-4b2b-82d4-4c95f2a19de2"/>
-				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial Black" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				<reportElement mode="Transparent" x="-1" y="317" width="561" height="30" forecolor="#FFFFFF" backcolor="#0066CC" uuid="41ae20c2-6034-4ae4-a6ba-432cfec569d7"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial Black" size="20" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Latentes]]></text>
+				<text><![CDATA[Defensoría del Pueblo]]></text>
 			</staticText>
-			<barChart>
-				<chart isShowLegend="true" evaluationTime="Band">
-					<reportElement mode="Opaque" x="2" y="527" width="167" height="228" forecolor="#0099FF" uuid="94a1d4ed-62a7-49bc-ab00-e59c6ca44e9c"/>
-					<chartTitle color="#9A0400">
-						<font size="5"/>
-					</chartTitle>
-					<chartSubtitle color="#9A0400">
-						<font fontName="Arial" size="5"/>
-					</chartSubtitle>
-					<chartLegend textColor="#9A0400" position="Top">
-						<font fontName="SansSerif" size="7" isBold="true"/>
-					</chartLegend>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="grafic002Dataset" uuid="7edad2d0-c54c-46ae-aaae-96cd85d6c75d">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoGrafico})]]></dataSourceExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Tipos de Conflictos"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{nombre}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{valor}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
-					<plot backgroundAlpha="1.0" foregroundAlpha="1.0" labelRotation="60.0">
-						<seriesColor seriesOrder="0" color="#00CAD3"/>
-					</plot>
-					<itemLabel>
-						<font fontName="SansSerif" size="7" isBold="true"/>
-					</itemLabel>
-					<categoryAxisFormat labelRotation="60.0">
-						<axisFormat labelColor="#9A0400" tickLabelColor="#9A0400" verticalTickLabels="false" axisLineColor="#9A0400">
-							<labelFont>
-								<font fontName="SansSerif" size="6" isBold="true" isUnderline="false" isStrikeThrough="false"/>
-							</labelFont>
-							<tickLabelFont>
-								<font fontName="SansSerif" size="6" isBold="true"/>
-							</tickLabelFont>
-						</axisFormat>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat labelColor="#FFFFFF" tickLabelColor="#FFFFFF" verticalTickLabels="false" axisLineColor="#FFFFFF">
-							<labelFont>
-								<font size="3"/>
-							</labelFont>
-							<tickLabelFont>
-								<font size="3"/>
-							</tickLabelFont>
-						</axisFormat>
-					</valueAxisFormat>
-				</barPlot>
-			</barChart>
-			<image>
-				<reportElement x="356" y="5" width="167" height="50" uuid="a841af9c-6828-44f2-8b0d-b4090c13f90f"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"logoPlanIntervencion.png"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="375" y="286" width="23" height="22" uuid="252bdc60-7fd7-4324-aa65-19df221acec0"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"alertaReporte.png"]]></imageExpression>
-			</image>
 		</band>
 		<band height="770">
 			<staticText>
@@ -1096,14 +1023,14 @@
 				<text><![CDATA[JUSTIFICACIÓN DE LA INTERVENCIÓN DEFENSORIAL EN CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="174" width="310" height="77" uuid="909acc05-a089-4363-9426-179a1225accb"/>
+				<reportElement x="1" y="174" width="310" height="95" uuid="909acc05-a089-4363-9426-179a1225accb"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black"/>
 				</textElement>
-				<text><![CDATA[Están en riesgo o se vulneran los derechos de las personas.
-La confrontación violenta afecta la gobernabilidad local, regional y nacional.
-Se desfavorece las condiciones para el desarrollo.
-Se desestimula una cultura de diálogo y paz.
+				<text><![CDATA[•   Están en riesgo o se vulneran los derechos de las personas.
+•   La confrontación violenta afecta la gobernabilidad local, regional y nacional.
+•   Se desfavorece las condiciones para el desarrollo.
+•   Se desestimula una cultura de diálogo y paz.
 ]]></text>
 			</staticText>
 			<staticText>
@@ -1115,7 +1042,7 @@ Se desestimula una cultura de diálogo y paz.
 				<text><![CDATA[¿QUÉ ES EL REPORTE DE CONFLICTOS SOCIALES?]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="258" width="310" height="146" uuid="844ba5aa-78e8-426e-a0e5-ef7e10d3c668"/>
+				<reportElement x="1" y="269" width="310" height="192" uuid="844ba5aa-78e8-426e-a0e5-ef7e10d3c668"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black"/>
 				</textElement>
@@ -1124,29 +1051,30 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="321" y="176" width="200" height="73" uuid="d9bb6626-d0d5-43ab-89a8-285e908ec64c"/>
+				<reportElement x="321" y="176" width="200" height="120" uuid="d9bb6626-d0d5-43ab-89a8-285e908ec64c"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Es un instrumento de monitoreo cuyo objetivo es informar mensualmente acerca de los actores, los problemas y el desarrollo de los conflictos sociales registrados por la Defensoría del Pueblo a nivel nacional. ]]></text>
+				<text><![CDATA[Es un instrumento de monitoreo cuyo objetivo es informar mensualmente acerca de los actores, los problemas y el desarrollo de los conflictos sociales registrados por la Defensoría del Pueblo a nivel nacional.
+]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="271" width="200" height="103" uuid="a564c6e4-e55f-463e-8e69-c2fa1c81c12f"/>
+				<reportElement x="321" y="307" width="200" height="163" uuid="a564c6e4-e55f-463e-8e69-c2fa1c81c12f"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[La información divulgada constituye una señal de alerta dirigida al Estado, las empresas, las dirigencias de las organizaciones sociales, los medios de comunicación y la sociedad en general a fin de que se tomen decisiones orientadas a conducir el conflicto por la vía de la ley y el diálogo, y se eviten los desenlaces violentos. ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="320" y="401" width="200" height="73" forecolor="#000000" backcolor="#FFFFFF" uuid="8485edb8-0c2d-4d59-ae51-80813ae47f84"/>
+				<reportElement mode="Transparent" x="322" y="486" width="200" height="142" forecolor="#000000" backcolor="#FFFFFF" uuid="8485edb8-0c2d-4d59-ae51-80813ae47f84"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[El documento recoge la información proporcionada por los actores intervinientes en los conflictos sociales, a través de las 28 oficinas defensoriales y los 10 módulos de atención al público que tiene la institución, complementada y contrastada con otras fuentes]]></text>
+				<text><![CDATA[El documento recoge la información proporcionada por los actores intervinientes en los conflictos sociales, a través de las 28 oficinas defensoriales y los 10 módulos de atención al público que tiene la institución, complementada y contrastada con otras fuentes.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="410" width="311" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="1d32f3c5-9694-4598-a412-be2bae597e89"/>
+				<reportElement mode="Transparent" x="0" y="463" width="311" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="1d32f3c5-9694-4598-a412-be2bae597e89"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1154,14 +1082,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[INTERVENCIONES DEFENSORIALES SEGÚN MODALIDAD]]></text>
 			</staticText>
 			<image>
-				<reportElement x="15" y="457" width="283" height="258" uuid="c75b5a1e-865b-4691-a73c-571c9d64df4b"/>
+				<reportElement x="16" y="504" width="283" height="203" uuid="c75b5a1e-865b-4691-a73c-571c9d64df4b"/>
 				<imageExpression><![CDATA[$F{imagePath001}+"cuadro001.png"]]></imageExpression>
 			</image>
 			<rectangle radius="10">
-				<reportElement x="6" y="724" width="509" height="45" forecolor="#A2F700" backcolor="#A2F700" uuid="cf0bb00f-dba5-44e4-8642-0768cf3627c4"/>
+				<reportElement x="8" y="710" width="509" height="59" forecolor="#00CCFF" backcolor="#00CCFF" uuid="cf0bb00f-dba5-44e4-8642-0768cf3627c4"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="16" y="727" width="492" height="40" forecolor="#FFFFFF" uuid="ae84c685-5dfe-4a57-8afa-27a616227dad"/>
+				<reportElement x="17" y="715" width="492" height="54" forecolor="#FFFFFF" uuid="ae84c685-5dfe-4a57-8afa-27a616227dad"/>
 				<textElement textAlignment="Center">
 					<font isBold="true" isItalic="true"/>
 				</textElement>
@@ -1185,7 +1113,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[El conflicto social debe ser entendido como un proceso complejo en el cual sectores de la sociedad, el Estado y las empresas perciben que sus objetivos, intereses, valores o necesidades son contradictorios y esa contradicción puede derivar en violencia.]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="319" y="10" width="200" height="67" forecolor="#A2F700" backcolor="#A2F700" uuid="828c3ce5-04df-4289-828c-7d421641a117"/>
+				<reportElement x="319" y="10" width="200" height="67" forecolor="#00CCFF" backcolor="#00CCFF" uuid="828c3ce5-04df-4289-828c-7d421641a117"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="325" y="16" width="187" height="53" forecolor="#FFFFFF" uuid="13738920-7135-4ee0-a782-07ecb4defae3"/>
@@ -1195,7 +1123,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[El conflicto es inherente a la vida. Es una característica natural e inevitable de la existencia humana y de la interacción social.]]></text>
 			</staticText>
 			<rectangle radius="10">
-				<reportElement x="38" y="150" width="416" height="45" forecolor="#A2F700" backcolor="#A2F700" uuid="65d7e86b-21f1-4306-9b65-3245d70296a0"/>
+				<reportElement x="38" y="150" width="416" height="45" forecolor="#00CCFF" backcolor="#00CCFF" uuid="65d7e86b-21f1-4306-9b65-3245d70296a0"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="50" y="157" width="392" height="27" forecolor="#FFFFFF" uuid="ed3275c2-6d8d-4f83-b957-32188348fd92"/>
@@ -1245,10 +1173,6 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				</textElement>
 				<text><![CDATA[Son los momentos por los que puede pasar un conflicto social activo, en función al incremento o disminución de la violencia, y las posibilidades de diálogo y entendimiento.]]></text>
 			</staticText>
-			<image>
-				<reportElement x="11" y="89" width="492" height="222" uuid="09bd44b6-6b97-400f-9779-8b28de75b08b"/>
-				<imageExpression><![CDATA[$F{imagePath001}+"cuadro004.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Transparent" x="3" y="331" width="309" height="27" forecolor="#BC0500" backcolor="#FFFFFF" uuid="26d4e0f2-7f9d-4dec-ba53-6b0d57cf5657"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
@@ -1279,6 +1203,10 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<reportElement x="89" y="631" width="385" height="133" uuid="8b243a3e-926b-41fd-bdae-f45f3d254f41"/>
 				<imageExpression><![CDATA[$F{imagePath001}+"cuadro006.png"]]></imageExpression>
 			</image>
+			<image>
+				<reportElement x="5" y="86" width="507" height="225" uuid="baf5071a-f30b-47f1-9d00-a6183e65e3e6"/>
+				<imageExpression><![CDATA[$F{imagePath001}+"cuadro004.png"]]></imageExpression>
+			</image>
 		</band>
 		<band height="770">
 			<textField>
@@ -1305,21 +1233,21 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CONFLICTOS REGISTRADOS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="25" y="74" width="497" height="20" uuid="12eba35b-2925-415e-b9ef-344e63d48d00"/>
+				<reportElement x="25" y="73" width="497" height="20" uuid="12eba35b-2925-415e-b9ef-344e63d48d00"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos activos: "+$F{totalCasosActivos}+" ("+$F{porcentajeTotalCasosActivos}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="25" y="94" width="497" height="20" uuid="0d6b80e2-2f41-4f4d-a496-5a9c7c63d644"/>
+				<reportElement x="25" y="93" width="497" height="20" uuid="0d6b80e2-2f41-4f4d-a496-5a9c7c63d644"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos latentes: "+$F{totalCasosLatentes}+" ("+$F{porcentajeTotalCasosLatentes}+")"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="120" width="309" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="294b549f-733f-42eb-8462-2b20f3378455"/>
+				<reportElement mode="Transparent" x="1" y="119" width="309" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="294b549f-733f-42eb-8462-2b20f3378455"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1327,14 +1255,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS NUEVOS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="140" width="522" height="20" uuid="4035f00c-0fdc-4b12-879e-f78461cd4be0"/>
+				<reportElement x="1" y="139" width="522" height="20" uuid="4035f00c-0fdc-4b12-879e-f78461cd4be0"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos nuevos: "+$F{totalCasosRegistradosMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="167" width="309" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="f4dcdb32-4005-40c0-aefa-537b9d3f9655"/>
+				<reportElement mode="Transparent" x="1" y="165" width="309" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="f4dcdb32-4005-40c0-aefa-537b9d3f9655"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1342,14 +1270,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS REACTIVADOS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="187" width="522" height="20" uuid="ae421261-b21b-4be6-8adc-0b292c58b8da"/>
+				<reportElement x="1" y="185" width="522" height="20" uuid="ae421261-b21b-4be6-8adc-0b292c58b8da"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos reactivados: "+$F{totalCasosDeLatenteAActivoMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="213" width="410" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="dc9824a5-90b1-4309-bb30-e28e22294552"/>
+				<reportElement mode="Transparent" x="0" y="211" width="410" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="dc9824a5-90b1-4309-bb30-e28e22294552"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1357,14 +1285,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS QUE INGRESARON A REGISTRO DE LATENTES]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="233" width="522" height="20" uuid="e5b72344-c226-4149-9f1c-2b9c0fcfd14a"/>
+				<reportElement x="1" y="231" width="522" height="20" uuid="e5b72344-c226-4149-9f1c-2b9c0fcfd14a"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos que pasaron de activo a latente: "+$F{totalCasosDeActivosALatenteMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="258" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="442211cb-0b66-4fd4-9575-05bf16fb3dde"/>
+				<reportElement mode="Transparent" x="1" y="256" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="442211cb-0b66-4fd4-9575-05bf16fb3dde"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1372,14 +1300,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS REINCORPORADOS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="2" y="278" width="522" height="20" uuid="c621e2db-cc6d-4739-9abd-6e019fd9eded"/>
+				<reportElement x="2" y="276" width="522" height="20" uuid="c621e2db-cc6d-4739-9abd-6e019fd9eded"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos reincorporados: "+$F{totalCasosDeRetiradoAActivoMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="3" y="304" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="fd778590-9ef0-4c80-9019-0cc3b0517b2c"/>
+				<reportElement mode="Transparent" x="3" y="301" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="fd778590-9ef0-4c80-9019-0cc3b0517b2c"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1387,14 +1315,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS RESUELTOS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="324" width="522" height="20" uuid="bfbf98a5-dfd2-4cdf-bf75-fc4f5a7fb031"/>
+				<reportElement x="0" y="320" width="522" height="20" uuid="bfbf98a5-dfd2-4cdf-bf75-fc4f5a7fb031"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos resueltos: "+$F{totalCasosResueltoMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="349" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="db17620c-3213-421b-bc0c-a8832dfb31cf"/>
+				<reportElement mode="Transparent" x="2" y="345" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="db17620c-3213-421b-bc0c-a8832dfb31cf"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1402,14 +1330,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS RETIRADOS DEL REGISTRO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="369" width="522" height="20" uuid="21dd98d4-b6e4-43fb-ba2b-1babf1b33efc"/>
+				<reportElement x="1" y="365" width="522" height="20" uuid="21dd98d4-b6e4-43fb-ba2b-1babf1b33efc"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos latentes que pasaron a observación: "+$F{totalCasosLatentesObservacion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="395" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="ff21e4c8-ca66-4e55-845e-833c9855ae9e"/>
+				<reportElement mode="Transparent" x="2" y="391" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="ff21e4c8-ca66-4e55-845e-833c9855ae9e"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1417,35 +1345,35 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[CASOS EN PROCESO DE DIALOGO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="416" width="522" height="20" uuid="a7d6f917-b728-4d05-9488-2b18e3201e73"/>
+				<reportElement x="1" y="410" width="522" height="20" uuid="a7d6f917-b728-4d05-9488-2b18e3201e73"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos en proceso de diálogo: "+$F{totalCasosFaseDialogo}+ " "+$F{porcentajeCasosFaseDialogo}+", de los cuales:"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="27" y="436" width="497" height="20" uuid="c29b43ba-5d27-489b-b885-9c980fec3e56"/>
+				<reportElement x="26" y="430" width="497" height="20" uuid="c29b43ba-5d27-489b-b885-9c980fec3e56"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalCasosDialogoNegociacion}+" caso(s) se encuentran en mesa de dialogo "+$F{porcentajeCasosFaseDialogoNegociacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="455" width="497" height="20" uuid="2b6d8a2e-f9cf-4436-8f71-d3691bd39768"/>
+				<reportElement x="26" y="449" width="497" height="20" uuid="2b6d8a2e-f9cf-4436-8f71-d3691bd39768"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalCasosDialogoReuniones}+" casos se encuentran en reuniones preparatorias para el diálogo  "+$F{porcentajeCasosFaseDialogoReuniones}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="475" width="497" height="20" uuid="7221cc3c-ca08-47bc-a764-0c339a35e227"/>
+				<reportElement x="26" y="469" width="497" height="20" uuid="7221cc3c-ca08-47bc-a764-0c339a35e227"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalCasosDialogoEspacioDialogo}+" casos cuentan con presencia de la DP en los espacios de diálogo   "+$F{porcentajeCasosFaseDialogoEspacionDialogo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="503" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="9849c6a4-9f33-42eb-b238-40ae3cc3d6c6"/>
+				<reportElement mode="Transparent" x="1" y="497" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="9849c6a4-9f33-42eb-b238-40ae3cc3d6c6"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1453,21 +1381,21 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[HECHOS DE VIOLENCIA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="523" width="522" height="20" uuid="ffdfb5a8-37ff-460d-9218-6746def42422"/>
+				<reportElement x="1" y="516" width="522" height="20" uuid="ffdfb5a8-37ff-460d-9218-6746def42422"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos que presentaron al menos un hecho de violencia desde que iniciaron: "+$F{totalCasosACVictimaViolencia}+" "+$F{porcentajeCasosACVictimaViolencia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1" y="543" width="522" height="20" uuid="19a4ce56-54a0-43fc-8173-b5b51a0c1278"/>
+				<reportElement x="1" y="536" width="522" height="20" uuid="19a4ce56-54a0-43fc-8173-b5b51a0c1278"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de casos que presentaron al menos un hecho de violencia en el mes: "+$F{totalCasosACVictimaViolenciaMes}+" "+$F{porcentajeCasosACVictimaViolenciaMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="570" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="922375e1-9236-4aa9-9bc6-c43ddb8c99c4"/>
+				<reportElement mode="Transparent" x="2" y="563" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="922375e1-9236-4aa9-9bc6-c43ddb8c99c4"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1475,14 +1403,14 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[ACCIONES COLECTIVAS DE PROTESTA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="590" width="522" height="20" uuid="68f8d3bb-48fb-4a29-8b64-4ce952c358c5"/>
+				<reportElement x="0" y="583" width="522" height="20" uuid="68f8d3bb-48fb-4a29-8b64-4ce952c358c5"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Acciones colectivas de protesta durante el mes: "+$F{totalCasosACAccionesProtestaMes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="617" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="90e3c372-f51d-45bf-a740-6c267e9ff870"/>
+				<reportElement mode="Transparent" x="2" y="610" width="383" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="90e3c372-f51d-45bf-a740-6c267e9ff870"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1490,46 +1418,54 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[ACTUACIONES DEFENSORIALES]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="1" y="637" width="522" height="20" uuid="bf887e46-2801-473a-9bec-786f1166f688"/>
+				<reportElement x="1" y="630" width="522" height="20" uuid="bf887e46-2801-473a-9bec-786f1166f688"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Cantidad de casos que tuvieron presencia efectuva de la Defensoria del Pueblo: "+$F{totalCasosAD}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Cantidad de casos en los que la Defensoría del Pueblo ha intervenido desde que iniciaron: "+$F{totalCasosAD}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="677" width="497" height="20" uuid="bc1b7fd7-8d79-4bf3-a8bf-b7992aeda5b4"/>
+				<reportElement x="26" y="669" width="497" height="20" uuid="bc1b7fd7-8d79-4bf3-a8bf-b7992aeda5b4"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de supervisiones preventivas :" +$F{totalActividadSupervisionPreventivaMes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="697" width="497" height="20" uuid="d33cff29-eb09-4ce9-85f3-6db6f668630d"/>
+				<reportElement x="26" y="689" width="497" height="20" uuid="d33cff29-eb09-4ce9-85f3-6db6f668630d"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de intermediaciones : "+$F{totalActividadIntermediacionMes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="717" width="497" height="20" uuid="7444870b-2b06-447f-9057-1011e89c6808"/>
+				<reportElement x="26" y="708" width="497" height="20" uuid="7444870b-2b06-447f-9057-1011e89c6808"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de acciones humanitarias :"+$F{totalActividadAccionesHumanitariasMes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="27" y="737" width="497" height="20" uuid="fee398f8-cbd1-49eb-acc1-e069171cbf22"/>
+				<reportElement x="26" y="728" width="497" height="20" uuid="fee398f8-cbd1-49eb-acc1-e069171cbf22"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cantidad de acciones de defensa legal :"+$F{totalActividadAccionesDefensaLegalMes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="2" y="657" width="522" height="20" uuid="cab59f3d-bae7-4975-8ec1-9d391ea7d8ca"/>
+				<reportElement x="2" y="649" width="522" height="20" uuid="cab59f3d-bae7-4975-8ec1-9d391ea7d8ca"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Cantidad de casos que tuvieron presencia efectiva de la Defensoria del Pueblo en el mes: "+$F{totalCasosADMes}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Cantidad de casos en los que la Defensoría del Pueblo ha intervenido durante el mes: "+$F{totalCasosADMes}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="26" y="748" width="496" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b57ceafe-6e2f-417e-acd7-91dff3c8b5fd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial Black" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cantidad de acciones de difusión en medios de comunicación :"+$F{totalActividadAccionesDifusionMes}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="770">
@@ -1550,7 +1486,7 @@ Frente a los conflictos sociales, la Defensoría del Pueblo despliega sus facult
 				<text><![CDATA[1. FRECUENCIA DE LOS CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="79" y="58" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ea6e37bb-4976-4303-86d0-7cd01e8ccea9"/>
+				<reportElement mode="Transparent" x="79" y="58" width="346" height="52" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ea6e37bb-4976-4303-86d0-7cd01e8ccea9"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1623,14 +1559,14 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 				<text><![CDATA[2. COMPETENCIAS EN LA ATENCIÓN DE CONFLICTOS SOCIALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="411" width="520" height="58" uuid="0df1a1f0-a6b0-4d00-8ff4-aed2975f6924"/>
+				<reportElement x="2" y="411" width="520" height="77" uuid="0df1a1f0-a6b0-4d00-8ff4-aed2975f6924"/>
 				<textElement textAlignment="Justified">
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[La identificación de las competencias en la atención de un conflicto social se hace a partir del reconocimiento del papel que desempeñan los sectores en los que se organiza el Estado para la atención de las múltiples demandas que son planteadas durante el desarrollo de un conflicto social, de acuerdo a la normatividad, objetivos y funciones vigentes en cada una de la entidades estatales analizadas.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="60" y="474" width="390" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="32a9673e-5db9-4de9-b534-2504689fed01"/>
+				<reportElement mode="Transparent" x="60" y="492" width="390" height="49" forecolor="#73AF00" backcolor="#FFFFFF" uuid="32a9673e-5db9-4de9-b534-2504689fed01"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1804,7 +1740,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN PRINCIPAL COMPETENCIA DEL GOBIERNO  (Número 
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement mode="Transparent" x="62" y="189" width="390" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="4014fd75-7d1e-4f61-b02f-5080736a4000"/>
+				<reportElement mode="Transparent" x="62" y="189" width="390" height="52" forecolor="#73AF00" backcolor="#FFFFFF" uuid="4014fd75-7d1e-4f61-b02f-5080736a4000"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1815,7 +1751,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 ]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 31" style="table 18" mode="Transparent" x="54" y="533" width="410" height="50" backcolor="#00CAD3" uuid="e297a124-641a-4a9b-b104-6962c628e2f6"/>
+				<reportElement key="table 31" style="table 18" mode="Transparent" x="54" y="542" width="410" height="50" backcolor="#00CAD3" uuid="e297a124-641a-4a9b-b104-6962c628e2f6"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="726991da-5e09-4f62-b5d3-cfd042636fd2">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelGobierno})]]></dataSourceExpression>
@@ -1883,7 +1819,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 		<band height="770">
 			<pieChart>
 				<chart>
-					<reportElement x="2" y="52" width="518" height="261" uuid="a7f09226-c640-4bba-acf6-7a745db20be7"/>
+					<reportElement x="2" y="54" width="518" height="261" uuid="a7f09226-c640-4bba-acf6-7a745db20be7"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -1904,7 +1840,7 @@ PERÚ: CONFLICTOS SOCIALES REGISTRADOS POR MES
 				</piePlot>
 			</pieChart>
 			<staticText>
-				<reportElement mode="Transparent" x="64" y="3" width="390" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="23ff26ff-f908-429e-b14d-8b950aa58237"/>
+				<reportElement mode="Transparent" x="64" y="3" width="390" height="51" forecolor="#73AF00" backcolor="#FFFFFF" uuid="23ff26ff-f908-429e-b14d-8b950aa58237"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1922,7 +1858,7 @@ PERÚ: COMPETENCIAS POR NIVEL DE GOBIERNO
 				<text><![CDATA[A continuación el detalle de competencias, por tipo de conflicto:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="32" y="347" width="447" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="fcba514b-bc04-41cc-acb5-bc3a51476f2f"/>
+				<reportElement mode="Transparent" x="32" y="347" width="447" height="54" forecolor="#73AF00" backcolor="#FFFFFF" uuid="fcba514b-bc04-41cc-acb5-bc3a51476f2f"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1933,7 +1869,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO, POR PRINCIPAL AUTORIDAD COMPETENTE
 ]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 32" style="table 18" x="19" y="393" width="466" height="50" uuid="88c382b9-c3b0-44c3-a124-6ce484151236"/>
+				<reportElement key="table 32" style="table 18" x="19" y="401" width="466" height="50" uuid="88c382b9-c3b0-44c3-a124-6ce484151236"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset5" uuid="d343c58a-a85b-430b-b482-47335b8fe32e">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{elementoReportesAutoridad})]]></dataSourceExpression>
@@ -2140,7 +2076,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO, POR PRINCIPAL AUTORIDAD COMPETENTE
 				<text><![CDATA[A continuación se presenta la frecuencia mensual del último año:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="63" y="59" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ace92c6d-c880-4787-9959-5c24fa94bc04"/>
+				<reportElement mode="Transparent" x="63" y="55" width="361" height="50" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ace92c6d-c880-4787-9959-5c24fa94bc04"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -2323,7 +2259,7 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 				</jr:table>
 			</componentElement>
 			<componentElement>
-				<reportElement key="table 18" style="table 18" positionType="Float" x="-1" y="222" width="520" height="78" uuid="7c3a21fe-a121-4b3b-a42b-05b59e355433"/>
+				<reportElement key="table 18a" style="table 18" positionType="Float" x="-1" y="222" width="520" height="78" uuid="7c3a21fe-a121-4b3b-a42b-05b59e355433"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset6" uuid="acbc42b7-1d05-4865-b17f-f36186845236">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasosNuevosPorMes})]]></dataSourceExpression>
@@ -2338,7 +2274,7 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 								<text><![CDATA[Nro.]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 18_TD" height="46" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
 							<textField pattern="" isBlankWhenNull="true">
 								<reportElement mode="Transparent" x="0" y="0" width="34" height="45" forecolor="#000000" backcolor="#FFFFFF" uuid="41fea005-37c6-4fd7-ab08-4ce9a2064644"/>
 								<box topPadding="3"/>
@@ -2360,12 +2296,12 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 								<text><![CDATA[Lugar]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 18_TD" height="46" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
 								<reportElement mode="Transparent" x="0" y="0" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="54c9d302-992e-4db6-aa40-52faf0bb7bb0"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
@@ -2374,7 +2310,7 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 								<reportElement mode="Transparent" x="0" y="15" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ee477bbd-47e8-44d1-8a1b-570a14b32586"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{provinciaPrincial}]]></textFieldExpression>
@@ -2383,26 +2319,26 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 								<reportElement mode="Transparent" x="0" y="30" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="43c402f4-e03e-48d0-8bc2-1390e45e5471"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{distritoPrincial}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="384" uuid="3e13324a-f043-4be8-84d6-2f57cccb1fac">
+					<jr:column width="219" uuid="3e13324a-f043-4be8-84d6-2f57cccb1fac">
 						<jr:columnHeader style="table 18_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="384" height="30" forecolor="#00595D" uuid="450441f2-f7f9-4a8e-bd3e-f32e65259cb4"/>
+								<reportElement x="0" y="0" width="219" height="30" forecolor="#00595D" uuid="450441f2-f7f9-4a8e-bd3e-f32e65259cb4"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font isBold="false"/>
 								</textElement>
 								<text><![CDATA[Caso]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 18_TD" height="46" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-								<reportElement mode="Transparent" x="0" y="0" width="384" height="20" forecolor="#9A0400" backcolor="#FFFFFF" uuid="839df0b8-26c7-48d4-b25f-3eb87b2bf68e"/>
+								<reportElement mode="Transparent" x="0" y="0" width="219" height="23" forecolor="#9A0400" backcolor="#FFFFFF" uuid="839df0b8-26c7-48d4-b25f-3eb87b2bf68e"/>
 								<box topPadding="4"/>
 								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -2411,13 +2347,33 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 								<textFieldExpression><![CDATA[$F{tipologia}]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-								<reportElement mode="Transparent" x="0" y="20" width="384" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="9a6ed401-552a-4c70-9d65-e5e96d9184fe"/>
+								<reportElement mode="Transparent" x="0" y="23" width="219" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="9a6ed401-552a-4c70-9d65-e5e96d9184fe"/>
 								<box topPadding="2" leftPadding="2" bottomPadding="3" rightPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
 									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{descripcionCaso}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="187" uuid="4a776d7f-7cc6-4df0-9eb0-c9b08597cc2d">
+						<jr:columnHeader style="table 18_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="187" height="30" forecolor="#00595D" uuid="1bfa3047-467a-4cf9-af45-2ac9728df30d"/>
+								<box leftPadding="0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="false"/>
+								</textElement>
+								<text><![CDATA[Forma de resolución]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="187" height="46" uuid="c58fd155-2e22-4c9e-a965-7b9ede8135d2"/>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Justified" verticalAlignment="Top"/>
+								<textFieldExpression><![CDATA[$F{justificacion}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -2598,7 +2554,7 @@ PERÚ: CONFLICTOS SOCIALES NUEVOS REGISTRADOS POR MES
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement mode="Transparent" x="70" y="53" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="06c9c25b-9973-4b34-bc6b-f223efb3316e"/>
+				<reportElement mode="Transparent" x="70" y="42" width="361" height="57" forecolor="#73AF00" backcolor="#FFFFFF" uuid="06c9c25b-9973-4b34-bc6b-f223efb3316e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -2631,9 +2587,9 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 								<text><![CDATA[Nro.]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 18_TD" height="46" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
 							<textField pattern="" isBlankWhenNull="true">
-								<reportElement mode="Transparent" x="0" y="0" width="34" height="45" forecolor="#000000" backcolor="#FFFFFF" uuid="2789acc0-6592-418c-9d62-13cb0cdabbfd"/>
+								<reportElement mode="Transparent" x="0" y="0" width="34" height="46" forecolor="#000000" backcolor="#FFFFFF" uuid="2789acc0-6592-418c-9d62-13cb0cdabbfd"/>
 								<box topPadding="3"/>
 								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -2653,12 +2609,12 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 								<text><![CDATA[Lugar]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 18_TD" height="46" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
 								<reportElement mode="Transparent" x="0" y="0" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="8cc96f42-726b-4a48-8b4e-3d6894092e4f"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
@@ -2667,7 +2623,7 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 								<reportElement mode="Transparent" x="0" y="15" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="218550fa-a682-457c-aa9d-18f2782126aa"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{provinciaPrincial}]]></textFieldExpression>
@@ -2676,7 +2632,7 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 								<reportElement mode="Transparent" x="0" y="30" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="a95607af-5005-452b-a7cd-30a27e10f4cc"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{distritoPrincial}]]></textFieldExpression>
@@ -2693,9 +2649,9 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 								<text><![CDATA[Caso]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 18_TD" height="46" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="46" rowSpan="1">
 							<textField pattern="" isBlankWhenNull="true">
-								<reportElement mode="Transparent" x="0" y="0" width="384" height="20" forecolor="#9A0400" backcolor="#FFFFFF" uuid="22b5a15e-257a-4ebb-98f9-9a81aeb7ed13"/>
+								<reportElement mode="Transparent" x="0" y="0" width="384" height="23" forecolor="#9A0400" backcolor="#FFFFFF" uuid="22b5a15e-257a-4ebb-98f9-9a81aeb7ed13"/>
 								<box topPadding="4"/>
 								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -2704,7 +2660,7 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 								<textFieldExpression><![CDATA[$F{tipologia}]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-								<reportElement mode="Transparent" x="0" y="20" width="384" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="8842628c-a16d-46a8-8738-d00c39299ac9"/>
+								<reportElement mode="Transparent" x="0" y="23" width="384" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="8842628c-a16d-46a8-8738-d00c39299ac9"/>
 								<box topPadding="2" leftPadding="2" bottomPadding="3" rightPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
 									<font fontName="SansSerif" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -2719,7 +2675,7 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="1" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="ab2c43ae-4107-40d0-ac21-8a84ce25182e"/>
+				<reportElement mode="Transparent" x="1" y="17" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="ab2c43ae-4107-40d0-ac21-8a84ce25182e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="Arial Black" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -2727,26 +2683,25 @@ PERÚ: CONFLICTOS SOCIALES RESUELTOS POR MES
 				<text><![CDATA[UBICACIÓN GEOGRÁFICA DE LOS CONFLICTOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="2" y="35" width="520" height="20" uuid="56d6a4c3-4e26-4f65-a7b1-3bf981a5b276"/>
+				<reportElement x="2" y="51" width="520" height="20" uuid="56d6a4c3-4e26-4f65-a7b1-3bf981a5b276"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[A continuación se presentan los conflictos de acuerdo a su ubicación geográfica:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="76" y="65" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="5ca61ffc-4353-458f-9932-dfa999df4760"/>
+				<reportElement mode="Transparent" x="76" y="81" width="361" height="52" forecolor="#73AF00" backcolor="#FFFFFF" uuid="5ca61ffc-4353-458f-9932-dfa999df4760"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Cuadro N.° 6:
 PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
-(Número de casos)
 
 ]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 19" style="table 18" x="26" y="138" width="463" height="50" uuid="dca2c7d0-2d93-4157-8985-29028e09d00f"/>
+				<reportElement key="table 19" style="table 18" x="26" y="157" width="463" height="47" uuid="dca2c7d0-2d93-4157-8985-29028e09d00f"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset7" uuid="23a60c52-217e-477a-9235-e7be3822b690">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{elementoReportesDepartamentoEstado})]]></dataSourceExpression>
@@ -2873,49 +2828,10 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN REGIÓN, POR ESTADO
 				</textElement>
 				<text><![CDATA[A continuación el mapa de los casos activos y latentes por departamento:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="382" y="254" width="135" height="20" forecolor="#666666" uuid="2955a1da-b493-4cd0-a866-097b3a3be65b"/>
-				<textElement textAlignment="Center">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosRegistrados}+ " conflictos registrados"]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="382" y="280" width="135" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="d677ce71-1720-4d56-84a4-c55ab32066f8"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosActivos}+ " conflictos activos"]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="382" y="307" width="135" height="20" forecolor="#FF9900" backcolor="#FFFFFF" uuid="d8de11ae-4698-4b15-b1de-06784eae27d7"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{totalCasosLatentes}+ " conflictos latentes"]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="48" y="70" width="69" height="20" forecolor="#FF3333" backcolor="#FFFFFF" uuid="223be013-7a5a-4895-b071-1c900f3a5aa7"/>
-				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Activos]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="49" y="96" width="69" height="20" forecolor="#FF9900" backcolor="#FFFFFF" uuid="32988fca-ef99-42ee-adef-2dc2df156ca1"/>
-				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Latentes]]></text>
-			</staticText>
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="76" y="97" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
+				<reportElement mode="Transparent" x="73" y="116" width="361" height="51" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f9ee2733-6838-4d9f-afd9-ed7a573969b0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -2934,26 +2850,22 @@ PERÚ: CONFLICTOS ACTIVOS SEGÚN FASE
 				<text><![CDATA[FASES DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="72" width="468" height="20" uuid="ec33dffa-afbf-4781-970d-29c650ce8a03"/>
+				<reportElement x="1" y="72" width="523" height="32" uuid="ec33dffa-afbf-4781-970d-29c650ce8a03"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[Al cierre del presente reporte, los conflictos activos registrados se encuentran en las siguientes fases:]]></text>
 			</staticText>
-			<image>
-				<reportElement x="37" y="149" width="452" height="226" uuid="5782dcfe-959c-4074-a897-39cd13ffa124"/>
-				<imageExpression><![CDATA[$F{imagePath001} +"cuadro007.png"]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="386" width="441" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="bcdf0a94-d119-4e22-9bae-931ec54f39f6"/>
+				<reportElement mode="Transparent" x="2" y="386" width="483" height="20" forecolor="#BC0500" backcolor="#FFFFFF" uuid="bcdf0a94-d119-4e22-9bae-931ec54f39f6"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[3. PROCESOS DE DIÁLOGO EN CONFLICTOS SOCIALES ACTIVOS]]></text>
+				<text><![CDATA[PROCESOS DE DIÁLOGO EN CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="85" y="411" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="d5ba496b-fd24-41f8-b6d7-992b5673d2e5"/>
+				<reportElement mode="Transparent" x="85" y="411" width="361" height="49" forecolor="#73AF00" backcolor="#FFFFFF" uuid="d5ba496b-fd24-41f8-b6d7-992b5673d2e5"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -2963,7 +2875,7 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 (Número de casos)]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="87" y="460" width="350" height="100" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
+				<reportElement key="table 11" style="table 18" x="87" y="460" width="350" height="60" uuid="65fd14da-2091-4c8f-9a9b-4fbc0415282e"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="b657a412-de36-4831-ad46-6fbc4c82c332">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoDialogo})]]></dataSourceExpression>
@@ -3045,7 +2957,7 @@ PERÚ: CONFLICTOS EN PROCESO DE DIÁLOGO, SEGÚN TIPO
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="78" y="0" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f347af8f-ecf4-40a8-9d48-2b1d03d4e28a"/>
+				<reportElement mode="Transparent" x="78" y="0" width="361" height="53" forecolor="#73AF00" backcolor="#FFFFFF" uuid="f347af8f-ecf4-40a8-9d48-2b1d03d4e28a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3056,7 +2968,7 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 			</staticText>
 			<pieChart>
 				<chart>
-					<reportElement x="4" y="46" width="518" height="261" uuid="5b819d4f-73a7-4276-825c-cfa75f81201b"/>
+					<reportElement x="4" y="53" width="518" height="261" uuid="5b819d4f-73a7-4276-825c-cfa75f81201b"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -3085,7 +2997,7 @@ PERÚ: CONFLICTOS ACTIVOS EN PROCESO DE DIÁLOGO, POR TIPO
 				<text><![CDATA[CONFLICTOS SOCIALES DE ACUERDO A TIPO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="79" y="378" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="b86f9abc-b9da-4159-9be1-4e2e6b4e6a4e"/>
+				<reportElement mode="Transparent" x="79" y="378" width="361" height="53" forecolor="#73AF00" backcolor="#FFFFFF" uuid="b86f9abc-b9da-4159-9be1-4e2e6b4e6a4e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3096,7 +3008,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO
 ]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="84" y="431" width="350" height="100" uuid="f531afee-17ec-4920-adef-05db45304ea6"/>
+				<reportElement key="table 11" style="table 18" x="84" y="431" width="350" height="60" uuid="f531afee-17ec-4920-adef-05db45304ea6"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="98efc738-faa5-4e05-b7e2-b9405e0ddcf5">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo})]]></dataSourceExpression>
@@ -3178,7 +3090,7 @@ PERÚ: CONFLICTOS SOCIALES, SEGÚN TIPO
 				<text><![CDATA[1. CONFLICTOS ACTIVOS POR TIPO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="76" y="16" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="b0687206-fb7a-4f48-bb93-c3dfa51b7572"/>
+				<reportElement mode="Transparent" x="76" y="16" width="361" height="53" forecolor="#73AF00" backcolor="#FFFFFF" uuid="b0687206-fb7a-4f48-bb93-c3dfa51b7572"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3189,7 +3101,7 @@ PERÚ: CONFLICTOS SOCIALES SEGÚN TIPO
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="76" y="381" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="a3af2316-3ed9-4bdc-a3fb-1c47d16d8263"/>
+				<reportElement mode="Transparent" x="76" y="381" width="361" height="53" forecolor="#73AF00" backcolor="#FFFFFF" uuid="a3af2316-3ed9-4bdc-a3fb-1c47d16d8263"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3201,7 +3113,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
 			</staticText>
 			<pieChart>
 				<chart>
-					<reportElement x="3" y="62" width="518" height="261" uuid="466bff53-6116-4201-970f-cc223517daf6"/>
+					<reportElement x="3" y="69" width="518" height="261" uuid="466bff53-6116-4201-970f-cc223517daf6"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -3222,10 +3134,10 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
 				</piePlot>
 			</pieChart>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="82" y="434" width="350" height="100" uuid="13cbe454-3abb-4530-9ed5-f532431ec10f"/>
+				<reportElement key="table 11" style="table 18" x="82" y="434" width="350" height="60" uuid="13cbe454-3abb-4530-9ed5-f532431ec10f"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="dataset3" uuid="9a6a439d-e942-40a0-b81f-e74f82cab97e">
-						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo})]]></dataSourceExpression>
+					<datasetRun subDataset="dataset3" uuid="47dd3536-dd0b-4b6f-b3a8-2a22662ac26d">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipo2})]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="170" uuid="9f039f03-0b3b-46f2-9b20-7a6c5b716f8d">
 						<jr:columnHeader style="table 18_CH" height="30" rowSpan="1">
@@ -3296,7 +3208,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS, SEGÚN TIPO
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="71" y="13" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="fe36e0a0-2427-44ec-9f87-e01dade2f65b"/>
+				<reportElement mode="Transparent" x="71" y="13" width="361" height="51" forecolor="#73AF00" backcolor="#FFFFFF" uuid="fe36e0a0-2427-44ec-9f87-e01dade2f65b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3324,7 +3236,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS POR TIPO
 				<pieDataset>
 					<dataset>
 						<datasetRun subDataset="dataset3" uuid="474ec9c8-34e4-49ab-b8ad-26d3815e232f">
-							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoGrafico})]]></dataSourceExpression>
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelTipoGrafico2})]]></dataSourceExpression>
 						</datasetRun>
 					</dataset>
 					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
@@ -3337,7 +3249,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS POR TIPO
 				</piePlot>
 			</pieChart>
 			<componentElement>
-				<reportElement key="table 11" style="table 18" x="82" y="446" width="350" height="100" uuid="24c83beb-e8cc-488d-be18-969d8c749e57"/>
+				<reportElement key="table 11" style="table 18" x="82" y="446" width="350" height="60" uuid="24c83beb-e8cc-488d-be18-969d8c749e57"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset3" uuid="582c793f-b951-4ffc-8546-9b570b4c4516">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaNivelSubTipo})]]></dataSourceExpression>
@@ -3409,7 +3321,7 @@ PERÚ: CONFLICTOS SOCIALES ACTIVOS POR TIPO
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement mode="Transparent" x="78" y="375" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ea863ef3-d55f-4848-82b4-8193372746bd"/>
+				<reportElement mode="Transparent" x="78" y="375" width="361" height="50" forecolor="#73AF00" backcolor="#FFFFFF" uuid="ea863ef3-d55f-4848-82b4-8193372746bd"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3423,7 +3335,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES, SEGÚN ACTIVIDAD
 		<band height="770">
 			<pieChart>
 				<chart>
-					<reportElement x="3" y="53" width="518" height="261" uuid="bb3771fd-d028-40aa-96a8-e6c2f85f668e"/>
+					<reportElement x="3" y="58" width="518" height="261" uuid="bb3771fd-d028-40aa-96a8-e6c2f85f668e"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -3444,7 +3356,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES, SEGÚN ACTIVIDAD
 				</piePlot>
 			</pieChart>
 			<staticText>
-				<reportElement mode="Transparent" x="74" y="4" width="361" height="46" forecolor="#73AF00" backcolor="#FFFFFF" uuid="51f320bd-5699-4373-bbcb-64b7a93c961c"/>
+				<reportElement mode="Transparent" x="74" y="4" width="361" height="54" forecolor="#73AF00" backcolor="#FFFFFF" uuid="51f320bd-5699-4373-bbcb-64b7a93c961c"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3455,21 +3367,21 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 		</band>
 		<band height="770">
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="0" width="521" height="34" forecolor="#9A0400" backcolor="#FFFFFF" uuid="5b3d776e-7085-4b83-bb67-3f0b80937ce1"/>
+				<reportElement mode="Transparent" x="0" y="0" width="521" height="62" forecolor="#9A0400" backcolor="#FFFFFF" uuid="5b3d776e-7085-4b83-bb67-3f0b80937ce1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="Arial Black" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[CONFLICTOS SOCIALES DE ACUERDO A TIPO]]></text>
+				<text><![CDATA[DETALLE DE LOS CONFLICTOS SOCIALES ACTIVOS]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 25" style="table 18" x="1" y="88" width="515" height="53" uuid="c8d2bb6c-68bf-486c-8653-75b1a6738df3"/>
+				<reportElement key="table 25" style="table 18" x="1" y="115" width="521" height="53" uuid="c8d2bb6c-68bf-486c-8653-75b1a6738df3"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset8" uuid="cc8f9173-9bbe-4256-b7e5-e8131e6f306f">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaCasosActivosTotales})]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="265" uuid="12f6d86d-2908-4bc8-b4e8-5107aabae4a1">
-						<jr:detailCell style="table 18_TD" height="74" rowSpan="1">
+						<jr:detailCell style="table 12_TD" height="74" rowSpan="1">
 							<textField isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="0" y="0" width="265" height="20" forecolor="#00595D" backcolor="#00CAD3" uuid="38ed91a6-7b69-4b46-8e99-c00edf16ee3d"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -3485,7 +3397,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<text><![CDATA[Descripción]]></text>
 							</staticText>
 							<componentElement>
-								<reportElement key="table 26" style="table 26" x="0" y="40" width="265" height="20" uuid="369597d0-cbfd-4bed-9a34-415527ae5724"/>
+								<reportElement key="table 26" x="0" y="40" width="265" height="34" uuid="369597d0-cbfd-4bed-9a34-415527ae5724"/>
 								<jr:table>
 									<datasetRun subDataset="dataset10" uuid="77a8ad31-8cd8-438a-a85c-c9f7fd5efe23">
 										<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{datosCasos})]]></dataSourceExpression>
@@ -3503,36 +3415,36 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 							</componentElement>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="250" uuid="6acbfe69-e904-40ce-9623-5cd07a66434c">
-						<jr:detailCell style="table 18_TD" height="74" rowSpan="1">
+					<jr:column width="254" uuid="6acbfe69-e904-40ce-9623-5cd07a66434c">
+						<jr:detailCell style="table 12_TD" height="74" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="250" height="20" backcolor="#00CAD3" uuid="bd497dc8-4f45-472b-86aa-f54e9075348c"/>
+								<reportElement mode="Opaque" x="0" y="0" width="254" height="20" backcolor="#00CAD3" uuid="bd497dc8-4f45-472b-86aa-f54e9075348c"/>
 								<text><![CDATA[]]></text>
 							</staticText>
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="20" width="250" height="20" forecolor="#006D72" backcolor="#02F4FF" uuid="56957be5-175a-43be-b5a1-fa784b945383"/>
+								<reportElement mode="Opaque" x="0" y="20" width="254" height="20" forecolor="#006D72" backcolor="#02F4FF" uuid="56957be5-175a-43be-b5a1-fa784b945383"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[Estado Actual]]></text>
 							</staticText>
-							<textField isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="40" width="250" height="20" forecolor="#5E9000" backcolor="#A2F700" uuid="59652f1e-37f9-45cd-98e2-e088ad02e976"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{fase}]]></textFieldExpression>
-							</textField>
 							<componentElement>
-								<reportElement key="table 27" style="table 27" x="0" y="60" width="250" height="13" uuid="7e8d48a4-b455-4c02-813e-6ed278778d11"/>
+								<reportElement key="table 27" x="0" y="40" width="254" height="34" isPrintWhenDetailOverflows="true" uuid="7e8d48a4-b455-4c02-813e-6ed278778d11"/>
 								<jr:table>
 									<datasetRun subDataset="dataset9" uuid="9d913fb9-e055-4c04-855c-cafbc58ebb23">
 										<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{actividades})]]></dataSourceExpression>
 									</datasetRun>
 									<jr:column width="250" uuid="bef790d7-f268-45ed-a34e-e8b935b07803">
-										<jr:detailCell style="table 27_TD" height="20" rowSpan="1">
+										<jr:detailCell style="table 27_TD" height="34" rowSpan="1">
+											<textField>
+												<reportElement x="0" y="0" width="250" height="13" uuid="b0d7aa38-3364-4a63-886b-0e068ab4297d"/>
+												<textElement verticalAlignment="Bottom">
+													<font isBold="true"/>
+												</textElement>
+												<textFieldExpression><![CDATA[$F{fechaRealizacionIniString}]]></textFieldExpression>
+											</textField>
 											<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-												<reportElement x="2" y="0" width="246" height="18" uuid="b6373019-1a66-4307-87a3-d3813b5df557"/>
+												<reportElement mode="Transparent" x="0" y="13" width="250" height="14" backcolor="#FFFFFF" uuid="b6373019-1a66-4307-87a3-d3813b5df557"/>
 												<textElement textAlignment="Justified"/>
 												<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 											</textField>
@@ -3545,7 +3457,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement mode="Transparent" x="2" y="42" width="517" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="62d5fd96-0446-4285-a4a2-fbd0ec0089a3"/>
+				<reportElement mode="Transparent" x="2" y="74" width="519" height="39" forecolor="#BC0500" backcolor="#FFFFFF" uuid="62d5fd96-0446-4285-a4a2-fbd0ec0089a3"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial Black" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -3597,7 +3509,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="0" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b22516b7-5d25-4261-a66f-81aa409dd49d"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{regionPrincial}]]></textFieldExpression>
@@ -3606,7 +3518,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="15" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="cb13c5cc-d86f-4ffc-a398-005671170cb9"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{provinciaPrincial}]]></textFieldExpression>
@@ -3615,7 +3527,7 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 								<reportElement mode="Transparent" x="0" y="30" width="105" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="2a777c80-14b1-4c9f-a101-44c098d15218"/>
 								<box topPadding="2" leftPadding="2"/>
 								<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
-									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{distritoPrincial}]]></textFieldExpression>
@@ -3890,11 +3802,11 @@ PERÚ: CONFLICTOS SOCIOAMBIENTALES POR ACTIVIDAD]]></text>
 	<pageFooter>
 		<band height="30">
 			<textField>
-				<reportElement mode="Transparent" x="65" y="2" width="457" height="20" forecolor="#999999" uuid="57ab2e86-18c8-4aed-8c02-af5e8769107b"/>
+				<reportElement mode="Transparent" x="1" y="2" width="521" height="20" forecolor="#999999" uuid="57ab2e86-18c8-4aed-8c02-af5e8769107b"/>
 				<textElement textAlignment="Right">
 					<font isBold="false" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" DEFENSORÍA DEL PUEBLO - APCSG - Reporte de Conflictos Sociales - "+$F{mesPublicacion}+" "+$F{anhoPublicacion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" Defensoría del Pueblo - APCSG - Reporte mensual de conflictos sociales- "+$F{mesPublicacion}+" "+$F{anhoPublicacion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
