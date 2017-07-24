@@ -19,6 +19,7 @@ import gob.dp.simco.investigacion.service.HistorialActividadService;
 import gob.dp.simco.investigacion.service.InvestigacionService;
 import gob.dp.simco.investigacion.service.ParticipacionService;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
+import gob.dp.simco.comun.util.FunctionUtil;
 import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -179,25 +180,12 @@ public class InvestigacionController extends AbstractManagedBean implements Seri
     
     public void guardarCampoDetalle(){
         try {
-            DateFormat fechaHora = new SimpleDateFormat("yyyyMMddHHmmss");
-            String formato = fechaHora.format(new Date());
-            String ruta = FILE_SYSTEM+"investigacion"+campo.getId().toString();
-            //+"/"+formato + getFilename(file1)
-            File file = new File(ruta);
-            if (!file.exists()) {
-                file.mkdir();
-            }
-            String filenameArchive = getFilename(file1);
-            file = new File(ruta+"/"+formato+filenameArchive);
-            try (InputStream input = file1.getInputStream()) {
-                Files.copy(input, file.toPath());
-            }
-
+            String ruta = FunctionUtil.uploadArchive(file1);
             campoDetalle.setFechaRegistro(new Date());
             campoDetalle.setIdCampo(campo.getId());
-            campoDetalle.setNombreArchivo(filenameArchive);
-            campoDetalle.setNombreDocumento(formato+filenameArchive);
-            campoDetalle.setRuta(campo.getId().toString()+"/"+formato+filenameArchive);
+            campoDetalle.setNombreArchivo(ruta);
+            campoDetalle.setNombreDocumento(ruta);
+            campoDetalle.setRuta(ruta);
             campoDetalle.setUsuarioRegistro(investigacion.getUsuarioRegistro());
             campoDetalle.setNombreRegistro(historialActividad.getNombre());
             campoDetalleService.campoDetalleInsertar(campoDetalle);
@@ -211,16 +199,6 @@ public class InvestigacionController extends AbstractManagedBean implements Seri
     public void limpiarCampoDetalle(Campo c){
         setCampo(c);
         campoDetalle = new CampoDetalle();
-    }
-    
-    private static String getFilename(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                String filename = cd.substring(cd.indexOf("=") + 1).trim().replace("\"", "");
-                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1);
-            }
-        }
-        return null;
     }
 
     public void limpiarModalCampo() {

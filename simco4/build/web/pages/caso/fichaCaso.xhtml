@@ -659,7 +659,13 @@
                                                                                                 <tr>
                                                                                                     <td colspan="2" rowspan="3">
                                                                                                         <figure class="image rounded">
-                                                                                                            <img style="width:40px" src="#{time.usuario.ruta == null? '/simco/faces/bootstrap/img/user-admin.png' : time.usuario.ruta}" class="img-circle" data-lock-picture="images/!logged-user.jpg" />
+                                                                                                            <h:panelGroup rendered="#{time.usuario.ruta == null}">
+                                                                                                                <img style="width:40px" src="/simco/faces/bootstrap/img/user-admin.png" class="img-circle" data-lock-picture="images/!logged-user.jpg" />
+                                                                                                            </h:panelGroup>
+                                                                                                            <h:panelGroup rendered="#{time.usuario.ruta != null}">
+                                                                                                                <img style="width:40px" src="/simco/DownloadFileServlet?fileName=#{time.usuario.ruta}" class="img-circle" data-lock-picture="images/!logged-user.jpg" />
+                                                                                                            </h:panelGroup>
+                                                                                                            
                                                                                                         </figure>
                                                                                                     </td>
                                                                                                     <td style="font-size: 1.8em">
@@ -686,7 +692,7 @@
                                                                                                 <tr>
                                                                                                     <td colspan="3">
                                                                                                         <h:panelGroup rendered="#{time.ruta != null}">
-                                                                                                            <img class="img-thumbnail lightbox" src="/filesystem/#{time.ruta}" height="100%" width="100%"/>
+                                                                                                            <img class="img-thumbnail lightbox" src="/simco/DownloadFileServlet?fileName=#{time.ruta}" height="100%" width="100%"/>
                                                                                                         </h:panelGroup>
                                                                                                     </td>
                                                                                                 </tr>

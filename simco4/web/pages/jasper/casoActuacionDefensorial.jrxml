@@ -40,7 +40,7 @@
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Descripcion:]]></text>
+				<text><![CDATA[Descripción:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
 				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="20" width="451" height="17" isRemoveLineWhenBlank="true" forecolor="#666666" backcolor="#FFFFFF" uuid="2a0cdf4a-1f08-4343-a9e1-e0f66ea16856"/>
@@ -146,6 +146,7 @@
 			</staticText>
 			<image scaleImage="FillFrame" hAlign="Center" vAlign="Top">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="0" y="87" width="451" height="167" isRemoveLineWhenBlank="true" uuid="b19b9c7f-1576-4001-adc9-f3f82e6f9e7c"/>
+				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
 			</image>
 		</band>
 	</detail>

@@ -21,6 +21,7 @@ import gob.dp.simco.comun.service.UbigeoService;
 import gob.dp.simco.registro.bean.AdjuntiaDefensorialVO;
 import gob.dp.simco.registro.bean.FiltroParametro;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
+import gob.dp.simco.comun.util.ConstantesUtil;
 import gob.dp.simco.registro.entity.Actividad;
 import gob.dp.simco.registro.entity.ActividadCaso;
 import gob.dp.simco.registro.entity.Actor;
@@ -659,7 +660,8 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 radvo.setDepartamento(departamen == null ? "" : departamen.getDescripcion());
                 radvo.setProvincia(provin == null ? "" : provin.getDescripcion());
                 radvo.setDistrito(distri == null ? "" : distri.getDescripcion());
-                radvo.setImagePath(a.getRuta() == null ? null : hostAddress().concat(a.getRuta()));
+                //radvo.setImagePath(a.getRuta() == null ? null : hostAddress().concat(a.getRuta()));
+                radvo.setImagePath(a.getRuta() == null ? null : ConstantesUtil.FILE_DONWLOAD+"/"+a.getRuta().trim());
                 radvos.add(radvo);
             }
             vo.setActuacionesDefensoriales(radvos);
@@ -687,7 +689,7 @@ public class CasoController extends AbstractManagedBean implements Serializable 
                 radvo.setDepartamento(departamen == null ? "" : departamen.getDescripcion());
                 radvo.setProvincia(provin == null ? "" : provin.getDescripcion());
                 radvo.setDistrito(distri == null ? "" : distri.getDescripcion());
-                radvo.setImagePath(a.getRuta() == null ? null : hostAddress().concat(a.getRuta()));
+                radvo.setImagePath(a.getRuta() == null ? null : ConstantesUtil.FILE_DONWLOAD+"/"+a.getRuta().trim());
                 radvos2.add(radvo);
             }
             vo.setAcontecimientos(radvos2);

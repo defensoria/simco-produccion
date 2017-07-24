@@ -36,7 +36,9 @@ public class ConstantesUtil {
     
     public static final String LISTA_VALOR_SELECCIONE_NOMBRE = "SELECCIONE";
     
+    //public static String FILE_DONWLOAD = "C:/filesystem";
     
+    public static String FILE_DONWLOAD = "/home/simco/filesystem";
     
     
 }

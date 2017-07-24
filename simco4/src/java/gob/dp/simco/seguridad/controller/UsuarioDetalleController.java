@@ -271,7 +271,7 @@ public class UsuarioDetalleController extends AbstractManagedBean implements Ser
             } catch (IOException ex) {
                 log.error("agregarImagen()" + ex);
             }
-            usuario.setRuta("/filesystem/" + ruta);
+            usuario.setRuta(ruta);
             usuarioService.modificarUsuarioSimple(usuario);
             verDetallePerfil();
         }
