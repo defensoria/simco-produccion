@@ -38,7 +38,7 @@ public class ConstantesUtil {
     
     //public static String FILE_DONWLOAD = "C:/filesystem";
     
-    public static String FILE_DONWLOAD = "/home/simco/filesystem";
+    public static String FILE_DONWLOAD = "/srv/simco/filesystem/";
     
     
 }
