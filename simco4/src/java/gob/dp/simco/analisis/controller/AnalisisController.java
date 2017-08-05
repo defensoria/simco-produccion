@@ -74,7 +74,7 @@ public class AnalisisController extends AbstractManagedBean implements Serializa
 
     List<Actor> listaActoresXCasoIntensidad;
 
-    List<CasoActor> listCasoActor;
+    List<CasoActor> listCasoActor; 
 
     List<AnalisisActorTema> listaActoresXCasoGrafico;
 

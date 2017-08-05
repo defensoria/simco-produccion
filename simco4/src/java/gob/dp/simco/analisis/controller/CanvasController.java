@@ -9,7 +9,7 @@ import gob.dp.simco.analisis.entity.AnalisisActorTema;
 import gob.dp.simco.analisis.service.AnalisisActorTemaService;
 import gob.dp.simco.comun.mb.AbstractManagedBean;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
